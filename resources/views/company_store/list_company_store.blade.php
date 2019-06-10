@@ -77,11 +77,19 @@
                             <div class="form">
                                 {!! Form::model(null,array('url' => array('employee/company_store/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.store.name') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store.name_th') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('name',null,array('class'=>'form-control','placeholder'=>trans('messages.store.name'),'required')) !!}
+                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.store.name_th'),'required')) !!}
                                     </div>
 
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store.name_en') !!}</lable>
+                                    <div class="col-sm-4">
+                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.store.name_en'),'required')) !!}
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group row">
                                     <lable class="col-sm-2 control-label">{!! trans('messages.store.tell') !!}</lable>
                                     <div class="col-sm-4">
                                         {!! Form::text('tell',null,array('class'=>'form-control','placeholder'=>trans('messages.store.tell'),'required')) !!}
@@ -100,12 +108,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.store.address') !!}</lable>
-                                    <div class="col-sm-10">
-                                        {!! Form::textarea('address',null,array('class'=>'form-control','placeholder'=>trans('messages.store.address'),'required')) !!}
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.province') }}</label>
@@ -127,7 +129,7 @@
 
                                     <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
                                     <div class="col-sm-4">
-                                        {!! Form::text('postcode',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
+                                        {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
                                     </div>
                                 </div>
 
@@ -336,7 +338,7 @@
                 var id;
                 id = $(this).val();
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/district",
+                    url : "/root/admin/select/district",
                     method : 'post',
                     dataType: 'html',
                     data : ({'id':id}),
@@ -359,7 +361,7 @@
                 var id = id;
                 //console.log(id);
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
+                    url : "/root/admin/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -383,7 +385,7 @@
                 var select;
                 //console.log(dis);
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/district/edit",
+                    url : "/root/admin/select/district/edit",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -408,7 +410,7 @@
                 })
                 ////////////////////////////////
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/editSubDis",
+                    url : "/root/admin/select/editSubDis",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -436,7 +438,7 @@
                 var id = $(this).val();
                 console.log(id);
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
+                    url : "/root/admin/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -458,7 +460,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : $('#root-url').val()+"/root/admin/select/zip_code",
+                    url : "/root/admin/select/zip_code",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),

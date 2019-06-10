@@ -27,9 +27,15 @@ Route::post('/employee/product/delete','Product\ProductController@destroy');
 Route::any('/employee/company_store','Product\CompanystoreController@index');
 Route::post('/employee/company_store/add','Product\CompanystoreController@create');
 Route::any('/employee/company_store/view','Product\CompanystoreController@show');
-Route::post('/employee/company_store/edit','Product\CompanystoreController@edit');
+//Route::post('/employee/company_store/edit','Product\CompanystoreController@edit');
 Route::post('/employee/company_store/edit/file','Product\CompanystoreController@update');
 Route::post('/employee/company_store/delete','Product\CompanystoreController@destroy');
+Route::post('root/admin/select/district', 'Product\CompanystoreController@selectDistrict');
+Route::post('root/admin/select/subdistrict','Product\CompanystoreController@Subdistrict');
+Route::post('root/admin/select/zip_code','Product\CompanystoreController@zip_code');
+Route::post('root/admin/select/district/edit','Product\CompanystoreController@selectDistrictEdit');
+Route::post('root/admin/select/editSubDis','Product\CompanystoreController@editSubDis');
+Route::get('employee/update_store_form/{id?}','Product\CompanystoreController@edit');
 
 //employee_unit_store
 Route::any('/employee/unit_store','Product\UnitController@index');
@@ -39,3 +45,11 @@ Route::post('/employee/unit/add','Product\UnitController@create');
 Route::any('/employee/sell/product','Sell\SellproductController@index');
 Route::post('/employee/sell/search_product','Sell\SellproductController@create');
 Route::post('/employee/sell/product/add_order_product','Sell\SellproductController@store');
+
+//employee stock
+Route::any('/employee/stock/product','Stock\StockController@index');
+Route::post('/employee/product/add_to_stock','Stock\StockController@create');
+Route::post('/employee/stock/view','Stock\StockController@view');
+Route::post('/employee/stock/edit','Stock\StockController@edit');
+Route::post('/employee/product/update_to_stock','Stock\StockController@update');
+Route::post('/employee/stock/delete','Stock\StockController@destroy');

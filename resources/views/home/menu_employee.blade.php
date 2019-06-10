@@ -25,9 +25,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-                <i class="mdi mdi-view-headline menu-icon"></i>
-                <span class="menu-title">Form elements</span>
+            <a class="nav-link" href="{!! url('/employee/stock/product') !!}">
+                <i class="fa fa-archive menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.stock.title') !!}</span>
             </a>
         </li>
         <li class="nav-item">

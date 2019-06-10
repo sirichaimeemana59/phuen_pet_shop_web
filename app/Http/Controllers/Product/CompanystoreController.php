@@ -10,18 +10,19 @@ use App\store;
 use App\Districts;
 use App\Subdistricts;
 use App\Province;
+use App\company;
 
 class CompanystoreController extends Controller
 {
 
     public function index()
     {
-        $store = new store;
+        $store = new company;
 
         if(Request::method('post')) {
             if (Request::input('name')) {
-                $store = $store->where('name', 'like', "%" . Request::input('name') . "%")
-                    ->orWhere('name', 'like', "%" . Request::input('name') . "%");
+                $store = $store->where('name_th', 'like', "%" . Request::input('name') . "%")
+                    ->orWhere('name_en', 'like', "%" . Request::input('name') . "%");
             }
         }
 
@@ -46,12 +47,16 @@ class CompanystoreController extends Controller
 
     public function create()
     {
-        $store = new store;
+        $store = new company;
         $store->tell = Request::input('tell');
-        $store->address = Request::input('address');
-        $store->name = Request::input('name');
+        $store->name_th = Request::input('name_th');
+        $store->name_en = Request::input('name_en');
         $store->tax_id = Request::input('tax_id');
         $store->email = Request::input('email');
+        $store->province = Request::input('province');
+        $store->districts = Request::input('district');
+        $store->subdistricts = Request::input('sub_district');
+        $store->post_code = Request::input('post_code');
         $store->save();
 
         return redirect('employee/company_store');
@@ -66,28 +71,51 @@ class CompanystoreController extends Controller
 
     public function show()
     {
-        $store = store::find(Request::input('id'));
+        $p = new Province;
+        $provinces = $p->getProvince();
 
-        return view ('company_store.view_store')->with(compact('store'));
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
+        $store = company::find(Request::input('id'));
+
+        return view ('company_store.view_store')->with(compact('store','provinces','districts','subdistricts'));
     }
 
 
-    public function edit()
+    public function edit($id = null)
     {
-        $store = store::find(Request::input('id'));
+        $p = new Province;
+        $provinces = $p->getProvince();
 
-        return view ('company_store.edit_store')->with(compact('store'));
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
+        $store = company::find($id);
+
+        return view ('company_store.edit_store')->with(compact('store','provinces','districts','subdistricts'));
     }
 
     public function update()
     {
-        $store = store::find(Request::input('id'));
+        $store = company::find(Request::input('id'));
         $store->tell = Request::input('tell');
-        $store->address = Request::input('address');
-        $store->name = Request::input('name');
+        $store->name_th = Request::input('name_th');
+        $store->name_en = Request::input('name_en');
         $store->tax_id = Request::input('tax_id');
         $store->email = Request::input('email');
+        $store->province = Request::input('province');
+        $store->districts = empty(Request::input('district'))?Request::input('dis'):Request::input('district');
+        $store->subdistricts = empty(Request::input('sub_district'))?Request::input('subdis'):Request::input('sub_district');
+        $store->post_code = Request::input('post_code');
         $store->save();
+        //dd($store);
 
         return redirect('employee/company_store');
     }
@@ -95,9 +123,66 @@ class CompanystoreController extends Controller
 
     public function destroy()
     {
-        $store = store::find(Request::input('id'));
+        $store = company::find(Request::input('id'));
         $store->delete();
 
         return redirect('employee/company_store');
+    }
+
+    public function selectDistrict(){
+        if(Request::isMethod('post')) {
+            $d = new Districts;
+            $d = $d->where('province_id',Request::get('id'));
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function Subdistrict(){
+        if(Request::isMethod('post')){
+
+            $s = new Subdistricts;
+            $s = $s->where('district_id',Request::get('id'));
+            $s = $s->get();
+            return response()->json($s);
+        }
+    }
+
+
+    public function selectDistrictEdit(){
+        if(Request::isMethod('post')) {
+
+            $property = company::find(Request::get('id'));
+
+            //$p = Districts::find(Request::get('id'));
+
+            $d = new Districts;
+            $d = $d->where('province_id',$property['province']);
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function editSubDis(){
+
+        $property = company::find(Request::get('id'));
+
+        $s = new Subdistricts;
+        $s = $s->where('district_id',$property['districts']);
+        $s = $s->get();
+
+        return response()->json($s);
+    }
+
+    public function zip_code(){
+        if(Request::isMethod('post')){
+            $z = new Subdistricts;
+            $z = $z->where('id',Request::get('id'));
+            $z = $z->get();
+
+            return response()->json($z);
+        }
     }
 }

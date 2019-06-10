@@ -50,7 +50,8 @@ return [
         'tell' => 'Phone',
         'mail' => 'E-mail',
         'tax'  => 'Tax-id',
-        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
         'address' => 'Address',
     ],
     'unit' => [
@@ -125,4 +126,7 @@ return [
         'management_state'      => 'Management state',
         'project_code'          => 'Project code',
     ],
+    'stock' => [
+        'title' => 'Stock',
+    ]
 ];

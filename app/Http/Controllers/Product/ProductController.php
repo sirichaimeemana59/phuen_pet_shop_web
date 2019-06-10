@@ -45,7 +45,7 @@ class ProductController extends Controller
         $uploader->width = 350;
         $uploader->height = 350;
         $fileNameToDatabase = $uploader->execute();
-    }
+        }
 
         $product = new product;
         $product->name_th = $request->input('name_th');
