@@ -63,6 +63,7 @@ class StockController extends Controller
         $stock->unit_id = $request->input('unit_id');
         $stock->amount = $request->input('amount');
         $stock->photo = $fileNameToDatabase;
+        $stock->psc = $request->input('psc');
         $stock->save();
 
         return redirect('/employee/stock/product');
@@ -117,6 +118,7 @@ class StockController extends Controller
             $stock->unit_id = $request->input('unit_id');
             $stock->amount = $request->input('amount');
             $stock->photo = $fileNameToDatabase;
+            $stock->psc = $request->input('psc');
             $stock->save();
 
         }else{
@@ -126,7 +128,8 @@ class StockController extends Controller
             $stock->price = $request->input('price');
             $stock->unit_id = $request->input('unit_id');
             $stock->amount = $request->input('amount');
-            $stock->photo = $request->input('photo_');;
+            $stock->photo = $request->input('photo_');
+            $stock->psc = $request->input('psc');
             $stock->save();
         }
 

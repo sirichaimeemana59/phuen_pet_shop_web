@@ -128,6 +128,8 @@ return [
     ],
     'stock' => [
         'title' => 'Stock',
+        'Pcs' => ' Pcs / box',
+        'balance' => 'Balance',
     ],
     'widen' => [
         'title' => 'Widen',

@@ -89,13 +89,16 @@
 
                                     <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
                                     <div class="col-sm-4">
-                                        <select name="unit_id" id="" class="form-control">
+                                        <select name="unit_id" id="" class="form-control select_unit">
                                             <option value="">{!! trans('messages.select_unit') !!}</option>
-                                            @foreach($unit as $key => $val)
-                                                <option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>
-                                            @endforeach
+                                            <option value="1">Box</option>
+                                            <option value="2">Piece</option>
+                                            {{--@foreach($unit as $key => $val)--}}
+                                            {{--<option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>--}}
+                                            {{--@endforeach--}}
                                         </select>
                                     </div>
+
                                 </div>
 
                                 <div class="form-group row">
@@ -104,13 +107,18 @@
                                         {!! Form::text('price',null,array('class'=>'form-control','placeholder'=>trans('messages.product.price'),'required')) !!}
                                     </div>
 
+                                    <lable class="col-sm-2 control-label amount">{!! trans('messages.stock.Pcs') !!}</lable>
+                                        <div class="col-sm-4 amount">
+                                            {!! Form::text('psc',null,array('class'=>'form-control','placeholder'=>trans('messages.stock.Pcs'),'required')) !!}
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
                                     <div class="col-sm-4">
                                         {!! Form::file('photo',null,array('class'=>'form-control')) !!}
                                     </div>
-                                </div>
 
-                                <div class="form-group row">
                                    <lable class="col-sm-2 control-label">{!! trans('messages.store.title') !!}</lable>
                                     <div class="col-sm-4">
                                         <select name="store_id" id="" class="form-control">
@@ -313,6 +321,16 @@
                 });
             });
 
+            $('.amount').hide();
+            $('body').on('change','.select_unit',function(){
+                var id = $(this).val();
+
+                if(id == 1){
+                    $('.amount').show();
+                }else{
+                    $('.amount').hide();
+                }
+            })
         });
     </script>
 @endsection

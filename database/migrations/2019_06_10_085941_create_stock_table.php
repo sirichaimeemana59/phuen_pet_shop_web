@@ -23,6 +23,7 @@ class CreateStockTable extends Migration
             $table->integer('amount');
             $table->integer('unit_id');
             $table->text('photo');
+            $table->integer('psc');
             $table->timestamps();
         });
     }

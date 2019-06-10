@@ -8,12 +8,6 @@
                         <h3 class="panel-title">{!! trans('messages.product.head_product') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
-                        <div class="row">
-                            <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button>
-                            </div>
-                        </div>
-                        <br>
                         <div class="panel-body" id="landing-subject-list">
                             <form method="POST" id="search-form" action="{!! url('/employee/widen/search_product') !!}" accept-charset="UTF-8" class="form-horizontal">
                                 <div class="row">
@@ -53,7 +47,7 @@
                                 <th>{!! trans('messages.product.head_product') !!}</th>
                                 <th>{!! trans('messages.product.amount') !!}</th>
                                 <th>{!! trans('messages.product.price') !!}</th>
-                                {{--<th>{!! trans('messages.product.total') !!}</th>--}}
+                                <th>{!! trans('messages.stock.balance') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
                         </table>
@@ -102,6 +96,7 @@
                                 var name_th = e.name_th;
                                 var price = e.price;
                                 var photo = e.photo;
+                                var amount = e.amount;
                                 var id = e.id;
                                 var time = $.now();
 
@@ -119,7 +114,7 @@
                                     '<td><span>' + name + '</span></td>',
                                     '<td><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="10" value="1"></td>',
                                     '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price]" class="price" value="' + price + '"><span>' + price + '</span></td>',
-                                    // '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][result]"></td>',
+                                    '<td><span>'+amount+'</span></td>',
                                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                                 ];
 
