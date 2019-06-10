@@ -28,9 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Session::put('locale','th');
+        Session::put('locale','en');
         if( Auth::user()->role == 0){
-            Redirect::to('/admin/teacher')->send();
+            Redirect::to('/employee/home')->send();
         }
     }
 }
