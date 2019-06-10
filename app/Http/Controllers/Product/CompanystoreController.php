@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use auth;
 use app\user;
 use App\store;
+use App\Districts;
+use App\Subdistricts;
+use App\Province;
 
 class CompanystoreController extends Controller
 {
@@ -24,10 +27,19 @@ class CompanystoreController extends Controller
 
         $store = $store->paginate(50);
 
+        $p = new Province;
+        $provinces = $p->getProvince();
+
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
         if(!Request::ajax()){
-            return view('company_store.list_company_store')->with(compact('store'));
+            return view('company_store.list_company_store')->with(compact('store','provinces','districts','subdistricts'));
         }else{
-            return view('company_store.list_company_store_element')->with(compact('store'));
+            return view('company_store.list_company_store_element')->with(compact('store','provinces','districts','subdistricts'));
         }
     }
 

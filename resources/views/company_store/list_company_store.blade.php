@@ -105,7 +105,30 @@
                                     <div class="col-sm-10">
                                         {!! Form::textarea('address',null,array('class'=>'form-control','placeholder'=>trans('messages.store.address'),'required')) !!}
                                     </div>
+                                </div>
 
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.province') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::select('province',$provinces,null,array('class'=>'form-control province')) !!}
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.district') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::select('district',$districts,null,array('class'=>'form-control district')) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.subdistricts') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::text('postcode',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
+                                    </div>
                                 </div>
 
                                 <div class="form-group row float-center" style="text-align: center; ">
@@ -298,6 +321,158 @@
                     }
                 });
             });
+
+            @if(!empty($property))
+            $('.subdistricts').attr("disabled", false);
+            $('.district').attr("disabled", false);
+            @else
+            $('.subdistricts').attr("disabled", true);
+            $('.district').attr("disabled", true);
+            @endif
+
+
+            $('.province').on('change',function(){
+                $('.district').attr("disabled", false);
+                var id;
+                id = $(this).val();
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/district",
+                    method : 'post',
+                    dataType: 'html',
+                    data : ({'id':id}),
+                    success: function (e) {
+                        $(".district").html('');
+                        $(".district").append("<option value=''>อำเภอ/เขต</option>");
+                        $.each($.parseJSON(e), function(i, val){
+                            $(".district").append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                        });
+                    },
+                    error : function () {
+
+
+                    }
+                })
+            })
+
+            function SelectDistrict(id){
+                $('.subdistricts').attr("disabled", false);
+                var id = id;
+                //console.log(id);
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.subdistricts').html('');
+                        $.each($.parseJSON(e),function(i,val){
+                            $('.subdistricts').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            $('.postcode').val(val.zip_code);
+                        });
+
+                    },error : function(){
+
+                    }
+                })
+            }
+
+            $('body').ready(function(){
+                var id = $('.property_id').val();
+                var dis = $('.dis').val();
+                var subdis = $('.subdis').val();
+                var select;
+                //console.log(dis);
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/district/edit",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.district').html('');
+                        $('.district').append("<option value=''>ตำบล</option>");
+                        $.each($.parseJSON(e),function(i,val){
+                            if(val.id == dis){
+                                select = "selected";
+                                $('.district').append("<option value='"+val.id+"' selected='"+select+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            }else {
+                                select = "";
+                                $('.district').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            }
+                            //console.log(select);
+                            $('.postcode').val(val.zip_code);
+                            //console.log(val.id);
+                        });
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+                ////////////////////////////////
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/editSubDis",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.subdistricts').html('');
+                        $('.subdistricts').append("<option value=''>ตำบล</option>");
+                        $.each($.parseJSON(e),function(i,val){
+                            if(val.id == subdis){
+                                select = "selected";
+                                $('.subdistricts').append("<option value='"+val.id+"' selected='"+select+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            }else {
+                                select = "";
+                                $('.subdistricts').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            }
+                            $('.postcode').val(val.zip_code);
+                        });
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+            })
+
+            $('.district').on('change',function(){
+                $('.subdistricts').attr("disabled", false);
+                var id = $(this).val();
+                console.log(id);
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        //console.log(e);
+                        $('.subdistricts').html('');
+                        $('.subdistricts').append("<option value=''>ตำบล</option>");
+                        $.each($.parseJSON(e),function(i,val){
+                            $('.subdistricts').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                            $('.postcode').val(val.zip_code);
+                        });
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+            })
+
+            $('.subdistricts').on('change',function(){
+                var id = $(this).val();
+                //console.log(id);
+                $.ajax({
+                    url : $('#root-url').val()+"/root/admin/select/zip_code",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $.each($.parseJSON(e),function(i,val){
+                            $('.postcode').val(val.zip_code);
+                        });
+                        //console.log(e);
+
+                    },error : function(){
+                        //console.log('aa');
+                    }
+                })
+            })
 
         });
     </script>
