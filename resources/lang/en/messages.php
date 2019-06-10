@@ -128,5 +128,8 @@ return [
     ],
     'stock' => [
         'title' => 'Stock',
+    ],
+    'widen' => [
+        'title' => 'Widen',
     ]
 ];

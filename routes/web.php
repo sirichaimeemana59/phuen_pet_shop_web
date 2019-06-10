@@ -53,3 +53,8 @@ Route::post('/employee/stock/view','Stock\StockController@view');
 Route::post('/employee/stock/edit','Stock\StockController@edit');
 Route::post('/employee/product/update_to_stock','Stock\StockController@update');
 Route::post('/employee/stock/delete','Stock\StockController@destroy');
+
+//employee widen stock
+Route::any('/employee/widen/stock','Widen\WidenController@index');
+Route::post('/employee/widen/search_product','Widen\WidenController@create');
+Route::post('/employee/widen/product/widen_product','Widen\WidenController@store');
