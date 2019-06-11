@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\stock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use ImageUploadAndResizer;
@@ -9,6 +10,7 @@ use App\product;
 use App\user;
 use Auth;
 use App\unit;
+use App\widen;
 
 class ProductController extends Controller
 {
@@ -29,33 +31,27 @@ class ProductController extends Controller
         $unit = new unit;
         $unit = $unit->get();
 
+        $widen = new widen;
+        $widen = $widen->get();
+
         if(!$request->ajax()){
-            return view('product.list_product')->with(compact('product','unit'));
+            return view('product.list_product')->with(compact('product','unit','widen'));
         }else{
-            return view('product.list_product_element')->with(compact('product','unit'));
+            return view('product.list_product_element')->with(compact('product','unit','widen'));
         }
     }
 
 
     public function create(Request $request)
     {
-        $fileNameToDatabase = '//via.placeholder.com/250x250';
-        if($request->hasFile('photo')){
-        $uploader = new ImageUploadAndResizer($request->file('photo', '/images/photo'));
-        $uploader->width = 350;
-        $uploader->height = 350;
-        $fileNameToDatabase = $uploader->execute();
-        }
 
         $product = new product;
-        $product->name_th = $request->input('name_th');
-        $product->amount = $request->input('amount');
-        $product->price = $request->input('price');
-        $product->user_id = null;
-        $product->store_id = null;
-        $product->unit_id = $request->input('unit_id');
-        $product->photo = $fileNameToDatabase;
-        $product->name_en = $request->input('name_en');
+//        $product->price = $request->input('price');
+        $product->unit_sale = $request->input('type_sale');
+        $product->price_pack = $request->input('price_pack');
+        $product->price_piece = $request->input('price_piece');
+        $product->product_id = $request->input('product_id');
+        //dd($product);
         $product->save();
 
         return redirect('/employee/product');
@@ -76,14 +72,17 @@ class ProductController extends Controller
     }
 
 
-    public function edit(Request $request)
+    public function edit($id = null)
     {
-        $product = product::find($request->input('id'));
+        $product = product::find($id);
 
         $unit = new unit;
         $unit = $unit->get();
 
-        return view ('product.edit_product')->with(compact('product','unit'));
+        $widen = new widen;
+        $widen = $widen->get();
+
+        return view ('product.edit_product')->with(compact('product','unit','widen'));
     }
 
 
@@ -132,5 +131,13 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('/employee/product');
+    }
+
+    public function product(Request $request){
+
+        $product = stock::find($request->input('id'));
+
+
+        return response()->json( $product );
     }
 }

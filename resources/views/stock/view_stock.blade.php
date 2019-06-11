@@ -20,29 +20,26 @@
 </div>
 
 <div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
-    <div class="col-sm-4">
-        {!! $stock->price !!}  : {!! trans('messages.payment.bath') !!}
-    </div>
-</div>
-
-
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
-    <div class="col-sm-4">
-        {!! $stock->amount !!}
-    </div>
-
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
-    <div class="col-sm-4">
-        {!! $stock->join_unit{'name_'.Session::get('locale')} !!}
-    </div>
-</div>
-
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.store.title') !!}</lable>
+    <lable class="col-sm-2 control-label">{!! trans('messages.unit.title') !!}</lable>
     <div class="col-sm-10">
-        {!! $stock->join_store{'name_'.Session::get('locale')} !!}
-    </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>{!! trans('messages.unit.name_th') !!}</th>
+                    <th>{!! trans('messages.unit.name_en') !!}</th>
+                    <th>{!! trans('messages.unit.amount') !!}</th>
+                    <th>{!! trans('messages.unit.price') !!}</th>
+                </tr>
 
+                    @foreach($unit_ as $key => $val)
+                        <tr>
+                            <td><input type="text" name="" class="form-control" value="{!! $val->name_th !!}" readonly></td>
+                            <td><input type="text" name="" class="form-control" value="{!! $val->name_en !!}" readonly></td>
+                            <td><input type="text" name="" class="form-control num" value="{!! $val->amount !!}" readonly></td>
+                            <td><input type="text" name="" class="form-control num" value="{!! $val->price !!}" readonly></td>
+                        </tr>
+                    @endforeach
+            </table>
+        </div>
+    </div>
 </div>

@@ -1,52 +1,281 @@
-{!! Form::model($product,array('url' => array('employee/product/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.name_th') !!}</lable>
-    <input type="hidden" name="id" value="{!! $product->id !!}">
-    <input type="hidden" name="photo_" value="{!! $product->photo !!}">
-    <div class="col-sm-4">
-        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_th'),'required')) !!}
+@extends('home.home_user')
+@section('content')
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.product.head_product') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+                            {!! Form::model($product,array('url' => array('employee/product/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.product.head_product') !!}</lable>
+                                <div class="col-sm-10">
+                                    <select name="product_id" id="" class="form-control select_product" disabled>
+                                        <option value="">{!! trans('messages.select_unit') !!}</option>
+                                        @foreach($widen as $key_ => $val_)
+                                            <option value="{!! $val_->stock_id !!}" @if($product->id == $val_->stock_id) selected @endif>{!! $val_->join_stock{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
+                                <div class="col-sm-4">
+                                    {!! Form::text('amount',$product->join_stock->psc,array('class'=>'form-control amount','placeholder'=>trans('messages.product.amount'),'readonly')) !!}
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
+                                <div class="col-sm-4">
+                                    <?php
+                                    if($product->unit_sale == 1){
+                                        $select1 = "Selected";
+                                        $select2 = "";
+                                    }else{
+                                        $select2 = "Selected";
+                                        $select1 = "";
+                                    }
+                                    ?>
+                                    <select name="unit_id" id="" class="form-control unit_id">
+                                        <option value="">{!! trans('messages.select_unit') !!}</option>
+                                        <option value="1" {!! $select1 !!}>Box</option>
+                                        <option value="2" {!! $select2 !!}>Piece</option>
+                                        {{--@foreach($unit as $key => $val)--}}
+                                        {{--<option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>--}}
+                                        {{--@endforeach--}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
+                                <div class="col-sm-4">
+                                    {!! Form::text('price',null,array('class'=>'form-control price','placeholder'=>trans('messages.product.price'),'required')) !!}
+                                </div>
+
+                                <lable class="col-sm-2 control-label psc" style="display: none;">{!! trans('messages.stock.Pcs') !!}</lable>
+                                <div class="col-sm-4 psc" style="display: none;">
+                                    {!! Form::text('psc',null,array('class'=>'form-control psc_total','placeholder'=>trans('messages.stock.Pcs'),'required')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.type') !!}</lable>
+                                <div class="col-sm-10">
+                                    <select name="type_sale" id="" class="form-control type_sale">
+                                        <option value="">{!! trans('messages.sale_mode.type') !!}</option>
+                                        <option value="1">{!! trans('messages.sale_mode.pack') !!}</option>
+                                        <option value="2">{!! trans('messages.sale_mode.piece') !!}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row price_pack" style="display: none;">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_pack') !!}</lable>
+                                <div class="col-sm-10">
+                                    {!! Form::text('price_pack',!empty($product->price_pack),array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_pack'),'required')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row price_piece" style="display: none;">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_piece') !!}</lable>
+                                <div class="col-sm-10">
+                                    {!! Form::text('price_piece',!empty($product->price_piece),array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_piece'),'required')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row float-center" style="text-align: center; ">
+                                <div class="col-sm-12">
+                                    <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                    <button class="btn-info btn-warning" type="reset">Reset</button>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.name_en') !!}</lable>
-    <div class="col-sm-4">
-        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_en'),'required')) !!}
-    </div>
-</div>
+@endsection
 
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
-    <div class="col-sm-4">
-        {!! Form::text('amount',null,array('class'=>'form-control','placeholder'=>trans('messages.product.amount'),'required')) !!}
-    </div>
+@section('script')
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/js/jquery-validate/jquery.validate.min.js"></script>
 
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
-    <div class="col-sm-4">
-        <select name="unit_id" id="" class="form-control">
-            <option value="">{!! trans('messages.select_unit') !!}</option>
-            @foreach($unit as $key => $val)
-                <option value="{!! $val->id !!}" @if($product->unit_id == $val->id) selected @endif>{!! $val->{'name_'.Session::get('locale')} !!}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
-    <div class="col-sm-4">
-        {!! Form::text('price',null,array('class'=>'form-control','placeholder'=>trans('messages.product.price'),'required')) !!}
-    </div>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
-    <div class="col-sm-4">
-        {!! Form::file('photo',null,array('class'=>'form-control')) !!}
-    </div>
+            $('.add-store').on('click',function(){
+                $('#add-store').modal('show');
+            });
 
-</div>
+            $('.search-store').on('click',function(){
+                var data  = $('#search-form').serialize();
+                //alert('aa');
+                console.log(data);
+                $('#landing-subject-list').css('opacity','0.6');
+                $.ajax({
+                    url : '/employee/product',
+                    method : 'post',
+                    dataType : 'html',
+                    data : data,
+                    success : function(e){
+                        $('#landing-subject-list').css('opacity','1').html(e);
+                    } ,error : function(){
+                        console.log('Error Search Data Store');
+                    }
+                });
+            });
 
-<div class="form-group row float-center" style="text-align: center; ">
-    <div class="col-sm-12">
-        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-        <button class="btn-info btn-warning" type="reset">Reset</button>
-    </div>
-</div>
-{!! Form::close() !!}
+            $('.reset-s-btn').on('click',function () {
+                $(this).closest('form').find("input").val("");
+                $(this).closest('form').find("select option:selected").removeAttr('selected');
+                //propertyPageSale (1);
+                window.location.href ='/employee/product';
+            });
+
+            $('#add-store-btn').on('click',function () {
+                if($('.create-store-form').valid()) {
+                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+                    $('.create-store-form').submit();
+                }
+            });
+
+
+            $('.view-store').on('click',function(){
+                var id = $(this).data('id');
+                $('#view-store').modal('show');
+                $('#lead-content').empty();
+                $('.v-loading').show();
+                $.ajax({
+                    url : '/employee/product/view',
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('#lead-content').html(e);
+                        $('.v-loading').hide();
+                    } ,error : function(){
+                        console.log('Error View Data Product');
+                    }
+                });
+            });
+
+            $('.edit-store').on('click',function(){
+                var id = $(this).data('id');
+                //console.log(id);
+                $('#edit-store').modal('show');
+                $('#lead-content1').empty();
+                $('.v-loading1').show();
+                $.ajax({
+                    url : '/employee/product/edit',
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('#lead-content1').html(e);
+                        $('.v-loading1').hide();
+                    } ,error : function(){
+                        console.log('Error View Data Store');
+                    }
+                });
+            });
+
+            $('.delete-store').on('click',function(){
+                var id = $(this).data('id');
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete)=> {
+                    if (willDelete) {
+                        setTimeout(function() {
+                            $.post("/employee/product/delete", {
+                                id: id
+                            }, function(e) {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                }).then(function(){
+                                    window.location.href ='/employee/product'
+                                });
+                            });
+                        }, 50);
+                    } else {
+                        swal("Your imaginary file is safe!");
+            }
+            });
+            });
+
+            $('body').on('change','.select_product',function(){
+                var id = $(this).val();
+
+                //console.log(id);
+                $.ajax({
+                    url : '/employee/add/product/for_sale',
+                    method : 'post',
+                    dataType : 'json',
+                    data : ({'id':id}),
+                    success : function(e){
+                        var amount = e.amount;
+                        var price = e.price;
+                        var psc = e.psc;
+                        var unit_id = e.unit_id;
+
+                        //console.log(unit_id);
+                        $('.price').val(price);
+                        $('.amount').val(amount);
+
+                        $('.unit_id').html('');
+                        $('.unit_id').append("<option value=''>unit_id</option>");
+
+                        if(e.unit_id == '1'){
+                            var select1 = "selected";
+                            var select2 = "";
+                        }else {
+                            var select2 = "selected";
+                            var select1 = "";
+                        }
+
+                        $('.psc').hide();
+
+                        if(psc > 0){
+                            $('.psc').show();
+                            $('.psc_total').val(psc);
+                        }
+                        $('.unit_id').append("<option value='1' "+select1+">Box</option>",
+                            "<option value='2' "+select2+">Piece</option>");
+                    } ,error : function(){
+                        console.log('Error View Data Product');
+                    }
+                });
+            });
+
+            $('body').on('change','.type_sale',function(){
+                var id = $(this).val();
+
+                if(id == 1){
+                    $('.price_pack').show();
+                    $('.price_piece').hide();
+                }else{
+                    $('.price_piece').show();
+                    $('.price_pack').hide();
+                }
+                //console.log(id);
+            });
+
+        });
+    </script>
+@endsection

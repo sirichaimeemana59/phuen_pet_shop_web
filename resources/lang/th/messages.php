@@ -33,6 +33,7 @@ return [
     'person' => 'คน',
     'time_class'=>'เวลา',
     'select_unit'=>'---กรุณาเลือกหน่วย---',
+    'selete_procudt' => '---กรุณาเลือกสินค้า---',
     'showing'	=> 'แสดงจาก <strong>:from</strong> ถึง <strong>:to</strong> จาก <strong>:total</strong> รายการ',
 
 
@@ -57,7 +58,11 @@ return [
     ],
     'unit' => [
         'title' => 'หน่วย',
-        'name' => 'ชื่อ',
+        'name_th' => 'ชื่อ',
+        'name' => 'Name',
+        'name_en' => 'ชื่อ [EN]',
+        'amount' => 'จำนวน',
+        'price' => 'ราคา',
     ],
     'sell' => [
         'title' => 'การขาย',
@@ -134,5 +139,12 @@ return [
     ],
     'widen' => [
         'title' => 'เบิกสินค้า',
+    ],
+    'sale_mode' => [
+        'type' => 'รูปแบบการขาย',
+        'pack' => 'ยกแพ็ค',
+        'piece' => 'ชิ้น',
+        'price_pack' => 'ราคา/แพ็ค',
+        'price_piece' => 'ราคา/ชิ้น',
     ]
 ];

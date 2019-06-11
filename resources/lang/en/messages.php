@@ -33,6 +33,7 @@ return [
     'person' => 'Person',
     'time_class'=>'Time',
     'select_unit'=>'---Please Select unit---',
+    'selete_procudt' => '---Please Select Product---',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
     'product'=>[
@@ -57,6 +58,10 @@ return [
     'unit' => [
         'title' => 'Unit',
         'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'amount' => 'Amount',
+        'price' => 'Price',
     ],
     'sell' => [
         'title' => 'Sale',
@@ -133,5 +138,12 @@ return [
     ],
     'widen' => [
         'title' => 'Widen',
+    ],
+    'sale_mode' => [
+        'type' => 'Sale Type',
+        'pack' => 'Pack',
+        'piece' => 'Piece',
+        'price_pack' => 'Price/pack',
+        'price_piece' => 'Price/Piece',
     ]
 ];

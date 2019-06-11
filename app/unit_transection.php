@@ -8,11 +8,11 @@ use Auth;
 use Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class widen extends GeneralModel
+class unit_transection extends GeneralModel
 {
-    protected $primaryKey = 'stock_id';
-    protected $table = 'widen';
-    protected $fillable = ['stock_id,amount,widen_code'];
+    protected $primaryKey = 'id';
+    protected $table = 'unit_transection';
+    protected $fillable = ['name_th,name_en,product_id,amount,price'];
 
     public $timestamps = true;
     protected $softDelete = true;

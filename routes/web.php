@@ -19,9 +19,10 @@ Route::any('employee/home','Product\ProductController@index');
 Route::any('/employee/product','Product\ProductController@index');
 Route::post('/employee/product/add','Product\ProductController@create');
 Route::post('/employee/product/view','Product\ProductController@show');
-Route::post('/employee/product/edit','Product\ProductController@edit');
+Route::get('/employee/product/edit/{id?}','Product\ProductController@edit');
 Route::post('/employee/product/update','Product\ProductController@update');
 Route::post('/employee/product/delete','Product\ProductController@destroy');
+Route::post('/employee/add/product/for_sale','Product\ProductController@product');
 
 //employee_company_store
 Route::any('/employee/company_store','Product\CompanystoreController@index');
@@ -50,7 +51,7 @@ Route::post('/employee/sell/product/add_order_product','Sell\SellproductControll
 Route::any('/employee/stock/product','Stock\StockController@index');
 Route::post('/employee/product/add_to_stock','Stock\StockController@create');
 Route::post('/employee/stock/view','Stock\StockController@view');
-Route::post('/employee/stock/edit','Stock\StockController@edit');
+Route::get('/employee/stock/edit/{id?}','Stock\StockController@edit');
 Route::post('/employee/product/update_to_stock','Stock\StockController@update');
 Route::post('/employee/stock/delete','Stock\StockController@destroy');
 
@@ -58,3 +59,7 @@ Route::post('/employee/stock/delete','Stock\StockController@destroy');
 Route::any('/employee/widen/stock','Widen\WidenController@index');
 Route::post('/employee/widen/search_product','Widen\WidenController@create');
 Route::post('/employee/widen/product/widen_product','Widen\WidenController@store');
+Route::post('/select/product/unit_','Widen\WidenController@select_unit_');
+//Stock
+Route::get('/employee/add_product_stock','Stock\StockController@stock');
+Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');

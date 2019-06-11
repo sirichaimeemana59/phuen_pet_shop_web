@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStockTable extends Migration
+class CreateWidenReportTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('widen_report', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('name_th');
-            $table->text('name_en');
-            $table->softDeletes();
-            $table->text('photo');
-            $table->text('code');
+            $table->integer('stock_id');
+            $table->integer('amount');
+            $table->text('widen_code');
+            $table->date('widen_date');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateStockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock');
+        Schema::dropIfExists('widen_report');
     }
 }

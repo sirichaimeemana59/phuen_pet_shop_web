@@ -38,6 +38,13 @@
                     <div class="panel-heading">
                         <h3 class="panel-title" style="text-align: center;">{!! trans('messages.widen.title') !!}</h3>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
+                            <button type="button" class="btn btn-secondary widen-store">{!! trans('messages.widen.title') !!}</button>
+                        </div>
+                    </div>
+                    <br>
                     <div class="panel-body search-form table-responsive">
                         {!! Form::model(null,array('url' => array('/employee/widen/product/widen_product'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                         <table class="table itemTables" style="width: 100%">
@@ -59,6 +66,15 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="property_select" style="display:none;">
+        <select name="property_id[]" id="property_id" class="form-control" required style="width:500px;">
+            <option value="">{!! trans('messages.selete_procudt') !!}</option>
+            @foreach($stock as $prow)
+                <option value="{!! $prow['id'] !!}">{!! $prow['name_th']." ".$prow['name_en'] !!}</option>
+            @endforeach
+        </select>
     </div>
 @endsection
 
@@ -138,6 +154,51 @@
             //alert('aaa');
             $(this).closest('tr.itemRow').remove();
             //return false;
+        });
+
+        $(function () {
+            $('.widen-store').on('click', function (e){
+                e.preventDefault();
+                var time = $.now();
+                var property = '<select name="property_id[]" class="product" style="width:300px;">'+ $('#property_select select').html() + '</select>';
+
+                var data = [
+                    '<tr class="itemRow">',
+                    '<td></td>',
+                    '<td style="text-align: left; width:300px;">'+property+'</td>',
+                    '<td><select name="unit_trance[]" class="unit_trance" style="width:300px;"></select></td>',
+                    '<td><input type="text" class="result"></td>',
+                    '<td></td>',
+                    '<td></td>',
+                    '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
+                    '</tr>'].join('');
+                $('.itemTables').append(data);
+            });
+        });
+
+        $('.itemTables').on('change','.product',function(){
+           var id = $(this).val();
+           var time = $.now();
+          // console.log(id);
+            $.ajax({
+                url : '/select/product/unit_',
+                method : 'post',
+                dataType : 'json',
+                data : ({'id':id}),
+                success : function(e){
+                    console.log(e);
+                    $('body').parents('tr').find('.result').val(id);
+                    $('.unit_trance').html('');
+                    $('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
+                    $.each(e,function(i,val) {
+
+                        $('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+ " " + val.name_en +"</option>");
+                        // $('tr').parents('tr').find('.unit_trance').html('55');
+                    });
+                } ,error : function(){
+                    console.log('Error View Data Store');
+                }
+            });
         });
     </script>
 @endsection

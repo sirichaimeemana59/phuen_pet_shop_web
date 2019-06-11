@@ -12,9 +12,14 @@ class product extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'products';
-    protected $fillable = ['name_th,name_en,photo,unit_id,user_id,store_id,price,amount,deleted_at'];
+    protected $fillable = ['price,unit_id,unit_sale,price_pack,price_piece,deleted_at,product_id'];
     public $timestamps = true;
     protected $softDelete = true;
+
+    public function join_stock()
+    {
+        return $this->hasOne('App\stock','id','product_id');
+    }
 
 //    protected static function boot()
 //    {

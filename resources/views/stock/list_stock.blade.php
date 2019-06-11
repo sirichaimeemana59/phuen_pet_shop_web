@@ -43,7 +43,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.stock.title') !!}</button>
+                                <a href="{!! url('employee/add_product_stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.stock.title') !!}</button></a>
                             </div>
                         </div>
                         <br>

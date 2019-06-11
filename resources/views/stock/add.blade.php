@@ -9,18 +9,8 @@
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
+                            {!! Form::model(null,array('url' => array('employee/product/add_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <div class="form-group row">
-                                <lable class="col-sm-2 control-label"></lable>
-                                <div class="col-sm-10">
-                                    <img src="{!! asset($stock->photo) !!}" alt="" width="50%">
-                                </div>
-                                
-                            </div>
-                            {!! Form::model($stock,array('url' => array('/employee/product/update_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-                            <div class="form-group row">
-                                <input type="hidden" name="id" value="{!! $stock->id !!}">
-                                <input type="hidden" name="code_" value="{!! $stock->code !!}">
-                                <input type="hidden" name="photo_" value="{!! $stock->photo !!}">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.product.name_th') !!}</lable>
                                 <div class="col-sm-4">
                                     {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_th'),'required')) !!}
@@ -59,29 +49,25 @@
                                                 <th>{!! trans('messages.unit.name_en') !!}</th>
                                                 <th>{!! trans('messages.unit.amount') !!}</th>
                                                 <th>{!! trans('messages.unit.price') !!}</th>
-                                                <th>{!! trans('messages.action') !!}</th>
                                             </tr>
 
-                                            @foreach($unit_ as $key => $val)
+                                    @for($i=1;$i<=5;$i++)
+                                        @if($i == 1)
+                                            <?php
+                                                $required = "required";
+                                            ?>
+                                            @else
+                                            <?php
+                                            $required = "";
+                                            ?>
+                                        @endif
                                                 <tr>
-                                                    <td><input type="text" name="data_[{!!$key !!}][name_th]" class="form-control" value="{!! $val->name_th !!}">
-                                                        <input type="hidden" name="data_[{!!$key !!}][id_unit]" value="{!! $val->id !!}">
-                                                        <input type="hidden" name="data_[{!!$key !!}][code]" value="{!! $val->code !!}"></td>
-                                                    <td><input type="text" name="data_[{!!$key !!}][name_en]" class="form-control" value="{!! $val->name_en !!}"></td>
-                                                    <td><input type="text" name="data_[{!!$key !!}][amount]" class="form-control num" value="{!! $val->amount !!}"></td>
-                                                    <td><input type="text" name="data_[{!!$key !!}][price]" class="form-control num" value="{!! $val->price !!}"></td>
-                                                    <td><button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-ids="{!! $stock->id !!}" data-id="{!! $val->id !!}"><i class="mdi mdi-delete-sweep"></i></button></td>
+                                                    <td><input type="text" name="data[{!!$i !!}][name_th]" class="form-control"  {!! $required !!}></td>
+                                                    <td><input type="text" name="data[{!!$i !!}][name_en]" class="form-control" {!! $required !!}></td>
+                                                    <td><input type="text" name="data[{!!$i !!}][amount]" class="form-control num" {!! $required !!}></td>
+                                                    <td><input type="text" name="data[{!!$i !!}][price]" class="form-control num" {!! $required !!}></td>
                                                 </tr>
-                                            @endforeach
-
-                                            @for($i=1;$i<=5-count($unit_);$i++)
-                                                <tr>
-                                                    <td><input type="text" name="data[{!!$i !!}][name_th]" class="form-control"></td>
-                                                    <td><input type="text" name="data[{!!$i !!}][name_en]" class="form-control"></td>
-                                                    <td><input type="text" name="data[{!!$i !!}][amount]" class="form-control num"></td>
-                                                    <td><input type="text" name="data[{!!$i !!}][price]" class="form-control num"></td>
-                                                </tr>
-                                            @endfor
+                                    @endfor
                                         </table>
                                     </div>
                                 </div>
@@ -142,34 +128,6 @@
 
             });
 
-            $('.delete-store').on('click',function(){
-                var id = $(this).data('id');
-                var ids = $(this).data('ids');
-
-                swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete)=> {
-                    if (willDelete) {
-                        setTimeout(function() {
-                            $.post("/employee/stock/delete/unit", {
-                                id: id
-                            }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
-                                    icon: "success",
-                                }).then(function(){
-                                    window.location.href ='/employee/stock/edit/5'
-                                });
-                            });
-                        }, 50);
-                    } else {
-                        swal("Your imaginary file is safe!");
-                    }
-                });return false;
-            });
         });
     </script>
 @endsection

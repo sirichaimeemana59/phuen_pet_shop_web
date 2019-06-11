@@ -43,8 +43,10 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-success mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button>
-                                <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
+                                @if($widen != null)
+                                    <button class="btn btn-success mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button>
+                                @endif
+                                    <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
                             </div>
                         </div>
                         <br>
@@ -71,45 +73,71 @@
                             <div class="form">
                                 {!! Form::model(null,array('url' => array('employee/product/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.name_th') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_th'),'required')) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.name_en') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_en'),'required')) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('amount',null,array('class'=>'form-control','placeholder'=>trans('messages.product.amount'),'required')) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
-                                    <div class="col-sm-4">
-                                        <select name="unit_id" id="" class="form-control">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.head_product') !!}</lable>
+                                    <div class="col-sm-10">
+                                        <select name="product_id" id="" class="form-control select_product">
                                             <option value="">{!! trans('messages.select_unit') !!}</option>
-                                            @foreach($unit as $key => $val)
-                                                <option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>
+                                            @foreach($widen as $key_ => $val_)
+                                                <option value="{!! $val_->stock_id !!}">{!! $val_->join_stock{'name_'.Session::get('locale')} !!}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('price',null,array('class'=>'form-control','placeholder'=>trans('messages.product.price'),'required')) !!}
+                                        {!! Form::text('amount',null,array('class'=>'form-control amount','placeholder'=>trans('messages.product.amount'),'required')) !!}
                                     </div>
 
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::file('photo',null,array('class'=>'form-control')) !!}
+                                        <select name="unit_id" id="" class="form-control unit_id">
+                                            <option value="">{!! trans('messages.select_unit') !!}</option>
+                                            <option value="1">Box</option>
+                                            <option value="2">Piece</option>
+                                            {{--@foreach($unit as $key => $val)--}}
+                                            {{--<option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>--}}
+                                            {{--@endforeach--}}
+                                        </select>
                                     </div>
+                                </div>
 
+                                <div class="form-group row">
+                                    {{--<lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>--}}
+                                    {{--<div class="col-sm-4">--}}
+                                        {{--{!! Form::text('price',null,array('class'=>'form-control price','placeholder'=>trans('messages.product.price'),'required')) !!}--}}
+                                    {{--</div>--}}
+
+                                    <lable class="col-sm-2 control-label psc" style="display: none;">{!! trans('messages.stock.Pcs') !!}</lable>
+                                    <div class="col-sm-4 psc" style="display: none;">
+                                        {!! Form::text('psc',null,array('class'=>'form-control psc_total','placeholder'=>trans('messages.stock.Pcs'),'required')) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.type') !!}</lable>
+                                    <div class="col-sm-10">
+                                        <select name="type_sale" id="" class="form-control type_sale">
+                                            <option value="">{!! trans('messages.sale_mode.type') !!}</option>
+                                            <option value="1">{!! trans('messages.sale_mode.pack') !!}</option>
+                                            <option value="2">{!! trans('messages.sale_mode.piece') !!}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row price_pack" style="display: none;">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_pack') !!}</lable>
+                                    <div class="col-sm-10">
+                                        {!! Form::text('price_pack',null,array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_pack'),'required')) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row price_piece" style="display: none;">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_piece') !!}</lable>
+                                    <div class="col-sm-10">
+                                        {!! Form::text('price_piece',null,array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_piece'),'required')) !!}
+                                    </div>
                                 </div>
 
                                 <div class="form-group row float-center" style="text-align: center; ">
@@ -301,6 +329,63 @@
                         swal("Your imaginary file is safe!");
                     }
                 });
+            });
+
+            $('body').on('change','.select_product',function(){
+               var id = $(this).val();
+
+               //console.log(id);
+                $.ajax({
+                    url : '/employee/add/product/for_sale',
+                    method : 'post',
+                    dataType : 'json',
+                    data : ({'id':id}),
+                    success : function(e){
+                        var amount = e.amount;
+                        var price = e.price;
+                        var psc = e.psc;
+                        var unit_id = e.unit_id;
+
+                        //console.log(unit_id);
+                        $('.price').val(price);
+                        $('.amount').val(amount);
+
+                        $('.unit_id').html('');
+                        $('.unit_id').append("<option value=''>unit_id</option>");
+
+                        if(e.unit_id == '1'){
+                            var select1 = "selected";
+                            var select2 = "";
+                        }else {
+                            var select2 = "selected";
+                            var select1 = "";
+                        }
+
+                        $('.psc').hide();
+
+                        if(psc > 0){
+                            $('.psc').show();
+                            $('.psc_total').val(psc);
+                        }
+                        $('.unit_id').append("<option value='1' "+select1+">Box</option>",
+                            "<option value='2' "+select2+">Piece</option>");
+                    } ,error : function(){
+                        console.log('Error View Data Product');
+                    }
+                });
+            });
+
+            $('body').on('change','.type_sale',function(){
+               var id = $(this).val();
+
+               if(id == 1){
+                   $('.price_pack').show();
+                   $('.price_piece').hide();
+               }else{
+                   $('.price_piece').show();
+                   $('.price_pack').hide();
+               }
+               //console.log(id);
             });
 
         });
