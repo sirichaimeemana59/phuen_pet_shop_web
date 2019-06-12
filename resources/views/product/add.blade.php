@@ -51,8 +51,8 @@
                             <tr>
                                 <th ></th>
                                 <th>{!! trans('messages.product.head_product') !!}</th>
-                                <th>{!! trans('messages.unit.title') !!}</th>
                                 <th>{!! trans('messages.stock.balance') !!}</th>
+                                <th>{!! trans('messages.unit.title') !!}</th>
                                 <th>{!! trans('messages.product.price') !!}</th>
                                 <th>{!! trans('messages.product.amount') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
@@ -167,8 +167,8 @@
                     '<tr class="itemRow">',
                     '<td></td>',
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
-                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
                     '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
+                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
                     '<td><input type="text" class="price form-control" name=data['+time+'][price] readonly></td>',
                     '<td><input type="text" class="amount_ form-control" name=data['+time+'][amount_] required></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
@@ -193,13 +193,29 @@
                 dataType : 'json',
                 data : ({'id':id}),
                 success : function(e){
-                    this_.parents('tr').find('.unit_trance').attr("disabled", false);
+                    // this_.parents('tr').find('.unit_trance').attr("disabled", false);
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
-                    this_.parents('tr').find('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
-                    $.each(e,function(i,val) {
+                    // this_.parents('tr').find('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
+                    $.each(e.unit_2,function(i,val) {
                         this_.parents('tr').find('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
                     });
+
+
+                    if(e.unit_1.length != 1){
+                        for (var i=0; i < e.unit_1.length; i++) {
+                            var amount = 0;
+                            amount = e.unit_1[0].amount * e.unit_1[i].amount;
+                        }
+                    }else{
+                        for (var i=0; i < e.unit_1.length; i++) {
+                            var amount = 0;
+                            amount = e.unit_1[0].amount;
+                        }
+                    }
+                    //console.log(amount);
+                    this_.parents('tr').find('.amount').val(amount);
+
                 } ,error : function(){
                     console.log('Error View Data Store');
                 }

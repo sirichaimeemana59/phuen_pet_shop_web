@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\stock;
 use App\widen;
 use App\widen_report;
+use App\stock_log;
 
 class WidenController extends Controller
 {
@@ -81,9 +82,16 @@ class WidenController extends Controller
     public function select_unit_()
     {
         $stock = stock::find(Request::input('id'));
-        $unit_ = unit_transection::where('product_id',$stock->code)->get();
+        $unit_1 = unit_transection::where('product_id',$stock->code)->get();
+        $unit_2 = stock_log::where('product_id',$stock->code)->get();
 
-        return response()->json( $unit_ );
+        $unit_1 = $unit_1->toArray();
+        $unit_2 = $unit_2->toArray();
+
+        $data["unit_1"] = $unit_1;
+        $data["unit_2"] = $unit_2;
+
+        return response()->json( $data );
 
     }
 
