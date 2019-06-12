@@ -50,11 +50,11 @@
                         <table class="table itemTables" style="width: 100%">
                             <tr>
                                 <th ></th>
-                                <th>{!! trans('messages.photo') !!}</th>
                                 <th>{!! trans('messages.product.head_product') !!}</th>
-                                <th>{!! trans('messages.product.amount') !!}</th>
-                                <th>{!! trans('messages.product.price') !!}</th>
+                                <th>{!! trans('messages.unit.title') !!}</th>
                                 <th>{!! trans('messages.stock.balance') !!}</th>
+                                <th>{!! trans('messages.product.price') !!}</th>
+                                <th>{!! trans('messages.product.amount') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
                         </table>
@@ -69,7 +69,7 @@
     </div>
 
     <div id="property_select" style="display:none;">
-        <select name="property_id[]" id="property_id" class="form-control" required style="width:500px;">
+        <select name="product_id" id="property_id" class="form-control" style="width:500px;">
             <option value="">{!! trans('messages.selete_procudt') !!}</option>
             @foreach($stock as $prow)
                 <option value="{!! $prow['id'] !!}">{!! $prow['name_th']." ".$prow['name_en'] !!}</option>
@@ -158,47 +158,92 @@
 
         $(function () {
             $('.widen-store').on('click', function (e){
+                $('.payment_').show();
                 e.preventDefault();
                 var time = $.now();
-                var property = '<select name="property_id[]" class="product" style="width:300px;">'+ $('#property_select select').html() + '</select>';
+                var property = '<select name="data['+time+'][product_id]" class="product form-control" style="width:300px;" required>'+ $('#property_select select').html() + '</select>';
 
                 var data = [
                     '<tr class="itemRow">',
                     '<td></td>',
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
-                    '<td><select name="unit_trance[]" class="unit_trance" style="width:300px;"></select></td>',
-                    '<td><input type="text" class="result"></td>',
-                    '<td></td>',
-                    '<td></td>',
+                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                    '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
+                    '<td><input type="text" class="price form-control" name=data['+time+'][price] readonly></td>',
+                    '<td><input type="text" class="amount_ form-control" name=data['+time+'][amount_] required></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);
             });
         });
 
+        $('.unit_trance').attr("disabled", true);
+        $('.amount_').attr("disabled", true);
+
         $('.itemTables').on('change','.product',function(){
            var id = $(this).val();
            var time = $.now();
+           var this_ = $(this);
           // console.log(id);
+            this_.parents('tr').find('.unit_trance').html('');
+
             $.ajax({
                 url : '/select/product/unit_',
                 method : 'post',
                 dataType : 'json',
                 data : ({'id':id}),
                 success : function(e){
-                    console.log(e);
-                    $('body').parents('tr').find('.result').val(id);
-                    $('.unit_trance').html('');
-                    $('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
-                    $.each(e,function(i,val) {
+                    this_.parents('tr').find('.unit_trance').attr("disabled", false);
+                    this_.parents('tr').find('.amount_').attr("disabled", false);
 
-                        $('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+ " " + val.name_en +"</option>");
-                        // $('tr').parents('tr').find('.unit_trance').html('55');
+                    this_.parents('tr').find('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
+                    $.each(e,function(i,val) {
+                        this_.parents('tr').find('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
                     });
                 } ,error : function(){
                     console.log('Error View Data Store');
                 }
             });
+        });
+
+        $('.itemTables').on('change','.unit_trance',function(){
+            var id = $(this).val();
+            var time = $.now();
+            var this_ = $(this);
+             //console.log(id);
+            // this_.parents('tr').find('.unit_trance').html('');
+
+            $.ajax({
+                url : '/select/product/unit_amount',
+                method : 'post',
+                dataType : 'json',
+                data : ({'id':id}),
+                success : function(e){
+                     this_.parents('tr').find('.amount').val(e.amount);
+                     this_.parents('tr').find('.price').val(e.price);
+                } ,error : function(){
+                    console.log('Error View Data Store');
+                }
+            });
+        });
+
+        $('.itemTables').on('keypress','.amount_',function(e){
+
+            var code = e.keyCode ? e.keyCode : e.which;
+
+            if(code > 57){
+                return false;
+            }else if(code < 48 && code != 8){
+                return false;
+            }
+
+        });
+
+        $('.payment_').on('click', function () {
+            if($("#form_add").valid()) {
+                $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner"></i> ');
+                $("#form_add").submit();
+            }
         });
     </script>
 @endsection

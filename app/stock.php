@@ -26,4 +26,14 @@ class stock extends GeneralModel
     {
         return $this->hasOne('App\company','id','store_id');
     }
+
+    public function join_unit_transection()
+    {
+        return $this->hasMany('App\unit_transection','product_id','code');
+    }
+
+    public function join_stock_log()
+    {
+        return $this->hasOne('App\stock_log','product_id','code');
+    }
 }

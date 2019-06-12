@@ -62,6 +62,9 @@ return [
         'name_en' => 'Name [EN]',
         'amount' => 'Amount',
         'price' => 'Price',
+        'amount_unit'=>'Amount/Unit',
+        'add_unit'=>'Add Unit',
+        'unit_small'=>'Small Unit',
     ],
     'sell' => [
         'title' => 'Sale',

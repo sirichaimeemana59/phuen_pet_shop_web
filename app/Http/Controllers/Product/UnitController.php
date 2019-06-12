@@ -31,7 +31,7 @@ class UnitController extends Controller
         $unit->name_en = Request::input('name_en');
         $unit->save();
 
-        return redirect('employee/unit_store');
+        return redirect('employee/add_product_stock');
     }
 
 

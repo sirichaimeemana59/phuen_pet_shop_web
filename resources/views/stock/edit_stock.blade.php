@@ -55,31 +55,39 @@
                                     <div class="table-responsive">
                                         <table class="table">
                                             <tr>
+                                                <th width="*"></th>
                                                 <th>{!! trans('messages.unit.name_th') !!}</th>
                                                 <th>{!! trans('messages.unit.name_en') !!}</th>
-                                                <th>{!! trans('messages.unit.amount') !!}</th>
-                                                <th>{!! trans('messages.unit.price') !!}</th>
+                                                <th>{!! trans('messages.unit.amount_unit') !!}</th>
                                                 <th>{!! trans('messages.action') !!}</th>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{!! trans('messages.unit.unit_small') !!}</td>
+                                                <input type="hidden" name="stock_log" value="{!! $stock_log->id !!}">
+                                                <td><input type="text" name="name_unit_th" class="form-control name_th" required value="{!! $stock_log->name_th !!}"></td>
+                                                <td><input type="text" name="name_unit_en" class="form-control name_en" required value="{!! $stock_log->name_en !!}"></td>
+                                                <td><input type="text" name="amount1" class="form-control num" readonly value="{!! $stock_log->amount !!}"></td>
                                             </tr>
 
                                             @foreach($unit_ as $key => $val)
                                                 <tr>
+                                                    <td></td>
                                                     <td><input type="text" name="data_[{!!$key !!}][name_th]" class="form-control" value="{!! $val->name_th !!}">
                                                         <input type="hidden" name="data_[{!!$key !!}][id_unit]" value="{!! $val->id !!}">
                                                         <input type="hidden" name="data_[{!!$key !!}][code]" value="{!! $val->code !!}"></td>
                                                     <td><input type="text" name="data_[{!!$key !!}][name_en]" class="form-control" value="{!! $val->name_en !!}"></td>
                                                     <td><input type="text" name="data_[{!!$key !!}][amount]" class="form-control num" value="{!! $val->amount !!}"></td>
-                                                    <td><input type="text" name="data_[{!!$key !!}][price]" class="form-control num" value="{!! $val->price !!}"></td>
                                                     <td><button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-ids="{!! $stock->id !!}" data-id="{!! $val->id !!}"><i class="mdi mdi-delete-sweep"></i></button></td>
                                                 </tr>
                                             @endforeach
 
-                                            @for($i=1;$i<=5-count($unit_);$i++)
+                                            @for($i=1;$i<=4-count($unit_);$i++)
                                                 <tr>
+                                                    <td></td>
                                                     <td><input type="text" name="data[{!!$i !!}][name_th]" class="form-control"></td>
                                                     <td><input type="text" name="data[{!!$i !!}][name_en]" class="form-control"></td>
                                                     <td><input type="text" name="data[{!!$i !!}][amount]" class="form-control num"></td>
-                                                    <td><input type="text" name="data[{!!$i !!}][price]" class="form-control num"></td>
                                                 </tr>
                                             @endfor
                                         </table>

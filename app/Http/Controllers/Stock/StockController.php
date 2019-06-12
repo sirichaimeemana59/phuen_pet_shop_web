@@ -10,6 +10,7 @@ use App\unit;
 use ImageUploadAndResizer;
 use App\stock;
 use App\unit_transection;
+use App\stock_log;
 
 class StockController extends Controller
 {
@@ -48,6 +49,7 @@ class StockController extends Controller
 
     public function create(Request $request)
     {
+        //dd($request->input('data'));
         $fileNameToDatabase = '//via.placeholder.com/250x250';
         if($request->hasFile('photo')){
             $uploader = new ImageUploadAndResizer($request->file('photo', '/images/photo'));
@@ -63,6 +65,13 @@ class StockController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
 
+        $unit = new stock_log;
+        $unit->name_th = $request->input('name_unit_th');
+        $unit->name_en = $request->input('name_unit_en');
+        $unit->product_id = $randomString;
+        $unit->amount = $request->input('amount1');
+        $unit->save();
+
         $stock = new stock;
         $stock->name_th = $request->input('name_th');
         $stock->name_en = $request->input('name_en');
@@ -77,7 +86,7 @@ class StockController extends Controller
                 $unit_t->name_en = $t['name_en'];
                 $unit_t->product_id = $randomString;
                 $unit_t->amount = $t['amount'];
-                $unit_t->price = $t['price'];
+                $unit_t->price = null;
                 $unit_t->save();
             }
         }
@@ -98,7 +107,9 @@ class StockController extends Controller
         $stock = stock::find($request->input('id'));
         $unit_ = unit_transection::where('product_id',$stock->code)->get();
 
-        return view ('stock.view_stock')->with(compact('stock','unit_'));
+        $stock_log = stock_log::where('product_id',$stock->code)->first();
+
+        return view ('stock.view_stock')->with(compact('stock','unit_','stock_log'));
     }
 
 
@@ -113,7 +124,11 @@ class StockController extends Controller
         $unit = new unit;
         $unit = $unit->get();
 
-        return view ('stock.edit_stock')->with(compact('stock','unit','company_','unit_'));
+        $stock_log = stock_log::where('product_id',$stock->code)->first();
+
+//      dd($stock_log);
+
+        return view ('stock.edit_stock')->with(compact('stock','unit','company_','unit_','stock_log'));
     }
 
 
@@ -151,7 +166,7 @@ class StockController extends Controller
                 $unit_t->name_en = $t['name_en'];
                 $unit_t->product_id = $request->input('code_');;
                 $unit_t->amount = $t['amount'];
-                $unit_t->price = $t['price'];
+                $unit_t->price = null;
                 $unit_t->save();
             }
         }
@@ -164,11 +179,18 @@ class StockController extends Controller
                     $unit_t->name_en = $t['name_en'];
                     $unit_t->product_id = $request->input('code_');;
                     $unit_t->amount = $t['amount'];
-                    $unit_t->price = $t['price'];
+                    $unit_t->price = null;
                     $unit_t->save();
                 }
             }
         }
+
+        $unit = stock_log::find($request->input('stock_log'));
+        $unit->name_th = $request->input('name_unit_th');
+        $unit->name_en = $request->input('name_unit_en');
+        $unit->product_id = $request->input('code_');
+        $unit->amount = $request->input('amount1');
+        $unit->save();
 
         return redirect('/employee/stock/product');
     }
@@ -192,6 +214,9 @@ class StockController extends Controller
         $company_ = new company;
         $company_ = $company_->get();
 
-        return view ('stock.add')->with(compact('company_'));
+        $unit = new unit;
+        $unit = $unit->get();
+
+        return view ('stock.add')->with(compact('company_','unit'));
     }
 }

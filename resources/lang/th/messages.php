@@ -63,6 +63,9 @@ return [
         'name_en' => 'ชื่อ [EN]',
         'amount' => 'จำนวน',
         'price' => 'ราคา',
+        'amount_unit'=>'จำนวน/หน่วย',
+        'add_unit'=>'เพิ่มหน่วย',
+        'unit_small'=>'หน่วยเล็กสุด',
     ],
     'sell' => [
         'title' => 'การขาย',

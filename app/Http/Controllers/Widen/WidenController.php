@@ -28,6 +28,7 @@ class WidenController extends Controller
 
     public function store()
     {
+        dd(Request::input('data'));
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -81,6 +82,14 @@ class WidenController extends Controller
     {
         $stock = stock::find(Request::input('id'));
         $unit_ = unit_transection::where('product_id',$stock->code)->get();
+
+        return response()->json( $unit_ );
+
+    }
+
+    public function select_unit_amount()
+    {
+        $unit_ = unit_transection::find(Request::input('id'));
 
         return response()->json( $unit_ );
 

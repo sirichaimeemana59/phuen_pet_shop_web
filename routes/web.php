@@ -60,6 +60,7 @@ Route::any('/employee/widen/stock','Widen\WidenController@index');
 Route::post('/employee/widen/search_product','Widen\WidenController@create');
 Route::post('/employee/widen/product/widen_product','Widen\WidenController@store');
 Route::post('/select/product/unit_','Widen\WidenController@select_unit_');
+Route::post('/select/product/unit_amount','Widen\WidenController@select_unit_amount');
 //Stock
 Route::get('/employee/add_product_stock','Stock\StockController@stock');
 Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');
