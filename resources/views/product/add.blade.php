@@ -53,7 +53,7 @@
                                 <th>{!! trans('messages.product.head_product') !!}</th>
                                 <th>{!! trans('messages.stock.balance') !!}</th>
                                 <th>{!! trans('messages.unit.title') !!}</th>
-                                <th>{!! trans('messages.product.price') !!}</th>
+                                <th>{!! trans('messages.unit.title') !!}</th>
                                 <th>{!! trans('messages.product.amount') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
@@ -169,8 +169,8 @@
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
                     '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
                     '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
-                    '<td><input type="text" class="price form-control" name=data['+time+'][price] readonly></td>',
-                    '<td><input type="text" class="amount_ form-control" name=data['+time+'][amount_] required></td>',
+                    '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
+                    '<td><input type="text" class="amount_ form-control" name=data['+time+'][amount_] readonly></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);
@@ -199,6 +199,11 @@
                     // this_.parents('tr').find('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
                     $.each(e.unit_2,function(i,val) {
                         this_.parents('tr').find('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
+                    });
+
+                    $.each(e.unit_1,function(i,val) {
+                        this_.parents('tr').find('.unit_widen').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
+                        this_.parents('tr').find('.amount_').val(val.amount);
                     });
 
 
@@ -260,6 +265,25 @@
                 $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner"></i> ');
                 $("#form_add").submit();
             }
+        });
+
+        $('body').on('change','.unit_widen',function(){
+            var id = $(this).val();
+            var this_ = $(this);
+            //console.log(id);
+            // this_.parents('tr').find('.unit_trance').html('');
+
+            $.ajax({
+                url : '/select/product/unit_amount_trance',
+                method : 'post',
+                dataType : 'json',
+                data : ({'id':id}),
+                success : function(e){
+                    this_.parents('tr').find('.amount_').val(e.amount);
+                } ,error : function(){
+                    console.log('Error View Data Store');
+                }
+            });
         });
     </script>
 @endsection

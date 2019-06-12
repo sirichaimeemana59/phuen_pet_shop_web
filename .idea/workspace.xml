@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d69be54d-fffb-4b77-bee4-3c84a832dea6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/product/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/product/add.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="58" column="57" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="57" />
+            <state relative-caret-position="624">
+              <caret line="63" column="93" lean-forward="true" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
             </state>
           </provider>
         </entry>
@@ -46,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="90" column="21" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="21" />
+            <state relative-caret-position="353">
+              <caret line="97" column="38" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="38" />
               <folding>
                 <element signature="e#46#71#0#PHP" expanded="true" />
               </folding>
@@ -58,11 +58,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/product/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="219" column="56" selection-start-line="219" selection-start-column="56" selection-end-line="219" selection-end-column="56" />
+            <state relative-caret-position="286">
+              <caret line="269" column="55" lean-forward="true" selection-start-line="269" selection-start-column="55" selection-end-line="269" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#select#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -140,7 +141,6 @@
         <option value="$PROJECT_DIR$/resources/views/product/list_product.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/stock/list_stock.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_10_085941_create_stock_table.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Product/UnitController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_06_11_074228_create_unit_transection_table.php" />
         <option value="$PROJECT_DIR$/app/unit_transection.php" />
@@ -155,6 +155,7 @@
         <option value="$PROJECT_DIR$/resources/views/stock/edit_stock.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Stock/StockController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/product/add.blade.php" />
       </list>
     </option>
@@ -469,15 +470,15 @@
       <workItem from="1560162393440" duration="3251000" />
       <workItem from="1560166115875" duration="16000" />
       <workItem from="1560217981178" duration="21017000" />
-      <workItem from="1560303775650" duration="18232000" />
+      <workItem from="1560303775650" duration="19087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59007000" />
+    <option name="totallyTimeSpent" value="59862000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="983" height="1012" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="1012" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49710312" weight="0.35356763" />
@@ -885,23 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="58" column="57" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="90" column="21" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="21" />
-          <folding>
-            <element signature="e#46#71#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/stock/list_stock_element.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="553">
@@ -909,13 +893,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Widen/WidenController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="97" column="38" selection-start-line="97" selection-start-column="20" selection-end-line="97" selection-end-column="38" />
+          <folding>
+            <element signature="e#46#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="63" column="93" lean-forward="true" selection-start-line="63" selection-start-column="93" selection-end-line="63" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/product/add.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="219" column="56" selection-start-line="219" selection-start-column="56" selection-end-line="219" selection-end-column="56" />
+        <state relative-caret-position="286">
+          <caret line="269" column="55" lean-forward="true" selection-start-line="269" selection-start-column="55" selection-end-line="269" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#select#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#select#0;n#td#0;n#!!top" expanded="true" />
           </folding>
         </state>
