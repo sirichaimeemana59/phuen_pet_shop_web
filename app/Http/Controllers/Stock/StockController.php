@@ -49,7 +49,26 @@ class StockController extends Controller
 
     public function create(Request $request)
     {
-        //dd($request->input('data'));
+        //dd(count($request->input('data')));
+        $amount = array();
+        foreach ($request->input('data') as $key => $t){
+            if($t['amount'] != null) {
+                $amount[] = $t['amount'];
+            }
+        }
+
+        if(count($amount) > 1){
+            for($i=0;$i<count($amount);$i++){
+                $total = $amount[0] * $amount[$i];
+            }
+        }else{
+            for($i=0;$i<count($amount);$i++){
+                $total = $amount[0];
+            }
+        }
+
+        //dd($total);
+
         $fileNameToDatabase = '//via.placeholder.com/250x250';
         if($request->hasFile('photo')){
             $uploader = new ImageUploadAndResizer($request->file('photo', '/images/photo'));
@@ -77,6 +96,7 @@ class StockController extends Controller
         $stock->name_en = $request->input('name_en');
         $stock->photo = $fileNameToDatabase;
         $stock->code = $randomString;
+        $stock->amount = $total;
         $stock->save();
 
         foreach ($request->input('data') as $t){
@@ -159,17 +179,20 @@ class StockController extends Controller
             $stock->save();
         }
 
-        foreach ($request->input('data_') as $t){
-            if($t['name_th'] != null){
-                $unit_t = unit_transection::find($t['id_unit']);
-                $unit_t->name_th = $t['name_th'];
-                $unit_t->name_en = $t['name_en'];
-                $unit_t->product_id = $request->input('code_');;
-                $unit_t->amount = $t['amount'];
-                $unit_t->price = null;
-                $unit_t->save();
+        if(!empty($request->input('data_'))){
+            foreach ($request->input('data_') as $t){
+                if($t['name_th'] != null){
+                    $unit_t = unit_transection::find($t['id_unit']);
+                    $unit_t->name_th = $t['name_th'];
+                    $unit_t->name_en = $t['name_en'];
+                    $unit_t->product_id = $request->input('code_');;
+                    $unit_t->amount = $t['amount'];
+                    $unit_t->price = null;
+                    $unit_t->save();
+                }
             }
         }
+
 
         if(!empty($request->input('data'))){
             foreach ($request->input('data') as $t){

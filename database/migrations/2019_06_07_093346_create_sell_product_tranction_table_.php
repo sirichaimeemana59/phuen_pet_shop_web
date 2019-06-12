@@ -14,7 +14,7 @@ class CreateSellProductTranctionTable extends Migration
     public function up()
     {
         Schema::create('sell_product_tranction', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->integer('product_id');
             $table->text('amount');
             $table->text('order_id');

@@ -62,7 +62,7 @@
                 <tr>
                     <td>{!! $key+1 !!}</td>
                     <td> {!! $row->{'name_'.Session::get('locale')} !!}</td>
-                    <td> {!! $amount !!} {!! $row->join_stock_log->{'name_'.Session::get('locale')} !!}</td>
+                    <td> @if(!empty($row->amount)){!! $row->amount !!}@else - @endif{!! $row->join_stock_log->{'name_'.Session::get('locale')} !!}</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         <a href="{!! url('/employee/stock/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>

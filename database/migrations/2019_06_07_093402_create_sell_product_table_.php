@@ -14,7 +14,7 @@ class CreateSellProductTable extends Migration
     public function up()
     {
         Schema::create('sell_product', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->text('order_id');
             $table->decimal('discount',10,2);
             $table->decimal('net',10,2);
