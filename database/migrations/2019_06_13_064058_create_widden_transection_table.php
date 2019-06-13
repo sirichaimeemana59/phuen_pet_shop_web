@@ -16,7 +16,7 @@ class CreateWiddenTransectionTable extends Migration
         Schema::create('widden_transection', function (Blueprint $table) {
             $table->increments('id');
             $table->text('code');
-            $table->integer('product_id');
+            $table->text('product_id');
             $table->decimal('unit_widden',10,2);
             $table->decimal('amount_widden',10,2);
             $table->timestamps();

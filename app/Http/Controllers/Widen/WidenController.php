@@ -51,9 +51,14 @@ class WidenController extends Controller
                 $widden_transection->amount_widden = $t['amount_widden'];
                 $widden_transection->product_id = $t['product_code'];
                 $widden_transection->save();
+
+                $stock = stock::find($t['id_product_stock']);
+                $stock->amount = abs($t['amount_widden']- $stock->amount);
+                $stock->save();
+                //dd($t['product_code']);
             }
 
-            //dd($widden_transection);
+
 
 
 
@@ -181,5 +186,21 @@ class WidenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function print_widden(){
+        return view('report_widden.report_widden');
+    }
+
+    public function list_widen(){
+        $widden_product = new widden_product;
+        $widden_product = $widden_product->paginate(50);
+
+        if(!Request::ajax()){
+            return view('report_widden.list_widden')->with(compact('widden_product'));
+        }else{
+            return view('report_widden.list_widden_element')->with(compact('widden_product'));
+        }
+
     }
 }
