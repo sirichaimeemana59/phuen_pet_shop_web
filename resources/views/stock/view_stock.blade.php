@@ -28,6 +28,7 @@
                     <th width="*"></th>
                     <th>{!! trans('messages.unit.name_th') !!}</th>
                     <th>{!! trans('messages.unit.name_en') !!}</th>
+                    <th>{!! trans('messages.unit.amount') !!}</th>
                     <th>{!! trans('messages.unit.amount_unit') !!}</th>
                 </tr>
                 <tr>
@@ -43,6 +44,7 @@
                             <td><input type="text" name="" class="form-control" value="{!! $val->name_th !!}" readonly></td>
                             <td><input type="text" name="" class="form-control" value="{!! $val->name_en !!}" readonly></td>
                             <td><input type="text" name="" class="form-control num" value="{!! $val->amount !!}" readonly></td>
+                            <td><input type="text" name="" class="form-control num" value="{!! $val->amount_unit !!}" readonly></td>
                         </tr>
                     @endforeach
             </table>

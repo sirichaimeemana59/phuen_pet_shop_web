@@ -48,6 +48,7 @@
                                                 <th width="*"></th>
                                                 <th>{!! trans('messages.unit.name_th') !!}</th>
                                                 <th>{!! trans('messages.unit.name_en') !!}</th>
+                                                <th>{!! trans('messages.unit.amount') !!}</th>
                                                 <th>{!! trans('messages.unit.amount_unit') !!}</th>
                                                 {{--<th>{!! trans('messages.unit.price') !!}</th>--}}
                                                 {{--<th>{!! trans('messages.unit.amount_unit') !!}</th>--}}
@@ -77,6 +78,7 @@
                                                     <td><input type="text" name="data[{!!$i !!}][name_th]" class="form-control name_th"  {!! $required !!}></td>
                                                     <td><input type="text" name="data[{!!$i !!}][name_en]" class="form-control name_en" {!! $required !!}></td>
                                                     <td><input type="text" name="data[{!!$i !!}][amount]" class="form-control num" {!! $required !!}></td>
+                                                    <td><input type="text" name="data[{!!$i !!}][amount_unit]" class="form-control num" {!! $required !!}></td>
                                                     {{--<td><input type="text" name="data[{!!$i !!}][price]" class="form-control num" {!! $required !!}></td>--}}
                                                     {{--<td><input type="text" name="data[{!!$i !!}][amount_unit]" class="form-control num" {!! $required !!}></td>--}}
                                                     {{--<td><input name="data[{!!$i !!}][amount_unit]" class="form-control" {!! $required !!}></td>--}}

@@ -66,6 +66,7 @@ return [
         'amount_unit'=>'จำนวน/หน่วย',
         'add_unit'=>'เพิ่มหน่วย',
         'unit_small'=>'หน่วยเล็กสุด',
+        'amount_widen'=>'จำนวน/เบิก',
     ],
     'sell' => [
         'title' => 'การขาย',

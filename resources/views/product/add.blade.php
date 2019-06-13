@@ -53,8 +53,9 @@
                                 <th>{!! trans('messages.product.head_product') !!}</th>
                                 <th>{!! trans('messages.stock.balance') !!}</th>
                                 <th>{!! trans('messages.unit.title') !!}</th>
-                                <th>{!! trans('messages.unit.title') !!}</th>
-                                <th>{!! trans('messages.product.amount') !!}</th>
+                                {{--<th>{!! trans('messages.product.amount') !!}</th>--}}
+                                <th>{!! trans('messages.widen.title') !!}</th>
+                                <th>{!! trans('messages.unit.amount_widen') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
                         </table>
@@ -169,8 +170,9 @@
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
                     '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
                     '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                    // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
                     '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
-                    '<td><input type="text" class="amount_ form-control" name=data['+time+'][amount_] readonly></td>',
+                    '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);
@@ -180,12 +182,18 @@
         $('.unit_trance').attr("disabled", true);
         $('.amount_').attr("disabled", true);
 
+
         $('.itemTables').on('change','.product',function(){
            var id = $(this).val();
            var time = $.now();
            var this_ = $(this);
           // console.log(id);
+            this_.parents('tr').find('.id').val(id);
             this_.parents('tr').find('.unit_trance').html('');
+            this_.parents('tr').find('.unit_widen').html('');
+
+            var product_code = this_.parents('tr').find('.product_code').val();
+
 
             $.ajax({
                 url : '/select/product/unit_',
@@ -193,17 +201,27 @@
                 dataType : 'json',
                 data : ({'id':id}),
                 success : function(e){
-                    // this_.parents('tr').find('.unit_trance').attr("disabled", false);
+
+                    //var amount_ = $.number(e.stock.amount,0);
+                    var x = e.stock.amount.split('.');
+                    var x1 = x[0];
+
+                    //console.log(e.stock);
+                    this_.parents('tr').find('.amount').val(x1);
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
-                    // this_.parents('tr').find('.unit_trance').append("<option value='0'>Unit/หน่วย</option>");
-                    $.each(e.unit_2,function(i,val) {
-                        this_.parents('tr').find('.unit_trance').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
-                    });
+                    this_.parents('tr').find('.product_code').val(e.unit_2.product_id);
+                    this_.parents('tr').find('.unit_trance').append("<option value='"+e.unit_2.id+"'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
+                    this_.parents('tr').find('.name').val(e.unit_2.name_th);
+
+                    // console.log(e.unit_2.id);
+                    this_.parents('tr').find('.unit_widen').append("<option value=''>Unit</option>");
+                    this_.parents('tr').find('.unit_widen').append("<option value='"+e.unit_2.id+"'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
 
                     $.each(e.unit_1,function(i,val) {
                         this_.parents('tr').find('.unit_widen').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
-                        this_.parents('tr').find('.amount_').val(val.amount);
+                        this_.parents('tr').find('.unit_id').val(e.unit_1[0].id);
+
                     });
 
 
@@ -219,7 +237,7 @@
                         }
                     }
                     //console.log(amount);
-                    this_.parents('tr').find('.amount').val(amount);
+                    //this_.parents('tr').find('.amount').val(amount);
 
                 } ,error : function(){
                     console.log('Error View Data Store');
@@ -260,6 +278,34 @@
 
         });
 
+        $('.itemTables').on('keypress','.amount_widden',function(e){
+
+            var code = e.keyCode ? e.keyCode : e.which;
+
+            if(code > 57){
+                return false;
+            }else if(code < 48 && code != 8){
+                return false;
+            }
+
+        });
+
+        // function gettext(){
+        //     var amount = document.getElementById('amount_widden').value;
+        //     console.log(amount);
+        // }
+        //
+        // $('.itemTables').on('keyup','.amount_widden',function(e){
+        //
+        //     var amount_unit = $('.amount_unit').val();
+        //     var amount = $(this).val();
+        //
+        //     //console.log(amount);
+        //     // if(amount > amount_unit){
+        //     //     alert('aa');
+        //     // }
+        // });
+
         $('.payment_').on('click', function () {
             if($("#form_add").valid()) {
                 $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner"></i> ');
@@ -271,7 +317,8 @@
             var id = $(this).val();
             var this_ = $(this);
             //console.log(id);
-            // this_.parents('tr').find('.unit_trance').html('');
+            var amount = this_.parents('tr').find('.amount').val();
+            var name = this_.parents('tr').find('.name').val();
 
             $.ajax({
                 url : '/select/product/unit_amount_trance',
@@ -279,7 +326,29 @@
                 dataType : 'json',
                 data : ({'id':id}),
                 success : function(e){
+
+                    this_.parents('tr').find('.amount_widden').html('');
+
+                    // var amount =  e.amount_unit / e.amount;
+                    var x = amount.split('.');
+                    var x1 = x[0];
+
+                     // console.log(e.amount);
+
+                    if(e.amount != undefined){
+                        for(var i=1;i<=e.amount;i++){
+                            this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+x1 / e.amount+" "+name+"</option>");
+                        }
+                    }else{
+                        for(var i=1;i<=amount;i++){
+                            this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
+                        }
+                    }
+
+
                     this_.parents('tr').find('.amount_').val(e.amount);
+                    this_.parents('tr').find('.unit_id').val(e.id);
+                    // this_.parents('tr').find('.product_code').val(e.product_id);
                 } ,error : function(){
                     console.log('Error View Data Store');
                 }

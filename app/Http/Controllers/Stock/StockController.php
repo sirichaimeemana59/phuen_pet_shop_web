@@ -52,20 +52,20 @@ class StockController extends Controller
         //dd(count($request->input('data')));
         $amount = array();
         foreach ($request->input('data') as $key => $t){
-            if($t['amount'] != null) {
-                $amount[] = $t['amount'];
+            if($t['amount_unit'] != null) {
+                $amount[] = $t['amount_unit'];
             }
         }
 
-        if(count($amount) > 1){
-            for($i=0;$i<count($amount);$i++){
-                $total = $amount[0] * $amount[$i];
-            }
-        }else{
-            for($i=0;$i<count($amount);$i++){
-                $total = $amount[0];
-            }
-        }
+        //dd($amount);
+        //if(count($amount) > 1){
+            //($i=0;$i<count($amount);$i++){
+                $total = $amount[count($amount)-1];
+                    //}else{
+            //for($i=0;$i<count($amount);$i++){
+                //$total = $amount[0];
+            //}
+        //}
 
         //dd($total);
 
@@ -106,6 +106,7 @@ class StockController extends Controller
                 $unit_t->name_en = $t['name_en'];
                 $unit_t->product_id = $randomString;
                 $unit_t->amount = $t['amount'];
+                $unit_t->amount_unit = $t['amount_unit'];
                 $unit_t->price = null;
                 $unit_t->save();
             }
@@ -154,6 +155,45 @@ class StockController extends Controller
 
     public function update(Request $request)
     {
+        $amount = array();
+        $amount_ = array();
+        $total = 0;
+        $total_ = 0;
+
+
+        if(!empty($request->input('data'))){
+            foreach ($request->input('data') as $key => $t){
+                if($t['amount_unit'] != null) {
+                    $amount[] = $t['amount_unit'];
+                }
+            }
+            if(count($amount) != 0 ){
+                $total = $amount[count($amount)-1];
+            }
+        }
+
+
+
+        foreach ($request->input('data_') as $key => $t){
+            if($t['amount_unit'] != null) {
+                $amount_[] = $t['amount_unit'];
+            }
+        }
+
+
+        $total_ = $amount_[count($amount_)-1];
+
+        if($total != 0 AND $total_ != 0){
+            $total_all = $total * $total_;
+        }elseif($total == 0 AND $total_ != 0){
+            $total_all = $total_;
+        }elseif($total != 0 AND $total_ == 0){
+            $total_all = $total;
+        }else{
+            $total_all = 0;
+        }
+
+
         $stock = stock::find($request->input('id'));
 
         if(!empty($request->hasFile('photo'))){
@@ -169,6 +209,7 @@ class StockController extends Controller
             $stock->name_en = $request->input('name_en');
             $stock->photo = $fileNameToDatabase;
             $stock->code = $request->input('code_');
+            $stock->amount = $total_all;
             $stock->save();
 
         }else{
@@ -176,6 +217,7 @@ class StockController extends Controller
             $stock->name_en = $request->input('name_en');
             $stock->photo = $request->input('photo_');
             $stock->code = $request->input('code_');
+            $stock->amount = $total_all;
             $stock->save();
         }
 
@@ -188,6 +230,7 @@ class StockController extends Controller
                     $unit_t->product_id = $request->input('code_');;
                     $unit_t->amount = $t['amount'];
                     $unit_t->price = null;
+                    $unit_t->amount_unit = $t['amount_unit'];
                     $unit_t->save();
                 }
             }
@@ -203,6 +246,7 @@ class StockController extends Controller
                     $unit_t->product_id = $request->input('code_');;
                     $unit_t->amount = $t['amount'];
                     $unit_t->price = null;
+                    $unit_t->amount_unit = $t['amount_unit'];
                     $unit_t->save();
                 }
             }

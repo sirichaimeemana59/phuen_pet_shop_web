@@ -65,6 +65,7 @@ return [
         'amount_unit'=>'Amount/Unit',
         'add_unit'=>'Add Unit',
         'unit_small'=>'Small Unit',
+        'amount_widen'=>'Amount/Widen',
     ],
     'sell' => [
         'title' => 'Sale',
