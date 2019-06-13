@@ -337,7 +337,7 @@
 
                     if(e.amount != undefined){
                         for(var i=1;i<=e.amount;i++){
-                            this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+(x1 / e.amount)*i+" "+name+"</option>");
+                            this_.parents('tr').find('.amount_widden').append("<option value='"+(x1 / e.amount)*i+"'>"+i+" "+(x1 / e.amount)*i+" "+name+"</option>");
                         }
                     }else{
                         for(var i=1;i<=amount;i++){

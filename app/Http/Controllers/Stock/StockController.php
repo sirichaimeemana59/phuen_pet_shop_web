@@ -49,7 +49,7 @@ class StockController extends Controller
 
     public function create(Request $request)
     {
-        dd(count($request->input('data')));
+        //dd(count($request->input('data')));
         $amount = array();
         foreach ($request->input('data') as $key => $t){
             if($t['amount_unit'] != null) {
