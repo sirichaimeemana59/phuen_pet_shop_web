@@ -16,4 +16,11 @@ class widden_product extends GeneralModel
     protected $fillable = ['code,user_id,date,deleted_at'];
     public $timestamps = true;
     protected $softDelete = true;
+
+    public function join_widen_transection()
+    {
+        return $this->hasMany('App\widden__transection','code','code');
+    }
+
+
 }

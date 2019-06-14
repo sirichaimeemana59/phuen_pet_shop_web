@@ -109,8 +109,9 @@
 
             $('.view-store').on('click',function(){
                 var id = $(this).data('id');
+                console.log(id);
                 $('#view-store').modal('show');
-                $('#lead-content').empty();
+                $('#lead-content').e mpty();
                 $('.v-loading').show();
                 $.ajax({
                     url : '/employee/product/view',

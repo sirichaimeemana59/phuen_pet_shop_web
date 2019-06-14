@@ -28,6 +28,7 @@ Route::post('/employee/add/product/for_sale','Product\ProductController@product'
 Route::any('/employee/company_store','Product\CompanystoreController@index');
 Route::post('/employee/company_store/add','Product\CompanystoreController@create');
 Route::any('/employee/company_store/view','Product\CompanystoreController@show');
+
 //Route::post('/employee/company_store/edit','Product\CompanystoreController@edit');
 Route::post('/employee/company_store/edit/file','Product\CompanystoreController@update');
 Route::post('/employee/company_store/delete','Product\CompanystoreController@destroy');
@@ -63,10 +64,11 @@ Route::post('/select/product/unit_','Widen\WidenController@select_unit_');
 Route::post('/select/product/unit_amount','Widen\WidenController@select_unit_amount');
 Route::post('/select/product/unit_amount_trance','Widen\WidenController@select_unit_amount');
 Route::get('widen/list_element','Widen\WidenController@list_widen');
+Route::get('/employee/detail/widen/{id?}','Widen\WidenController@widen_detail');
 //Stock
 Route::get('/employee/add_product_stock','Stock\StockController@stock');
 Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');
 
 
 //Report
-Route::get('/report/widden','Widen\WidenController@print_widden');
+Route::get('/report/widden/{id}','Widen\WidenController@print_widden');

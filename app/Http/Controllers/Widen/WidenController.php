@@ -50,6 +50,7 @@ class WidenController extends Controller
                 $widden_transection->unit_widden = $t['unit_widen'];
                 $widden_transection->amount_widden = $t['amount_widden'];
                 $widden_transection->product_id = $t['product_code'];
+                $widden_transection->id_product_stock = $t['id_product_stock'];
                 $widden_transection->save();
 
                 $stock = stock::find($t['id_product_stock']);
@@ -188,8 +189,13 @@ class WidenController extends Controller
         //
     }
 
-    public function print_widden(){
-        return view('report_widden.report_widden');
+    public function print_widden($id = null){
+
+        $widen = widden_product::find($id);
+
+        $widen_transection = widden__transection::where('code',$widen->code)->get();
+
+        return view('report_widden.report_widden')->with(compact('widen','widen_transection'));
     }
 
     public function list_widen(){
@@ -202,5 +208,14 @@ class WidenController extends Controller
             return view('report_widden.list_widden_element')->with(compact('widden_product'));
         }
 
+    }
+
+    public function widen_detail($id = null){
+
+        $widen = widden_product::find($id);
+
+        $widen_transection = widden__transection::where('code',$widen->code)->get();
+
+        return view('report_widden.detail_widen')->with(compact('widen','widen_transection'));
     }
 }
