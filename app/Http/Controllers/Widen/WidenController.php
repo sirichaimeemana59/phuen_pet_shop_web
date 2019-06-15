@@ -166,7 +166,14 @@ class WidenController extends Controller
 
     public function select_unit_amount()
     {
-        $unit_ = unit_transection::find(Request::input('id'));
+        $unit_log = stock_log::find(Request::input('id'));
+        $unit_tran = unit_transection::find(Request::input('id'));
+
+        if($unit_log){
+            $unit_ = $unit_log;
+        }else{
+            $unit_ = $unit_tran;
+        }
 
         return response()->json( $unit_ );
 
@@ -217,5 +224,66 @@ class WidenController extends Controller
         $widen_transection = widden__transection::where('code',$widen->code)->get();
 
         return view('report_widden.detail_widen')->with(compact('widen','widen_transection'));
+    }
+
+    public function widen_edit($id =null, $text = null){
+        $widen = widden_product::find($id);
+
+        $widen_transection = widden__transection::where('code',$widen->code)->get();
+
+        //$stock_log = stock_log::where('product_id',$widen_transection->product_id)->first();
+        //$unit_tran = unit_transection::where('product_id',$widen_transection->product_id)->get();
+
+        //dd($stock_log);
+        $stock = new stock;
+        $stock = $stock->get();
+
+        return view('report_widden.edit_widen')->with(compact('widen','widen_transection','stock','text'));
+    }
+
+    public function update_widen_product(){
+        //dd(Request::input('data'));
+        foreach(Request::input('data_') as $t){
+            $widen_transection = widden__transection::find($t['id']);
+            $widen_transection->unit_widden = $t['unit_widden'];
+            if($t['amount_widden'] != $t['amount_log']){
+                $widen_transection->amount_widden = $t['amount_widden'];
+            }else{
+                $widen_transection->amount_widden = $t['amount_log'];
+            }
+
+            $stock = stock::find($t['id_product_stock_']);
+
+            if($t['amount_widden'] > $t['amount_log']){
+                if($stock->amount < $t['amount_widden']){
+                    return redirect ('/employee/widen/edit/'.Request::input('widen_id').'/'.$text=2);
+                }else{
+                    $stock->amount = abs($stock->amount - $t['amount_widden']);
+                }
+            }else{
+                $stock->amount = $stock->amount+ abs($t['amount_log'] - $t['amount_widden']);
+            }
+            $widen_transection->save();
+            $stock->save();
+        }
+
+        if(!empty(Request::input('data'))){
+            foreach (Request::input('data') as $t){
+                $widden_transection = new widden__transection;
+                $widden_transection->code = Request::input('widen_code');
+                $widden_transection->unit_widden = $t['unit_widen'];
+                $widden_transection->amount_widden = $t['amount_widden'];
+                $widden_transection->product_id = $t['product_code'];
+                $widden_transection->id_product_stock = $t['id_product_stock'];
+                $widden_transection->save();
+
+                $stock = stock::find($t['id_product_stock']);
+                $stock->amount = abs($t['amount_widden']- $stock->amount);
+                $stock->save();
+                //dd($t['product_code']);
+            }
+        }
+
+        return redirect ('/widen/list_element');
     }
 }

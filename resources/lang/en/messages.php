@@ -33,6 +33,8 @@ return [
     'person' => 'Person',
     'time_class'=>'Time',
     'select_unit'=>'---Please Select unit---',
+    'sorry_amount_product' => 'Sorry, the number of products is not enough.',
+    'sorry' => 'Sorry',
     'selete_procudt' => '---Please Select Product---',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
@@ -161,5 +163,6 @@ return [
         'user' => 'Employee',
         'date' => 'Date',
         'print' => 'Print',
+        'edit_widen' => 'Edit Product Bill Of Lading',
     ]
 ];

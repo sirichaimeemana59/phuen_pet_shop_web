@@ -65,6 +65,9 @@ Route::post('/select/product/unit_amount','Widen\WidenController@select_unit_amo
 Route::post('/select/product/unit_amount_trance','Widen\WidenController@select_unit_amount');
 Route::get('widen/list_element','Widen\WidenController@list_widen');
 Route::get('/employee/detail/widen/{id?}','Widen\WidenController@widen_detail');
+Route::get('/employee/widen/edit/{id}/{text?}','Widen\WidenController@widen_edit');
+Route::post('/employee/widen/product/update_widen_product','Widen\WidenController@update_widen_product');
+
 //Stock
 Route::get('/employee/add_product_stock','Stock\StockController@stock');
 Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');

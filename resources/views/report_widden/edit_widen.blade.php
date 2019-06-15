@@ -1,43 +1,31 @@
 @extends('home.home_user')
 @section('content')
+    @if($text == 2)
+        <div class="alert alert-danger">
+            <strong>{!! trans('messages.sorry') !!}!</strong> {!! trans('messages.sorry_amount_product') !!}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.product.head_product') !!}</h3>
+                        <h3 class="panel-title" style="text-align: center;">{!! trans('messages.report.edit_widen') !!}</h3>
                     </div>
-                    <div class="panel panel-default" id="panel-lead-list">
-                        <div class="panel-body" id="landing-subject-list">
-                            <form method="POST" id="search-form" action="{!! url('/employee/widen/search_product') !!}" accept-charset="UTF-8" class="form-horizontal">
-                                <div class="row">
-                                    <div class="col-sm-12 block-input">
-                                        <input class="form-control" size="25" placeholder="{!! trans('messages.sell.code') !!}" name="name" required>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-12 text-right">
-                                        {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
-                                        <button type="button" class="btn btn-secondary search-store">{!! trans('messages.search') !!}</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.report.id_widen') !!} : {!! $widen->code !!}</h3>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <br>
+
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <div class="panel-heading">
-                        <h3 class="panel-title" style="text-align: center;">{!! trans('messages.widen.title') !!}</h3>
-                    </div>
                     <div class="row">
                         <div class="col-sm-12 text-right">
                             {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
@@ -45,33 +33,78 @@
                         </div>
                     </div>
                     <br>
+                    {!! Form::model(null,array('url' => array('/employee/widen/product/update_widen_product'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                    <input type="hidden" name="widen_code" value="{!! $widen->code !!}">
+                    <input type="hidden" name="widen_id" value="{!! $widen->id !!}">
                     <div class="panel-body search-form table-responsive">
-                        {!! Form::model(null,array('url' => array('/employee/widen/product/widen_product'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                         <table class="table itemTables" style="width: 100%">
                             <tr>
-                                <th ></th>
-                                <th>{!! trans('messages.product.head_product') !!}</th>
-                                <th>{!! trans('messages.stock.balance') !!}</th>
-                                <th>{!! trans('messages.unit.title') !!}</th>
+                                <th width="2%"></th>
+                                <th width="30%">{!! trans('messages.product.head_product') !!}</th>
+                                <th width="12%">{!! trans('messages.stock.balance') !!}</th>
+                                <th width="20%">{!! trans('messages.unit.title') !!}</th>
                                 {{--<th>{!! trans('messages.product.amount') !!}</th>--}}
-                                <th>{!! trans('messages.widen.title') !!}</th>
-                                <th>{!! trans('messages.unit.amount_widen') !!}</th>
+                                <th width="25%">{!! trans('messages.widen.title') !!}</th>
+                                <th width="12%">{!! trans('messages.unit.amount_widen') !!}</th>
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
+                            @foreach($widen_transection as $key => $w)
+                                <tr>
+                                    <td>{!! $key+1 !!}</td>
+                                    <td><input type="hidden" name="data_[{!! $key !!}][product_id]" value="{!! $w->product_id !!}" readonly class="form-control">
+                                        <input type="hidden" name="data_[{!! $key !!}][id]" value="{!! $w->id !!}">
+                                        <input type="hidden" name="data_[{!! $key !!}][id_product_stock_]" value="{!! $w->id_product_stock !!}">
+                                        <input type="text" readonly value="{!! $w->join_product{'name_'.Session::get('locale')} !!}" class="form-control"></td>
+                                    <td><input type="hidden" class="amount" value="{!! $w->join_stock['amount'] !!}">{!! $w->join_stock['amount'] !!}</td>
+                                    <td><input type="hidden" class="name" value="{!! $w->join_stock_log{'name_'.Session::get('locale')} !!}">{!! $w->join_stock_log{'name_'.Session::get('locale')} !!}</td>
+                                    <td><select name="data_[{!! $key !!}][unit_widden]" id="" class="form-control unit_widen ">
+                                            <option value="">{!! trans('messages.select_unit') !!}</option>
+                                            <option value="{!! $w->join_stock_log->id !!}" @if($w->unit_widden == $w->join_stcok_log['id']) selected @endif>{!! $w->join_stock_log{'name_'.Session::get('locale')} !!}</option>
+                                            @foreach($w->join_unit_transection_all as $k => $row)
+                                                <option value="{!! $row['id'] !!}" @if($w->unit_widden == $row['id']) selected @endif>{!! $row{'name_'.Session::get('locale')} !!}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="data_[{!! $key !!}][amount_widden]" class="amount_widden form-control" style="width:100px;" required>
+                                            {{--@if(!($w->join_stock_log))--}}
+                                                {{--@for($i=1;$i< $w->join_stock_log->amount;$i++)--}}
+                                                    <option value="{!! number_format($w->amount_widden,0) !!}">{!! number_format($w->amount_widden,0) !!} {!! $w->join_stock_log{'name_'.Session::get('locale')} !!}</option>
+                                                {{--@endfor--}}
+                                            {{--@else--}}
+                                                {{--@for($i=1;$i< $w->join_stock_log->amount;$i++)--}}
+                                                    {{--<option value="{!! ($w->join_stock['amount'] / $w->join_stock_log->amount)*$i !!}">{!! $i !!} {!! ($w->join_stock['amount'] / $w->join_stock_log->amount)*$i !!} {!! $w->join_stock_log{'name_'.Session::get('locale')} !!}</option>--}}
+                                                {{--@endfor--}}
+                                            {{--@endif--}}
+                                        </select>
+                                        {{--<input type="text" class="form-control" name="data_[{!! $key !!}][amount_widden]" value="{!! $w->amount_widden !!}" required>--}}
+                                        <input type="hidden" class="form-control" name="data_[{!! $key !!}][amount_log]" value="{!! $w->amount_widden !!}"></td>
+                                </tr>
+                            @endforeach
                         </table>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td style="text-align: right;"><button class="btn-info btn-primary btn-lg payment_" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button></td>
-                        </tr>
-                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <div class="col-sm-12 text-right">
+                            <button class="btn-warning btn-lg payment_" type="button"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button>
+                            {{--<input type="submit" name="submit"  value="{!! trans('messages.widen.title') !!}" class="btn btn-primary">--}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    {!! Form::close() !!}
     <div id="property_select" style="display:none;">
-        <select name="product_id" id="property_id" class="form-control" style="width:500px;">
+        <select name="product_id" id="property_id" class="form-control" style="width:200px;">
             <option value="">{!! trans('messages.selete_procudt') !!}</option>
             @foreach($stock as $prow)
                 <option value="{!! $prow['id'] !!}">{!! $prow['name_th']." ".$prow['name_en'] !!}</option>
@@ -93,7 +126,7 @@
                 }
             });
 
-            $('.payment_').hide();
+            //$('.payment_').hide();
             $('.search-store').on('click',function(){
                 if($('#search-form').valid()) {
                     $('.show').show();
@@ -109,7 +142,7 @@
                         data: data,
                         success: function (e) {
                             if(e.name_en != undefined){
-                                $('.payment_').show();
+                               // $('.payment_').show();
                                 var name_en = e.name_en;
                                 var name_th = e.name_th;
                                 var price = e.price;
@@ -160,21 +193,21 @@
 
         $(function () {
             $('.widen-store').on('click', function (e){
-                $('.payment_').show();
+               // $('.payment_').show();
                 e.preventDefault();
                 var time = $.now();
-                var property = '<select name="data['+time+'][product_id]" class="product form-control" style="width:300px;" required>'+ $('#property_select select').html() + '</select>';
+                var property = '<select style="width: 200px;" name="data['+time+'][product_id]" class="product form-control" style="width:300px;" required>'+ $('#property_select select').html() + '</select>';
 
                 var data = [
                     '<tr class="itemRow">',
                     '<td></td>',
-                    '<td style="text-align: left; width:300px;">'+property+'</td>',
+                    '<td style="text-align: left; width:200px;">'+property+'</td>',
                     '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
-                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                    '<td><select style="width:150px;" name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
                     // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
-                    '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
+                    '<td><select style="width:150px;" name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
                     '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly>' +
-                    '<input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
+                    '<input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:100px;" required></select></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);
@@ -329,14 +362,13 @@
                 dataType : 'json',
                 data : ({'id':id}),
                 success : function(e){
-
+                    //console.log(e.amount);
                     this_.parents('tr').find('.amount_widden').html('');
 
                     // var amount =  e.amount_unit / e.amount;
                     var x = amount.split('.');
                     var x1 = x[0];
 
-                     // console.log(e.amount);
 
 
                     if(e.amount != 1) {

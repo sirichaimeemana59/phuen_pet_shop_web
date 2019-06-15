@@ -49,7 +49,7 @@
                     <td>{!! localDate($row->date) !!}</td>
                     <td>
                         <a href="{!! url('/employee/detail/widen/'.$row->id) !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="mdi mdi-eye"></i></button></a>
-                        <a href="{!! url('/employee/product/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
+                        <a href="{!! url('/employee/widen/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
                         <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
                         <a href="{!! url('/employee/print/widen/'.$row->id) !!}"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="mdi mdi-printer"></i></button></a>
                     </td>
