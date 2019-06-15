@@ -31,6 +31,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/pet/list') !!}">
+                <i class="fa fa-paw menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.pet.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <i class="mdi mdi-chart-pie menu-icon"></i>
                 <span class="menu-title">Charts</span>

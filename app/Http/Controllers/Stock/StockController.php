@@ -11,6 +11,7 @@ use ImageUploadAndResizer;
 use App\stock;
 use App\unit_transection;
 use App\stock_log;
+use PHPExcel_Style_Border;
 
 class StockController extends Controller
 {

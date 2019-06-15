@@ -75,3 +75,12 @@ Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');
 
 //Report
 Route::get('/report/widden/{id}','Widen\WidenController@print_widden');
+
+//pet
+Route::any('/employee/pet/list','Pet\PetController@index');
+Route::post('/employee/pet/add','Pet\PetController@create');
+Route::post('/employee/pet/view','Pet\PetController@show');
+Route::post('/employee/pet/edit','Pet\PetController@edit');
+Route::post('/employee/pet/update','Pet\PetController@update');
+Route::post('/employee/pet/delete','Pet\PetController@destroy');
+Route::get('/employee/report/pet','Pet\PetController@report_excel');

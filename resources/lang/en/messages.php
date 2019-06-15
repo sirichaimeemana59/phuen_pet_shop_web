@@ -36,6 +36,7 @@ return [
     'sorry_amount_product' => 'Sorry, the number of products is not enough.',
     'sorry' => 'Sorry',
     'selete_procudt' => '---Please Select Product---',
+    'report_show' => 'Report',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
     'product'=>[
@@ -164,5 +165,18 @@ return [
         'date' => 'Date',
         'print' => 'Print',
         'edit_widen' => 'Edit Product Bill Of Lading',
+    ],
+    'pet' => [
+        'title' => 'Pet',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'weight' => 'Weight',
+        'height' => 'Height',
+        'detail' => 'Detail',
+        'photo' => 'Photo',
+        'birthday' => 'Birthday',
+        'age' => 'Age',
+        'user' => 'User',
     ]
 ];
