@@ -178,5 +178,21 @@ return [
         'birthday' => 'Birthday',
         'age' => 'Age',
         'user' => 'User',
+        'report_pet' => 'Report Pet',
+    ],
+    'analyze' => [
+        'analyze' => 'Analyze the illness',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'syndrome' => 'Syndrome',
+        'syndrome_th' => 'Syndrome [TH]',
+        'syndrome_en' => 'Syndrome [EN]',
+        'detail' => 'Detail',
+        'disease_name_th' => 'Disease name [TH]',
+        'disease_name_en' => 'Disease name [EN]',
+        'disease_name' => 'Disease name',
+        'detail_th' => 'Detail [TH]',
+        'detail_en' => 'Detail [EN]',
     ]
 ];

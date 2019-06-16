@@ -5,13 +5,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.analyze.analyze') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
                                 <div class="col-sm-3 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.pet.name') !!}" name="name">
+                                    <input class="form-control" size="25" placeholder="{!! trans('messages.analyze.name') !!}" name="name">
                                 </div>
 
                                 {{--<div class="col-sm-3 block-input">--}}
@@ -38,18 +38,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.analyze.analyze') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.pet.title') !!}</button>
+                                <a href="{!! url('/employee/sick/form') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.analyze.disease_name') !!}</button></a>
                                 <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
                             </div>
                         </div>
                         <br>
                         <div class="panel-body" id="landing-subject-list">
-                            @include('pet.list_pet_element')
+                            @include('sick.list_sick_element')
                         </div>
                     </div>
                 </div>
@@ -62,66 +62,59 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.analyze.disease_name') !!}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form">
-                                {!! Form::model(null,array('url' => array('employee/pet/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                {!! Form::model(null,array('url' => array('employee/analyze/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_th') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.analyze.name_th') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.name_th'),'required')) !!}
+                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.analyze.name_th'),'required')) !!}
                                     </div>
 
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_en') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.analyze.name_en') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.name_en'),'required')) !!}
+                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.analyze.name_en'),'required')) !!}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.weight') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('weight',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.weight'))) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.height') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('height',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.height'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.birthday') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::date('birthday',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.birthday'))) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.age') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('age',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.age'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.photo') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.detail') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.analyze.detail_th') !!}</lable>
                                     <div class="col-sm-10">
-                                        {!! Form::textarea('detail',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40]) !!}                                    </div>
+                                        {!! Form::textarea('detail_th',null,['class'=>'form-control', 'rows' => 4, 'cols' => 40]) !!}                                    </div>
+                                    {{--</div>--}}
+                                </div>
+
+                                <div class="form-group row">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.analyze.detail_en') !!}</lable>
+                                    <div class="col-sm-10">
+                                        {!! Form::textarea('detail_en',null,['class'=>'form-control', 'rows' => 4, 'cols' => 40]) !!}                                    </div>
+                                    {{--</div>--}}
+                                </div>
+
+                                <div class="form-group row">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.analyze.syndrome') !!}</lable>
+                                    <button class="btn-success btn-sm sick_add float-right" type="button"><li class="fa fa-plus-circle"></li> {!! trans('messages.analyze.syndrome') !!}</button>
+                                    <div class="col-sm-10">
+                                        <table class="table itemTables" style="width: 100%">
+                                            <tr>
+                                                <th ></th>
+                                                <th>{!! trans('messages.analyze.syndrome_th') !!}</th>
+                                                <th>{!! trans('messages.analyze.syndrome_en') !!}</th>
+                                                <th>{!! trans('messages.analyze.detail_th') !!}</th>
+                                                <th>{!! trans('messages.analyze.detail_en') !!}</th>
+                                                <th>{!! trans('messages.action') !!}</th>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
 
-
-                                <div class="form-group row float-center" style="text-align: center; ">
+                                <div class="form-group row float-right" style="text-align: center; ">
                                     <div class="col-sm-12">
                                         <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
                                         <button class="btn-info btn-warning" type="reset">Reset</button>
@@ -253,7 +246,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/pet/view',
+                    url : '/employee/sick/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -261,7 +254,7 @@
                         $('#lead-content').html(e);
                         $('.v-loading').hide();
                     } ,error : function(){
-                        console.log('Error View Data Pet');
+                        console.log('Error View Data Sick');
                     }
                 });
             });
@@ -369,6 +362,34 @@
                }
                //console.log(id);
             });
+
+            $('.itemTables').on("click", '.delete-subject', function() {
+                //alert('aaa');
+                $(this).closest('tr.itemRow').remove();
+                //return false;
+            });
+
+            $(function () {
+                $('.sick_add').on('click', function (e){
+                    e.preventDefault();
+                    var time = $.now();
+
+                    var data = [
+                        '<tr class="itemRow">',
+                        '<td></td>',
+                        '<td></td>',
+                        '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
+                        '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                        // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
+                        '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
+                        '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly>' +
+                        '<input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
+                        '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
+                        '</tr>'].join('');
+                    $('.itemTables').append(data);
+                });
+            });
+
 
         });
     </script>

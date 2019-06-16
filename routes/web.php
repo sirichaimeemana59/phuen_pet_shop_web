@@ -84,3 +84,12 @@ Route::post('/employee/pet/edit','Pet\PetController@edit');
 Route::post('/employee/pet/update','Pet\PetController@update');
 Route::post('/employee/pet/delete','Pet\PetController@destroy');
 Route::get('/employee/report/pet','Pet\PetController@report_excel');
+
+//sick
+Route::any('/employee/sick/list','Sick\SickController@index');
+Route::get('/employee/sick/form','Sick\SickController@create');
+Route::post('/employee/analyze/add','Sick\SickController@store');
+Route::post('/employee/sick/view','Sick\SickController@show');
+Route::get('/employee/sick/edit/{id?}','Sick\SickController@edit');
+Route::post('/employee/sick_tran/delete','Sick\SickController@delete_sick_tran');
+Route::post('/employee/analyze/update','Sick\SickController@update');

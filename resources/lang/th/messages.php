@@ -179,5 +179,21 @@ return [
         'birthday' => 'วันเกิด',
         'age' => 'อายุ',
         'user' => 'เจ้าของ',
+        'report_pet' => 'รายงานสัตว์เลี้ยง',
+    ],
+    'analyze' => [
+        'analyze' => 'การวิเคราห์อาการป่วย',
+        'name' => 'ชื่อ',
+        'name_th' => 'ชื่อ [TH]',
+        'name_en' => 'ชื่อ [EN]',
+        'syndrome' => 'อาการป่วย',
+        'syndrome_th' => 'อาการป่วย [TH]',
+        'syndrome_en' => 'อาการป่วย [EN]',
+        'detail' => 'รายละเอียด',
+        'disease_name_th' => 'ชื่อโรค [TH]',
+        'disease_name_en' => 'ชื่อโรค [EN]',
+        'disease_name' => 'ชื่อโรค',
+        'detail_th' => 'รายละเอียด [TH]',
+        'detail_en' => 'รายละเอียด [EN]',
     ]
 ];

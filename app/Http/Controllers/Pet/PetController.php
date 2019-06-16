@@ -132,22 +132,25 @@ class PetController extends Controller
         $pet = new pet;
         $pet = $pet->get();
 
-        $filename = "รายงานใบเสนอราคาที่ออกจากระบบ";
+        return view('report.report_pet')->with(compact('pet'));
 
-        Excel::create($filename, function ($excel) use ($filename, $pet) {
-            $excel->sheet("Quotation_Output", function ($sheet) use ($pet) {
-                $sheet->setWidth(array(
-                    'A' => 50,
-                    'B' => 20,
-                    'C' => 30,
-                    'D' => 30,
-                    'E' => 30,
-                ));
-                //$sheet->setBorder('A1', 'thin');
-                // $sheet->setBorder('A1:F10', 'thin');
-                //$sheet->setBorder('A1:E17', 'thin');
-                $sheet->loadView('report.report_pet_excel')->with(compact('pet','filename'));
-            });
-        })->download('xls');
+
+//        $filename = "รายงานใบเสนอราคาที่ออกจากระบบ";
+//
+//        Excel::create($filename, function ($excel) use ($filename, $pet) {
+//            $excel->sheet("Quotation_Output", function ($sheet) use ($pet) {
+//                $sheet->setWidth(array(
+//                    'A' => 50,
+//                    'B' => 20,
+//                    'C' => 30,
+//                    'D' => 30,
+//                    'E' => 30,
+//                ));
+//                //$sheet->setBorder('A1', 'thin');
+//                // $sheet->setBorder('A1:F10', 'thin');
+//                //$sheet->setBorder('A1:E17', 'thin');
+//                $sheet->loadView('report.report_pet_excel')->with(compact('pet','filename'));
+//            });
+//        })->download('xls');
     }
 }
