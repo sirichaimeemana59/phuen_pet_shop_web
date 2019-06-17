@@ -22,5 +22,4 @@ class widden_product extends GeneralModel
         return $this->hasMany('App\widden__transection','code','code');
     }
 
-
 }

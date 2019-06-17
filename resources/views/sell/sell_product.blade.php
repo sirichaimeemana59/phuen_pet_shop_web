@@ -8,10 +8,10 @@
                         <h3 class="panel-title" style="text-align: center;">{!! trans('messages.sell.sale') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
-                        <form method="POST" id="search-form" action="{!! url('/employee/sell/search_product') !!}" accept-charset="UTF-8" class="form-horizontal">
+                        <form method="POST" id="search-form" action="" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
                                 <div class="col-sm-12 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.sell.code') !!}" name="name" required>
+                                    <input class="form-control barcode" size="25" placeholder="{!! trans('messages.sell.code') !!}" name="name" required autocomplete = "off">
                                 </div>
                             </div>
                             <br>
@@ -119,6 +119,63 @@
                 }
             });
 
+
+            $('.barcode').on('keyup',function(){
+                var data = $('#search-form').serialize();
+                //console.log(data);
+                $.ajax({
+                    url: '/employee/sell/search_product',
+                    method: 'post',
+                    dataType: 'JSON',
+                    data: data,
+                    success: function (e) {
+                        $('.barcode').val("");
+                        //console.log(e.join_stock);
+                        var name_en = e.join_stock.name_th;
+                        var name_th = e.join_stock.name_en;
+                        var price = e.price_piece;
+                        var photo = e.join_stock.photo;
+                        var id = e.id;
+                        var time = $.now();
+
+                        var total = price * 1;
+
+                        // console.log(price);
+                        //
+                        // jQuery.each(e, function(index, value){
+                        //     console.log(value);
+                        // });
+                        if (lang = 'th') {
+                            var name = name_th;
+                        } else {
+                            var name = name_en;
+                        }
+
+                        var data = ['<tr class="itemRow">',
+                            '<td></td>',
+                            '<td><img src="' + photo + '" alt="" width="25%"></td>',
+                            '<td><span>' + name + '</span></td>',
+                            '<td><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="10" value="1"></td>',
+                            '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price]" class="price" value="' + price + '"><span>' + price + '</span></td>',
+                            '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][result]"></td>',
+                            '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
+                        ];
+
+                        data.push(
+                            '<td><div class="text-right">' +
+                            '<span class="colTotal"></span> </div><input class="tLineTotal" name="" type="hidden" value="' + total + '"></td>', '</tr>');
+                        data = data.join('');
+
+                        $('.itemTables').append(data);
+                        calTotal();
+
+                    }, error: function () {
+                        //$('.barcode').val("");
+                        console.log('Error Search Data Product');
+                    }
+                });
+            });
+
             $('.show').hide();
             $('.search-store').on('click',function(){
                 if($('#search-form').valid()) {
@@ -126,7 +183,7 @@
                     var data = $('#search-form').serialize();
                     var lang = '<?php echo Session::get('locale')?>';
                     //alert('aa');
-                    console.log(data);
+                    //console.log(data);
                     $('#landing-subject-list').css('opacity', '0.6');
                     $.ajax({
                         url: '/employee/sell/search_product',
@@ -134,10 +191,12 @@
                         dataType: 'JSON',
                         data: data,
                         success: function (e) {
-                            var name_en = e.name_en;
-                            var name_th = e.name_th;
-                            var price = e.price;
-                            var photo = e.photo;
+                            $('.barcode').val("");
+                            //console.log(e);
+                            var name_en = e.join_stock.name_th;
+                            var name_th = e.join_stock.name_en;
+                            var price = e.price_piece;
+                            var photo = e.join_stock.photo;
                             var id = e.id;
                             var time = $.now();
 
@@ -173,6 +232,7 @@
                             calTotal();
 
                         }, error: function () {
+                            //$('.barcode').val("");
                             console.log('Error Search Data Product');
                         }
                     });

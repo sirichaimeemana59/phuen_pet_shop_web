@@ -12,21 +12,13 @@
 </div>
 
 <div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
+    <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
     <div class="col-sm-4">
-        {!! $product->join_stock->psc !!}
+        @if(!empty($product->price_pack)){!! $product->price_pack !!} @else {!! $product->price_piece !!} @endif
     </div>
 
     <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
     <div class="col-sm-4">
-        @if($product->unit_sale == 1){!! trans('messages.sale_mode.pack') !!} @else {!! trans('messages.sale_mode.piece') !!} @endif
+        @if(!empty($product->join_stock_log)){!! $product->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $product->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif
     </div>
-</div>
-
-<div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>
-    <div class="col-sm-10">
-        @if(!empty($product->price_pack)){!! $product->price_pack !!} @else {!! $product->price_piece !!} @endif
-    </div>
-
 </div>

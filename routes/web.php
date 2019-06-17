@@ -19,7 +19,7 @@ Route::any('employee/home','Product\ProductController@index');
 Route::any('/employee/product','Product\ProductController@index');
 Route::post('/employee/product/add','Product\ProductController@create');
 Route::post('/employee/product/view','Product\ProductController@show');
-Route::get('/employee/product/edit/{id?}','Product\ProductController@edit');
+Route::post('/employee/product/edit','Product\ProductController@edit');
 Route::post('/employee/product/update','Product\ProductController@update');
 Route::post('/employee/product/delete','Product\ProductController@destroy');
 Route::post('/employee/add/product/for_sale','Product\ProductController@product');
@@ -93,3 +93,8 @@ Route::post('/employee/sick/view','Sick\SickController@show');
 Route::get('/employee/sick/edit/{id?}','Sick\SickController@edit');
 Route::post('/employee/sick_tran/delete','Sick\SickController@delete_sick_tran');
 Route::post('/employee/analyze/update','Sick\SickController@update');
+
+//employee add product for sale
+Route::any('/employee/add/product/sale/list','Product\ProductController@sale');
+Route::post('/employee/add/product/sale/sale_search','Product\ProductController@sale_search');
+Route::get('/employee/add_product_form_widen/{id?}','Product\ProductController@add_product_form_widen');

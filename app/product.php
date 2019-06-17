@@ -21,28 +21,24 @@ class product extends GeneralModel
         return $this->hasOne('App\stock','id','product_id');
     }
 
-//    protected static function boot()
-//    {
-//        parent::boot();
-//
-//        static::creating(function ($post) {
-//            $post->{$post->getKeyName()} = (string) Str::uuid();
-//        });
-//    }
-//
-//    public function getIncrementing()
-//    {
-//        return false;
-//    }
-//
-//    public function getKeyType()
-//    {
-//        return 'string';
-//    }
-//
-//    public function join_unit ()
-//    {
-//        return $this->hasOne('App\unit','id','unit_id');
-//    }
+    public function join_stock_log()
+    {
+        return $this->hasOne('App\stock_log','id','unit_sale');
+    }
+
+    public function join_unit_transection_all()
+    {
+        return $this->hasOne('App\unit_transection','id','unit_sale');
+    }
+
+    public function join_unit_transection_all_()
+    {
+        return $this->hasMany('App\unit_transection','product_id','code');
+    }
+
+    public function join_widen_trans()
+    {
+        return $this->hasOne('App\widden__transection','id_product_stock','product_id');
+    }
 
 }

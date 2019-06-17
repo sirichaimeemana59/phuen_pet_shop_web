@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\stock;
+use App\stock_log;
+use App\unit_transection;
+use App\widden__transection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use ImageUploadAndResizer;
@@ -11,6 +14,7 @@ use App\user;
 use Auth;
 use App\unit;
 use App\widen;
+use App\widden_product;
 
 class ProductController extends Controller
 {
@@ -31,7 +35,7 @@ class ProductController extends Controller
         $unit = new unit;
         $unit = $unit->get();
 
-        $widen = new widen;
+        $widen = new widden_product;
         $widen = $widen->get();
 
         if(!$request->ajax()){
@@ -45,14 +49,16 @@ class ProductController extends Controller
     public function create(Request $request)
     {
 
-        $product = new product;
-//        $product->price = $request->input('price');
-        $product->unit_sale = $request->input('type_sale');
-        $product->price_pack = $request->input('price_pack');
-        $product->price_piece = $request->input('price_piece');
-        $product->product_id = $request->input('product_id');
-        //dd($product);
-        $product->save();
+        //dd($request->input('data'));
+
+        foreach ($request->input('data') as $t){
+            $product = new product;
+            $product->unit_sale = $t['unit_sale'];
+            $product->price_piece = $t['price'];
+            $product->product_id = $t['product_id'];
+            $product->save();
+        }
+
 
         return redirect('/employee/product');
     }
@@ -72,17 +78,21 @@ class ProductController extends Controller
     }
 
 
-    public function edit($id = null)
+    public function edit(Request $request)
     {
-        $product = product::find($id);
+        $product = product::find($request->input('id'));
 
         $unit = new unit;
         $unit = $unit->get();
 
-        $widen = new widen;
+        $widen = new widden_product;
         $widen = $widen->get();
 
-        return view ('product.edit_product')->with(compact('product','unit','widen'));
+        $stock = stock::find($product->product_id);
+        $stock_log = stock_log::where('product_id',$stock->code)->first();
+        $uni_tran = unit_transection::where('product_id',$stock->code)->get();
+
+        return view ('product.edit_product')->with(compact('product','unit','widen','stock','stock_log','uni_tran'));
     }
 
 
@@ -139,5 +149,54 @@ class ProductController extends Controller
 
 
         return response()->json( $product );
+    }
+
+    public function sale(Request $request){
+        $widden_product = new widden_product;
+
+        if($request->method('post')) {
+            if ($request->input('name')) {
+                $widden_product = $widden_product->where('code', 'like', "%" . $request->input('name') . "%")
+                    ->orWhere('code', 'like', "%" . $request->input('name') . "%");
+            }
+        }
+
+
+        $widden_product = $widden_product->paginate(50);
+
+        if(!$request->ajax()){
+            return view('product.list_widen')->with(compact('widden_product'));
+        }else{
+            return view('product.list_widden_element')->with(compact('widden_product'));
+        }
+    }
+
+    public function sale_search(Request $request){
+        $widen =  widden_product::where('code',$request->input('name'))->first();
+        $widen = $widen->toArray();
+
+        $widentran =  widden__transection::where('code',$request->input('name'))->get();
+        $widentran = $widentran->toArray();
+
+        foreach ($widentran as $t){
+            $product =  stock::find($t['id_product_stock']);
+
+        }
+        $product = $product->toArray();
+
+        $data['widen'] = $widen;
+        $data['widentran'] = $widentran;
+        $data['product'] = $product;
+
+        return response()->json($data);
+    }
+
+    public function add_product_form_widen($id = null){
+
+        $widen = widden_product::find($id);
+
+        $widen_transection = widden__transection::where('code',$widen->code)->get();
+
+        return view ('product.add_product_form_widen')->with(compact('widen','widen_transection'));
     }
 }

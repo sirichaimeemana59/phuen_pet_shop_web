@@ -34,9 +34,9 @@
         <tr>
             <th>{!! trans('messages.number') !!}</th>
             <th>{!! trans('messages.unit.name') !!}</th>
-            <th>{!! trans('messages.product.amount') !!}</th>
-            <th>{!! trans('messages.unit.title') !!}</th>
+            <th>{!! trans('messages.product.amount_unit') !!}</th>
             <th>{!! trans('messages.product.price') !!}</th>
+            <th>{!! trans('messages.unit.title') !!}</th>
             <th>{!! trans('messages.action') !!}</th>
         </tr>
         </thead>
@@ -46,12 +46,14 @@
                 <tr>
                     <td>{!! $key+1 !!}</td>
                     <td> {!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>
-                    <td>{!! $row->join_stock->psc !!}</td>
-                    <td>@if($row->unit_sale == 1){!! trans('messages.sale_mode.pack') !!} @else {!! trans('messages.sale_mode.piece') !!} @endif</td>
+                    <td>{!! number_format($row->join_widen_trans['amount_widden']) !!}
+                        @if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif
+                    </td>
                     <td>@if(!empty($row->price_pack)){!! $row->price_pack !!} @else {!! $row->price_piece !!} @endif</td>
+                    <td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
-                        <a href="{!! url('/employee/product/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
+                        <button class="btn btn-warning mt-2 mt-xl-0 text-right edit-store" data-id="{!! $row->id !!}"><i class="mdi mdi-tooltip-edit"></i></button>
                         <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
                     </td>
                 </tr>

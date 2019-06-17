@@ -196,16 +196,16 @@
                // $('.payment_').show();
                 e.preventDefault();
                 var time = $.now();
-                var property = '<select style="width: 200px;" name="data['+time+'][product_id]" class="product form-control" style="width:300px;" required>'+ $('#property_select select').html() + '</select>';
+                var property = '<select  name="data['+time+'][product_id]" class="product form-control" style="width:350px;" required>'+ $('#property_select select').html() + '</select>';
 
                 var data = [
                     '<tr class="itemRow">',
                     '<td></td>',
-                    '<td style="text-align: left; width:200px;">'+property+'</td>',
+                    '<td style="text-align: left; width:350px;">'+property+'</td>',
                     '<td><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
-                    '<td><select style="width:150px;" name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:350px;" required></select></td>',
                     // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
-                    '<td><select style="width:150px;" name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
+                    '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:350px;" required></select></td>',
                     '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly>' +
                     '<input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:100px;" required></select></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
