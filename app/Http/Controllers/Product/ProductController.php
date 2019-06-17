@@ -16,6 +16,7 @@ use App\unit;
 use App\widen;
 use App\widden_product;
 
+
 class ProductController extends Controller
 {
 
@@ -56,6 +57,7 @@ class ProductController extends Controller
             $product->unit_sale = $t['unit_sale'];
             $product->price_piece = $t['price'];
             $product->product_id = $t['product_id'];
+            $product->amount = $t['amount_widden'];
             $product->save();
         }
 

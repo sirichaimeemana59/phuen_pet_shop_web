@@ -75,7 +75,7 @@
                 </tr>
                 <tr style="text-align: right;font-weight: bold;">
                     <td colspan="5" style="text-align: right;font-weight: bold;">{!! trans('messages.payment.discount') !!}</td>
-                    <td style="text-align: right;"><input type="text" class="discount form-control" required placeholder="0.00" name="discount"></td>
+                    <td style="text-align: right;"><input type="text" class="discount form-control"  placeholder="0.00" name="discount" autocomplete = "off"></td>
                     <td style="text-align: left;">{!! trans('messages.payment.bath') !!}</td>
                 </tr>
                 <tr style="text-align: right;font-weight: bold;">
@@ -85,7 +85,7 @@
                 </tr>
                 <tr style="text-align: right;font-weight: bold;">
                     <td colspan="5" style="text-align: right;font-weight: bold;">{!! trans('messages.payment.money') !!}</td>
-                    <td style="text-align: right;"><input type="text" class="money form-control" required  placeholder="0.00" name="money"></td>
+                    <td style="text-align: right;"><input type="text" class="money form-control" required  placeholder="0.00" name="money" autocomplete = "off"></td>
                     <td style="text-align: left;">{!! trans('messages.payment.bath') !!}</td>
                 </tr>
                 <tr style="text-align: right;font-weight: bold;">
@@ -123,6 +123,11 @@
             $('.barcode').on('keyup',function(){
                 var data = $('#search-form').serialize();
                 //console.log(data);
+                var this_ = $(this);
+                this_.parents('tr').find('.id_product_').val("");
+
+                var id = $('.id_product_').val();
+
                 $.ajax({
                     url: '/employee/sell/search_product',
                     method: 'post',
@@ -130,7 +135,7 @@
                     data: data,
                     success: function (e) {
                         $('.barcode').val("");
-                        //console.log(e.join_stock);
+                        //console.log(e);
                         var name_en = e.join_stock.name_th;
                         var name_th = e.join_stock.name_en;
                         var price = e.price_piece;
@@ -140,11 +145,6 @@
 
                         var total = price * 1;
 
-                        // console.log(price);
-                        //
-                        // jQuery.each(e, function(index, value){
-                        //     console.log(value);
-                        // });
                         if (lang = 'th') {
                             var name = name_th;
                         } else {
@@ -155,9 +155,9 @@
                             '<td></td>',
                             '<td><img src="' + photo + '" alt="" width="25%"></td>',
                             '<td><span>' + name + '</span></td>',
-                            '<td><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="10" value="1"></td>',
-                            '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price]" class="price" value="' + price + '"><span>' + price + '</span></td>',
-                            '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][result]"></td>',
+                            '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="100" value="1"></td>',
+                            '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
+                            '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
                             '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                         ];
 
@@ -287,9 +287,13 @@
                         $('.total').val(Total.toFixed(2));
                         $('.net').val(total_net.toFixed(2));
 
-                        if(money != 0){
-                            $('.withdrawal').val(total_money.toFixed(2));
-                        }
+                            if(money != 0 && money >= total_net){
+                                $('.withdrawal').val(total_money.toFixed(2));
+                            }else{
+                                $('.withdrawal').val("");
+                            }
+
+
 
                     }
                 });
@@ -302,6 +306,7 @@
             //         $('.form_add').submit();
             //     }
             // });
+
         });
     </script>
 @endsection

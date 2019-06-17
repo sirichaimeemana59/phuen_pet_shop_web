@@ -208,7 +208,8 @@
                     var x = e.stock.amount.split('.');
                     var x1 = x[0];
 
-//                    console.log(e.stock.id);
+                    //console.log(x1);
+                    //this_.parents('tr').find('.amount1').val(x1);
                     this_.parents('tr').find('.amount').val(x1);
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
