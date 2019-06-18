@@ -71,23 +71,7 @@
                             <div class="form">
                                 {!! Form::model(null,array('url' => array('employee/cat/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
-                                    <div class="col-sm-4">
-                                        @if(count($group) != 0)
-                                            <select name="group" id="" class="form-control">
-                                                <option value="">{!! trans('messages.selete_group') !!}</option>
-                                            @foreach($group as $key => $row)
-                                                    <option value="{!! $row->id !!}">{!! $row{'name_'.Session::get('locale')} !!}</option>
-                                            @endforeach
-                                            </select>
-                                        @endif
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label"></lable>
-                                    <div class="col-sm-4">
-                                        <button type="button" class="btn btn-secondary add_group">{!! trans('messages.group.add') !!}</button>
-
-                                    </div>
+                                    <lable class="col-sm-10 control-label"><h3>{!! trans('messages.group.title') !!}</h3></lable>
                                 </div>
 
                                 <div class="form-group row">
@@ -102,7 +86,24 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row float-center" style="text-align: center; ">
+
+                                <div class="form-group row">
+                                    <lable class="col-sm-10 control-label"><h3>{!! trans('messages.category.title') !!}</h3></lable>
+                                </div>
+
+                                <div class="form-group row">
+                                    <table class="table itemTables" style="width: 100%">
+                                        <tr>
+                                            <th width="20%"><button class="btn-primary btn-sm add_cat" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.category.title') !!}</button></th>
+                                            <th>{!! trans('messages.category.name_th') !!}</th>
+                                            <th>{!! trans('messages.category.name_en') !!}</th>
+                                            <th>{!! trans('messages.action') !!}</th>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                                <div class="form-group row float-right" style="text-align: center; ">
                                     <div class="col-sm-12">
                                         <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
                                         <button class="btn-info btn-warning" type="reset">Reset</button>
@@ -405,6 +406,27 @@
                    $('.price_pack').hide();
                }
                //console.log(id);
+            });
+
+            $(function () {
+                $('.add_cat').on('click', function (e){
+                    e.preventDefault();
+                    var time = $.now();
+                    var data = [
+                        '<tr class="itemRow">',
+                        '<td></td>',
+                        '<td><input type="text" class="form-control" name=data['+time+'][name_th] required></td>',
+                        '<td><input type="text" class="form-control" name=data['+time+'][name_en] required></td>',
+                        '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
+                        '</tr>'].join('');
+                    $('.itemTables').append(data);
+                });
+            });
+
+            $('.itemTables').on("click", '.delete-subject', function() {
+                //alert('aaa');
+                $(this).closest('tr.itemRow').remove();
+                //return false;
             });
 
         });

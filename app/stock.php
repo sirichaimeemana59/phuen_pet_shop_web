@@ -13,7 +13,7 @@ class stock extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'stock';
-    protected $fillable = ['name_th,name_en,photo,deleted_at,code,amount'];
+    protected $fillable = ['name_th,name_en,photo,deleted_at,code,amount,cat_id,group_id'];
     public $timestamps = true;
     protected $softDelete = true;
 
@@ -35,5 +35,15 @@ class stock extends GeneralModel
     public function join_stock_log()
     {
         return $this->hasOne('App\stock_log','product_id','code');
+    }
+
+    public function join_cat()
+    {
+        return $this->hasOne('App\cat','id','group_id');
+    }
+
+    public function join_cat_tran()
+    {
+        return $this->hasOne('App\cat_transection','id','cat_id');
     }
 }

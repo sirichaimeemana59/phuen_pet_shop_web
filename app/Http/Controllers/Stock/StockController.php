@@ -12,6 +12,8 @@ use App\stock;
 use App\unit_transection;
 use App\stock_log;
 use PHPExcel_Style_Border;
+use App\cat;
+use App\cat_transection;
 
 class StockController extends Controller
 {
@@ -34,6 +36,7 @@ class StockController extends Controller
 
         $unit = new unit;
         $unit = $unit->get();
+
 
         if($company_ != null){
 
@@ -98,6 +101,8 @@ class StockController extends Controller
         $stock->photo = $fileNameToDatabase;
         $stock->code = $randomString;
         $stock->amount = $total;
+        $stock->cat_id = $request->input('cat_id');
+        $stock->group_id = $request->input('group_id');
         $stock->save();
 
         foreach ($request->input('data') as $t){
@@ -148,9 +153,15 @@ class StockController extends Controller
 
         $stock_log = stock_log::where('product_id',$stock->code)->first();
 
+        $cat = new cat;
+        $cat = $cat->get();
+
+        $cat_tran = new cat_transection;
+        $cat_tran = $cat_tran->get();
+
 //      dd($stock_log);
 
-        return view ('stock.edit_stock')->with(compact('stock','unit','company_','unit_','stock_log'));
+        return view ('stock.edit_stock')->with(compact('stock','unit','company_','unit_','stock_log','cat','cat_tran'));
     }
 
 
@@ -211,6 +222,8 @@ class StockController extends Controller
             $stock->photo = $fileNameToDatabase;
             $stock->code = $request->input('code_');
             $stock->amount = $total_all;
+            $stock->cat_id = $request->input('cat_id');
+            $stock->group_id = $request->input('group_id');
             $stock->save();
 
         }else{
@@ -219,6 +232,8 @@ class StockController extends Controller
             $stock->photo = $request->input('photo_');
             $stock->code = $request->input('code_');
             $stock->amount = $total_all;
+            $stock->cat_id = $request->input('cat_id');
+            $stock->group_id = $request->input('group_id');
             $stock->save();
         }
 
@@ -285,6 +300,21 @@ class StockController extends Controller
         $unit = new unit;
         $unit = $unit->get();
 
-        return view ('stock.add')->with(compact('company_','unit'));
+        $cat = new cat;
+        $cat = $cat->get();
+
+        $cat_tran = new cat_transection;
+        $cat_tran = $cat_tran->get();
+
+        return view ('stock.add')->with(compact('company_','unit','cat','cat_tran'));
+    }
+
+    public function select_unit_tran(Request $request){
+        $cat = cat::find($request->input('id'));
+
+        $cat_tran = cat_transection::where('cat_id',$cat->code)->get();
+
+        return response()->json($cat_tran);
     }
 }
+

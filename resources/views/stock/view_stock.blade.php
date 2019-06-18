@@ -6,6 +6,17 @@
         <img src="{!! asset($stock->photo)!!}" alt="" width="100%">
     </div>
 </div>
+<div class="form-group row">
+    <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
+    <div class="col-sm-4">
+        {!! $stock->join_cat{'name_'.Session::get('locale')}!!}
+    </div>
+
+    <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
+    <div class="col-sm-4">
+        {!! $stock->join_cat_tran{'name_'.Session::get('locale')}!!}
+    </div>
+</div>
 
 <div class="form-group row">
     <lable class="col-sm-2 control-label">{!! trans('messages.store.name_th') !!}</lable>

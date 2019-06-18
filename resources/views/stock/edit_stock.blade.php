@@ -18,6 +18,30 @@
                             </div>
                             {!! Form::model($stock,array('url' => array('/employee/product/update_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
+                                <div class="col-sm-4">
+                                    <select name="group_id" id="" class="form-control select_cat" required="">
+                                        <option value="">{!! trans('messages.selete_group') !!}</option>
+                                        @foreach($cat as $key => $val)
+                                            <option value="{!! $val->id !!}" @if($val->id == $stock->group_id) selected @endif>{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input type="hidden" class="text" name="text" value="{!! trans('messages.selete_cat') !!}">
+                                    <select name="cat_id" id="" class="form-control cat_tran" required="">
+                                        <option value="">{!! trans('messages.selete_cat') !!}</option>
+                                        @foreach($cat_tran as $key => $val)
+                                            <option value="{!! $val->id !!}" @if($val->id == $stock->cat_id) selected @endif>{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <input type="hidden" name="id" value="{!! $stock->id !!}">
                                 <input type="hidden" name="code_" value="{!! $stock->code !!}">
                                 <input type="hidden" name="photo_" value="{!! $stock->photo !!}">
@@ -181,6 +205,27 @@
                     }
                 });return false;
             });
+
+            $('.select_cat').on('change',function(){
+                var id = $(this).val();
+                var text = $('.text').val()
+                $.ajax({
+                    url : "/select_unit_tran",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        //console.log(e);
+                        $('.cat_tran').html('');
+                        $('.cat_tran').append("<option value=''>"+text+"</option>");
+                        $.each($.parseJSON(e),function(i,val){
+                            $('.cat_tran').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                        });
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+            })
         });
     </script>
 @endsection

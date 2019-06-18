@@ -17,7 +17,7 @@ class CreateCategoryTable extends Migration
             $table->increments('id');
             $table->text('name_th');
             $table->text('name_en');
-            $table->integer('group_id');
+            $table->text('code');
             $table->softDeletes();
             $table->timestamps();
         });

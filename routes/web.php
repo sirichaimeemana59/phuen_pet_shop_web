@@ -71,6 +71,7 @@ Route::post('/employee/widen/product/update_widen_product','Widen\WidenControlle
 //Stock
 Route::get('/employee/add_product_stock','Stock\StockController@stock');
 Route::post('/employee/stock/delete/unit','Stock\StockController@delete_unit');
+Route::post('/select_unit_tran','Stock\StockController@select_unit_tran');
 
 
 //Report
@@ -104,7 +105,7 @@ Route::any('/employee/category/list','Category\CategoryController@index');
 Route::post('/employee/cat/add','Category\CategoryController@create');
 Route::post('employee/group/add','Category\CategoryController@create_group');
 Route::post('/employee/cat/view','Category\CategoryController@show');
-Route::post('/employee/cat/edit','Category\CategoryController@edit');
+Route::get('/employee/cat/edit/{id?}','Category\CategoryController@edit');
 Route::post('/employee/cat/update','Category\CategoryController@update');
 Route::post('/employee/cat/delete','Category\CategoryController@destroy');
 
@@ -114,3 +115,4 @@ Route::post('/employee/group/view','Category\CategoryController@show_group');
 Route::post('/employee/group/edit','Category\CategoryController@edit_group');
 Route::post('/employee/group/update','Category\CategoryController@update_group');
 Route::post('/employee/group/delete','Category\CategoryController@destroy_group');
+Route::post('/employee/cat/delete_cat_tran','Category\CategoryController@delete_cat_tran');

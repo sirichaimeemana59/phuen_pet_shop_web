@@ -36,6 +36,7 @@ return [
     'selete_procudt' => '---กรุณาเลือกสินค้า---',
     'sorry_amount_product' => 'ขออภัย ! จำนวนสินค้าในคลังไม่เพียงพอ',
     'selete_group' => '---กรุราเลือกประเภท---',
+    'selete_cat' => '---กรุราเลือกหมวดหมู่---',
     'sorry' => 'ขออภัย',
     'report_show' => 'รายงาน',
     'showing'	=> 'แสดงจาก <strong>:from</strong> ถึง <strong>:to</strong> จาก <strong>:total</strong> รายการ',

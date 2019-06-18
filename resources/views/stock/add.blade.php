@@ -11,6 +11,30 @@
                         <div class="panel-body" id="landing-subject-list">
                             {!! Form::model(null,array('url' => array('employee/product/add_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
+                                <div class="col-sm-4">
+                                    <select name="group_id" id="" class="form-control select_cat" required="">
+                                        <option value="">{!! trans('messages.selete_group') !!}</option>
+                                        @foreach($cat as $key => $val)
+                                            <option value="{!! $val->id !!}">{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
+                                    <div class="col-sm-4 show">
+                                        <input type="hidden" class="text" name="text" value="{!! trans('messages.selete_cat') !!}">
+                                        <select name="cat_id" id="" class="form-control cat_tran" required="">
+                                            <option value="">{!! trans('messages.selete_cat') !!}</option>
+                                            @foreach($cat_tran as $key => $val)
+                                                <option value="{!! $val->id !!}">{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.product.name_th') !!}</lable>
                                 <div class="col-sm-4">
                                     {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_th'),'required')) !!}
@@ -121,50 +145,7 @@
     </div>
     {!! Form::close() !!}
 
-    <!-- Modal add unit-->
-    {{--<div class="modal fade" id="add-unit" role="dialog">--}}
-        {{--<div class="modal-dialog modal-lg">--}}
-            {{--<div class="modal-content">--}}
-                {{--<div class="modal-header" style="background-color: #9BA2AB;">--}}
-                    {{--<h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.unit.add_unit') !!}</h4>--}}
-                    {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
-                {{--</div>--}}
-                {{--<div class="modal-body">--}}
-                    {{--<div class="row">--}}
-                        {{--<div class="col-sm-12">--}}
-                            {{--<div class="form">--}}
-                                {{--{!! Form::model(null,array('url' => array('employee/unit/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}--}}
-                                {{--<div class="form-group row">--}}
-                                    {{--<lable class="col-sm-2 control-label">{!! trans('messages.product.name_th') !!}</lable>--}}
-                                    {{--<div class="col-sm-4">--}}
-                                        {{--{!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_th'),'required')) !!}--}}
-                                    {{--</div>--}}
 
-                                    {{--<lable class="col-sm-2 control-label">{!! trans('messages.product.name_en') !!}</lable>--}}
-                                    {{--<div class="col-sm-4">--}}
-                                        {{--{!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.product.name_en'),'required')) !!}--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-
-                                {{--<div class="form-group row float-center" style="text-align: center; ">--}}
-                                    {{--<div class="col-sm-12">--}}
-                                        {{--<button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>--}}
-                                        {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--{!! Form::close() !!}--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="modal-footer">--}}
-                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-        {{--</div>--}}
-    {{--</div>--}}
-    <!-- End Modal add unit-->
 @endsection
 
 @section('script')
@@ -212,6 +193,28 @@
                 $('#add-unit').modal('show');
             });
 
+            $('.show').hide();
+            $('.select_cat').on('change',function(){
+                var id = $(this).val();
+                var text = $('.text').val()
+                $.ajax({
+                    url : "/select_unit_tran",
+                    method : 'post',
+                    dataType : 'html',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.show').show();
+                        //console.log(e);
+                        $('.cat_tran').html('');
+                        $('.cat_tran').append("<option value=''>"+text+"</option>");
+                        $.each($.parseJSON(e),function(i,val){
+                            $('.cat_tran').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
+                        });
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+            })
         });
     </script>
 @endsection

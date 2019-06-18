@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Category;
 
+use App\cat_transection;
 use Request;
 use App\Http\Controllers\Controller;
 use App\cat;
@@ -36,11 +37,29 @@ class CategoryController extends Controller
 
     public function create()
     {
+       // dd(Request::input('data'));
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 10; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
         $cat = new cat;
         $cat->name_th = Request::input('name_th');
         $cat->name_en = Request::input('name_en');
-        $cat->group_id = Request::input('group');
+        $cat->code = $randomString;
         $cat->save();
+
+        if(!empty(Request::input('data'))){
+            foreach (Request::input('data') as $t){
+                $cat_tran = new cat_transection;
+                $cat_tran->cat_id = $randomString;
+                $cat_tran->name_th = $t['name_th'];
+                $cat_tran->name_en = $t['name_en'];
+                $cat_tran->save();
+            }
+        }
 
         return redirect('/employee/category/list');
     }
@@ -82,14 +101,11 @@ class CategoryController extends Controller
     }
 
 
-    public function edit()
+    public function edit($id = null)
     {
-        $cat = cat::find(Request::input('id'));
+        $cat = cat::find($id);
 
-        $group = new group;
-        $group = $group->get();
-
-        return view('cat.edit_cat')->with(compact('cat','group'));
+        return view('cat.edit_cat')->with(compact('cat'));
     }
 
     public function edit_group()
@@ -105,8 +121,27 @@ class CategoryController extends Controller
         $cat = cat::find(Request::input('id_cat'));
         $cat->name_th = Request::input('name_th');
         $cat->name_en = Request::input('name_en');
-        $cat->group_id = Request::input('group');
+        $cat->code = $cat->code;
         $cat->save();
+
+        foreach (Request::input('data_') as $t){
+            $cat_tran =  cat_transection::find($t['id']);
+            $cat_tran->cat_id = $cat->code;
+            $cat_tran->name_th = $t['name_th'];
+            $cat_tran->name_en = $t['name_en'];
+            $cat_tran->save();
+        }
+
+        if(!empty(Request::input('data'))){
+            foreach (Request::input('data') as $t){
+                $cat_tran = new cat_transection;
+                $cat_tran->cat_id = $cat->code;
+                $cat_tran->name_th = $t['name_th'];
+                $cat_tran->name_en = $t['name_en'];
+                $cat_tran->save();
+            }
+        }
+
 
         return redirect('/employee/category/list');
     }
@@ -136,6 +171,14 @@ class CategoryController extends Controller
         $group->delete();
 
         return redirect('/employee/group/list');
+    }
+
+    public function delete_cat_tran()
+    {
+        $cat_tran = cat_transection::find(Request::input('id'));
+        $cat_tran->delete();
+
+        //return redirect('/employee/cat/edit/'.Request::input('ids'));
     }
 
     public function list_group(){
