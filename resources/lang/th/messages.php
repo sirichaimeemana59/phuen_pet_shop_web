@@ -35,6 +35,7 @@ return [
     'select_unit'=>'---กรุณาเลือกหน่วย---',
     'selete_procudt' => '---กรุณาเลือกสินค้า---',
     'sorry_amount_product' => 'ขออภัย ! จำนวนสินค้าในคลังไม่เพียงพอ',
+    'selete_group' => '---กรุราเลือกประเภท---',
     'sorry' => 'ขออภัย',
     'report_show' => 'รายงาน',
     'showing'	=> 'แสดงจาก <strong>:from</strong> ถึง <strong>:to</strong> จาก <strong>:total</strong> รายการ',
@@ -198,5 +199,18 @@ return [
         'disease_name' => 'ชื่อโรค',
         'detail_th' => 'รายละเอียด [TH]',
         'detail_en' => 'รายละเอียด [EN]',
+    ],
+    'category'=>[
+        'title' => 'หมวดหมู่',
+        'name' => 'ชื่อ',
+        'name_th' => 'ชื่อ [TH]',
+        'name_en' => 'ชื่อ [EN]',
+    ],
+    'group'=>[
+        'title' => 'ประเภท',
+        'name' => 'ชื่อ',
+        'name_th' => 'ชื่อ [TH]',
+        'name_en' => 'ชื่อ [EN]',
+        'add' => 'เพิ่มประเภท',
     ]
 ];

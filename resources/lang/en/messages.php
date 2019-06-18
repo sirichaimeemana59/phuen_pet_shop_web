@@ -36,6 +36,7 @@ return [
     'sorry_amount_product' => 'Sorry, the number of products is not enough.',
     'sorry' => 'Sorry',
     'selete_procudt' => '---Please Select Product---',
+    'selete_group' => '---Please Select Group---',
     'report_show' => 'Report',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
@@ -197,5 +198,18 @@ return [
         'disease_name' => 'Disease name',
         'detail_th' => 'Detail [TH]',
         'detail_en' => 'Detail [EN]',
+    ],
+    'category'=>[
+        'title' => 'Category',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+    ],
+    'group'=>[
+        'title' => 'Group',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'add' => 'Add Group',
     ]
 ];
