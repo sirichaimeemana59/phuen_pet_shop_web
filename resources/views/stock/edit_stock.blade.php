@@ -74,6 +74,13 @@
                             </div>
 
                             <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.bar_code') !!}</lable>
+                                <div class="col-sm-4">
+                                    {!! Form::text('bar_code',null,array('class'=>'form-control','placeholder'=>trans('messages.bar_code'),'required')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.unit.title') !!}</lable>
                                 <div class="col-sm-10">
                                     <div class="table-responsive">
@@ -134,7 +141,8 @@
                 <div class="card-body">
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
-                            <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                            <button class="btn-info btn-primary" id="add-store-btn" type="submit" onclick="return doclick()">Save</button>
+                            <button class="btn-info btn-primary" id="submit" type="submit" style="display: none;">Save</button>
                             <button class="btn-info btn-warning" type="reset">Reset</button>
                         </div>
                     </div>
@@ -150,6 +158,10 @@
     <script type="text/javascript" src="{{url('/')}}/js/jquery-validate/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
+        function doclick() {
+            document.getElementById('submit').click();
+        };
+
         $(document).ready(function() {
 
             $.ajaxSetup({

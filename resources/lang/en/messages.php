@@ -39,6 +39,7 @@ return [
     'selete_group' => '---Please Select Group---',
     'selete_cat' => '---Please Select Category---',
     'report_show' => 'Report',
+    'bar_code' => 'Bar Code',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
     'product'=>[

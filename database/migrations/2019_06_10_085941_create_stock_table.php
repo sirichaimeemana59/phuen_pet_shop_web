@@ -20,6 +20,7 @@ class CreateStockTable extends Migration
             $table->softDeletes();
             $table->text('photo');
             $table->text('code');
+            $table->text('bar_code');
             $table->timestamps();
         });
     }

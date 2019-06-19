@@ -103,6 +103,7 @@ class StockController extends Controller
         $stock->amount = $total;
         $stock->cat_id = $request->input('cat_id');
         $stock->group_id = $request->input('group_id');
+        $stock->bar_code = $request->input('bar_code');
         $stock->save();
 
         foreach ($request->input('data') as $t){
@@ -224,6 +225,7 @@ class StockController extends Controller
             $stock->amount = $total_all;
             $stock->cat_id = $request->input('cat_id');
             $stock->group_id = $request->input('group_id');
+            $stock->bar_code = $request->input('bar_code');
             $stock->save();
 
         }else{
@@ -234,6 +236,7 @@ class StockController extends Controller
             $stock->amount = $total_all;
             $stock->cat_id = $request->input('cat_id');
             $stock->group_id = $request->input('group_id');
+            $stock->bar_code = $request->input('bar_code');
             $stock->save();
         }
 
