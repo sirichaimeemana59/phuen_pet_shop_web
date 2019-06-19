@@ -171,6 +171,7 @@
 
                     }, error: function () {
                         //$('.barcode').val("");
+                        //$('.barcode').val("");
                         console.log('Error Search Data Product');
                     }
                 });

@@ -24,13 +24,30 @@ class WidenController extends Controller
 
     public function create()
     {
-        $stock = stock::find(Request::input('name'));
-        return response()->json( $stock );
+        if(!empty(Request::input('name'))){
+            $stock = stock::where('bar_code',Request::input('name'))->first();
+            $stock = $stock->toArray();
+
+            $unit = stock_log::where('product_id',$stock['code'])->first();
+            $unit = $unit->toArray();
+
+            $unit_tran = unit_transection::where('product_id',$stock['code'])->get();
+            $unit_tran = $unit_tran->toArray();
+
+
+            $data["stock"] = $stock;
+            $data["stock_log"] = $unit;
+            $data["unit_tran"] = $unit_tran;
+        }
+
+        return response()->json( $data );
     }
 
 
     public function store()
     {
+
+        //dd(Request::input('data'));
         $characters_ = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength_ = strlen($characters_);
         $randomString_ = '';
@@ -51,6 +68,7 @@ class WidenController extends Controller
                 $widden_transection->amount_widden = $t['amount_widden'];
                 $widden_transection->product_id = $t['product_code'];
                 $widden_transection->id_product_stock = $t['id_product_stock'];
+                $widden_transection->bar_code = $t['bar_code'];
                 $widden_transection->save();
 
                 $stock = stock::find($t['id_product_stock']);

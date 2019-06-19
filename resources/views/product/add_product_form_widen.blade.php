@@ -19,6 +19,7 @@
                                         <th>{!! trans('messages.product.name_') !!}</th>
                                         <th>{!! trans('messages.product.amount_unit') !!}</th>
                                         <th>{!! trans('messages.product.unit_id') !!}</th>
+                                        <th>{!! trans('messages.bar_code') !!}</th>
                                         <th>{!! trans('messages.product.unit_sale') !!}</th>
                                         <th>{!! trans('messages.product.price') !!}</th>
                                     </tr>
@@ -30,6 +31,7 @@
                                             <td>{!! $w->join_product{'name_'.Session::get('locale')} !!}</td>
                                             <td>{!! number_format($w->amount_widden,0) !!}  {!! $w->join_stock->join_stock_log{'name_'.Session::get('locale')} !!}</td>
                                             <td>{!! floor($w->amount_widden / ($w->join_unit_transection['amount_unit']/$w->join_unit_transection['amount'])) !!} : {!! $w->join_unit_transection['name_th'] !!}</td>
+                                            <td><input type="text" name="data[{!! $key !!}][bar_code]" class="form-control" required value="{!! $w->bar_code !!}"></td>
                                             <td>
                                                 <select name="data[{!! $key !!}][unit_sale]" id="">
                                                     <option value="">{!! trans('messages.select_unit') !!}</option>

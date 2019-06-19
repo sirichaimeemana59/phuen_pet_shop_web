@@ -1,15 +1,20 @@
         {!! Form::model($product,array('url' => array('employee/product/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
 
-        <lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
+        <lable class="col-sm-2 control-label"></lable>
         <div class="col-sm-10">
-            <img src="{!! asset($product->join_stock->photo) !!}" alt="" width="50%">
+            <p style="text-align: center"><img src="{!! asset($product->join_stock->photo) !!}" alt="" width="50%"></p>
         </div>
         <br>
 
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.product.head_product') !!}</lable>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     {!! Form::text('name',$product->join_stock{'name_'.Session::get('locale')},array('class'=>'form-control amount','placeholder'=>trans('messages.product.amount'),'readonly')) !!}
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.bar_code') !!}</lable>
+                                <div class="col-sm-4">
+                                    {!! Form::text('bar_code',$product->bar_code,array('class'=>'form-control','placeholder'=>trans('messages.bar_code'),'required')) !!}
                                 </div>
                             </div>
 

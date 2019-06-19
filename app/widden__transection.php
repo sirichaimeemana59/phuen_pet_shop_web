@@ -11,7 +11,7 @@ class widden__transection extends GeneralModel
 {
     protected $primaryKey = 'id';
     protected $table = 'widden_transection';
-    protected $fillable = ['code,product_id,unit_widden,amount_widden,id_product_stock'];
+    protected $fillable = ['code,product_id,unit_widden,amount_widden,id_product_stock,bar_code'];
     public $timestamps = true;
     protected $softDelete = true;
 

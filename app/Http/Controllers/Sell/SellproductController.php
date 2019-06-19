@@ -23,11 +23,13 @@ class SellproductController extends Controller
 
     public function create()
     {
-        $product = product::find(Request::input('name'));
-
-        if ($product) {
-            $product_name = product::with('join_stock')->where('id', Request::input('name'))->first();
+        if(!empty(Request::input('name'))){
+            $product = product::where('bar_code',Request::input('name'))->first();
         }
+            if ($product) {
+                $product_name = product::with('join_stock')->where('id',$product->id)->first();
+            }
+
 
         return response()->json( $product_name );
 

@@ -20,6 +20,7 @@ class CreateWiddenTransectionTable extends Migration
             $table->integer('unit_widden',10,2);
             $table->decimal('amount_widden',10,2);
             $table->integer('id_product_stock');
+            $table->text('bar_code');
             $table->timestamps();
         });
     }
