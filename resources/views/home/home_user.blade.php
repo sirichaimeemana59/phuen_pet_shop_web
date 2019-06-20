@@ -169,7 +169,11 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
-        @include('home.menu_employee')
+        @if(Auth::user()->role == 0)
+            @include('home.menu_employee')
+        @elseif(Auth::user()->role == 1)
+            @include('home.home_customer')
+        @endif
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">

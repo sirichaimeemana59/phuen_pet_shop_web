@@ -219,5 +219,8 @@ return [
         'name_th' => 'Name [TH]',
         'name_en' => 'Name [EN]',
         'add' => 'Add Group',
+    ],
+    'shop' => [
+        'title' => 'Shop',
     ]
 ];

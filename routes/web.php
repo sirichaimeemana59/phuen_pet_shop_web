@@ -119,3 +119,20 @@ Route::post('/employee/cat/delete_cat_tran','Category\CategoryController@delete_
 
 //Receipt
 Route::get('/print/receipt/{id?}','Receipt\ReceiptController@index');
+
+//*
+//   Customer
+// *
+
+//customer
+Route::any('/customer/home','Customer\CustomerController@index');
+
+//customer pet
+Route::post('/customer/pet/add','Customer\PetController@create');
+Route::post('/customer/pet/view','Customer\PetController@show');
+Route::post('/customer/pet/edit','Customer\PetController@edit');
+Route::post('/customer/pet/update','Customer\PetController@update');
+Route::post('/customer/pet/delete','Customer\PetController@destroy');
+
+//customer Order
+Route::get('/customer/order','Customer\OrderController@index');

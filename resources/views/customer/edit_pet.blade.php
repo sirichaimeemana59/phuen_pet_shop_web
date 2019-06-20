@@ -1,4 +1,4 @@
-{!! Form::model($pet,array('url' => array('employee/pet/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+{!! Form::model($pet,array('url' => array('customer/pet/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
 <lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
 <div class="col-sm-10">
     @if(!empty($pet->photo))
@@ -23,12 +23,12 @@
 <div class="form-group row">
     <lable class="col-sm-2 control-label">{!! trans('messages.pet.weight') !!}</lable>
     <div class="col-sm-4">
-        {!! Form::text('weight',null,array('class'=>'form-control num','placeholder'=>trans('messages.pet.weight'))) !!}
+        {!! Form::text('weight',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.weight'))) !!}
     </div>
 
     <lable class="col-sm-2 control-label">{!! trans('messages.pet.height') !!}</lable>
     <div class="col-sm-4">
-        {!! Form::text('height',null,array('class'=>'form-control num','placeholder'=>trans('messages.pet.height'))) !!}
+        {!! Form::text('height',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.height'))) !!}
     </div>
 </div>
 
@@ -40,7 +40,7 @@
 
     <lable class="col-sm-2 control-label">{!! trans('messages.pet.age') !!}</lable>
     <div class="col-sm-4">
-        {!! Form::text('age',null,array('class'=>'form-control num','placeholder'=>trans('messages.pet.age'))) !!}
+        {!! Form::text('age',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.age'))) !!}
     </div>
 </div>
 
