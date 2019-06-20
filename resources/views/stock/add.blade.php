@@ -142,6 +142,7 @@
                 <div class="card-body">
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
+
                             <button class="btn-info btn-primary" id="add-store-btn" type="submit" onclick="return doclick()">Save</button>
                             <button class="btn-info btn-primary" id="submit" type="submit" style="display: none;">Save</button>
                             <button class="btn-info btn-warning" type="reset">Reset</button>

@@ -1,4 +1,4 @@
-        {!! Form::model($product,array('url' => array('employee/product/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+        {!! Form::model($product,array('url' => array('employee/product/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
 
         <lable class="col-sm-2 control-label"></lable>
         <div class="col-sm-10">

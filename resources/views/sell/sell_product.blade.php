@@ -119,6 +119,43 @@
                 }
             });
 
+            (function($){
+                $.fn.acceptBarcode = function(barcodeClass){
+                    var canSubmit = false;
+
+                    this.submit(function(e){
+                        //e.preventDefault();
+                        return canSubmit;
+                    });
+
+                    this.find('input.' + barcodeClass).each(function(){
+                        console.log('accept barcode for ' + $(this).attr('name'))
+
+                        $(this).bind('keyup', function(e){
+                            var code = (e.keyCode? e.keyCode : e.which);
+                            if(code == 13){ // Enter key pressed.
+                                canSubmit = false;
+                                console.log('serial enter detected - disable form.submit()');
+                            }
+                        })
+
+                        $(this).bind('focus', function(){
+                            canSubmit = false;
+                            console.log('serial input focus - disable form.submit()');
+                        })
+
+                        $(this).bind('blur', function(){
+                            canSubmit = true;
+                            console.log('serial input blur - enable form.submit()');
+                        });
+                    });
+                };
+            })(jQuery);
+
+            $(document).ready(function(){
+                $('form').acceptBarcode('barcode');
+            });
+
 
             $('.barcode').on('keyup',function(){
                 var data = $('#search-form').serialize();
