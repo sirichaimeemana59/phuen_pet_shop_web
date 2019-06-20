@@ -5,19 +5,26 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.category.title') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
-                                <div class="col-sm-3 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.pet.name') !!}" name="name">
+                                <lable class="col-sm-10 control-label"></lable>
+                                <div class="col-sm-12">
+                                    <select name="" id="" style="width: 100%;">
+                                        <option value="">{!! trans('messages.selete_cat') !!}</option>
+                                        @foreach($p_row as $key => $row)
+                                            <option value="{!! $row->id !!}">{!! $row{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
 
                                 {{--<div class="col-sm-3 block-input">--}}
                                 {{--<input class="form-control" size="25" placeholder="{!! trans('messages.id') !!}" name="id">--}}
                                 {{--</div>--}}
-                            </div>
+                            </div> <br>
 
                             <div class="row">
                                 <div class="col-sm-12 text-right">
