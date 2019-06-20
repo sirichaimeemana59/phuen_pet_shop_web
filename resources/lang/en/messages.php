@@ -40,11 +40,17 @@ return [
     'selete_cat' => '---Please Select Category---',
     'report_show' => 'Report',
     'bar_code' => 'Bar Code',
+    'total' => 'Total',
+    'discount' => 'Discount',
+    'vat' => 'Vat',
+    'cash' => 'Cash',
+    'change' => 'Change',
+    'sub_total' => 'Sub Total',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
     'product'=>[
         'head_product' => 'Product',
-        'name_' => 'name',
+        'name_' => 'Name',
         'name_th' => 'Name [TH]',
         'name_en' => 'Name [EN]',
         'price' => 'Price',

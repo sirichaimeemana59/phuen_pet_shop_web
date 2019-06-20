@@ -90,7 +90,7 @@ class SellproductController extends Controller
         //dd($sell_product);
 
 
-        return redirect('/employee/sell/product');
+        return redirect('/print/receipt/'.$randomString);
     }
 
 

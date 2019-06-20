@@ -116,3 +116,6 @@ Route::post('/employee/group/edit','Category\CategoryController@edit_group');
 Route::post('/employee/group/update','Category\CategoryController@update_group');
 Route::post('/employee/group/delete','Category\CategoryController@destroy_group');
 Route::post('/employee/cat/delete_cat_tran','Category\CategoryController@delete_cat_tran');
+
+//Receipt
+Route::get('/print/receipt/{id?}','Receipt\ReceiptController@index');
