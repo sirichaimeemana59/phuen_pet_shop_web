@@ -91,6 +91,7 @@ return [
         'code' => 'Bar Code And ID Product',
         'order' => 'List Order Product',
         'payment' => 'Payment',
+        'total' => 'Total',
     ],
     'payment' => [
         'title' => 'Total',
@@ -222,5 +223,13 @@ return [
     ],
     'shop' => [
         'title' => 'Shop',
+    ],
+    'order' => [
+        'title' => 'Order Cart',
+        'order' => 'Purchase Order',
+        'id' => 'Order ID',
+        'date' => 'Date',
+        'status' => 'Status',
+        'list' => 'List Product',
     ]
 ];

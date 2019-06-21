@@ -77,10 +77,10 @@
             $('.search-store').on('click',function(){
                 var data  = $('#search-form').serialize();
                 //alert('aa');
-                console.log(data);
+                //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/product',
+                    url : '/widen/list_element',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -107,11 +107,11 @@
             });
 
 
-            $('.view-store').on('click',function(){
+            $('body').on('click','.view-store',function(){
                 var id = $(this).data('id');
                 console.log(id);
                 $('#view-store').modal('show');
-                $('#lead-content').e mpty();
+                $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
                     url : '/employee/product/view',
@@ -127,7 +127,7 @@
                 });
             });
 
-            $('.edit-store').on('click',function(){
+            $('body').on('click','.edit-store',function(){
                 var id = $(this).data('id');
                 //console.log(id);
                 $('#edit-store').modal('show');
@@ -147,7 +147,7 @@
                 });
             });
 
-            $('.delete-store').on('click',function(){
+            $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
                     title: "Are you sure?",

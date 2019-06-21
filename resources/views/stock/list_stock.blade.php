@@ -255,7 +255,7 @@
             });
 
 
-            $('.view-store').on('click',function(){
+            $('body').on('click','.view-store',function(){
                 var id = $(this).data('id');
                 $('#view-store').modal('show');
                 $('#lead-content').empty();
@@ -274,7 +274,7 @@
                 });
             });
 
-            $('.edit-store').on('click',function(){
+            $('body').on('click','.edit-store',function(){
                 var id = $(this).data('id');
                 //console.log(id);
                 $('#edit-store').modal('show');
@@ -294,7 +294,7 @@
                 });
             });
 
-            $('.delete-store').on('click',function(){
+            $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
                     title: "Are you sure?",

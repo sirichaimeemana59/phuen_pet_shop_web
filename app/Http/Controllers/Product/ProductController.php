@@ -112,27 +112,22 @@ class ProductController extends Controller
                 $fileNameToDatabase = $uploader->execute();
             }
 
-            $product->name_th = $request->input('name_th');
-            $product->amount = $request->input('amount');
-            $product->price = $request->input('price');
-            $product->user_id = null;
-            $product->store_id = null;
-            $product->unit_id = $request->input('unit_id');
-            $product->photo = $fileNameToDatabase;
-            $product->name_en = $request->input('name_en');
+            $product->unit_sale = $request->input('unit_sale');
+            $product->price_piece = $request->input('price');
+            $product->product_id = $request->input('product_id');
+            $product->amount = $request->input('amount_widden');
+            $product->bar_code = $request->input('bar_code');
             $product->save();
 
         }else{
-            $product->name_th = $request->input('name_th');
-            $product->amount = $request->input('amount');
-            $product->price = $request->input('price');
-            $product->user_id = null;
-            $product->store_id = null;
-            $product->unit_id = $request->input('unit_id');
-            $product->photo = $request->input('photo_');
-            $product->name_en = $request->input('name_en');
+            $product->unit_sale = $request->input('unit_sale');
+            $product->price_piece = $request->input('price');
+            $product->product_id = $request->input('product_id');
+            $product->amount = $request->input('amount_widden');
+            $product->bar_code = $request->input('bar_code');
             $product->save();
         }
+        //dd($product);
 
         return redirect('/employee/product');
     }

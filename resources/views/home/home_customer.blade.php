@@ -13,6 +13,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/customer/list_order') !!}">
+                <i class="fa fa-shopping-bag menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.order.order') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <i class="mdi mdi-chart-pie menu-icon"></i>
                 <span class="menu-title">Charts</span>

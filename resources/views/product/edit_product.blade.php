@@ -6,6 +6,8 @@
         </div>
         <br>
 
+                        <input type="hidden" name="id" value="{!! $product->id !!}">
+                         <input type="hidden" name="product_id" value="{!! $product->product_id !!}">
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.product.head_product') !!}</lable>
                                 <div class="col-sm-4">
@@ -26,7 +28,7 @@
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
                                 <div class="col-sm-4">
-                                    <select name="unit_id" id="" class="form-control unit_id">
+                                    <select name="unit_sale" id="" class="form-control unit_id">
                                         <option value="">{!! trans('messages.select_unit') !!}</option>
                                         <option value="{!! $stock_log->id !!}" @if($product->unit_sale == $stock_log->id) selected @endif>{!! $stock_log{'name_'.Session::get('locale')} !!}</option>
                                         @foreach($uni_tran as $key => $val)

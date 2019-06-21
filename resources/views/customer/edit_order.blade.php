@@ -12,6 +12,7 @@
                             <div class="row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
                                 <div class="col-sm-4">
+                                    <input type="hidden" name="id_order" class="id_order" value="{!! $order_customer->id !!}">
                                     <select name="group_id" id="" style="width: 100%;" class="group_id">
                                         <option value="">{!! trans('messages.selete_group') !!}</option>
                                         @foreach($cat as $key => $row)
@@ -83,7 +84,21 @@
                                     <th>{!! trans('messages.product.total') !!}</th>
                                     <th>{!! trans('messages.action') !!}</th>
                                 </tr>
+                                <?php $sum = 0;?>
+                                @foreach($order_tran as $t)
+                                    <tr>
+                                        <td></td>
+                                        <td>{!! $t->join_stock{'name_'.Session::get('locale')} !!}</td>
+                                        <td style="text-align: right;">{!! $t->price_product !!}</td>
+                                        <td>@if(!empty($t->join_stock_log)){!! $t->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $t->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
+                                        <td style="text-align: right;">{!! $t->amount !!}</td>
+                                        <td style="text-align: right;">{!! $t->total_price !!}</td>
+                                    </tr>
+                                    <?php $sum += $t->total_price;?>
+                                @endforeach
+
                             </table>
+                            <input type="hidden" class="hide_total" value="{!! $sum !!}">
 
                         </div>
                     </div>
@@ -101,7 +116,7 @@
                         <div class="panel-body float-right" id="landing-subject-list">
                             <lable class="col-sm-10 control-label">{!! trans('messages.sell.total') !!}</lable>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control sum_total" readonly name="sum_total">
+                                <input type="text" class="form-control sum_total" readonly name="sum_total" value="{!! $sum !!}">
                             </div>
                         </div>
                     </div>
@@ -148,11 +163,12 @@
 
             $('.search-store').on('click',function(){
                 var data  = $('#search-form').serialize();
+                var id_order  = $('.id_order').val();
                 //alert('aa');
-                console.log(data);
+                console.log(id_order);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/order',
+                    url : '/customer/edit/order/'+id_order,
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -239,16 +255,16 @@
             });
 
             $('.itemTables').on('click','.amount',function(){
-               var amount = $(this).parents('tr').find('.amount').val();
-               var price = $(this).parents('tr').find('.price').val();
+                var amount = $(this).parents('tr').find('.amount').val();
+                var price = $(this).parents('tr').find('.price').val();
 
-               var sum_price = 0;
-                    sum_price = price * amount;
+                var sum_price = 0;
+                sum_price = price * amount;
 
-               $(this).parents('tr').find('.tLineTotal').val(sum_price.toFixed(2));
+                $(this).parents('tr').find('.tLineTotal').val(sum_price.toFixed(2));
                 $(this).parents('tr').find('.total').val(sum_price.toFixed(2));
 
-               //console.log(price*amount);
+                //console.log(price*amount);
                 calTotal()
             });
 
@@ -259,13 +275,17 @@
                 calTotal();
             });
             function calTotal(){
-                var Total = 0;
+                var Total = parseInt($('.hide_total').val());;
+                var Total_ = 0;
                 var discount = $('.discount').val();
                 var money = $('.money').val();
 
                 var total_net = 0 ;
                 var total_money = 0;
 
+                //var sum_total = $.number(Total);
+
+                //console.log(Total);
                 $('.tLineTotal').each(function () {
                     if ( $(this).val() !== "" ) {
                         t = Number($(this).val());

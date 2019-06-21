@@ -55,6 +55,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/list_order_customer') !!}">
+                <i class="fa fa-database menu-icon" aria-hidden="true" ></i>
+                <span class="menu-title">{!! trans('messages.order.order') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <i class="mdi mdi-chart-pie menu-icon"></i>
                 <span class="menu-title">Charts</span>

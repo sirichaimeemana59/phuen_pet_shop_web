@@ -33,11 +33,9 @@
         <thead>
         <tr>
             <th>{!! trans('messages.number') !!}</th>
-            <th>{!! trans('messages.pet.photo') !!}</th>
-            <th>{!! trans('messages.pet.name') !!}</th>
-            <th>{!! trans('messages.product.amount') !!}</th>
-            <th>{!! trans('messages.product.unit_id') !!}</th>
-            <th>{!! trans('messages.product.price') !!}</th>
+            <th>{!! trans('messages.order.id') !!}</th>
+            <th>{!! trans('messages.order.date') !!}</th>
+            <th>{!! trans('messages.order.status') !!}</th>
             <th>{!! trans('messages.action') !!}</th>
         </tr>
         </thead>
@@ -46,20 +44,13 @@
             @foreach($p_row as $key => $row)
                 <tr>
                     <td>{!! $key+1 !!}</td>
-                    <td><img src="{!! asset($row->join_stock['photo']) !!}" alt="" width="25%"></td>
-                    <td>{!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>
-                    <td>{!! number_format($row->join_widen_trans['amount_widden'],0) !!}</td>
-                    <td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
-                    <td>{!! $row->price_piece !!}</td>
+                    <td>{!! $row->order_code !!}</td>
+                    <td>{!! localDate($row->created_at) !!}</td>
+                    <td>-</td>
                     <td>
-                        <button class="btn btn-primary mt-2 mt-xl-0 text-right add-product" data-id="{!! $row->id !!}"
-                            data-product="{!! $row->product_id !!}"
-                            data-name="{!! $row->join_stock{'name_'.Session::get('locale')} !!}"
-                            data-amount="{!! number_format($row->join_widen_trans['amount_widden'],0) !!}"
-                            data-price="{!! $row->price_piece !!}"
-                            data-unit_id="{!! $row->unit_sale !!}"
-                            data-unit="@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif"
-                        ><i class="fa fa-cart-arrow-down"></i></button>
+                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
+                        <a href="{!! url('customer/edit/order/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
+                        <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
                     </td>
                 </tr>
             @endforeach

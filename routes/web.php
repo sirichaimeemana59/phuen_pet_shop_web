@@ -14,6 +14,9 @@ Route::get('locale/{locale?}',function($locale){
     return redirect()->back();
 });
 
+Route::get('/logout', 'Auth\LoginController@getLogout');
+
+
 //employee_product
 Route::any('employee/home','Product\ProductController@index');
 Route::any('/employee/product','Product\ProductController@index');
@@ -63,7 +66,7 @@ Route::post('/employee/widen/product/widen_product','Widen\WidenController@store
 Route::post('/select/product/unit_','Widen\WidenController@select_unit_');
 Route::post('/select/product/unit_amount','Widen\WidenController@select_unit_amount');
 Route::post('/select/product/unit_amount_trance','Widen\WidenController@select_unit_amount');
-Route::get('widen/list_element','Widen\WidenController@list_widen');
+Route::any('widen/list_element','Widen\WidenController@list_widen');
 Route::get('/employee/detail/widen/{id?}','Widen\WidenController@widen_detail');
 Route::get('/employee/widen/edit/{id}/{text?}','Widen\WidenController@widen_edit');
 Route::post('/employee/widen/product/update_widen_product','Widen\WidenController@update_widen_product');
@@ -135,4 +138,12 @@ Route::post('/customer/pet/update','Customer\PetController@update');
 Route::post('/customer/pet/delete','Customer\PetController@destroy');
 
 //customer Order
-Route::get('/customer/order','Customer\OrderController@index');
+Route::any('/customer/order','Customer\OrderController@index');
+Route::post('/customer/search/group','Customer\OrderController@search_group');
+Route::post('/customer/add/order','Customer\OrderController@store');
+Route::any('/customer/list_order','Customer\OrderController@show');
+Route::post('/customer/order/view','Customer\OrderController@view');
+Route::any('/customer/edit/order/{id?}','Customer\OrderController@edit');
+
+//List Order Customer
+Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');

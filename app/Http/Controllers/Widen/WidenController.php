@@ -226,6 +226,12 @@ class WidenController extends Controller
     public function list_widen(){
         $widden_product = new widden_product;
 
+        if(Request::method('post')) {
+            if (Request::input('name')) {
+                $widden_product = widden_product::where('code',Request::input('name'));
+            }
+        }
+
         $widden_product = $widden_product->paginate(50);
 
         if(!Request::ajax()){
