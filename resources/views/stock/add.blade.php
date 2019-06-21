@@ -66,7 +66,7 @@
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.bar_code') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('bar_code',null,array('class'=>'form-control','placeholder'=>trans('messages.bar_code'),'required')) !!}
+                                    {!! Form::text('bar_code',null,array('class'=>'form-control barcode','placeholder'=>trans('messages.bar_code'),'required')) !!}
                                 </div>
                             </div>
 
@@ -143,8 +143,7 @@
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
 
-                            <button class="btn-info btn-primary" id="add-store-btn" type="submit" onclick="return doclick()">Save</button>
-                            <button class="btn-info btn-primary" id="submit" type="submit" style="display: none;">Save</button>
+                            <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
                             <button class="btn-info btn-warning" type="reset">Reset</button>
                         </div>
                     </div>
@@ -162,9 +161,6 @@
     <script type="text/javascript" src="{{url('/')}}/js/jquery-validate/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
-        function doclick() {
-            document.getElementById('submit').click();
-        };
         
         $(document).ready(function() {
 
@@ -173,6 +169,46 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            $(document).ready(function(){
+                $('form').acceptBarcode('barcode');
+            });
+
+            (function($){
+                $.fn.acceptBarcode = function(barcodeClass){
+                    var canSubmit = false;
+
+                    this.submit(function(e){
+                        //e.preventDefault();
+                        return canSubmit;
+                    });
+
+                    this.find('input.' + barcodeClass).each(function(){
+                        console.log('accept barcode for ' + $(this).attr('name'))
+
+                        $(this).bind('keyup', function(e){
+                            var code = (e.keyCode? e.keyCode : e.which);
+                            if(code == 13){ // Enter key pressed.
+                                canSubmit = false;
+                                console.log('serial enter detected - disable form.submit()');
+                            }
+                        })
+
+                        $(this).bind('focus', function(){
+                            canSubmit = false;
+                            console.log('serial input focus - disable form.submit()');
+                        })
+
+                        $(this).bind('blur', function(){
+                            canSubmit = true;
+                            console.log('serial input blur - enable form.submit()');
+                        });
+                    });
+                };
+            })(jQuery);
+
+
+
 
             $('#add-store-btn').on('click',function () {
                 if($('.create-store-form').valid()) {

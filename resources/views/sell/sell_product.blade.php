@@ -156,62 +156,78 @@
                 $('form').acceptBarcode('barcode');
             });
 
+            var delay = 600;
+            var timer;
+//
+//            $('.barcode').on('keyup',function(){
+//                window.clearTimeout(timer);
+//                var id = $('.barcode').val();
+//
+//                timer = window.setTimeout(function(){
+//                    //insert delayed input change action/event here
+//                    console.log(id);
+//
+//                }, delay);
+//            });
 
             $('.barcode').on('keyup',function(){
                 var data = $('#search-form').serialize();
-                //console.log(data);
-                var this_ = $(this);
-                this_.parents('tr').find('.id_product_').val("");
 
-                var id = $('.id_product_').val();
+                window.clearTimeout(timer);
+                timer = window.setTimeout(function(){
+                    console.log(data);
+                    var this_ = $(this);
+                    this_.parents('tr').find('.id_product_').val("");
 
-                $.ajax({
-                    url: '/employee/sell/search_product',
-                    method: 'post',
-                    dataType: 'JSON',
-                    data: data,
-                    success: function (e) {
-                        $('.barcode').val("");
-                        //console.log(e);
-                        var name_en = e.join_stock.name_th;
-                        var name_th = e.join_stock.name_en;
-                        var price = e.price_piece;
-                        var photo = e.join_stock.photo;
-                        var id = e.id;
-                        var time = $.now();
+                    $.ajax({
+                        url: '/employee/sell/search_product',
+                        method: 'post',
+                        dataType: 'JSON',
+                        data: data,
+                        success: function (e) {
+                            $('.barcode').val("");
+                            //console.log(e);
+                            var name_en = e.join_stock.name_th;
+                            var name_th = e.join_stock.name_en;
+                            var price = e.price_piece;
+                            var photo = e.join_stock.photo;
+                            var id = e.id;
+                            var time = $.now();
 
-                        var total = price * 1;
+                            var total = price * 1;
 
-                        if (lang = 'th') {
-                            var name = name_th;
-                        } else {
-                            var name = name_en;
+                            if (lang = 'th') {
+                                var name = name_th;
+                            } else {
+                                var name = name_en;
+                            }
+
+                            var data = ['<tr class="itemRow">',
+                                '<td></td>',
+                                '<td><img src="' + photo + '" alt="" width="25%"></td>',
+                                '<td><span>' + name + '</span></td>',
+                                '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="100" value="1"></td>',
+                                '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
+                                '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
+                                '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
+                            ];
+
+                            data.push(
+                                '<td><div class="text-right">' +
+                                '<span class="colTotal"></span> </div><input class="tLineTotal" name="" type="hidden" value="' + total + '"></td>', '</tr>');
+                            data = data.join('');
+
+                            $('.itemTables').append(data);
+                            calTotal();
+
+                        }, error: function () {
+                            //$('.barcode').val("");
+                            //$('.barcode').val("");
+                            console.log('Error Search Data Product');
                         }
+                    });
+                }, delay);
 
-                        var data = ['<tr class="itemRow">',
-                            '<td></td>',
-                            '<td><img src="' + photo + '" alt="" width="25%"></td>',
-                            '<td><span>' + name + '</span></td>',
-                            '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="100" value="1"></td>',
-                            '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
-                            '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
-                            '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
-                        ];
-
-                        data.push(
-                            '<td><div class="text-right">' +
-                            '<span class="colTotal"></span> </div><input class="tLineTotal" name="" type="hidden" value="' + total + '"></td>', '</tr>');
-                        data = data.join('');
-
-                        $('.itemTables').append(data);
-                        calTotal();
-
-                    }, error: function () {
-                        //$('.barcode').val("");
-                        //$('.barcode').val("");
-                        console.log('Error Search Data Product');
-                    }
-                });
             });
 
             $('.show').hide();
