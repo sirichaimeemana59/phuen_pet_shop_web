@@ -72,7 +72,8 @@
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
-                            {!! Form::model(null,array('url' => array('/customer/add/order'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            {!! Form::model(null,array('url' => array('/customer/update/order'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <input type="hidden" name="id_order" value="{!! $order_customer->id !!}">
                             <table class="table itemTables" style="width: 100%">
                                 <tr>
                                     <th ></th>
@@ -85,14 +86,17 @@
                                     <th>{!! trans('messages.action') !!}</th>
                                 </tr>
                                 <?php $sum = 0;?>
-                                @foreach($order_tran as $t)
+                                @foreach($order_tran as $key => $t)
                                     <tr>
-                                        <td></td>
+                                        <td><input type="hidden" name="data_[{!! $key !!}][id_order]" value="{!! $t->id !!}">
+                                            <input type="hidden" name="data_[{!! $key !!}][product_id]" value="{!! $t->product_id !!}">
+                                            <input type="hidden" name="data_[{!! $key !!}][unit_sale]" value="{!! $t->unit_sale !!}"></td>
                                         <td>{!! $t->join_stock{'name_'.Session::get('locale')} !!}</td>
-                                        <td style="text-align: right;">{!! $t->price_product !!}</td>
+                                        <td style="text-align: right;"><input type="text" class="form-control price" name="data_[{!! $key !!}][price]"  readonly value="{!! $t->price_product !!}" required></td>
                                         <td>@if(!empty($t->join_stock_log)){!! $t->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $t->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
-                                        <td style="text-align: right;">{!! $t->amount !!}</td>
-                                        <td style="text-align: right;">{!! $t->total_price !!}</td>
+                                        <td style="text-align: right;"><input type="number" name="data_[{!! $key !!}][amount]" class="form-control amount" value="{!! $t->amount !!}" min="1" max="{!! $t->join_widen_trans['amount_widden'] !!}" required></td>
+                                        <td style="text-align: right;"><input class="tLineTotal" name="" type="hidden" value="{!! $t->total_price !!}"><input type="text" name="data_[{!! $key !!}][total]" class="form-control total" value="{!! $t->total_price !!}" readonly></td>
+
                                     </tr>
                                     <?php $sum += $t->total_price;?>
                                 @endforeach
@@ -202,11 +206,11 @@
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
-                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'"><span>'+name+'</span></td>',
-                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'"></td>',
-                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'"><span>'+unit+'</span></td>',
-                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'"></td>',
-                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly></td>',
+                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required=""><span>'+name+'</span></td>',
+                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required=""></td>',
+                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required=""><span>'+unit+'</span></td>',
+                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required=""></td>',
+                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required=""></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
 
@@ -275,7 +279,8 @@
                 calTotal();
             });
             function calTotal(){
-                var Total = parseInt($('.hide_total').val());;
+                //var Total = parseInt($('.hide_total').val());
+                var Total = 0;
                 var Total_ = 0;
                 var discount = $('.discount').val();
                 var money = $('.money').val();
@@ -309,6 +314,13 @@
                     }
                 });
             }
+
+            $('#add-store-btn').on('click',function () {
+                if($('.create-store-form').valid()) {
+                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+                    $('.create-store-form').submit();
+                }
+            });
         });
     </script>
 @endsection

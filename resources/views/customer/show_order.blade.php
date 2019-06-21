@@ -255,6 +255,33 @@
                     }
                 });
             });
+
+            $('body').on('click','.delete-store',function(){
+                var id = $(this).data('id');
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete)=> {
+                    if (willDelete) {
+                        setTimeout(function() {
+                            $.post("/customer/order/delete", {
+                                id: id
+                            }, function(e) {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                }).then(function(){
+                                    window.location.href ='/customer/list_order'
+                                });
+                            });
+                        }, 50);
+                    } else {
+                        swal("Your imaginary file is safe!");
+            }
+            });
+            });
         });
     </script>
 @endsection

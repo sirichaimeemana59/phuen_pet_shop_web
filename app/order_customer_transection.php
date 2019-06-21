@@ -34,4 +34,9 @@ class order_customer_transection extends GeneralModel
     {
         return $this->hasOne('App\unit_transection','id','unit_sale');
     }
+
+    public function join_widen_trans()
+    {
+        return $this->hasOne('App\widden__transection','id_product_stock','product_id');
+    }
 }

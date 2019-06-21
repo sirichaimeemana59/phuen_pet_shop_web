@@ -71,7 +71,7 @@
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
-                            {!! Form::model(null,array('url' => array('/customer/add/order'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            {!! Form::model(null,array('url' => array('/customer/add/order'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <table class="table itemTables" style="width: 100%">
                                 <tr>
                                     <th ></th>
@@ -186,11 +186,11 @@
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
-                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'"><span>'+name+'</span></td>',
-                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'"></td>',
-                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'"><span>'+unit+'</span></td>',
-                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'"></td>',
-                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly></td>',
+                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
+                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
+                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
+                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
+                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
 
@@ -289,6 +289,13 @@
                     }
                 });
             }
+
+            $('#add-store-btn').on('click',function () {
+                if($('.create-store-form').valid()) {
+                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+                    $('.create-store-form').submit();
+                }
+            });
         });
     </script>
 @endsection

@@ -144,6 +144,8 @@ Route::post('/customer/add/order','Customer\OrderController@store');
 Route::any('/customer/list_order','Customer\OrderController@show');
 Route::post('/customer/order/view','Customer\OrderController@view');
 Route::any('/customer/edit/order/{id?}','Customer\OrderController@edit');
+Route::post('/customer/update/order','Customer\OrderController@update');
+Route::post('/customer/order/delete','Customer\OrderController@destroy');
 
 //List Order Customer
-Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');
+Route::any('/employee/list_order_customer','Sell\OrderCustomerController@destroy');

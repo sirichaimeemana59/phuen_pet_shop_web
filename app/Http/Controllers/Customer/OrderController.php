@@ -170,12 +170,53 @@ class OrderController extends Controller
 
     public function update()
     {
-        //
+        $order_customer = order_customer::find(Request::input('id_order'));
+
+        $order_customer->user_id = Auth::user()->id;
+        $order_customer->order_code = $order_customer->order_code;
+        $order_customer->total = Request::input('sum_total');
+        $order_customer->discount = 0;
+        $order_customer->vat = 0;
+        $order_customer->grand_total = Request::input('sum_tatal');
+        $order_customer->save();
+
+        foreach (Request::input('data_') as $t){
+            $order_customer_tran = order_customer_transection::find($t['id_order']);
+            $order_customer_tran->order_code = $order_customer->order_code;
+            $order_customer_tran->product_id = $t['product_id'];
+            $order_customer_tran->price_product = $t['price'];
+            $order_customer_tran->unit_sale = $t['unit_sale'];
+            $order_customer_tran->amount = $t['amount'];
+            $order_customer_tran->total_price = $t['total'];
+            $order_customer_tran->save();
+        }
+
+        if(!empty(Request::input('data'))){
+            foreach (Request::input('data') as $t){
+                $order_customer_tran = new order_customer_transection;
+                $order_customer_tran->order_code = $order_customer->order_code;
+                $order_customer_tran->product_id = $t['product_id'];
+                $order_customer_tran->price_product = $t['price'];
+                $order_customer_tran->unit_sale = $t['unit_id'];
+                $order_customer_tran->amount = $t['amount'];
+                $order_customer_tran->total_price = $t['total'];
+                $order_customer_tran->save();
+            }
+        }
+
+        //dd($order_customer_tran);
+
+        return redirect('customer/edit/order/'.Request::input('id_order'));
     }
 
 
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $order_customer = order_customer::find(Request::input('id'));
+        $order_customer_tran = order_customer_transection::where('order_code',$order_customer->order_code);
+        $order_customer_tran->delete();
+        $order_customer->delete();
+
+        return redirect('/customer/list_order');
     }
 }
