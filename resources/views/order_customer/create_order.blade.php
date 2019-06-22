@@ -5,14 +5,27 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.order.order') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.group.title') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.order.order') !!}</lable>
+                                <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <select name="group_id" id="" style="width: 100%;" class="group_id">
+                                        <option value="">{!! trans('messages.selete_group') !!}</option>
+                                        @foreach($cat as $key => $row)
+                                            <option value="{!! $row->id !!}">{!! $row{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input type="hidden" class="text" value="{!! trans('messages.selete_cat') !!}">
+                                    <select name="cat_id" id="" style="width: 100%;" class="cat_id">
+                                        <option value="">{!! trans('messages.selete_cat') !!}</option>
+                                    </select>
                                 </div>
                             </div>
                             <br>
@@ -36,17 +49,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.order.order') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.product.head_product') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
-                        <div class="row">
-                            <div class="col-sm-12 text-right">
-                                <a href="{!! url('employee/create/order_bill') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.order.order') !!}</button></a>
-                            </div>
-                        </div>
-                        <br>
                         <div class="panel-body" id="landing-subject-list">
-                            @include('order_customer.list_order_element')
+                            @include('order_customer.create_order_element')
                         </div>
                     </div>
                 </div>
@@ -54,32 +61,72 @@
         </div>
     </div>
 
-    <!-- Modal view store-->
-    <div class="modal fade" id="view-store" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.order.order') !!}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="lead-content" class="form">
+    <br>
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.order.title') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+                            {!! Form::model(null,array('url' => array('/employee/add/order'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <table class="table itemTables" style="width: 100%">
+                                <tr>
+                                    <th ></th>
+                                    <th>{!! trans('messages.product.head_product') !!}</th>
+                                    <th>{!! trans('messages.product.price') !!}</th>
+                                    <th>{!! trans('messages.unit.title') !!}</th>
+                                    {{--<th>{!! trans('messages.product.amount') !!}</th>--}}
+                                    <th>{!! trans('messages.product.amount') !!}</th>
+                                    <th>{!! trans('messages.product.total') !!}</th>
+                                    <th>{!! trans('messages.action') !!}</th>
+                                </tr>
+                            </table>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body float-right" id="landing-subject-list">
+                            <lable class="col-sm-10 control-label">{!! trans('messages.sell.total') !!}</lable>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control sum_total" readonly name="sum_total">
                             </div>
                         </div>
                     </div>
-                    <span class="v-loading">กำลังค้นหาข้อมูล...</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- End Modal view store-->
+
+    <br>
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body float-right">
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body float-right" id="landing-subject-list">
+                            <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                            <button class="btn-info btn-warning" type="reset">Reset</button>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('script')
@@ -102,10 +149,10 @@
             $('.search-store').on('click',function(){
                 var data  = $('#search-form').serialize();
                 //alert('aa');
-                //console.log(data);
+                console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/list_order',
+                    url : '/employee/create/order_bill',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -121,7 +168,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/list_order';
+                window.location.href ='/employee/create/order_bill';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -139,17 +186,17 @@
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
-                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'"><span>'+name+'</span></td>',
-                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'"></td>',
-                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'"><span>'+unit+'</span></td>',
-                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'"></td>',
-                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly></td>',
+                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
+                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
+                    '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
+                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
+                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
 
                 data.push(
                     '<td><div class="text-right">' +
-                    '<span class="colTotal"></span> </div><input class="tLineTotal" name="" type="text" value=""></td>', '</tr>');
+                    '<span class="colTotal"></span> </div><input class="tLineTotal" name="" type="hidden" value=""></td>', '</tr>');
                 data = data.join('');
 
                 $('.itemTables').append(data);
@@ -192,16 +239,16 @@
             });
 
             $('.itemTables').on('click','.amount',function(){
-                var amount = $(this).parents('tr').find('.amount').val();
-                var price = $(this).parents('tr').find('.price').val();
+               var amount = $(this).parents('tr').find('.amount').val();
+               var price = $(this).parents('tr').find('.price').val();
 
-                var sum_price = 0;
-                sum_price = price * amount;
+               var sum_price = 0;
+                    sum_price = price * amount;
 
-                $(this).parents('tr').find('.tLineTotal').val(sum_price.toFixed(2));
+               $(this).parents('tr').find('.tLineTotal').val(sum_price.toFixed(2));
                 $(this).parents('tr').find('.total').val(sum_price.toFixed(2));
 
-                //console.log(price*amount);
+               //console.log(price*amount);
                 calTotal()
             });
 
@@ -243,50 +290,11 @@
                 });
             }
 
-            $('body').on('click','.view-store',function(){
-                var id = $(this).data('id');
-                $('#view-store').modal('show');
-                $('#lead-content').empty();
-                $('.v-loading').show();
-                $.ajax({
-                    url : '/employee/order/view',
-                    method : 'post',
-                    dataType : 'html',
-                    data : ({'id':id}),
-                    success : function(e){
-                        $('#lead-content').html(e);
-                        $('.v-loading').hide();
-                    } ,error : function(){
-                        console.log('Error View Data Order');
-                    }
-                });
-            });
-
-            $('body').on('click','.delete-store',function(){
-                var id = $(this).data('id');
-                swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete)=> {
-                    if (willDelete) {
-                        setTimeout(function() {
-                            $.post("/employee/order/delete", {
-                                id: id
-                            }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
-                                    icon: "success",
-                                }).then(function(){
-                                    window.location.href ='/employee/list_order_customer'
-                                });
-                            });
-                        }, 50);
-                    } else {
-                        swal("Your imaginary file is safe!");
-            }
-            });
+            $('#add-store-btn').on('click',function () {
+                if($('.create-store-form').valid()) {
+                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+                    $('.create-store-form').submit();
+                }
             });
         });
     </script>

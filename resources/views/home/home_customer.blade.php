@@ -1,6 +1,12 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/user/create_profile') !!}">
+                <i class="fa fa-user menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.profile.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{!! url('/customer/home') !!}">
                 <i class="fa fa-paw menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.pet.title') !!}</span>

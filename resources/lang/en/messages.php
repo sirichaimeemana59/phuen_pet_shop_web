@@ -231,5 +231,20 @@ return [
         'date' => 'Date',
         'status' => 'Status',
         'list' => 'List Product',
+    ],
+    'profile' => [
+        'title' => 'Profile',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'photo' => 'Photo',
+        'birthday' => 'Birthday',
+        'email' => 'E-mail',
+        'tell' => 'Tell',
+        'province' => 'Province',
+        'district' => 'District',
+        'sub' => 'Subdistrict',
+        'post' => 'Post',
+        'address' => 'Address'
     ]
 ];

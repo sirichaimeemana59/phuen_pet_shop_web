@@ -153,3 +153,10 @@ Route::post('/employee/order/view','Sell\OrderCustomerController@view');
 Route::get('/employee/edit/order/{id?}','Sell\OrderCustomerController@edit');
 Route::post('/employee/update/order','Sell\OrderCustomerController@update');
 Route::post('/employee/order/delete','Sell\OrderCustomerController@destroy');
+Route::any('/employee/create/order_bill','Sell\OrderCustomerController@create');
+Route::post('/employee/add/order','Sell\OrderCustomerController@store');
+
+//user create profile
+Route::get('/user/create_profile','User\ProfileController@index');
+Route::post('/user/add_profile','User\ProfileController@create');
+Route::post('/user/update_profile','User\ProfileController@store');
