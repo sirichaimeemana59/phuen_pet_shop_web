@@ -148,4 +148,8 @@ Route::post('/customer/update/order','Customer\OrderController@update');
 Route::post('/customer/order/delete','Customer\OrderController@destroy');
 
 //List Order Customer
-Route::any('/employee/list_order_customer','Sell\OrderCustomerController@destroy');
+Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');
+Route::post('/employee/order/view','Sell\OrderCustomerController@view');
+Route::get('/employee/edit/order/{id?}','Sell\OrderCustomerController@edit');
+Route::post('/employee/update/order','Sell\OrderCustomerController@update');
+Route::post('/employee/order/delete','Sell\OrderCustomerController@destroy');

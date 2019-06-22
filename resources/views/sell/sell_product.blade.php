@@ -175,7 +175,7 @@
 
                 window.clearTimeout(timer);
                 timer = window.setTimeout(function(){
-                    console.log(data);
+                    //console.log(data);
                     var this_ = $(this);
                     this_.parents('tr').find('.id_product_').val("");
 
@@ -208,7 +208,7 @@
                                 '<td><span>' + name + '</span></td>',
                                 '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="100" value="1"></td>',
                                 '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
-                                '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
+                                '<td><input type="hidden" class="hide_id" value="'+id+'"><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
                                 '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                             ];
 
@@ -219,6 +219,7 @@
 
                             $('.itemTables').append(data);
                             calTotal();
+                            //search_data();
 
                         }, error: function () {
                             //$('.barcode').val("");
@@ -273,7 +274,7 @@
                                 '<td><span>' + name + '</span></td>',
                                 '<td><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="10" value="1"></td>',
                                 '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price]" class="price" value="' + price + '"><span>' + price + '</span></td>',
-                                '<td><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][result]"></td>',
+                                '<td><input type="hidden" class="hide_id" value="'+id+'"><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][result]"></td>',
                                 '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                             ];
 
@@ -352,6 +353,18 @@
                     }
                 });
             }
+
+//            function search_data(){
+//                $('.hide_id').each(function(){
+//                    if ( $(this).val() !== "" ) {
+//                        t = $(this).val();
+//                        if(t == t){
+//                            var amount = $('.price_total').val();
+//                            $('.price_total').val(amount + 1);
+//                        }
+//                    }
+//                });
+//            }
 
             // $('.payment_').on('click',function () {
             //     if($('.form_add').valid()) {
