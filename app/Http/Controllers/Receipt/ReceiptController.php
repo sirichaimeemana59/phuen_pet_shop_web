@@ -14,8 +14,10 @@ class ReceiptController extends Controller
 
     public function index($id = null)
     {
+        //dd($id);
         $order = order_walk::where('code_order',$id)->first();
 
+        //dd($order);
         $order_trans = order_walk_transection::where('code_order',$id)->get();
 
         $customPaper = array(0,0,500.00,250.80);

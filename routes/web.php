@@ -121,7 +121,7 @@ Route::post('/employee/group/delete','Category\CategoryController@destroy_group'
 Route::post('/employee/cat/delete_cat_tran','Category\CategoryController@delete_cat_tran');
 
 //Receipt
-Route::get('/print/receipt/{id?}','Receipt\ReceiptController@index');
+Route::get('/print/receipt_/{id?}','Receipt\ReceiptController@index');
 
 //*
 //   Customer

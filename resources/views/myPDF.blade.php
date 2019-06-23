@@ -77,19 +77,19 @@
         </tr>
         <tr>
             <td colspan="4" style="font-weight: bold;">{!! trans('messages.discount') !!}</td>
-            <td style="text-align: right;">{!! number_format($data->discount,2) !!}</td>
+            <td style="text-align: right;">@if(!empty($data->discount)){!! number_format($data->discount,2) !!} @else - @endif</td>
         </tr>
         <tr>
             <td colspan="4" style="font-weight: bold;">{!! trans('messages.vat') !!}</td>
-            <td style="text-align: right;">{!! number_format($data->vat,2) !!}</td>
+            <td style="text-align: right;">@if(!empty($data->vat)){!! number_format($data->vat,2) !!}@else - @endif</td>
         </tr>
         <tr>
             <td colspan="4" style="font-weight: bold;">{!! trans('messages.total') !!}</td>
-            <td style="text-align: right;">{!! number_format($data->grand_total,2) !!}</td>
+            <td style="text-align: right;">@if(!empty($data->grand_total)){!! number_format($data->grand_total,2) !!}@else - @endif</td>
         </tr>
         <tr>
             <td colspan="4" style="font-weight: bold;">{!! trans('messages.cash') !!}</td>
-            <td style="text-align: right;">{!! number_format($data->money,2) !!}</td>
+            <td style="text-align: right;">@if(!empty($data->money)){!! number_format($data->money,2) !!}@else - @endif</td>
         </tr>
         <tr>
             <td colspan="4" style="font-weight: bold;">{!! trans('messages.change') !!}</td>
