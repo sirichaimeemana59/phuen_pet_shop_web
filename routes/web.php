@@ -160,3 +160,6 @@ Route::post('/employee/add/order','Sell\OrderCustomerController@store');
 Route::get('/user/create_profile','User\ProfileController@index');
 Route::post('/user/add_profile','User\ProfileController@create');
 Route::post('/user/update_profile','User\ProfileController@store');
+
+//employee income
+Route::any('/employee/list_income','Income\IncomeController@index');

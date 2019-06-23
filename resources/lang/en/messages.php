@@ -46,6 +46,8 @@ return [
     'cash' => 'Cash',
     'change' => 'Change',
     'sub_total' => 'Sub Total',
+    'to' => 'To',
+    'go' => 'Go',
     'showing'	=> 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
 
     'product'=>[
@@ -246,5 +248,12 @@ return [
         'sub' => 'Subdistrict',
         'post' => 'Post',
         'address' => 'Address'
+    ],
+    'finance' => [
+        'title' => 'Finance',
+        'income' => 'Income',
+        'code' => 'ID',
+        'total' => 'Total',
+        'date' => 'Date',
     ]
 ];

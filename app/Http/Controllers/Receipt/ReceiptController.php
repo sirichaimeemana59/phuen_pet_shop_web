@@ -15,7 +15,7 @@ class ReceiptController extends Controller
     public function index($id = null)
     {
         //dd($id);
-        $order = order_walk::where('code_order',$id)->first();
+        $order = order_walk::where('code_order','jDDeyYaRJT')->first();
 
         //dd($order);
         $order_trans = order_walk_transection::where('code_order',$id)->get();
