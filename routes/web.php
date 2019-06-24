@@ -162,4 +162,7 @@ Route::post('/user/add_profile','User\ProfileController@create');
 Route::post('/user/update_profile','User\ProfileController@store');
 
 //employee income
-Route::any('/employee/list_income','Income\IncomeController@index');
+Route::get('/employee/list_income','Income\IncomeController@index');
+Route::post('/employee/list_income_list','Income\IncomeController@list_income_list');
+Route::post('/employee/save/income','Income\IncomeController@income');
+Route::post('/employee/list_income_online','Income\IncomeController@list_income_online');

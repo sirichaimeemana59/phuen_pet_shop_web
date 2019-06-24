@@ -22,6 +22,7 @@ class CrateOrderWalkTable extends Migration
             $table->Decimal('vat',10,2)->nulllable();
             $table->Decimal('grand_total',10,2)->nulllable();
             $table->Decimal('money',10,2)->nulllable();
+            $table->Integer('status')->nulllable();
             $table->timestamps();
         });
     }

@@ -55,11 +55,11 @@ class SellproductController extends Controller
             $order_tran->price_unit = $t['price_unit'];
             $order_tran->total_price = $t['total_price'];
             $order_tran->unit_sale = $t['unit_sale'];
-            //$order_tran->save();
+            $order_tran->save();
 
             $product = product::find($t['product_id']);
             $product->amount = abs($product->amount)-$t['amount'];
-            //$product->save();
+            $product->save();
 
         }
        // dd($product);
@@ -73,7 +73,7 @@ class SellproductController extends Controller
         $order->vat = 0;
         $order->grand_total = Request::input('net');
         $order->money  = Request::input('money');
-        //$order->save();
+        $order->save();
 
         //dd($order_tran);
 

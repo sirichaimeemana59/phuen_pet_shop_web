@@ -36,7 +36,7 @@
                         <h3 class="panel-title" style="text-align: center;">{!! trans('messages.sell.order') !!}</h3>
                     </div>
                     <div class="panel-body search-form table-responsive">
-                        {!! Form::model(null,array('url' => array('/employee/sell/product/add_order_product'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                        {!! Form::model(null,array('url' => array('/employee/sell/product/add_order_product'),'class'=>'form-horizontal form_add','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data','target'=>'_bank')) !!}
                         <table class="table itemTables" style="width: 100%">
                             <tr>
                                 <th ></th>

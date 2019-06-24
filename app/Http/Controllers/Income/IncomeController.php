@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Income;
 
+use http\Env\Response;
 use Request;
 use App\Http\Controllers\Controller;
 use App\order_walk;
 use App\order_walk_transection;
 use App\order_customer;
 use App\order_customer_transection;
+use DB;
+use App\income;
+use Auth;
 
 class IncomeController extends Controller
 {
@@ -17,29 +21,98 @@ class IncomeController extends Controller
         $order = new order_walk;
         $order = $order->get();
 
-        if(!Request::ajax()){
+        //if(!Request::ajax()){
             return view('income.income')->with(compact('order'));
+       // }else{
+        //    return view('income.income_element')->with(compact('order'));
+        //}
+    }
+
+
+    public function list_income_list()
+    {
+        if(!empty(Request::get('date_to')) AND !empty(Request::get('date_go'))){
+            $from = str_replace('/', '-', Request::get('date_to'));
+            $to = str_replace('/', '-', Request::get('date_go'));
+
+            $date = array($from . " 00:00:00", $to . " 00:00:00");
+
+            $order =  order_walk::whereBetween('created_at', $date)->where('status', 0)->get();
+
+            $order_ =  order_walk::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 0)->get();
         }else{
-            return view('income.income_element')->with(compact('order'));
+            $from = str_replace('/', '-', Request::get('date'));
+
+
+            $date = array($from . " 00:00:00");
+
+            //dd($date);
+
+            $order =  order_walk::whereDate('created_at', $date)->where('status', 0)->get();
+
+            $order_ =  order_walk::select(DB::raw('SUM(grand_total) as sum'))->whereDate('created_at', $date)->where('status', 0)->get();
         }
+
+
+        $data["order"] = $order;
+        $data["order_"] = $order_[0]['sum'];
+
+        return response()->json($data);
     }
 
 
-    public function create()
+    public function income()
     {
-        //
+        //dd(Request::input('data'));
+       foreach (Request::input('data') as $t){
+           $order = order_walk::find($t['id_order']);
+           $order->status = 1;
+           $order->save();
+       }
+
+       $income = new income;
+       $income->user_id = Auth::user()->id;
+       $income->income = Request::input('income');
+       $income->date =  date ('Y-m-d');
+       $income->status = 1; //จากการขายหน้าร้าน
+       $income->save();
+
+        //dd($order);
+
+       return redirect('/employee/list_income');
     }
 
 
-    public function store(Request $request)
+
+    public function list_income_online()
     {
-        //
-    }
+        if(!empty(Request::get('date_to')) AND !empty(Request::get('date_go'))){
+            $from = str_replace('/', '-', Request::get('date_to'));
+            $to = str_replace('/', '-', Request::get('date_go'));
+
+            $date = array($from . " 00:00:00", $to . " 00:00:00");
+
+            $order =  order_customer::whereBetween('created_at', $date)->where('status', 0)->get();
+
+            $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 0)->get();
+        }else{
+            $from = str_replace('/', '-', Request::get('date'));
 
 
-    public function show($id)
-    {
-        //
+            $date = array($from . " 00:00:00");
+
+            //dd($date);
+
+            $order =  order_customer::whereDate('created_at', $date)->where('status', 0)->get();
+
+            $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereDate('created_at', $date)->where('status', 0)->get();
+        }
+
+//dd($order_);
+        $data["order"] = $order;
+        $data["order_"] = $order_[0]['sum'];
+
+        return response()->json($data);
     }
 
 

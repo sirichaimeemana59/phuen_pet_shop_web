@@ -251,9 +251,12 @@ return [
     ],
     'finance' => [
         'title' => 'Finance',
-        'income' => 'Income',
+        'income' => 'Income Storefront',
+        'income_' => 'Income Store Online',
         'code' => 'ID',
         'total' => 'Total',
         'date' => 'Date',
+        'front' => 'Storefront',
+        'back' => 'Store Online',
     ]
 ];

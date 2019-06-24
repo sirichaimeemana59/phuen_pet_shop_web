@@ -11,7 +11,7 @@ class order_walk extends GeneralModel
 {
     protected $primaryKey = 'id';
     protected $table = 'order_walk';
-    protected $fillable = ['code_order,user_id,total,discount,vat,grand_total,money'];
+    protected $fillable = ['code_order,user_id,total,discount,vat,grand_total,money,status'];
     public $timestamps = true;
 
     public function join_order_transection()
