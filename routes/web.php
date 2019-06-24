@@ -168,3 +168,5 @@ Route::post('/employee/list_income_list','Income\IncomeController@list_income_li
 Route::post('/employee/save/income','Income\IncomeController@income');
 Route::post('/employee/list_income_online','Income\IncomeController@list_income_online');
 Route::post('/employee/save/income_online','Income\IncomeController@income_online');
+Route::post('/customer/bill/add','Income\IncomeController@bill_save');
+Route::post('/customer/edit_bill_payment','Income\IncomeController@bill_edit');

@@ -21,4 +21,8 @@ class order_customer extends GeneralModel
         return $this->hasMany('App\order_customer_transection','order_code','order_code');
     }
 
+    public function join_bill_payment(){
+        return $this->hasOne('App\bill_payment','order_id','id');
+    }
+
 }

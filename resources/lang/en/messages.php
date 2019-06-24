@@ -258,5 +258,8 @@ return [
         'date' => 'Date',
         'front' => 'Storefront',
         'back' => 'Store Online',
+    ],
+    'bill' => [
+        'title' => 'Proof of payment',
     ]
 ];

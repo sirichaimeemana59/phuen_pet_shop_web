@@ -74,6 +74,45 @@
         </div>
     </div>
     <!-- End Modal view store-->
+    <!-- Modal add store-->
+    <div class="modal fade" id="add-store" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #9BA2AB;">
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.bill.title') !!}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form">
+                                {!! Form::model(null,array('url' => array('customer/bill/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                <div class="form-group row">
+                                    <lable class="col-sm-4 control-label">{!! trans('messages.bill.title') !!}</lable>
+                                    <div class="col-sm-8">
+                                        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.bill.photo'))) !!}
+                                        <input type="hidden" name="id_bill" class="id_order">
+                                    </div>
+                                </div>
+                                <div class="form-group row float-center" style="text-align: center; ">
+                                    <div class="col-sm-12">
+                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                        {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Modal add store-->
 @endsection
 
 @section('script')
@@ -89,8 +128,26 @@
                 }
             });
 
-            $('.add-store').on('click',function(){
+            $('.add-bill').on('click',function(){
                 $('#add-store').modal('show');
+                var id = $(this).data('id');
+                $('.id_order').val(id);
+                //console.log(id);
+            });
+
+            $('body').on('click','.edit-bill',function(){
+                var id = $(this).data('id');
+                $.ajax({
+                    url : '/customer/edit_bill_payment',
+                    method : 'post',
+                    dataType : 'json',
+                    data : {'id':id},
+                    success : function(e){
+                        console.log(e);
+                    } ,error : function(){
+                        console.log('Error Search Data Store');
+                    }
+                });
             });
 
             $('.search-store').on('click',function(){

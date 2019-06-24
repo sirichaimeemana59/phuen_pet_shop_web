@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Income;
 
 use http\Env\Response;
-use Request;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\order_walk;
 use App\order_walk_transection;
@@ -12,11 +12,13 @@ use App\order_customer_transection;
 use DB;
 use App\income;
 use Auth;
+use App\bill_payment;
+use ImageUploadAndResizer;
 
 class IncomeController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $order = new order_walk;
         $order = $order->get();
@@ -29,11 +31,11 @@ class IncomeController extends Controller
     }
 
 
-    public function list_income_list()
+    public function list_income_list(Request $request)
     {
-        if(!empty(Request::get('date_to')) AND !empty(Request::get('date_go'))){
-            $from = str_replace('/', '-', Request::get('date_to'));
-            $to = str_replace('/', '-', Request::get('date_go'));
+        if(!empty(Request::get('date_to')) AND !empty($request->get('date_go'))){
+            $from = str_replace('/', '-', $request->get('date_to'));
+            $to = str_replace('/', '-', $request->get('date_go'));
 
             $date = array($from . " 00:00:00", $to . " 00:00:00");
 
@@ -41,7 +43,7 @@ class IncomeController extends Controller
 
             $order_ =  order_walk::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 0)->get();
         }else{
-            $from = str_replace('/', '-', Request::get('date'));
+            $from = str_replace('/', '-', $request->get('date'));
 
 
             $date = array($from . " 00:00:00");
@@ -61,10 +63,10 @@ class IncomeController extends Controller
     }
 
 
-    public function income()
+    public function income(Request $request)
     {
         //dd(Request::input('data'));
-       foreach (Request::input('data') as $t){
+       foreach ($request->input('data') as $t){
            $order = order_walk::find($t['id_order']);
            $order->status = 1;
            $order->save();
@@ -72,7 +74,7 @@ class IncomeController extends Controller
 
        $income = new income;
        $income->user_id = Auth::user()->id;
-       $income->income = Request::input('income');
+       $income->income = $request->input('income');
        $income->date =  date ('Y-m-d');
        $income->status = 1; //จากการขายหน้าร้าน
        $income->save();
@@ -82,10 +84,10 @@ class IncomeController extends Controller
        return redirect('/employee/list_income');
     }
 
-    public function income_online()
+    public function income_online(Request $request)
     {
        // dd(Request::input('data'));
-        foreach (Request::input('data') as $t){
+        foreach ($request->input('data') as $t){
             $order = order_customer::find($t['id_order']);
             $order->status = 1;
             $order->save();
@@ -93,7 +95,7 @@ class IncomeController extends Controller
 
         $income = new income;
         $income->user_id = Auth::user()->id;
-        $income->income = Request::input('income');
+        $income->income = $request->input('income');
         $income->date =  date ('Y-m-d');
         $income->status = 2; //จากการขายออนไลน์
         $income->save();
@@ -105,11 +107,11 @@ class IncomeController extends Controller
 
 
 
-    public function list_income_online()
+    public function list_income_online(Request $request)
     {
-        if(!empty(Request::get('date_to')) AND !empty(Request::get('date_go'))){
-            $from = str_replace('/', '-', Request::get('date_to'));
-            $to = str_replace('/', '-', Request::get('date_go'));
+        if(!empty($request->get('date_to')) AND !empty($request->get('date_go'))){
+            $from = str_replace('/', '-', $request->get('date_to'));
+            $to = str_replace('/', '-', $request->get('date_go'));
 
             $date = array($from . " 00:00:00", $to . " 00:00:00");
 
@@ -117,7 +119,7 @@ class IncomeController extends Controller
 
             $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 2)->get();
         }else{
-            $from = str_replace('/', '-', Request::get('date'));
+            $from = str_replace('/', '-', $request->get('date'));
 
 
             $date = array($from . " 00:00:00");
@@ -137,15 +139,34 @@ class IncomeController extends Controller
     }
 
 
-    public function edit($id)
+    public function bill_save(Request $request)
     {
-        //
+        $order = order_customer::find($request->input('id_bill'));
+
+        $fileNameToDatabase = '//via.placeholder.com/250x250';
+        if($request->hasFile('photo')){
+            $uploader = new ImageUploadAndResizer($request->file('photo', '/images/photo'));
+            $uploader->width = 350;
+            $uploader->height = 350;
+            $fileNameToDatabase = $uploader->execute();
+        }
+
+        $bill = new bill_payment;
+        $bill->order_code = $order->order_code;
+        $bill->user_id = Auth::user()->id;
+        $bill->order_id = $request->input('id_bill');
+        $bill->photo = $fileNameToDatabase;
+        $bill->save();
+
+        return redirect ('/customer/list_order');
     }
 
 
-    public function update(Request $request, $id)
+    public function bill_edit(Request $request)
     {
-        //
+        $bill = bill_payment::where('order_id',$request->input('id'))->first();
+
+        return response()->json($bill);
     }
 
 
