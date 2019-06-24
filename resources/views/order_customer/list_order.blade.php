@@ -288,6 +288,33 @@
             }
             });
             });
+
+            $('body').on('click','.app-store',function(){
+                var id = $(this).data('id');
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to confirm this order.",
+                    icon: "success",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete)=> {
+                    if (willDelete) {
+                        setTimeout(function() {
+                            $.post("/employee/approved_order", {
+                                id: id
+                            }, function(e) {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                }).then(function(){
+                                    window.location.href ='/employee/list_order_customer'
+                                });
+                            });
+                        }, 50);
+                    } else {
+                        swal("Your imaginary file is safe!");
+            }
+            });
+            });
         });
     </script>
 @endsection

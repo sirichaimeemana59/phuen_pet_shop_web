@@ -109,7 +109,7 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row show_">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -135,7 +135,7 @@
     </div>
 
     <br>
-    <div class="row">
+    <div class="row show_">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -161,8 +161,56 @@
         </div>
     </div>
     <br>
-    <div class="show_online">
-        @include('income.income_element')
+    <div class="row show_online">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+                            <div class="table-responsive">
+                                {!! Form::model(null,array('url' => array('/employee/save/income_online'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                <table class="table itemTables1" style="width: 100%">
+                                    <tr>
+                                        <th ></th>
+                                        <th>{!! trans('messages.number') !!}</th>
+                                        <th>{!! trans('messages.finance.code') !!}</th>
+                                        <th>{!! trans('messages.finance.total') !!}</th>
+                                        <th>{!! trans('messages.finance.date') !!}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row show_online">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+                            <div class="table-responsive">
+                                <table class="table" style="width: 100%">
+                                    <tr>
+                                        <td style="text-align: right; font-weight: bold;" colspan="2">{!! trans('messages.total') !!}</td>
+                                        <td style="text-align: right;"><input type="text" name="income" class="income form-control" readonly><span class="income_"></span></td>
+                                        <td>{!! trans('messages.payment.bath') !!}</td>
+                                    </tr>
+                                </table>
+                                <div class="panel-body float-right" id="landing-subject-list">
+                                    <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -184,6 +232,7 @@
             });
 
             $('.show_online').hide();
+            $('.show_').hide();
 
             $('.back').on('click',function(){
                 //alert('aa');
@@ -242,17 +291,17 @@
                 var data  = $('#search-form1').serialize();
                 //alert('aa');
 
-
+                //console.log(data);
                 $.ajax({
                     url : '/employee/list_income_online',
                     method : 'post',
                     dataType : 'JSON',
                     data : data,
                     success : function(e){
-                        console.log(e.order);
+                        //console.log(e.order);
                         $('.itemRow1').html('');
-                        $('.show').hide();
-                        $('.show_').hide();
+                        // $('.show').hide();
+                        // $('.show_').hide();
                         $('.show_online').show();
 
                         var data_ =[];
@@ -261,13 +310,13 @@
                         $.each(e.order, function(i, val){
                             var time = $.now();
                             var number = i + 1;
-                            grand_total += val.grand_total;
+                            grand_total += val.total;
                             data_ = ['<tr class="itemRow1">',
                                 '<td></td>',
                                 '<td style="text-align: left;">'+number+'</td>',
-                                '<td><input type="hidden" name="data['+i+'][code_order]" value="'+val.code_order+'">' +
-                                '    <input type="hidden" name="data['+i+'][id_order]" value="'+val.id+'">'+val.code_order+'</td>',
-                                '<td>'+val.grand_total+'</td>',
+                                '<td><input type="hidden" name="data['+i+'][order_code]" value="'+val.order_code+'">' +
+                                '    <input type="hidden" name="data['+i+'][id_order]" value="'+val.id+'">'+val.order_code+'</td>',
+                                '<td>'+val.total+'</td>',
                                 '<td>'+val.created_at+'</td>',
                             ];
                             data_.push(

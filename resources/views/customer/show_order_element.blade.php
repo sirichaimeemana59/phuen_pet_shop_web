@@ -48,9 +48,14 @@
                     <td>{!! localDate($row->created_at) !!}</td>
                     <td>-</td>
                     <td>
-                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
-                        <a href="{!! url('customer/edit/order/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
-                        <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
+                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-eye"></i></button>
+                        @if($row->status != 0)
+                            <button class="btn btn-warning mt-2 mt-xl-0 text-right" disabled ><i class="mdi mdi-tooltip-edit"></i></button>
+                        @else
+                            <a href="{!! url('customer/edit/order/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
+                        @endif
+                        <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-delete-sweep"></i></button>
+                        <button class="btn btn-success mt-2 mt-xl-0 text-right" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="fa fa-file-text"></i></button>
                     </td>
                 </tr>
             @endforeach

@@ -155,6 +155,7 @@ Route::post('/employee/update/order','Sell\OrderCustomerController@update');
 Route::post('/employee/order/delete','Sell\OrderCustomerController@destroy');
 Route::any('/employee/create/order_bill','Sell\OrderCustomerController@create');
 Route::post('/employee/add/order','Sell\OrderCustomerController@store');
+Route::post('/employee/approved_order','Sell\OrderCustomerController@approved_order');
 
 //user create profile
 Route::get('/user/create_profile','User\ProfileController@index');
@@ -166,3 +167,4 @@ Route::get('/employee/list_income','Income\IncomeController@index');
 Route::post('/employee/list_income_list','Income\IncomeController@list_income_list');
 Route::post('/employee/save/income','Income\IncomeController@income');
 Route::post('/employee/list_income_online','Income\IncomeController@list_income_online');
+Route::post('/employee/save/income_online','Income\IncomeController@income_online');

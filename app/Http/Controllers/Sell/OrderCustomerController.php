@@ -208,4 +208,13 @@ class OrderCustomerController extends Controller
 
         return view('order_customer.view_order')->with(compact('order_customer','order_tran'));
     }
+
+    public function approved_order()
+    {
+        $order_customer = order_customer::find(Request::input('id'));
+        $order_customer->status = 2 ;
+        $order_customer->save();
+
+        return redirect('/employee/list_order_customer');
+    }
 }

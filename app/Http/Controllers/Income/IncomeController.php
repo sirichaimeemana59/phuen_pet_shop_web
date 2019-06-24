@@ -82,6 +82,27 @@ class IncomeController extends Controller
        return redirect('/employee/list_income');
     }
 
+    public function income_online()
+    {
+       // dd(Request::input('data'));
+        foreach (Request::input('data') as $t){
+            $order = order_customer::find($t['id_order']);
+            $order->status = 1;
+            $order->save();
+        }
+
+        $income = new income;
+        $income->user_id = Auth::user()->id;
+        $income->income = Request::input('income');
+        $income->date =  date ('Y-m-d');
+        $income->status = 2; //จากการขายออนไลน์
+        $income->save();
+
+        //dd($order);
+
+        return redirect('/employee/list_income');
+    }
+
 
 
     public function list_income_online()
@@ -92,9 +113,9 @@ class IncomeController extends Controller
 
             $date = array($from . " 00:00:00", $to . " 00:00:00");
 
-            $order =  order_customer::whereBetween('created_at', $date)->where('status', 0)->get();
+            $order =  order_customer::whereBetween('created_at', $date)->where('status', 2)->get();
 
-            $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 0)->get();
+            $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereBetween('created_at', $date)->where('status', 2)->get();
         }else{
             $from = str_replace('/', '-', Request::get('date'));
 
@@ -103,12 +124,12 @@ class IncomeController extends Controller
 
             //dd($date);
 
-            $order =  order_customer::whereDate('created_at', $date)->where('status', 0)->get();
+            $order =  order_customer::whereDate('created_at', $date)->where('status', 2)->get();
 
-            $order_ =  order_customer::select(DB::raw('SUM(grand_total) as sum'))->whereDate('created_at', $date)->where('status', 0)->get();
+            $order_ =  order_customer::select(DB::raw('SUM(total) as sum'))->whereDate('created_at', $date)->where('status', 2)->get();
         }
 
-//dd($order_);
+//dd($date);
         $data["order"] = $order;
         $data["order_"] = $order_[0]['sum'];
 
