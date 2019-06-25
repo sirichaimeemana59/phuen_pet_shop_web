@@ -1,8 +1,16 @@
 {!! Form::model($promotion,array('url' => array('employee/promotion/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+<lable class="col-sm-2 control-label">{!! trans('messages.product.photo') !!}</lable>
+<div class="col-sm-10">
+    @if(!empty($promotion->photo))
+        <p style="text-align: center"><img src="{!! asset($promotion->photo) !!}" alt="" width="50%">
+            @endif</p>
+</div>
+<br>
 <div class="form-group row">
     <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_th') !!}</lable>
     <div class="col-sm-4">
         <input type="hidden" name="id_pro" value="{!! $promotion->id !!}">
+        <input type="hidden" name="photo_" value="{!! $promotion->photo !!}">
         {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.name_th'),'required')) !!}
     </div>
 
@@ -28,8 +36,13 @@
 
 <div class="form-group row">
     <lable class="col-sm-2 control-label">{!! trans('messages.promotion.discount') !!}</lable>
-    <div class="col-sm-10">
+    <div class="col-sm-4">
         {!! Form::text('discount',null,array('class'=>'form-control num','placeholder'=>trans('messages.promotion.discount'),'required')) !!}
+    </div>
+
+    <lable class="col-sm-2 control-label">{!! trans('messages.pet.photo') !!}</lable>
+    <div class="col-sm-4">
+        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
     </div>
 </div>
 

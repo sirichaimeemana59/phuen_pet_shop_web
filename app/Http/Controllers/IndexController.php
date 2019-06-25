@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\sick;
 use App\sick_transection;
 use App\news;
+use App\promotion;
 
 class IndexController extends Controller
 {
@@ -19,7 +20,10 @@ class IndexController extends Controller
         $new = new news();
         $new = $new->get();
 
-        return view('index')->with(compact('sick','new'));
+        $promotion = new promotion();
+        $promotion = $promotion->get();
+
+        return view('index')->with(compact('sick','new','promotion'));
     }
 
 

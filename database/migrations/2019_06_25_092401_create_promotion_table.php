@@ -20,6 +20,7 @@ class CreatePromotionTable extends Migration
             $table->decimal('discount',10,0);
             $table->text('detail_th');
             $table->text('detail_en');
+            $table->text('photo');
             $table->softDeletes();
             $table->timestamps();
         });

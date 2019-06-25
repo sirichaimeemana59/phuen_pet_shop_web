@@ -13,7 +13,7 @@ class promotion extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'promotion';
-    protected $fillable = ['name_th,name_en,discount,detail_th,detail_en,deleted_at'];
+    protected $fillable = ['name_th,name_en,discount,detail_th,detail_en,deleted_at,photo'];
     public $timestamps = true;
     protected $softDelete = true;
 }

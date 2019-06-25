@@ -98,9 +98,14 @@
 
                                 <div class="form-group row">
                                     <lable class="col-sm-2 control-label">{!! trans('messages.promotion.discount') !!}</lable>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-4">
                                         {!! Form::text('discount',null,array('class'=>'form-control num','placeholder'=>trans('messages.promotion.discount'),'required')) !!}
                                     </div>
+
+                                        <lable class="col-sm-2 control-label">{!! trans('messages.pet.photo') !!}</lable>
+                                        <div class="col-sm-4">
+                                            {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
+                                        </div>
                                 </div>
 
 

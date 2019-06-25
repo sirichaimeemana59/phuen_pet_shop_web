@@ -259,6 +259,51 @@
     </div>
 </section>
 <!--================ Team section end =================-->
+<!--================ Team section start =================-->
+<section class="team-area area-padding">
+    <div class="container">
+        <div class="area-heading row">
+            <div class="col-md-5 col-xl-4">
+                <h3>{!! trans('messages.promotion.title') !!}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach($promotion as $key => $row)
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-team">
+                        @if(empty($row->photo))
+                                <img class="card-img rounded-0" src="{!! asset('images/shutterstock_477383266.jpg') !!}" alt="">
+                            @else
+                                <img class="card-img rounded-0" src="{!! asset($row->photo) !!}" alt="">
+                        @endif
+                        <div class="card-team__body text-center">
+                            <h3>{!! $row{'name_'.Session::get('locale')} !!}</h3>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#bb{!! $key !!}" aria-expanded="false" aria-controls="collapseOne">
+                                            {!! trans('messages.promotion.detail') !!}
+                                        </button>
+
+                                    </h5>
+                                </div>
+
+                                <div id="bb{!! $key !!}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {!! $row{'detail_'.Session::get('locale')} !!}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+<!--================ Team section end =================-->
 <br><br><br><br><br><br><br><br><br><br><br>
 
 
