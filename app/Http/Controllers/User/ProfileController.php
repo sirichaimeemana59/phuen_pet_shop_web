@@ -151,57 +151,58 @@ class ProfileController extends Controller
         //
     }
 
-    public function selectDistrict(){
-        if(Request::isMethod('post')) {
+    public function selectDistrict(Request $request){
+        if($request->isMethod('post')) {
             $d = new Districts;
-            $d = $d->where('province_id',Request::get('id'));
+            $d = $d->where('province_id',$request->get('id'));
             $d = $d->get();
 
             return response()->json($d);
         }
     }
 
-    public function Subdistrict(){
-        if(Request::isMethod('post')){
+    public function Subdistrict(Request $request){
+        if($request->isMethod('post')){
 
             $s = new Subdistricts;
-            $s = $s->where('district_id',Request::get('id'));
+            $s = $s->where('district_id',$request->get('id'));
             $s = $s->get();
             return response()->json($s);
         }
     }
 
 
-    public function selectDistrictEdit(){
-        if(Request::isMethod('post')) {
+    public function selectDistrictEdit(Request $request){
+        if($request->isMethod('post')) {
 
-            $property = company::find(Request::get('id'));
+            $property = profile::find($request->get('id'));
 
+            //dd($property);
             //$p = Districts::find(Request::get('id'));
 
             $d = new Districts;
-            $d = $d->where('province_id',$property['province']);
+            $d = $d->where('province_id',$property['povince_id']);
             $d = $d->get();
 
             return response()->json($d);
         }
     }
 
-    public function editSubDis(){
+    public function editSubDis(Request $request){
 
-        $property = company::find(Request::get('id'));
+        $property = profile::find($request->get('id'));
 
         $s = new Subdistricts;
-        $s = $s->where('district_id',$property['districts']);
+        $s = $s->where('district_id',$property['distric_id']);
         $s = $s->get();
 
         return response()->json($s);
     }
 
-    public function zip_code(){
-        if(Request::isMethod('post')){
+    public function zip_code(Request $request){
+        if($request->isMethod('post')){
             $z = new Subdistricts;
-            $z = $z->where('id',Request::get('id'));
+            $z = $z->where('id',$request->get('id'));
             $z = $z->get();
 
             return response()->json($z);

@@ -59,19 +59,27 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.province') }}</label>
                                 <div class="col-sm-4">
-                                    {!! Form::select('province',$provinces,null,array('class'=>'form-control province')) !!}
+                                    @if(!empty($profile->povince_id))
+                                        {!! Form::select('province',$provinces,$profile->povince_id,array('class'=>'form-control province')) !!}
+                                        @else
+                                        {!! Form::select('province',$provinces,null,array('class'=>'form-control province')) !!}
+                                    @endif
                                 </div>
 
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.district') }}</label>
                                 <div class="col-sm-4">
-                                    {!! Form::select('district',$districts,null,array('class'=>'form-control district')) !!}
+                                    @if(!empty($profile->povince_id))
+                                        {!! Form::select('district',$districts,$profile->distric_id,array('class'=>'form-control district')) !!}
+                                        @else
+                                        {!! Form::select('district',$districts,null,array('class'=>'form-control district')) !!}
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.subdistricts') }}</label>
                                 <div class="col-sm-4">
-                                    {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
+                                        {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
                                 </div>
 
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
@@ -130,7 +138,7 @@
                 var id;
                 id = $(this).val();
                 $.ajax({
-                    url : "/root/admin/select/district",
+                    url : "/customer/select/district",
                     method : 'post',
                     dataType: 'html',
                     data : ({'id':id}),
@@ -177,11 +185,12 @@
                 var select;
                 //console.log(dis);
                 $.ajax({
-                    url : "/root/admin/select/district/edit",
+                    url : "/customer/select/district/edit",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
                     success : function(e){
+                        console.log(e);
                         $('.district').html('');
                         $('.district').append("<option value=''>อำเภอ</option>");
                         $.each($.parseJSON(e),function(i,val){
@@ -202,7 +211,7 @@
                 })
                 ////////////////////////////////
                 $.ajax({
-                    url : "/root/admin/select/editSubDis",
+                    url : "/customer/select/editSubDis",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -230,7 +239,7 @@
                 var id = $(this).val();
                 console.log(id);
                 $.ajax({
-                    url : "/root/admin/select/subdistrict",
+                    url : "/customer/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -252,7 +261,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/root/admin/select/zip_code",
+                    url : "/address/select/zip_code",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),

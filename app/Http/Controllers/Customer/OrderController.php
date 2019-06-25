@@ -13,6 +13,11 @@ use App\cat;
 use App\cat_transection;
 use App\order_customer;
 use App\order_customer_transection;
+use App\address;
+use App\profile;
+use App\Districts;
+use App\Subdistricts;
+use App\Province;
 
 class OrderController extends Controller
 {
@@ -24,6 +29,8 @@ class OrderController extends Controller
         $cat = $cat->get();
 
         $product = new product;
+
+
 
         if(Request::get('group_id') and empty(Request::get('cat_id'))){
             //dd(Request::get('contract_code'));
@@ -43,10 +50,21 @@ class OrderController extends Controller
 
         $p_row = $product->paginate(50);
 
+        $profile = profile::where('user_id',Auth::user()->id)->first();
+
+        $p = new Province;
+        $provinces = $p->getProvince();
+
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
         if(!Request::ajax()){
-            return view ('customer.list_order')->with(compact('p_row','cat'));
+            return view ('customer.list_order')->with(compact('p_row','cat','profile','provinces','districts','subdistricts'));
         }else{
-            return view('customer.list_order_element')->with(compact('p_row','cat'));
+            return view('customer.list_order_element')->with(compact('p_row','cat','profile','provinces','districts','subdistricts'));
         }
     }
 
@@ -218,5 +236,63 @@ class OrderController extends Controller
         $order_customer->delete();
 
         return redirect('/customer/list_order');
+    }
+
+    public function selectDistrict(){
+        if(Request::isMethod('post')) {
+            $d = new Districts;
+            $d = $d->where('province_id',Request::get('id'));
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function Subdistrict(){
+        if(Request::isMethod('post')){
+
+            $s = new Subdistricts;
+            $s = $s->where('district_id',Request::get('id'));
+            $s = $s->get();
+            return response()->json($s);
+        }
+    }
+
+
+    public function selectDistrictEdit(){
+        if(Request::isMethod('post')) {
+
+            $property = profile::find(Request::get('id'));
+
+            //dd($property);
+            //$p = Districts::find(Request::get('id'));
+
+            $d = new Districts;
+            $d = $d->where('province_id',$property['povince_id']);
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function editSubDis(){
+
+        $property = profile::find(Request::get('id'));
+
+        $s = new Subdistricts;
+        $s = $s->where('district_id',$property['distric_id']);
+        $s = $s->get();
+
+        return response()->json($s);
+    }
+
+    public function zip_code(){
+        if(Request::isMethod('post')){
+            $z = new Subdistricts;
+            $z = $z->where('id',Request::get('id'));
+            $z = $z->get();
+
+            return response()->json($z);
+        }
     }
 }

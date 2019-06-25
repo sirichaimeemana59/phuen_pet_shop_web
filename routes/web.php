@@ -148,6 +148,9 @@ Route::post('/customer/order/view','Customer\OrderController@view');
 Route::any('/customer/edit/order/{id?}','Customer\OrderController@edit');
 Route::post('/customer/update/order','Customer\OrderController@update');
 Route::post('/customer/order/delete','Customer\OrderController@destroy');
+Route::post('/address/select/district','Customer\OrderController@selectDistrict');
+Route::post('/address/select/district/edit','Customer\OrderController@selectDistrictEdit');
+Route::post('/address/select/zip_code','Customer\OrderController@zip_code');
 
 //List Order Customer
 Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');
@@ -163,6 +166,11 @@ Route::post('/employee/approved_order','Sell\OrderCustomerController@approved_or
 Route::get('/user/create_profile','User\ProfileController@index');
 Route::post('/user/add_profile','User\ProfileController@create');
 Route::post('/user/update_profile','User\ProfileController@store');
+Route::post('/customer/select/district','User\ProfileController@selectDistrict');
+Route::post('/customer/select/subdistrict','User\ProfileController@Subdistrict');
+Route::post('/customer/select/zip_code','User\ProfileController@zip_code');
+Route::post('/customer/select/district/edit','User\ProfileController@selectDistrictEdit');
+Route::post('/customer/select/editSubDis','User\ProfileController@editSubDis');
 
 //employee income
 Route::get('/employee/list_income','Income\IncomeController@index');
