@@ -272,5 +272,11 @@ return [
         'detail_th' => 'Detail [TH]',
         'detail_en' => 'Detail [EN]',
         'photo' => 'Photo',
+    ],
+    'comment' => [
+        'title' => 'Comment',
+        'name' => 'Detail',
+        'user_id' => 'User',
+        'reply' => 'Reply'
     ]
 ];

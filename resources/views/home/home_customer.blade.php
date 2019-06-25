@@ -24,6 +24,12 @@
                 <span class="menu-title">{!! trans('messages.order.order') !!}</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{!! url('/customer/add/comment') !!}">
+                <i class="fa fa-commenting menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.comment.title') !!}</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">

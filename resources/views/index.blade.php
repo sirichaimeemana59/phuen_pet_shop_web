@@ -202,16 +202,16 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-10 offset-md-1 col-lg-6 offset-lg-6 offset-xl-7 col-xl-5">
-                <div class="about-content">
-                    <h4>Second Abundantly<br>
-                        Move That Cattle Perform<br>
-                        Appen Land</h4>
-                    <h6>Give their their without moving were stars called so divide in female be moving night may fish him</h6>
-                    <p>Give their their without moving were stars called so divide female be moving night may fish him own male vreated great Give their their without moving were. Stars called so divide female moving night may fish him own male created great opportunity deal.</p>
+                {{--<div class="about-content">--}}
+                    {{--<h4>Second Abundantly<br>--}}
+                        {{--Move That Cattle Perform<br>--}}
+                        {{--Appen Land</h4>--}}
+                    {{--<h6>Give their their without moving were stars called so divide in female be moving night may fish him</h6>--}}
+                    {{--<p>Give their their without moving were stars called so divide female be moving night may fish him own male vreated great Give their their without moving were. Stars called so divide female moving night may fish him own male created great opportunity deal.</p>--}}
 
-                    <a class="link_one" href="#">learn more</a>
+                    {{--<a class="link_one" href="#">learn more</a>--}}
 
-                </div>
+                {{--</div>--}}
             </div>
         </div>
     </div>
@@ -326,220 +326,81 @@
 <!-- ================ Hotline Area End ================= -->
 
 
-
-
-<!--================ Start Blog Area =================-->
-<section class="blog-area area-padding">
-    <div class="container">
-        <div class="area-heading row">
-            <div class="col-md-5 col-xl-4">
-                <h3>Get Every<br>
-                    Single Update Here</h3>
-            </div>
-            <div class="col-md-7 col-xl-8">
-                <p>Land meat winged called subdue without very light in all years sea appear midst forth image him third there set. Land meat winged called subdue without very light in all years sea appear</p>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6 col-lg-4 col-md-4">
-                <div class="single-blog">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/blog/1.jpg" alt="">
-                    </div>
-                    <div class="short_details">
-
-                        <div class="meta-top d-flex">
-                            <a href="#">medical, </a>
-                            <a href="#">dental, </a>
-                            <a href="#">health</a>
-                        </div>
-
-                        <a class="d-block" href="single-blog.html">
-                            <h4>Hath is gathering from hath greate gan
-                                man lights evening man.</h4>
-                        </a>
-                        <div class="meta-bottom d-flex">
-                            <a href="#"><i class="ti-comments"></i>08 comment</a>
-                            <a href="#"><i class="ti-heart"></i> 0 like</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-md-4">
-                <div class="single-blog">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/blog/2.jpg" alt="">
-                    </div>
-                    <div class="short_details">
-                        <div class="meta-top d-flex">
-                            <a href="#">medical, </a>
-                            <a href="#">dental, </a>
-                            <a href="#">health</a>
-                        </div>
-                        <a class="d-block" href="single-blog.html">
-                            <h4>Also good after there saying don third
-                                you be careful every man</h4>
-                        </a>
-                        <div class="meta-bottom d-flex">
-                            <a href="#"><i class="ti-comments"></i>05 comment</a>
-                            <a href="#"><i class="ti-heart"></i> 0 like</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-md-4">
-                <div class="single-blog">
-                    <div class="thumb">
-                        <img class="img-fluid" src="img/blog/3.jpg" alt="">
-                    </div>
-                    <div class="short_details">
-                        <div class="meta-top d-flex">
-                            <a href="#">medical, </a>
-                            <a href="#">dental, </a>
-                            <a href="#">health</a>
-                        </div>
-                        <a class="d-block" href="single-blog.html">
-                            <h4>Also good after there saying don third
-                                you be careful every man</h4>
-                        </a>
-                        <div class="meta-bottom d-flex">
-                            <a href="#"><i class="ti-comments"></i>05 comment</a>
-                            <a href="#"><i class="ti-heart"></i> 0 like</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================ End Blog Area =================-->
-
-<!--================ Start Brands Area =================-->
-<section class="brands-area background_one">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="owl-carousel brand-carousel">
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/1.png" alt="">
-                        </div>
-                    </div>
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/2.png" alt="">
-                        </div>
-                    </div>
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/3.png" alt="">
-                        </div>
-                    </div>
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/4.png" alt="">
-                        </div>
-                    </div>
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/5.png" alt="">
-                        </div>
-                    </div>
-                    <!-- single-brand -->
-                    <div class="single-brand-item d-table">
-                        <div class="d-table-cell">
-                            <img src="img/brand/3.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--================ End Brands Area =================-->
-
 <!-- start footer Area -->
-<footer class="footer-area area-padding-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-sm-6 single-footer-widget">
-                <h4>Top Products</h4>
-                <ul>
-                    <li><a href="#">Managed Website</a></li>
-                    <li><a href="#">Manage Reputation</a></li>
-                    <li><a href="#">Power Tools</a></li>
-                    <li><a href="#">Marketing Service</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-sm-6 single-footer-widget">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Brand Assets</a></li>
-                    <li><a href="#">Investor Relations</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-sm-6 single-footer-widget">
-                <h4>Features</h4>
-                <ul>
-                    <li><a href="#">Jobs</a></li>
-                    <li><a href="#">Brand Assets</a></li>
-                    <li><a href="#">Investor Relations</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-sm-6 single-footer-widget">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">Guides</a></li>
-                    <li><a href="#">Research</a></li>
-                    <li><a href="#">Experts</a></li>
-                    <li><a href="#">Agencies</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>Newsletter</h4>
-                <p>You can trust us. we only send promo offers,</p>
-                <div class="form-wrap" id="mc_embed_signup">
-                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                          method="get" class="form-inline">
-                        <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'"
-                               required="" type="email" />
-                        <button class="click-btn btn btn-default">
-                            <i class="ti-arrow-right"></i>
-                        </button>
-                        <div style="position: absolute; left: -5000px;">
-                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />
-                        </div>
+{{--<footer class="footer-area area-padding-top">--}}
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-lg-2 col-sm-6 single-footer-widget">--}}
+                {{--<h4>Top Products</h4>--}}
+                {{--<ul>--}}
+                    {{--<li><a href="#">Managed Website</a></li>--}}
+                    {{--<li><a href="#">Manage Reputation</a></li>--}}
+                    {{--<li><a href="#">Power Tools</a></li>--}}
+                    {{--<li><a href="#">Marketing Service</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="col-lg-2 col-sm-6 single-footer-widget">--}}
+                {{--<h4>Quick Links</h4>--}}
+                {{--<ul>--}}
+                    {{--<li><a href="#">Jobs</a></li>--}}
+                    {{--<li><a href="#">Brand Assets</a></li>--}}
+                    {{--<li><a href="#">Investor Relations</a></li>--}}
+                    {{--<li><a href="#">Terms of Service</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="col-lg-2 col-sm-6 single-footer-widget">--}}
+                {{--<h4>Features</h4>--}}
+                {{--<ul>--}}
+                    {{--<li><a href="#">Jobs</a></li>--}}
+                    {{--<li><a href="#">Brand Assets</a></li>--}}
+                    {{--<li><a href="#">Investor Relations</a></li>--}}
+                    {{--<li><a href="#">Terms of Service</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="col-lg-2 col-sm-6 single-footer-widget">--}}
+                {{--<h4>Resources</h4>--}}
+                {{--<ul>--}}
+                    {{--<li><a href="#">Guides</a></li>--}}
+                    {{--<li><a href="#">Research</a></li>--}}
+                    {{--<li><a href="#">Experts</a></li>--}}
+                    {{--<li><a href="#">Agencies</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            {{--<div class="col-lg-4 col-md-6 single-footer-widget">--}}
+                {{--<h4>Newsletter</h4>--}}
+                {{--<p>You can trust us. we only send promo offers,</p>--}}
+                {{--<div class="form-wrap" id="mc_embed_signup">--}}
+                    {{--<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"--}}
+                          {{--method="get" class="form-inline">--}}
+                        {{--<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'"--}}
+                               {{--required="" type="email" />--}}
+                        {{--<button class="click-btn btn btn-default">--}}
+                            {{--<i class="ti-arrow-right"></i>--}}
+                        {{--</button>--}}
+                        {{--<div style="position: absolute; left: -5000px;">--}}
+                            {{--<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text" />--}}
+                        {{--</div>--}}
 
-                        <div class="info"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="row footer-bottom d-flex justify-content-between">
-            <p class="col-lg-8 col-sm-12 footer-text m-0">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            <div class="col-lg-4 col-sm-12 footer-social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-dribbble"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
-</footer>
+                        {{--<div class="info"></div>--}}
+                    {{--</form>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        {{--<div class="row footer-bottom d-flex justify-content-between">--}}
+            {{--<p class="col-lg-8 col-sm-12 footer-text m-0">--}}
+                {{--<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->--}}
+                {{--Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>--}}
+                {{--<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->--}}
+            {{--</p>--}}
+            {{--<div class="col-lg-4 col-sm-12 footer-social">--}}
+                {{--<a href="#"><i class="fab fa-facebook-f"></i></a>--}}
+                {{--<a href="#"><i class="fab fa-twitter"></i></a>--}}
+                {{--<a href="#"><i class="fab fa-dribbble"></i></a>--}}
+                {{--<a href="#"><i class="fab fa-linkedin"></i></a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</footer>--}}
 <!-- End footer Area -->
 <!-- Modal Login-->
 <div class="modal fade" id="modal-login" role="dialog">

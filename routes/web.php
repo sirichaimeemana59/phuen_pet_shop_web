@@ -180,3 +180,16 @@ Route::post('/employee/news/add','News\NewController@create');
 Route::post('/employee/news/view','News\NewController@show');
 Route::post('/employee/news/edit','News\NewController@edit');
 Route::post('/employee/news/update','News\NewController@update');
+
+//customer add comment
+Route::any('/customer/add/comment','Customer\CommentController@index');
+Route::post('/employee/comment/add','Customer\CommentController@create');
+Route::post('/employee/comment/view','Customer\CommentController@show');
+Route::post('/employee/comment/edit','Customer\CommentController@edit');
+Route::post('/employee/comment/update','Customer\CommentController@update');
+
+//employee comment
+Route::any('/employee/list/comment','Comment\CommentController@index');
+Route::post('/employee/comment_reply/view','Comment\CommentController@show');
+Route::post('/employee/comment_reply/edit','Comment\CommentController@edit');
+Route::post('employee/add/reply','Comment\CommentController@reply');
