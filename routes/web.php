@@ -193,3 +193,11 @@ Route::any('/employee/list/comment','Comment\CommentController@index');
 Route::post('/employee/comment_reply/view','Comment\CommentController@show');
 Route::post('/employee/comment_reply/edit','Comment\CommentController@edit');
 Route::post('employee/add/reply','Comment\CommentController@reply');
+
+//promotion
+Route::any('/employee/list/promotion','Promotion\PromotionController@index');
+Route::post('/employee/promotion/add','Promotion\PromotionController@create');
+Route::post('/employee/promotion/view','Promotion\PromotionController@show');
+Route::post('/employee/promotion/edit','Promotion\PromotionController@edit');
+Route::post('/employee/promotion/update','Promotion\PromotionController@update');
+Route::post('/employee/promotion/delete','Promotion\PromotionController@destroy');

@@ -278,5 +278,15 @@ return [
         'name' => 'Detail',
         'user_id' => 'User',
         'reply' => 'Reply'
-    ]
+    ],
+    'promotion' => [
+        'title' => 'Promotion',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'detail' => 'Detail',
+        'detail_th' => 'Detail [TH]',
+        'detail_en' => 'Detail [EN]',
+        'discount' => 'Discount',
+    ],
 ];

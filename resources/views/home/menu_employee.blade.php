@@ -73,6 +73,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/list/promotion') !!}">
+                <i class="fa fa-money menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.promotion.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
                 <i class="mdi mdi-chart-pie menu-icon"></i>
                 <span class="menu-title">Charts</span>
