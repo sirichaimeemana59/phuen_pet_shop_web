@@ -137,44 +137,56 @@
     <div class="container">
         <div class="area-heading row">
             <div class="col-md-5 col-xl-4">
-                <h3>Awesome<br>
-                    Health Service</h3>
+                <h3>{!! trans('messages.analyze.analyze') !!}</h3>
             </div>
             <div class="col-md-7 col-xl-8">
-                <p>Land meat winged called subdue without very light in all years sea appear midst forth image him third there set. Land meat winged called subdue without very light in all years sea appear</p>
+                <p>{!! trans('messages.analyze.title') !!}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-12">
                 <div class="card-service text-center text-lg-left mb-4 mb-lg-0">
-                        <span class="card-service__icon">
-                            <i class="flaticon-brain"></i>
-                        </span>
-                    <h3 class="card-service__title">Neurology Service</h3>
-                    <p class="card-service__subtitle">Land meat winged called subdue without a very light in all years sea appear Lesser bring fly first land set female best perform.</p>
-                    <a class="card-service__link" href="#">Learn More</a>
-                </div>
-            </div>
+                        <p style="text-align: center;"><img src="{!! asset('/images/images.png') !!}" alt="" width="15%"></p>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card-service text-center text-lg-left mb-4 mb-lg-0">
-                        <span class="card-service__icon">
-                            <i class="flaticon-tooth"></i>
-                        </span>
-                    <h3 class="card-service__title">Dental Clinic</h3>
-                    <p class="card-service__subtitle">Land meat winged called subdue without a very light in all years sea appear Lesser bring fly first land set female best perform</p>
-                    <a class="card-service__link" href="#">Learn More</a>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <lable class="col-sm-2 control-label">{!! trans('messages.search') !!}</lable>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control data_text" name="data">
+                        </div>
+                    </div>
 
-            <div class="col-md-6 col-lg-4">
-                <div class="card-service text-center text-lg-left mb-4 mb-lg-0">
-                        <span class="card-service__icon">
-                            <i class="flaticon-face"></i>
-                        </span>
-                    <h3 class="card-service__title">Plastic Surgery</h3>
-                    <p class="card-service__subtitle">Land meat winged called subdue without a very light in all years sea appear Lesser bring fly first land set female best perform</p>
-                    <a class="card-service__link" href="#">Learn More</a>
+                    <div class="teble-responsive">
+                        <table class="table show" style="width: 100%">
+
+                            <tr>
+                                <th colspan="2"></th>
+                            </tr>
+                            @foreach($sick as $val)
+                                <tr>
+                                    <td style="text-align: left;font-weight: bold;" colspan="2">{!! $val{'name_'.Session::get('locale')} !!}</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: left;" colspan="2">{!! $val{'detail_'.Session::get('locale')} !!}</td>
+                                </tr>
+                                @foreach($val->join_sick_transection as $t)
+                                    <tr>
+                                        <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.syndrome') !!}</td>
+                                        <td style="text-align: left;">{!! $t['sick_'.Session::get('locale')] !!}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.detail') !!}</td>
+                                        <td style="text-align: left;">{!! $t['detail_'.Session::get('locale')] !!}</td>
+                                    </tr>
+                                        {{--@break--}}
+                                @endforeach
+                            @endforeach
+                        </table>
+                        <table class="table itemTables show1" style="width: 100%">
+                            <tr>
+                            </tr>
+                        </table>
+
+                    </div>
                 </div>
             </div>
 
@@ -866,16 +878,16 @@
 <script src="js/theme.js"></script>
 </body>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@section('script')
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+{{--@section('script')--}}
+    {{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
+    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>--}}
+    {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>--}}
+    {{--<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>--}}
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--}}
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>--}}
+    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>--}}
     <script type="text/javascript">
-        $(function() {
+        $(document).ready(function() {
 
             $.ajaxSetup({
                 headers: {
@@ -884,12 +896,62 @@
             });
 
             $('.modal-login').on('click',function(){
-                alert('aa');
+                //alert('aa');
                 $('#modal-login').modal('show');
+            });
+
+            var delay = 600;
+            var timer;
+
+            $('.show1').hide();
+            $('body').on('keyup','.data_text',function(){
+                var data = $('.data_text').val();
+                console.log(data);
+                window.clearTimeout(timer);
+                timer = window.setTimeout(function(){
+                    $.ajax({
+                        url: '/pet',
+                        method: 'post',
+                        dataType: 'JSON',
+                        data: {'data':data},
+                        success: function (e) {
+                            if(e.length == 0){
+                                $('.show').show();
+                                $('.show1').hide();
+                            }else{
+                                $('.show').hide();
+                                $('.show1').show();
+                            }
+
+                            console.log(e);
+                            $('.itemTables').html('');
+                            var data_ =[];
+
+                            $.each(e, function(i, val){
+                                data_ = [
+                                    '<tr class="itemRow">',
+                                    '<td style="text-align:left;font-weight: bold; width:25%;">'+val.join_sick.name_{!! Session::get('locale') !!}+'</td>',
+                                    '<td>'+val.join_sick.detail_{!! Session::get('locale') !!}+'</td>',
+                                    '</tr>',
+                                    '<tr>',
+                                    '<td style="text-align:left;font-weight: bold; width:25%;">'+val.sick_{!! Session::get('locale') !!}+'</td>',
+                                    '<td>'+val.detail_{!! Session::get('locale') !!}+'</td>',
+                                    '</tr>'
+                                ].join('');
+
+                                $('.itemTables').append(data_);
+                            });
+
+                        }, error: function () {
+
+                            console.log('Error Search Data Product');
+                        }
+                    });
+                },delay);
             });
 
         });
     </script>
 
-@endsection
+{{--@endsection--}}
 </html>

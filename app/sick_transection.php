@@ -15,4 +15,9 @@ class sick_transection extends GeneralModel
     protected $fillable = ['sick_id,sick_th,sick_en,detail_th,detail_en'];
     public $timestamps = true;
     protected $softDelete = true;
+
+    public function join_sick()
+    {
+        return $this->hasOne('App\sick','code','sick_id');
+    }
 }

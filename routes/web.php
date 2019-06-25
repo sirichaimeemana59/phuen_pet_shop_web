@@ -1,8 +1,10 @@
 <?php
 
-Route::get('/', function () {
-    return view('index');
-});
+//Route::any('/', function () {
+//    return view('index');
+//});
+Route::get('/', 'IndexController@index');
+Route::post('/pet', 'IndexController@create');
 
 Auth::routes();
 

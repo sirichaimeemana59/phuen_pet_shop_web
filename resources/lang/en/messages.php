@@ -209,6 +209,7 @@ return [
         'disease_name' => 'Disease name',
         'detail_th' => 'Detail [TH]',
         'detail_en' => 'Detail [EN]',
+        'title' => 'Analysis of the basic health problems of your pet For better treatment results Please bring pets to check for clarity.',
     ],
     'category'=>[
         'title' => 'Category',
