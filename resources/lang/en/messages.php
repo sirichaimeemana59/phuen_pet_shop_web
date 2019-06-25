@@ -262,5 +262,15 @@ return [
     ],
     'bill' => [
         'title' => 'Proof of payment',
+    ],
+    'news' => [
+        'title' => 'News',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'detail' => 'Detail',
+        'detail_th' => 'Detail [TH]',
+        'detail_en' => 'Detail [EN]',
+        'photo' => 'Photo',
     ]
 ];

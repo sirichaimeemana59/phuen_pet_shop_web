@@ -173,3 +173,10 @@ Route::post('/employee/save/income_online','Income\IncomeController@income_onlin
 Route::post('/customer/bill/add','Income\IncomeController@bill_save');
 Route::post('/customer/edit_bill_payment','Income\IncomeController@bill_edit');
 Route::post('/customer/bill/edit','Income\IncomeController@bill_edit_file');
+
+//employee post news
+Route::any('/customer/news/list','News\NewController@index');
+Route::post('/employee/news/add','News\NewController@create');
+Route::post('/employee/news/view','News\NewController@show');
+Route::post('/employee/news/edit','News\NewController@edit');
+Route::post('/employee/news/update','News\NewController@update');

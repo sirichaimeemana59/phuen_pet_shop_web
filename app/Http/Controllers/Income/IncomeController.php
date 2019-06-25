@@ -33,7 +33,7 @@ class IncomeController extends Controller
 
     public function list_income_list(Request $request)
     {
-        if(!empty(Request::get('date_to')) AND !empty($request->get('date_go'))){
+        if(!empty($request->get('date_to')) AND !empty($request->get('date_go'))){
             $from = str_replace('/', '-', $request->get('date_to'));
             $to = str_replace('/', '-', $request->get('date_go'));
 

@@ -223,194 +223,44 @@
     <div class="container">
         <div class="area-heading row">
             <div class="col-md-5 col-xl-4">
-                <h3>Medcare<br>
-                    Experience Doctors</h3>
-            </div>
-            <div class="col-md-7 col-xl-8">
-                <p>Land meat winged called subdue without very light in all years sea appear midst forth image him third there set. Land meat winged called subdue without very light in all years sea appear</p>
+                <h3>{!! trans('messages.news.title') !!}</h3>
             </div>
         </div>
 
         <div class="row">
+            @foreach($new as $key => $row)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card card-team">
-                    <img class="card-img rounded-0" src="img/team/1.jpg" alt="">
+                    <img class="card-img rounded-0" src="{!! asset($row->photo) !!}" alt="">
                     <div class="card-team__body text-center">
-                        <h3><a href="#">Dr Adam Brain</a></h3>
-                        <p>Cardiologist</p>
-                        <div class="team-footer d-flex justify-content-between">
-                            <a class="dn_btn" href=""><i class="ti-mobile"></i>+7 235 365 2365</a>
-                            <ul class="card-team__social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                <li><a href="#"><i class="ti-skype"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <h3>{!! $row{'name_'.Session::get('locale')} !!}</h3>
+                        <div class="accordion" id="accordionExample">
+                              <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#aa{!! $key !!}" aria-expanded="false" aria-controls="collapseOne">
+                                            {!! trans('messages.news.detail') !!}
+                                        </button>
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-team">
-                    <img class="card-img rounded-0" src="img/team/2.jpg" alt="">
-                    <div class="card-team__body text-center">
-                        <h3><a href="#">Dr Blian Judge</a></h3>
-                        <p>Cardiologist</p>
-                        <div class="team-footer d-flex justify-content-between">
-                            <a class="dn_btn" href=""><i class="ti-mobile"></i>+7 235 365 2365</a>
-                            <ul class="card-team__social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                <li><a href="#"><i class="ti-skype"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    </h5>
+                                </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card card-team">
-                    <img class="card-img rounded-0" src="img/team/3.jpg" alt="">
-                    <div class="card-team__body text-center">
-                        <h3><a href="#">Dr Blian Judge</a></h3>
-                        <p>Cardiologist</p>
-                        <div class="team-footer d-flex justify-content-between">
-                            <a class="dn_btn" href=""><i class="ti-mobile"></i>+7 235 365 2365</a>
-                            <ul class="card-team__social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                <li><a href="#"><i class="ti-skype"></i></a></li>
-                            </ul>
+                                <div id="aa{!! $key !!}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {!! $row{'detail_'.Session::get('locale')} !!}
+                                    </div>
+                                </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
 <!--================ Team section end =================-->
+<br><br><br><br><br><br><br><br><br><br><br>
 
-
-<!--================ appointment Area Starts =================-->
-<section class="appointment-area">
-    <div class="container">
-
-        <div class="appointment-inner">
-            <div class="row">
-                <div class="col-sm-12 col-lg-5 offset-lg-1">
-                    <h3>Have Some Questions?</h3>
-                    <div class="accordion" id="accordionExample">
-
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        God male gathering them it female which green cattle?
-                                    </button>
-
-                                </h5>
-                            </div>
-
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Moving creepeth moved upon man grass two days?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        God male gathering them it female which green cattle?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Saw isn't likeness beginning yielding land days she?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingFive">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        Saw isn't likeness beginning yielding land days she?
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    Great day without sixth a lesser beginning. Their thing abundantly air moving saw fruitful lesser god. Sea abundantly blessed life set. Land. Lights divided man in deep in open upon.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-5">
-                    <div class="appointment-form">
-                        <h3>Make an Appointment</h3>
-                        <form action="#">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" placeholder="Your Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email'" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea name="message" cols="20" rows="7"  placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required></textarea>
-                            </div>
-                            <a href="#" class="main_btn">Make an Appointment</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-    </div>
-</section>
-<!--================ appointment Area End =================-->
 
 
 <!-- ================ testimonial section start ================= -->

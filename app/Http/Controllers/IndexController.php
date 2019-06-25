@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\sick;
 use App\sick_transection;
+use App\news;
 
 class IndexController extends Controller
 {
@@ -12,10 +13,13 @@ class IndexController extends Controller
     public function index()
     {
         $sick = new sick;
-
         $sick = $sick->get();
 
-        return view('index')->with(compact('sick'));
+
+        $new = new news();
+        $new = $new->get();
+
+        return view('index')->with(compact('sick','new'));
     }
 
 
