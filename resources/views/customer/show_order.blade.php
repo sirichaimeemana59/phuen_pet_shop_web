@@ -126,12 +126,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form">
-                                {!! Form::model(null,array('url' => array('customer/bill/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                {!! Form::model(null,array('url' => array('customer/bill/edit'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
                                     <lable class="col-sm-4 control-label">{!! trans('messages.bill.title') !!}</lable>
+                                    <div class="img img-thumbnail"></div>
                                     <div class="col-sm-8">
                                         {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.bill.photo'))) !!}
                                         <input type="hidden" name="id_bill" class="id_order">
+                                        <input type="hidden" name="name_photo" class="name_photo">
+                                        <input type="hidden" name="id_bill_file" class="id_bill">
                                     </div>
                                 </div>
                                 <div class="form-group row float-center" style="text-align: center; ">
@@ -185,6 +188,10 @@
                     success : function(e){
                        // console.log(e);
                         $('#edit-store').modal('show');
+                        imgAppend = $('<img>').attr({'src':"{{ asset('/') }}"+e.photo,'width':'120px'});
+                        $('.img').append(imgAppend);
+                        $('.name_photo').val(e.photo);
+                        $('.id_bill').val(e.id);
                     } ,error : function(){
                         console.log('Error Search Data Store');
                     }

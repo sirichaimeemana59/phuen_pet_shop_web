@@ -170,8 +170,28 @@ class IncomeController extends Controller
     }
 
 
-    public function destroy($id)
+    public function bill_edit_file(Request $request)
     {
-        //
+        //dd(unlink(public_path('images/50ed7ebb97ca28a94459106388e5cc37c97db428.jpg')));
+        if(!empty($request->hasFile('photo'))){
+            $fileNameToDatabase = '//via.placeholder.com/250x250';
+            if($request->hasFile('photo')){
+                $uploader = new ImageUploadAndResizer($request->file('photo', '/images/photo'));
+                $uploader->width = 350;
+                $uploader->height = 350;
+                $fileNameToDatabase = $uploader->execute();
+            }
+
+            unlink(public_path($request->input('name_photo')));
+
+            $bill = bill_payment::find($request->input('id_bill_file'));
+            $bill->order_code = $bill->order_code;
+            $bill->user_id = Auth::user()->id;
+            $bill->order_id = $bill->order_id;
+            $bill->photo = $fileNameToDatabase;
+            $bill->save();
+        }
+
+        return redirect ('/customer/list_order');
     }
 }

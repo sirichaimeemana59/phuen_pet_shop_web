@@ -19,7 +19,7 @@ class CreateBillPaymentTable extends Migration
             $table->text('order_code');
             $table->integer('user_id');
             $table->text('photo');
-            $table->softDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -3,7 +3,6 @@
 <div class="form-group row">
     <lable class="col-sm-12 control-label"><h3>{!! trans('messages.order.order') !!} : {!! $order_customer->order_code !!}</h3></lable>
 </div>
-
 <table class="table itemTables" style="width: 100%">
     <tr>
         <th></th>
@@ -33,3 +32,12 @@
     <td style="text-align: right;">{!! number_format($sum,2) !!}</td>
 </tr>
 </table>
+
+<div class="row">
+    <lable class="col-sm-4 control-label">{!! trans('messages.bill.title') !!}</lable>
+    <div class="col-sm-4">
+        @if(!empty($order_customer->join_bill_payment))
+            <p style="text-align: center;"><img src="{!! asset($order_customer->join_bill_payment->photo) !!}" alt="" width="50%"></p>
+        @endif
+    </div>
+</div>
