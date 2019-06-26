@@ -214,3 +214,7 @@ Route::post('/employee/promotion/view','Promotion\PromotionController@show');
 Route::post('/employee/promotion/edit','Promotion\PromotionController@edit');
 Route::post('/employee/promotion/update','Promotion\PromotionController@update');
 Route::post('/employee/promotion/delete','Promotion\PromotionController@destroy');
+
+//order company
+Route::any('/employee/company_store/order','Product\OrderCompanyController@index');
+Route::get('/employee/create/order_company','Product\OrderCompanyController@create');

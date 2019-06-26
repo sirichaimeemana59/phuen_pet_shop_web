@@ -7,12 +7,15 @@ use App\sick;
 use App\sick_transection;
 use App\news;
 use App\promotion;
+use Session;
 
 class IndexController extends Controller
 {
 
     public function index()
     {
+        Session::put('locale','en');
+
         $sick = new sick;
         $sick = $sick->get();
 
