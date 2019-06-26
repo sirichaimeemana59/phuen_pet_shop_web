@@ -238,7 +238,21 @@ class OrderController extends Controller
             $order_customer_tran->unit_sale = $t['unit_sale'];
             $order_customer_tran->amount = $t['amount'];
             $order_customer_tran->total_price = $t['total'];
+
+
+            $order_customer_tran_ = order_customer_transection::find($t['id_order']);
+            $product = product::find($t['id']);
+            if($order_customer_tran_['amount'] > $t['amount']){
+                $product->amount = $product->amount + abs($t['amount'] - $order_customer_tran_->amount);
+                //dd($product);
+            }else{
+                $product->amount = abs($product->amount)- (abs($t['amount'] - $order_customer_tran_->amount));
+                //dd($product);
+            }
+//dd($product);
+            $product->save();
             $order_customer_tran->save();
+
         }
 
         if(!empty(Request::input('data'))){
@@ -251,6 +265,10 @@ class OrderController extends Controller
                 $order_customer_tran->amount = $t['amount'];
                 $order_customer_tran->total_price = $t['total'];
                 $order_customer_tran->save();
+
+                $product = product::find($t['id']);
+                $product->amount = abs($product->amount)-$t['amount'];
+                $product->save();
             }
         }
 

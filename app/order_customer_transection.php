@@ -22,7 +22,7 @@ class order_customer_transection extends GeneralModel
 
     public function join_product()
     {
-        return $this->hasOne('App\product','id','product_id');
+        return $this->hasOne('App\product','product_id','product_id');
     }
 
     public function join_stock_log()

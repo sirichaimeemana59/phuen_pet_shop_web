@@ -89,6 +89,7 @@
                                 @foreach($order_tran as $key => $t)
                                     <tr>
                                         <td><input type="hidden" name="data_[{!! $key !!}][id_order]" value="{!! $t->id !!}">
+                                            <input type="hidden" name="data_[{!! $key !!}][id]" value="{!! $t->join_product['id'] !!}">
                                             <input type="hidden" name="data_[{!! $key !!}][product_id]" value="{!! $t->product_id !!}">
                                             <input type="hidden" name="data_[{!! $key !!}][unit_sale]" value="{!! $t->unit_sale !!}"></td>
                                         <td>{!! $t->join_stock{'name_'.Session::get('locale')} !!}</td>
@@ -290,7 +291,7 @@
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
-                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required=""><span>'+name+'</span></td>',
+                    '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'" required=""><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required=""><span>'+name+'</span></td>',
                     '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required=""></td>',
                     '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required=""><span>'+unit+'</span></td>',
                     '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required=""></td>',
