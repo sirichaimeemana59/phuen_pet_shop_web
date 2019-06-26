@@ -101,7 +101,7 @@
                         <div class="panel-body float-right" id="landing-subject-list">
                             <lable class="col-sm-10 control-label">{!! trans('messages.sell.total') !!}</lable>
                             <div class="col-sm-12">
-                                <input type="text" class="form-control sum_total" readonly name="sum_total">
+                                <input type="text" class="form-control sum_total" readonly name="sum_total" required>
                             </div>
                         </div>
                     </div>
@@ -112,15 +112,85 @@
 
     <br>
  {{--Address--}}
+    <br>
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body float-right">
                     <div class="panel panel-default" id="panel-lead-list">
-                        <div class="panel-body float-right" id="landing-subject-list">
-                            <lable class="col-sm-10 control-label">{!! trans('messages.sell.total') !!}</lable>
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control sum_total" readonly name="sum_total">
+                        {{--@if(!empty($profile))--}}
+                            {{--{!! Form::model($profile,array('url' => array('user/update_profile'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}--}}
+                            @if(!empty($profile))
+                                <input type="hidden" name="id" value="{!! $profile->id !!}">
+                                <input type="hidden" name="photo_" value="{!! $profile->photo !!}">
+                                <input type="hidden" class="property_id" value="{!! $profile->id !!}">
+                                <input type="hidden" class="dis" name="dis" value="{!! $profile->distric_id !!}">
+                                <input type="hidden" class="subdis" name="subdis" value="{!! $profile->sub_id !!}">
+                                <input type="hidden" class="pro" name="pro" value="{!! $profile->povince_id !!}">
+                        @endif
+                        {{--@else--}}
+                            {{--{!! Form::model(null,array('url' => array('user/add_profile'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}--}}
+                        {{--@endif--}}
+                        <div class="form-group row">
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
+                            <div class="col-sm-4">
+                                @if(!empty($profile['name_'.Session::get('locale')]))
+                                    {!! Form::text('name',$profile['name_'.Session::get('locale')],array('class'=>'form-control','placeholder'=>trans('messages.profile.name'),'required')) !!}
+                                @else
+                                    {!! Form::text('name',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.name'),'required')) !!}
+                                @endif
+                            </div>
+
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.tell') !!}</lable>
+                            <div class="col-sm-4">
+                                @if(!empty($profile->tell))
+                                    {!! Form::text('tell',$profile->tell,array('class'=>'form-control','placeholder'=>trans('messages.profile.tell'),'required')) !!}
+                                @else
+                                    {!! Form::text('tell',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.tell'),'required')) !!}
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.address') !!}</lable>
+                            <div class="col-sm-10">
+                                @if(!empty($profile->address))
+                                    {!! Form::text('address',$profile->address,array('class'=>'form-control','placeholder'=>trans('messages.profile.address'),'required')) !!}
+                                @else
+                                    {!! Form::text('address',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.address'),'required')) !!}
+                                @endif
+                            </div>
+                        </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.province') }}</label>
+                                <div class="col-sm-4">
+                                    @if(!empty($profile->povince_id))
+                                        {!! Form::select('province',$provinces,$profile->povince_id,array('class'=>'form-control province','required')) !!}
+                                    @else
+                                        {!! Form::select('province',$provinces,null,array('class'=>'form-control province','required')) !!}
+                                    @endif
+                                </div>
+
+                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.district') }}</label>
+                                <div class="col-sm-4">
+                                    @if(!empty($profile->distric_id))
+                                        {!! Form::select('district',$districts,$profile->distric_id,array('class'=>'form-control district','required')) !!}
+                                    @else
+                                        {!! Form::select('district',$districts,null,array('class'=>'form-control district','required')) !!}
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.subdistricts') }}</label>
+                                <div class="col-sm-4">
+                                    {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts','required')) !!}
+                                </div>
+
+                            <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
+                            <div class="col-sm-4">
+                                {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'),'required')) !!}
                             </div>
                         </div>
                     </div>
@@ -129,86 +199,19 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row show_submit">
         <div class="col-md-12 stretch-card">
             <div class="card">
-                <div class="card-body float-right">
+                <div class="card-body text-right">
                     <div class="panel panel-default" id="panel-lead-list">
-                        @if(!empty($profile))
-                            {!! Form::model($profile,array('url' => array('user/update_profile'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-                            <input type="hidden" name="id" value="{!! $profile->id !!}">
-                            <input type="hidden" name="photo_" value="{!! $profile->photo !!}">
-                            <input type="hidden" class="property_id" value="{!! $profile->id !!}">
-                            <input type="hidden" class="dis" name="dis" value="{!! $profile->distric_id !!}">
-                            <input type="hidden" class="subdis" name="subdis" value="{!! $profile->sub_id !!}">
-                            <input type="hidden" class="pro" name="pro" value="{!! $profile->povince_id !!}">
-                        @else
-                            {!! Form::model(null,array('url' => array('user/add_profile'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-                        @endif
-                        <div class="form-group row">
-                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
-                            <div class="col-sm-4">
-                                {!! Form::text('name_'.Session::get('locale'),null,array('class'=>'form-control','placeholder'=>trans('messages.profile.name'),'required')) !!}
-                            </div>
-
-                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.tell') !!}</lable>
-                            <div class="col-sm-4">
-                                {!! Form::text('tell',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.tell'))) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.address') !!}</lable>
-                            <div class="col-sm-10">
-                                {!! Form::text('address',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.address'))) !!}
-                            </div>
-                        </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.province') }}</label>
-                                <div class="col-sm-4">
-                                    @if(!empty($profile->povince_id))
-                                        {!! Form::select('province',$provinces,$profile->povince_id,array('class'=>'form-control province')) !!}
-                                    @else
-                                        {!! Form::select('province',$provinces,null,array('class'=>'form-control province')) !!}
-                                    @endif
-                                </div>
-
-                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.district') }}</label>
-                                <div class="col-sm-4">
-                                    @if(!empty($profile->povince_id))
-                                        {!! Form::select('district',$districts,$profile->distric_id,array('class'=>'form-control district')) !!}
-                                    @else
-                                        {!! Form::select('district',$districts,null,array('class'=>'form-control district')) !!}
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.subdistricts') }}</label>
-                                <div class="col-sm-4">
-                                    {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
-                                </div>
-
-                            <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
-                            <div class="col-sm-4">
-                                {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group row float-center" style="text-align: center; ">
-                            <div class="col-sm-12">
-                                <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                                <button class="btn-info btn-warning" type="reset">Reset</button>
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
+                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                        <button class="btn-info btn-warning" type="reset">Reset</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    {!! Form::close() !!}
 @endsection
 
 @section('script')
@@ -253,6 +256,8 @@
                 window.location.href ='/customer/order';
             });
 
+            $('.show_submit').hide();
+
             $('body').on('click', '.add-product',function(){
                 var id = $(this).data('id');
                 var product = $(this).data('product');
@@ -263,12 +268,13 @@
                 var unit = $(this).data('unit');
 
                 var time = $.now();
+                $('.show_submit').show();
 
                 //console.log(amount);
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
-                    '<td><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
+                    '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'" required><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
                     '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
                     '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
                     '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
@@ -372,12 +378,34 @@
                 });
             }
 
-            $('#add-store-btn').on('click',function () {
-                if($('.create-store-form').valid()) {
-                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
-                    $('.create-store-form').submit();
-                }
-            });
+            // ('#add-store-btn').validate({
+            //     rules: {
+            //         name  	: 'required',
+            //         quotation_id 	: 'required',
+            //         property_id 	    : 'required',
+            //         payment_term_type   : 'required',
+            //         type_service    : 'required',
+            //         start_date  : 'required',
+            //         end_date    : 'required',
+            //         property_name    : 'required'
+            //     },
+            //     errorPlacement: function(error, element) { element.addClass('error'); }
+            // });
+
+
+            // $('#change-active-status-btn').on('click', function () {
+            //     if($("#p_form").valid()) {
+            //         $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner"></i> ');
+            //         $("#p_form").submit();
+            //     }
+            // });
+
+            // $('#add-store-btn').on('click',function () {
+            //     if($('.create-store-form').valid()) {
+            //         $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+            //         $('.create-store-form').submit();
+            //     }
+            // });
 
             @if(!empty($profile))
             $('.subdistricts').attr("disabled", false);

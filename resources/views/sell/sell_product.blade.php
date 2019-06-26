@@ -18,7 +18,7 @@
                             <div class="row">
                                 <div class="col-sm-12 text-right">
                                     {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
-                                    <button type="button" class="btn btn-secondary search-store">{!! trans('messages.search') !!}</button>
+                                    {{--<button type="button" class="btn btn-secondary search-store">{!! trans('messages.search') !!}</button>--}}
                                 </div>
                             </div>
                         </form>
@@ -186,7 +186,7 @@
                         data: data,
                         success: function (e) {
                             $('.barcode').val("");
-                            //console.log(e);
+                            //console.log(e.amount);
                             var name_en = e.join_stock.name_th;
                             var name_th = e.join_stock.name_en;
                             var price = e.price_piece;
@@ -206,7 +206,7 @@
                                 '<td></td>',
                                 '<td><img src="' + photo + '" alt="" width="25%"></td>',
                                 '<td><span>' + name + '</span></td>',
-                                '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="100" value="1"></td>',
+                                '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="'+e.amount+'" value="1"></td>',
                                 '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
                                 '<td><input type="hidden" class="hide_id" value="'+id+'"><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',
                                 '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
@@ -303,7 +303,7 @@
 
             $('.itemTables').on("change", '.price_total', function() {
                 var price = $(this).val();
-                var price_product = $('.price').val();
+                var price_product = $(this).parents('tr').find('.price').val();
                 // console.log(price);
                 var total = price*price_product;
                 //$('body').parents('tr').find('.result').val(total);

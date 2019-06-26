@@ -109,9 +109,29 @@ class OrderController extends Controller
                 $order_customer_tran->amount = $t['amount'];
                 $order_customer_tran->total_price = $t['total'];
                 $order_customer_tran->save();
+
+                $product = product::find($t['id']);
+                $product->amount = abs($product->amount)-$t['amount'];
+                $product->save();
+
+                //dd($product); die();
             }
         }
+
+        $address = new address;
+        $address-> province_id = Request::input('province');
+        $address-> dis_id = Request::input('district');
+        $address-> sub_id = Request::input('sub_district');
+        $address-> post_code = Request::input('post_code');
+        $address-> name = Request::input('name');
+        $address-> tell = Request::input('tell');
+        $address-> address = Request::input('address');
+        $address-> id_order = 0;
+        $address-> code_order = $randomString;
+        $address->save();
         //dd($order_customer_tran) ; die();
+
+        //dd($address);
 
         return redirect('/customer/order');
     }
@@ -128,7 +148,7 @@ class OrderController extends Controller
             }
         }
 
-        $p_row = $order_customer->paginate(50);
+        $p_row = $order_customer->where('user_id',Auth::user()->id)->paginate(50);
 
         if(!Request::ajax()){
             return view ('customer.show_order')->with(compact('p_row'));
@@ -176,12 +196,24 @@ class OrderController extends Controller
 
         $p_row = $product->paginate(50);
 
+
+        $profile = address::where('code_order',$order_customer->order_code)->first();
+
+        $p = new Province;
+        $provinces = $p->getProvince();
+
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
         //return view('customer.edit_order')->with(compact('order_customer','order_tran'));
 
         if(!Request::ajax()){
-            return view ('customer.edit_order')->with(compact('p_row','cat','order_customer','order_tran'));
+            return view ('customer.edit_order')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts'));
         }else{
-            return view('customer.edit_order_element')->with(compact('p_row','cat','order_customer','order_tran'));
+            return view('customer.edit_order_element')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts'));
         }
     }
 
@@ -287,6 +319,65 @@ class OrderController extends Controller
     }
 
     public function zip_code(){
+        if(Request::isMethod('post')){
+            $z = new Subdistricts;
+            $z = $z->where('id',Request::get('id'));
+            $z = $z->get();
+
+            return response()->json($z);
+        }
+    }
+
+//Address
+    public function selectDistrict_address(){
+        if(Request::isMethod('post')) {
+            $d = new Districts;
+            $d = $d->where('province_id',Request::get('id'));
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function Subdistrict_address(){
+        if(Request::isMethod('post')){
+
+            $s = new Subdistricts;
+            $s = $s->where('district_id',Request::get('id'));
+            $s = $s->get();
+            return response()->json($s);
+        }
+    }
+
+
+    public function selectDistrictEdit_address(){
+        if(Request::isMethod('post')) {
+
+            $property = address::find(Request::get('id'));
+
+            //dd($property);
+            //$p = Districts::find(Request::get('id'));
+
+            $d = new Districts;
+            $d = $d->where('province_id',$property['province_id']);
+            $d = $d->get();
+
+            return response()->json($d);
+        }
+    }
+
+    public function editSubDis_address(){
+
+        $property = address::find(Request::get('id'));
+
+        $s = new Subdistricts;
+        $s = $s->where('district_id',$property['dis_id']);
+        $s = $s->get();
+
+        return response()->json($s);
+    }
+
+    public function zip_code_address(){
         if(Request::isMethod('post')){
             $z = new Subdistricts;
             $z = $z->where('id',Request::get('id'));

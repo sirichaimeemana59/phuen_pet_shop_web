@@ -16,6 +16,7 @@ class IndexController extends Controller
         $sick = new sick;
         $sick = $sick->get();
 
+        //dd($sick);
 
         $new = new news();
         $new = $new->get();

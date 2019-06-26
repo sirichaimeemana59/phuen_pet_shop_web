@@ -23,7 +23,7 @@ class CommentController extends Controller
             }
         }
 
-        $p_row = $comment->paginate(50);
+        $p_row = $comment->where('user_id',Auth::user()->id)->paginate(50);
 
         if(!$request->ajax()){
             return view('comment.list_comment')->with(compact('p_row'));

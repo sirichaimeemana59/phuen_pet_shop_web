@@ -48,14 +48,14 @@
                     <td>{!! $key+1 !!}</td>
                     <td><img src="{!! asset($row->join_stock['photo']) !!}" alt="" width="25%"></td>
                     <td>{!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>
-                    <td>{!! number_format($row->join_widen_trans['amount_widden'],0) !!}</td>
+                    <td>{!! number_format($row->amount,0) !!}</td>
                     <td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
                     <td>{!! $row->price_piece !!}</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right add-product" data-id="{!! $row->id !!}"
                             data-product="{!! $row->product_id !!}"
                             data-name="{!! $row->join_stock{'name_'.Session::get('locale')} !!}"
-                            data-amount="{!! number_format($row->join_widen_trans['amount_widden'],0) !!}"
+                            data-amount="{!! number_format($row->amount,0) !!}"
                             data-price="{!! $row->price_piece !!}"
                             data-unit_id="{!! $row->unit_sale !!}"
                             data-unit="@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif"

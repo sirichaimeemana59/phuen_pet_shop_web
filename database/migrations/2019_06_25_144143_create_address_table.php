@@ -22,6 +22,8 @@ class CreateAddressTable extends Migration
             $table->text('name');
             $table->text('tell');
             $table->text('address');
+            $table->integer('id_order');
+            $table->text('code_order');
             $table->timestamps();
         });
     }

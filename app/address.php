@@ -12,6 +12,6 @@ class address extends GeneralModel
 {
     protected $primaryKey = 'id';
     protected $table = 'address';
-    protected $fillable = ['province_id,dis_id,sub_id,post_code,name,tell,address'];
+    protected $fillable = ['province_id,dis_id,sub_id,post_code,name,tell,address,id_order,code_order'];
     public $timestamps = true;
 }

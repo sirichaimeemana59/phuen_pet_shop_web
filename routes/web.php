@@ -151,6 +151,11 @@ Route::post('/customer/order/delete','Customer\OrderController@destroy');
 Route::post('/address/select/district','Customer\OrderController@selectDistrict');
 Route::post('/address/select/district/edit','Customer\OrderController@selectDistrictEdit');
 Route::post('/address/select/zip_code','Customer\OrderController@zip_code');
+Route::post('/address/select/district/address','Customer\OrderController@selectDistrict_address');
+Route::post('/address/select/district/edit/address','Customer\OrderController@selectDistrictEdit_address');
+Route::post('/customer/select/editSubDis/address','Customer\OrderController@editSubDis_address');
+Route::post('/customer/select/subdistrict/address','Customer\OrderController@Subdistrict_address');
+Route::post('/customer/select/zip_code/address','Customer\OrderController@zip_code_address');
 
 //List Order Customer
 Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');
