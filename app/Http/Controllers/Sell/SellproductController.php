@@ -11,6 +11,7 @@ use App\sell_product;
 use App\sell_product_tranction;
 use App\order_walk;
 use App\order_walk_transection;
+use App\sale_good;
 
 class SellproductController extends Controller
 {
@@ -61,6 +62,26 @@ class SellproductController extends Controller
             $product->amount = abs($product->amount)-$t['amount'];
             $product->save();
 
+            $sale_good = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',1)->first();
+
+            //dd($sale_good);
+            if($sale_good){
+                $sale_good_ = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',1)->first();
+                $sale_good_->product_id = $t['product_id'];
+                $sale_good_->amount = $sale_good->amount + $t['amount'];
+                $sale_good_->date = date('Y-m-d');
+                $sale_good_->status = 1;
+                $sale_good_->save();
+                //dd($sale_good_);
+            }else{
+                $sale_good_ = new sale_good;
+                $sale_good_->amount =$t['amount'];
+                $sale_good_->product_id = $t['product_id'];
+                $sale_good_->date = date('Y-m-d');
+                $sale_good_->status = 1;
+                $sale_good_->save();
+                //dd($sale_good_);
+            }
         }
        // dd($product);
 

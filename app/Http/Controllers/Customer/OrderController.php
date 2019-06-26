@@ -18,6 +18,7 @@ use App\profile;
 use App\Districts;
 use App\Subdistricts;
 use App\Province;
+use App\sale_good;
 
 class OrderController extends Controller
 {
@@ -114,7 +115,25 @@ class OrderController extends Controller
                 $product->amount = abs($product->amount)-$t['amount'];
                 $product->save();
 
-                //dd($product); die();
+                $sale_good = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+
+                if($sale_good){
+                    $sale_good_ = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+                    $sale_good_->product_id = $t['product_id'];
+                    $sale_good_->amount = $sale_good->amount + $t['amount'];
+                    $sale_good_->date = date('Y-m-d');
+                    $sale_good_->status = 2;
+                    $sale_good_->save();
+                    //dd($sale_good_);
+                }else{
+                    $sale_good_ = new sale_good;
+                    $sale_good_->amount =$t['amount'];
+                    $sale_good_->product_id = $t['product_id'];
+                    $sale_good_->date = date('Y-m-d');
+                    $sale_good_->status = 2;
+                    $sale_good_->save();
+                    //dd($sale_good_);
+                }
             }
         }
 
@@ -253,6 +272,26 @@ class OrderController extends Controller
             $product->save();
             $order_customer_tran->save();
 
+            $sale_good = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+
+            if($sale_good){
+                $sale_good_ = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+                $sale_good_->product_id = $t['product_id'];
+                $sale_good_->amount = $sale_good->amount + $t['amount'];
+                $sale_good_->date = date('Y-m-d');
+                $sale_good_->status = 2;
+                $sale_good_->save();
+                //dd($sale_good_);
+            }else{
+                $sale_good_ = new sale_good;
+                $sale_good_->amount =$t['amount'];
+                $sale_good_->product_id = $t['product_id'];
+                $sale_good_->date = date('Y-m-d');
+                $sale_good_->status = 2;
+                $sale_good_->save();
+                //dd($sale_good_);
+            }
+
         }
 
         if(!empty(Request::input('data'))){
@@ -269,6 +308,26 @@ class OrderController extends Controller
                 $product = product::find($t['id']);
                 $product->amount = abs($product->amount)-$t['amount'];
                 $product->save();
+
+                $sale_good = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+
+                if($sale_good){
+                    $sale_good_ = sale_good::where('product_id',$t['product_id'])->whereDate('date',date('Y-m-d'))->where('status',2)->first();
+                    $sale_good_->product_id = $t['product_id'];
+                    $sale_good_->amount = $sale_good->amount + $t['amount'];
+                    $sale_good_->date = date('Y-m-d');
+                    $sale_good_->status = 2;
+                    $sale_good_->save();
+                    //dd($sale_good_);
+                }else{
+                    $sale_good_ = new sale_good;
+                    $sale_good_->amount =$t['amount'];
+                    $sale_good_->product_id = $t['product_id'];
+                    $sale_good_->date = date('Y-m-d');
+                    $sale_good_->status = 2;
+                    $sale_good_->save();
+                    //dd($sale_good_);
+                }
             }
         }
 
