@@ -25,9 +25,10 @@ class ProductController extends Controller
         $product = new product;
 
         if($request->method('post')) {
-            if ($request->input('name')) {
-                $product = $product->where('name_th', 'like', "%" . $request->input('name') . "%")
-                    ->orWhere('name_en', 'like', "%" . $request->input('name') . "%");
+            if($request->get('name')){
+                $product = $product->whereHas('join_stock', function ($q) use($request) {
+                    $q ->where('id','=',$request->input('name'));
+                });
             }
         }
 

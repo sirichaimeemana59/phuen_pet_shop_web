@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-sm-12 text-right">
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.category.title') !!}</button>
-                                <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
+                                {{--<a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>--}}
                             </div>
                         </div>
                         <br>

@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-sm-12 text-right">
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.group.title') !!}</button>
-                                <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
+                                {{--<a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>--}}
                             </div>
                         </div>
                         <br>
@@ -183,7 +183,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/category/list',
+                    url : '/employee/group/list',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -199,7 +199,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/cagetory/list';
+                window.location.href ='/employee/group/list';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -217,7 +217,7 @@
             });
 
 
-            $('.view-store').on('click',function(){
+            $('body').on('click','.view-store',function(){
                 var id = $(this).data('id');
                 //console.log(id);
                 $('#view-store').modal('show');
@@ -237,7 +237,7 @@
                 });
             });
 
-            $('.edit-store').on('click',function(){
+            $('body').on('click','.edit-store',function(){
                 var id = $(this).data('id');
                 console.log(id);
                 $('#edit-store').modal('show');
@@ -257,7 +257,7 @@
                 });
             });
 
-            $('.delete-store').on('click',function(){
+            $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
                     title: "Are you sure?",

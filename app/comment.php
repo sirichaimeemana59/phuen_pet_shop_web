@@ -18,6 +18,6 @@ class comment extends GeneralModel
 
     public function join_reply()
     {
-        return $this->hasOne('App\reply_comment','comment_id','id');
+        return $this->hasMany('App\reply_comment','comment_id','id');
     }
 }

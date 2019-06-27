@@ -41,4 +41,5 @@ class product extends GeneralModel
         return $this->hasOne('App\widden__transection','id_product_stock','product_id');
     }
 
+
 }
