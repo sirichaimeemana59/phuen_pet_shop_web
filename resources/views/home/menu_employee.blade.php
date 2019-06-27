@@ -28,12 +28,12 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{!! url('/employee/unit_store') !!}">
-                <i class="fa fa-list-ul menu-icon"></i>
-                <span class="menu-title">{!! trans('messages.unit.title') !!}</span>
-            </a>
-        </li>
+        {{--<li class="nav-item">--}}
+            {{--<a class="nav-link" href="{!! url('/employee/unit_store') !!}">--}}
+                {{--<i class="fa fa-list-ul menu-icon"></i>--}}
+                {{--<span class="menu-title">{!! trans('messages.unit.title') !!}</span>--}}
+            {{--</a>--}}
+        {{--</li>--}}
         <li class="nav-item">
             <a class="nav-link" href="{!! url('/employee/sell/product') !!}">
                 <i class="fa fa-sellsy menu-icon"></i>
