@@ -17,6 +17,8 @@ class company extends GeneralModel
     public $timestamps = true;
     protected $softDelete = true;
 
+
+
     public function join_province()
     {
         return $this->hasOne('App\province','id','province');
@@ -30,5 +32,19 @@ class company extends GeneralModel
     public function join_Subdistricts()
     {
         return $this->hasOne('App\Subdistricts','id','districts');
+    }
+
+    public function getCompany()
+    {
+        /*$lang = session()->get('lang');
+        $provinces = array(''=> trans('messages.AboutProp.province') );
+        return $provinces += $this->orderBy('name_'.$lang, 'ASC')->lists('name_'.$lang,'code')->toArray();*/
+
+        $lang = app()->getLocale();
+        $provinces = $this->orderBy('name_'.$lang, 'ASC')->pluck('name_'.$lang,'id')->toArray();
+        asort($provinces);
+        $provinceFirst = array(''=> trans('messages.store.title'));
+        $provincesAll = $provinceFirst + $provinces;
+        return $provincesAll;
     }
 }

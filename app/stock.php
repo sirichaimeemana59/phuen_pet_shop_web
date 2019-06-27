@@ -13,7 +13,7 @@ class stock extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'stock';
-    protected $fillable = ['name_th,name_en,photo,deleted_at,code,amount,cat_id,group_id,bar_code'];
+    protected $fillable = ['name_th,name_en,photo,deleted_at,code,amount,cat_id,group_id,bar_code,company_id'];
     public $timestamps = true;
     protected $softDelete = true;
 

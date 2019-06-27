@@ -20,6 +20,7 @@ class CreateOrderCompanyTransectionTable extends Migration
             $table->text('name');
             $table->decimal('amount',10,0);
             $table->integer('unit');
+            $table->text('unit_name');
             $table->timestamps();
         });
     }

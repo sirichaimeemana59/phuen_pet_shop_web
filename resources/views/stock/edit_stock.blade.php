@@ -67,7 +67,7 @@
                                     <select name="store_id" id="" class="form-control">
                                         <option value="">{!! trans('messages.store.title') !!}</option>
                                         @foreach($company_ as $key => $val)
-                                            <option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>
+                                            <option value="{!! $val->id !!}" @if($stock->company_id == $val->id) selected @endif>{!! $val->{'name_'.Session::get('locale')} !!}</option>
                                         @endforeach
                                     </select>
                                 </div>

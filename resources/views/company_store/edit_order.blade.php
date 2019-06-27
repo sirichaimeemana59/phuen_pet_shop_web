@@ -9,64 +9,68 @@
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
-                            {!! Form::model(null,array('url' => array('/employee/add/order_company'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            {!! Form::model($order,array('url' => array('/employee/update/order_company'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <div class="form-group row">
+                                <input type="hidden" name="id_order" value="{!! $order->id !!}" class="id_order">
                                 <label class="col-sm-2 control-label">{{ trans('messages.store.title') }}</label>
                                 <div class="col-sm-10">
-                                    {!! Form::select('company_id',$store,null,array('class'=>'form-control company')) !!}
+                                    <input type="hidden" value="{!! $order->join_company->province !!}" class="id_pro">
+                                    <input type="hidden" value="{!! $order->join_company->districts !!}" class="districts">
+                                    <input type="hidden" value="{!! $order->join_company->subdistricts !!}" class="subdistricts">
+                                    {!! Form::select('company_id',$store,null,array('class'=>'form-control company','readonly','disabled')) !!}
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.unit.name') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('name',null,array('class'=>'form-control name','placeholder'=>trans('messages.unit.name'),'readonly')) !!}
+                                    {!! Form::text('name',$order->join_company['name_'.Session::get('locale')],array('class'=>'form-control name','placeholder'=>trans('messages.unit.name'),'readonly')) !!}
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.store.tell') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('tell',null,array('class'=>'form-control tell','placeholder'=>trans('messages.store.tell'),'readonly')) !!}
+                                    {!! Form::text('tell',$order->join_company->tell,array('class'=>'form-control tell','placeholder'=>trans('messages.store.tell'),'readonly')) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.store.tax') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('tax_id',null,array('class'=>'form-control tax_id','placeholder'=>trans('messages.store.tax'),'readonly')) !!}
+                                    {!! Form::text('tax_id',$order->join_company->tax_id,array('class'=>'form-control tax_id','placeholder'=>trans('messages.store.tax'),'readonly')) !!}
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.store.mail') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('email',null,array('class'=>'form-control email','placeholder'=>trans('messages.store.mail'),'readonly')) !!}
+                                    {!! Form::text('email',$order->join_company->email,array('class'=>'form-control email','placeholder'=>trans('messages.store.mail'),'readonly')) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.province') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('province_id',null,array('class'=>'form-control province_id','placeholder'=>trans('messages.profile.province'),'readonly')) !!}
+                                    {!! Form::text('province_id',$order->join_company->join_province['name_in_'.Session::get('locale')],array('class'=>'form-control province_id','placeholder'=>trans('messages.profile.province'),'readonly')) !!}
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.district') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('dis_id',null,array('class'=>'form-control dis_id','placeholder'=>trans('messages.profile.district'),'readonly')) !!}
+                                    {!! Form::text('dis_id',$order->join_company->join_Districts['name_'.Session::get('locale')],array('class'=>'form-control dis_id','placeholder'=>trans('messages.profile.district'),'readonly')) !!}
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.sub') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('sub_id',null,array('class'=>'form-control sub_id','placeholder'=>trans('messages.profile.sub'),'readonly')) !!}
+                                    {!! Form::text('sub_id',$order->join_company->join_Subdistricts['name_'.Session::get('locale')],array('class'=>'form-control sub_id','placeholder'=>trans('messages.profile.sub'),'readonly')) !!}
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.post') !!}</lable>
                                 <div class="col-sm-4">
-                                    {!! Form::text('post_code',null,array('class'=>'form-control post_code','placeholder'=>trans('messages.profile.post'),'readonly')) !!}
+                                    {!! Form::text('post_code',$order->join_company->post_code,array('class'=>'form-control post_code','placeholder'=>trans('messages.profile.post'),'readonly')) !!}
                                     <input type="hidden" class="id">
                                     {{--<input type="text" required>--}}
                                 </div>
                             </div>
 
-                            <div class="card-body show" style="display: none;">
+                            <div class="card-body">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">{!! trans('messages.order.order') !!}</h3>
                                 </div>
@@ -80,6 +84,52 @@
                                                 <th>{!! trans('messages.unit.title') !!}</th>
                                                 <th>{!! trans('messages.action') !!}</th>
                                             </tr>
+                                            @foreach($order_ as $key => $t)
+                                                <tr>
+                                                    <td><input type="hidden" class="form-control" name="data_[{!! $key !!}][id]" value="{!! $t['id'] !!}"></td>
+                                                    {{--<td><input type="text" class="form-control" name="data_[{!! $key !!}][amount]" value="{!! $t->amount !!}"></td>--}}
+                                                    @if($t['name'] != null)
+                                                        <td><input type="text" class="form-control" name="data_[{!! $key !!}][product_name]" value="{!! $t['name'] !!}"></td>
+                                                        <td><input type="text" class="form-control num" name="data_[{!! $key !!}][amount]" value="{!! $t['amount'] !!}"></td>
+                                                        <td><input type="text" class="form-control" name="data_[{!! $key !!}][unit_name]" value="{!! $t['unit_name'] !!}"></td>
+                                                    @else
+                                                     <td>
+                                                         <select name="data_[{!! $key !!}][product_id]" id="" class="form-control">
+                                                             @foreach($stock as $key_ => $v)
+                                                                 <option value="{!! $t->product_id !!}" @if($t->product_id == $v->id) selected @endif>{!! $v{'name_'.Session::get('locale')} !!}</option>
+                                                             @endforeach
+                                                         </select>
+                                                     </td>
+                                                        <td><input type="text" class="form-control num" name="data_[{!! $key !!}][amount]" value="{!! $t->amount !!}"></td>
+                                                        <td>
+                                                            <select name="data_[{!! $key !!}][unit]" id="" class="form-control">
+                                                                <option value="{!! $t->join_stock->join_stock_log['id'] !!}" @if($t->join_stock->join_stock_log['id'] == $t['unit']) selected @endif>{!! $t->join_stock->join_stock_log{'name_'.Session::get('locale')} !!}</option>
+                                                                {{--{!! dd($t->join_stock->join_unit_transection) !!}--}}
+                                                                @foreach($t->join_stock->join_unit_transection as $k => $v)
+                                                                    <option value="{!! $v->id !!}" @if($t->unit == $v->id) selected @endif>{!! $v{'name_'.Session::get('locale')} !!}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </td>
+                                                    @endif
+
+                                                    {{--<td><input type="text" class="form-control" name="data_[{!! $key !!}][amount]" value="{!! $t->amount !!}"></td>--}}
+
+                                                    {{--@if(!empty($t['unit_name']))--}}
+                                                        {{--<td><input type="text" class="form-control" name="data_[{!! $key !!}][unit_name]" value="{!! $t['unit_name'] !!}"></td>--}}
+                                                    {{--@else--}}
+                                                        {{--<td>--}}
+                                                            {{--<select name="data_[{!! $key !!}][product_id]" id="" class="form-control">--}}
+                                                                {{--<option value="{!! $t->join_stock->join_stock_log['id'] !!}" @if($t->join_stock->join_stock_log['id'] == $t['unit']) selected @endif>{!! $t->join_stock->join_stock_log{'name_'.Session::get('locale')} !!}</option>--}}
+                                                                {{--{!! dd($t->join_stock->join_unit_transection) !!}--}}
+                                                                {{--@foreach($t->join_stock->join_unit_transection as $key => $v)--}}
+                                                                    {{--<option value="{!! $v->id !!}" @if($t->unit == $v->id) selected @endif>{!! $v{'name_'.Session::get('locale')} !!}</option>--}}
+                                                                {{--@endforeach--}}
+                                                            {{--</select>--}}
+                                                        {{--</td>--}}
+                                                    {{--@endif--}}
+                                                    <td><a class="btn btn-danger delete-order" data-id="{!! $t['id'] !!}"><i class="mdi mdi-delete-sweep"></i></a></td>
+                                                </tr>
+                                            @endforeach
                                         </table>
                                     </div>
                                 </div>
@@ -90,35 +140,8 @@
             </div>
         </div>
     </div>
-
-    {{--<br>--}}
-    {{--<div class="row show" style="display: none;">--}}
-        {{--<div class="col-md-12 stretch-card">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-body">--}}
-                    {{--<div class="panel-heading">--}}
-                        {{--<h3 class="panel-title">{!! trans('messages.order.order') !!}</h3>--}}
-                    {{--</div>--}}
-                    {{--<div class="panel panel-default" id="panel-lead-list">--}}
-                        {{--<div class="panel-body" id="landing-subject-list">--}}
-                            {{--<table class="table itemTables" style="width: 100%">--}}
-                                {{--<tr>--}}
-                                    {{--<th width="20%"><button class="btn btn-primary mt-2 mt-xl-0 text-right add-store" type="button"><i class="fa fa-plus-circle"></i>  {!! trans('messages.order.title') !!}</button></th>--}}
-                                    {{--<th>{!! trans('messages.product.head_product') !!}</th>--}}
-                                    {{--<th>{!! trans('messages.product.amount') !!}</th>--}}
-                                    {{--<th>{!! trans('messages.unit.title') !!}</th>--}}
-                                    {{--<th>{!! trans('messages.action') !!}</th>--}}
-                                {{--</tr>--}}
-                            {{--</table>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
     <br>
-    <div class="row show" style="display: none;">
+    <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body float-right">
@@ -143,19 +166,7 @@
     <script type="text/javascript">
         $('.product_select').hide();
 
-        $('body').on("keypress",'.num' , function (e) {
-
-            var code = e.keyCode ? e.keyCode : e.which;
-
-            if(code > 57){
-                return false;
-            }else if(code < 48 && code != 8){
-                return false;
-            }
-
-        });
         $(document).ready(function() {
-
 
             $.ajaxSetup({
                 headers: {
@@ -219,9 +230,9 @@
             });
 
             $('body').on('click','.search_product',function(){
-               var id = $('.id').val();
-               var this_ = $(this);
-
+                var id = $('.id_order').val();
+                var this_ = $(this);
+                // console.log(id);
                 $.ajax({
                     url: '/customer/search/product',
                     method:'POST',
@@ -252,15 +263,15 @@
                     data : ({'id':data}),
                     success : function(e){
                         $('.show').show();
-                       console.log(e);
-                       $('.name').val(e.name{!! '_'.Session::get('locale') !!});
-                       $('.tell').val(e.tell);
-                       $('.tax_id').val(e.tax_id);
-                       $('.email').val(e.email);
-                       $('.id').val(e.id);
+                        console.log(e);
+                        $('.name').val(e.name{!! '_'.Session::get('locale') !!});
+                        $('.tell').val(e.tell);
+                        $('.tax_id').val(e.tax_id);
+                        $('.email').val(e.email);
+                        $('.id').val(e.id);
 
-                       // $('.dis_id').val(e.districts);
-                       // $('.sub_id').val(e.subdistricts);
+                        // $('.dis_id').val(e.districts);
+                        // $('.sub_id').val(e.subdistricts);
                         $('.post_code').val(e.post_code);
 
                         selectProvince(e.province);
@@ -409,6 +420,46 @@
                 })
             }
 
+            $("body").on("keypress",'.num' , function (e) {
+
+                var code = e.keyCode ? e.keyCode : e.which;
+
+                if(code > 57){
+                    return false;
+                }else if(code < 48 && code != 8){
+                    return false;
+                }
+
+            });
+
+            $('body').on('click','.delete-order',function(){
+                var id = $(this).data('id');
+                var id_order = $('.id_order').val();
+                 //console.log(id_order);
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete)=> {
+                    if (willDelete) {
+                        setTimeout(function() {
+                            $.post("/employee/order_company/delete", {
+                                id: id
+                            }, function(e) {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                }).then(function(){
+                                    window.location.href ='/employee/edit/order_company/'+id_order
+                                });
+                            });
+                        }, 50);
+                    } else {
+                        swal("Your imaginary file is safe!");
+            }
+            });
+            });
 
         });
     </script>

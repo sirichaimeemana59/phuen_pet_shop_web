@@ -105,7 +105,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/list_order',
+                    url : '/employee/company_store/order',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -121,7 +121,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/list_order';
+                window.location.href ='/employee/company_store/order';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -249,7 +249,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/order/view',
+                    url : '/employee/order_company/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -264,6 +264,7 @@
 
             $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
+                // console.log(id);
                 swal({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -273,13 +274,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/order/delete", {
+                            $.post("/employee/order_company/delete_order", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/list_order_customer'
+                                    window.location.href ='/employee/company_store/order'
                                 });
                             });
                         }, 50);

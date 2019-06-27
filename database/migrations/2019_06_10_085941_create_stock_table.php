@@ -21,6 +21,7 @@ class CreateStockTable extends Migration
             $table->text('photo');
             $table->text('code');
             $table->text('bar_code');
+            $table->integer('company_id');
             $table->timestamps();
         });
     }

@@ -104,6 +104,7 @@ class StockController extends Controller
         $stock->cat_id = $request->input('cat_id');
         $stock->group_id = $request->input('group_id');
         $stock->bar_code = $request->input('bar_code');
+        $stock->company_id = $request->input('store_id');
         $stock->save();
 
         foreach ($request->input('data') as $t){
@@ -226,6 +227,7 @@ class StockController extends Controller
             $stock->cat_id = $request->input('cat_id');
             $stock->group_id = $request->input('group_id');
             $stock->bar_code = $request->input('bar_code');
+            $stock->company_id = $request->input('store_id');
             $stock->save();
 
         }else{
@@ -237,6 +239,7 @@ class StockController extends Controller
             $stock->cat_id = $request->input('cat_id');
             $stock->group_id = $request->input('group_id');
             $stock->bar_code = $request->input('bar_code');
+            $stock->company_id = $request->input('store_id');
             $stock->save();
         }
 
@@ -300,6 +303,9 @@ class StockController extends Controller
         $company_ = new company;
         $company_ = $company_->get();
 
+        $store = new company;
+        $store = $store->getCompany();
+
         $unit = new unit;
         $unit = $unit->get();
 
@@ -309,7 +315,7 @@ class StockController extends Controller
         $cat_tran = new cat_transection;
         $cat_tran = $cat_tran->get();
 
-        return view ('stock.add')->with(compact('company_','unit','cat','cat_tran'));
+        return view ('stock.add')->with(compact('company_','unit','cat','cat_tran','store'));
     }
 
     public function select_unit_tran(Request $request){

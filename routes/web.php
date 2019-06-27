@@ -218,3 +218,15 @@ Route::post('/employee/promotion/delete','Promotion\PromotionController@destroy'
 //order company
 Route::any('/employee/company_store/order','Product\OrderCompanyController@index');
 Route::get('/employee/create/order_company','Product\OrderCompanyController@create');
+Route::post('/customer/search/company','Product\OrderCompanyController@company');
+Route::post('/company/select_province','Product\OrderCompanyController@selectProvince');
+Route::post('/company/select_dis','Product\OrderCompanyController@selectDistrict');
+Route::post('/company/select_Subdis','Product\OrderCompanyController@Subdistrict');
+Route::post('/customer/search/product','Product\OrderCompanyController@product');
+Route::post('/employee/add/order_company','Product\OrderCompanyController@show');
+Route::post('/customer/search/unit','Product\OrderCompanyController@unit');
+Route::post('/employee/order_company/view','Product\OrderCompanyController@view');
+Route::get('/employee/edit/order_company/{id?}','Product\OrderCompanyController@edit');
+Route::post('/employee/update/order_company','Product\OrderCompanyController@update');
+Route::post('/employee/order_company/delete','Product\OrderCompanyController@delete');
+Route::post('/employee/order_company/delete_order','Product\OrderCompanyController@destroy');

@@ -10,6 +10,12 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
                             {!! Form::model(null,array('url' => array('employee/product/add_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            {{--<div class="form-group row">--}}
+                                {{--<label class="col-sm-2 control-label">{{ trans('messages.store.title') }}</label>--}}
+                                {{--<div class="col-sm-10">--}}
+                                    {{--{!! Form::select('company_id',$store,null,array('class'=>'form-control company')) !!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
                                 <div class="col-sm-4">
