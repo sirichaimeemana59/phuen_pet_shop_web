@@ -6,9 +6,17 @@ use Request;
 use App\Http\Controllers\Controller;
 use App\sick;
 use App\sick_transection;
+use Redirect;
+use Auth;
 
 class SickController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
+
 
     public function index()
     {

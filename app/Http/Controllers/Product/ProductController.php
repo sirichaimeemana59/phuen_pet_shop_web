@@ -15,10 +15,16 @@ use Auth;
 use App\unit;
 use App\widen;
 use App\widden_product;
+use Redirect;
 
 
 class ProductController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index(Request $request)
     {

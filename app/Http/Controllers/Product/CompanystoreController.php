@@ -11,9 +11,15 @@ use App\Districts;
 use App\Subdistricts;
 use App\Province;
 use App\company;
+use Redirect;
 
 class CompanystoreController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index()
     {

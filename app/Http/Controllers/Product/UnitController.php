@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Product;
 
 use Request;
 use App\Http\Controllers\Controller;
+use Redirect;
+use Auth;
 
 use App\unit;
 
 class UnitController extends Controller
 {
+
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index()
     {

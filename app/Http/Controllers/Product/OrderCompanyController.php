@@ -16,9 +16,15 @@ use App\company;
 use App\Districts;
 use App\Subdistricts;
 use App\Province;
+use Redirect;
 
 class OrderCompanyController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index()
     {

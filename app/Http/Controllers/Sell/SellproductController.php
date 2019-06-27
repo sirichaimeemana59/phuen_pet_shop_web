@@ -12,9 +12,16 @@ use App\sell_product_tranction;
 use App\order_walk;
 use App\order_walk_transection;
 use App\sale_good;
+use Redirect;
 
 class SellproductController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
+
 
     public function index()
     {

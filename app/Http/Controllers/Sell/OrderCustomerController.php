@@ -10,9 +10,16 @@ use App\order_customer;
 use App\order_customer_transection;
 use App\product;
 use App\cat;
+use Redirect;
 
 class OrderCustomerController extends Controller
 {
+
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index()
     {

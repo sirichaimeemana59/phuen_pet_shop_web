@@ -7,9 +7,16 @@ use Request;
 use App\Http\Controllers\Controller;
 use App\cat;
 use App\group;
+use Redirect;
+use Auth;
 
 class CategoryController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index()
     {

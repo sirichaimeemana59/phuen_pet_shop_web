@@ -8,9 +8,17 @@ use PDF;
 use App\order_walk;
 use App\order_walk_transection;
 use session;
+use Redirect;
+use Auth;
 
 class ReceiptController extends Controller
 {
+
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index($id = null)
     {

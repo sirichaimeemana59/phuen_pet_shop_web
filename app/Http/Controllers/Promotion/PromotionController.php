@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\promotion;
 use ImageUploadAndResizer;
+use Redirect;
+use Auth;
 
 class PromotionController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index(Request $request)
     {

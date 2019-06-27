@@ -11,9 +11,17 @@ use App\widen_report;
 use App\stock_log;
 use App\widden_product;
 use App\widden__transection;
+use Redirect;
+use Auth;
 
 class WidenController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
+
     public function index()
     {
         $stock = new stock;

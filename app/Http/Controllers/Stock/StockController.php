@@ -14,9 +14,16 @@ use App\stock_log;
 use PHPExcel_Style_Border;
 use App\cat;
 use App\cat_transection;
+use Redirect;
+use Auth;
 
 class StockController extends Controller
 {
+    protected $app;
+
+    public function __construct () {
+        $this->middleware('admin');
+    }
 
     public function index(Request $request)
     {

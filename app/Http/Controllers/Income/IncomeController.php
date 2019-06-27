@@ -14,10 +14,15 @@ use App\income;
 use Auth;
 use App\bill_payment;
 use ImageUploadAndResizer;
+use Redirect;
 
 class IncomeController extends Controller
 {
+    protected $app;
 
+    public function __construct () {
+        $this->middleware('admin');
+    }
     public function index(Request $request)
     {
         $order = new order_walk;
