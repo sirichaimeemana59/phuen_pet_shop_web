@@ -18,11 +18,11 @@ use Redirect;
 
 class IncomeController extends Controller
 {
-    protected $app;
-
-    public function __construct () {
-        $this->middleware('admin');
-    }
+//    protected $app;
+//
+//    public function __construct () {
+//        $this->middleware('admin');
+//    }
     public function index(Request $request)
     {
         $order = new order_walk;
@@ -146,6 +146,7 @@ class IncomeController extends Controller
 
     public function bill_save(Request $request)
     {
+        //dd($request->input('id_bill'));
         $order = order_customer::find($request->input('id_bill'));
 
         $fileNameToDatabase = '//via.placeholder.com/250x250';

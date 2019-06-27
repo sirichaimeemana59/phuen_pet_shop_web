@@ -171,7 +171,7 @@
                 }
             });
 
-            $('.add-bill').on('click',function(){
+            $('body').on('click','.add-bill',function(){
                 $('#add-store').modal('show');
                 var id = $(this).data('id');
                 $('.id_order').val(id);

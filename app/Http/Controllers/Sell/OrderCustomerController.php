@@ -11,6 +11,13 @@ use App\order_customer_transection;
 use App\product;
 use App\cat;
 use Redirect;
+use App\Districts;
+use App\Subdistricts;
+use App\Province;
+use App\address;
+use App\profile;
+use DB;
+use Session;
 
 class OrderCustomerController extends Controller
 {
@@ -146,12 +153,23 @@ class OrderCustomerController extends Controller
 
         $p_row = $product->paginate(50);
 
+        $p = new Province;
+        $provinces = $p->getProvince();
+
+        $d = new Districts;
+        $districts = $d->getDistricts();
+
+        $s = new Subdistricts;
+        $subdistricts = $s->getSubdistricts();
+
+//        $profile = profile::where('user_id',$order_customer->user_id)->first();
+        $profile = address::where('code_order',$order_customer->order_code)->first();
         //return view('customer.edit_order')->with(compact('order_customer','order_tran'));
 
         if (!Request::ajax()) {
-            return view('customer.edit_order')->with(compact('p_row', 'cat', 'order_customer', 'order_tran'));
+            return view('customer.edit_order')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
         } else {
-            return view('customer.edit_order_element')->with(compact('p_row', 'cat', 'order_customer', 'order_tran'));
+            return view('customer.edit_order_element')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
         }
     }
 
@@ -223,5 +241,30 @@ class OrderCustomerController extends Controller
         $order_customer->save();
 
         return redirect('/employee/list_order_customer');
+    }
+
+    public function sent_to_car(){
+        $order = order_customer::find(Request::input('id'));
+
+//        //dd($order->order_code);
+//        //$product_name = product::with('join_stock')->where('id',$product->id)->first();
+//        $address = address::where('code_order',$order->order_code)->first();
+////dd($address->province_id);
+////        $address_ = address::with('join_province')->where('id',$address->province_id)
+////            ->with('join_Districts')->where('id',$address->dis_id)
+////            ->with('join_Subdistricts')->where('id',$address->sub_id)->first();
+
+        $address_ = DB::table('address')
+            ->join('provinces', 'address.province_id', '=', 'provinces.id')
+            ->join('districts', 'address.dis_id', '=', 'districts.id')
+            ->join('subdistricts', 'address.sub_id', '=', 'subdistricts.id')
+            ->select('address.*', 'provinces.name_in_'.Session::get('locale'), 'districts.name_'.Session::get('locale'),'subdistricts.name_th as name_sub_th','subdistricts.name_en as name_sub_en')
+            ->where('code_order',$order->order_code)->first();
+
+        $data["order"] = $order;
+        $data["address_"] = $address_;
+
+        return response()->JSON($data);
+
     }
 }

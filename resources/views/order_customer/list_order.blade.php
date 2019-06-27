@@ -80,6 +80,77 @@
         </div>
     </div>
     <!-- End Modal view store-->
+
+    <!-- Modal view addredd-->
+    <div class="modal fade" id="view-address" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #9BA2AB;">
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.profile.address') !!}</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control id_order" size="25" placeholder="{!! trans('messages.order.id') !!}" name="name">
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control name" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.address') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control address" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.tell') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control tell" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.sub') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control sub" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.district') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control dis" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.province') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control province" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.post') !!}</lable>
+                                <div class="col-sm-4">
+                                    <input class="form-control post_code" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="v-loading">กำลังค้นหาข้อมูล...</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Modal view addredd-->
 @endsection
 
 @section('script')
@@ -314,6 +385,34 @@
                         swal("Your imaginary file is safe!");
             }
             });
+            });
+
+            $('body').on('click','.to_car',function(){
+               var id = $(this).data('id');
+                $('#view-address').modal('show');
+                $('.v-loading').show();
+               //console.log(id);
+                $.ajax({
+                    url : '/employee/order/sent_to_car',
+                    method : 'post',
+                    dataType : 'JSON',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.v-loading').hide();
+                        console.log(e.address_);
+                        $('.id_order').val(e.address_.code_order);
+                        $('.address').val(e.address_.address);
+                        $('.dis').val(e.address_.name{!!'_'. Session::get('locale') !!});
+                        {{--$('.sub').val(e.address_.name{!!'_'. Session::get('locale') !!});--}}
+                        $('.province').val(e.address_.name_in{!!'_'. Session::get('locale') !!});
+                        $('.post_code').val(e.address_.post_code);
+                        $('.tell').val(e.address_.tell);
+                        $('.sub').val(e.address_.name_sub{!!'_'. Session::get('locale') !!});
+                        $('.name').val(e.address_.name);
+                    } ,error : function(){
+                        console.log('Error View Data Order');
+                    }
+                });
             });
         });
     </script>
