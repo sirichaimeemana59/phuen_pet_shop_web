@@ -10,13 +10,22 @@
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
+                                <lable class="col-sm-2 control-label"></lable>
                                 <div class="col-sm-3 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.comment.title') !!}" name="name">
+                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.to') !!}</lable>
+                                <div class="col-sm-3 block-input">
+                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_to">
                                 </div>
 
-                                {{--<div class="col-sm-3 block-input">--}}
-                                {{--<input class="form-control" size="25" placeholder="{!! trans('messages.id') !!}" name="id">--}}
-                                {{--</div>--}}
+                                <lable class="col-sm-2 control-label">{!! trans('messages.go') !!}</lable>
+                                <div class="col-sm-3 block-input">
+                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_go">
+                                </div>
                             </div>
 
                             <div class="row">
@@ -66,6 +75,10 @@
     <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.1.4/css/dx.light.css">
     <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/19.1.4/js/dx.all.js"></script>
 
+    <script type="text/javascript" src="{!! url('/') !!}/js_/js/datepicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="{!! url('/') !!}/js_/js/datepicker/bootstrap-datepicker.th.js"></script>
+
+
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -75,15 +88,17 @@
                 }
             });
 
+
             $('.add-store').on('click',function(){
                 $('#add-store').modal('show');
             });
 
             $('body').on('click','.search-store', function () {
-                var data = 0;
+                var data  = $('#search-form').serialize();
+                //console.log(data);
                 $.ajax({
                     url: $('#root-url').val() + "/report/chart/sale_good",
-                    data: {'data': data},
+                    data: data,
                     dataType: "json",
                     method: 'post',
                     success: function (h) {
@@ -111,7 +126,7 @@
                 });
 
                 //console.log(name);
-                 console.log(populationData);
+                 //console.log(populationData);
                 $('#chart').dxChart('instance').option('dataSource', populationData);
                 $('#chart').dxChart('instance').render();
             }
