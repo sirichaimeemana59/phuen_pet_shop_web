@@ -292,4 +292,7 @@ return [
         'detail_en' => 'รายละเอียด [EN]',
         'discount' => 'ส่วนลด',
     ],
+    'sale_good' => [
+        'title' => 'สินค้าขายดี',
+    ]
 ];

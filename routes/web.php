@@ -235,3 +235,7 @@ Route::post('/employee/order_company/delete_order','Product\OrderCompanyControll
 //Send Order To customer
 Route::post('/employee/order/sent_to_car','Sell\OrderCustomerController@sent_to_car');
 Route::post('/employee/print/post_parcle','Sell\OrderCustomerController@post_parcle');
+
+//report sale good
+Route::get('/report/sale_good','Report\ReportController@index');
+Route::post('/report/chart/sale_good','Report\ReportController@sale_good');

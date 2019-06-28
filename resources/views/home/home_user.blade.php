@@ -22,6 +22,7 @@
 </head>
 <body>
 <div class="container-scroller">
+    <input type="hidden" id="root-url" value="{!! url('/') !!}">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex justify-content-center">

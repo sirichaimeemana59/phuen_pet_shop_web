@@ -291,4 +291,7 @@ return [
         'detail_en' => 'Detail [EN]',
         'discount' => 'Discount',
     ],
+    'sale_good' => [
+        'title' => 'Sale Good',
+    ]
 ];
