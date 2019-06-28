@@ -235,6 +235,7 @@ return [
         'date' => 'Date',
         'status' => 'Status',
         'list' => 'List Product',
+        'parcel_code' => 'Parcel code',
     ],
     'profile' => [
         'title' => 'Profile',

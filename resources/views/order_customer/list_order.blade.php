@@ -91,55 +91,78 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="form">
+                            {!! Form::model(null,array('url' => array('employee/print/post_parcle'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data','target'=>'_bank')) !!}
                         <div class="col-sm-12">
                             <div class="row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
+                                <input type="hidden" name="id" class="id">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.order.parcel_code') !!}</lable>
+                                <div class="col-sm-10">
+                                    <input class="form-control id_order" size="25" placeholder="{!! trans('messages.order.parcel_code') !!}" name="id_order" readonly>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.order.id') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control id_order" size="25" placeholder="{!! trans('messages.order.id') !!}" name="name">
+                                    <input class="form-control id_order" size="25" placeholder="{!! trans('messages.order.id') !!}" name="name" readonly>
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.name') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control name" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control name" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.address') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control address" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control address" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.tell') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control tell" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control tell" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.sub') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control sub" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control sub" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.district') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control dis" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control dis" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
                             </div>
+                            <br>
 
                             <div class="row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.province') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control province" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control province" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
 
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.post') !!}</lable>
                                 <div class="col-sm-4">
-                                    <input class="form-control post_code" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name">
+                                    <input class="form-control post_code" size="25" placeholder="{!! trans('messages.category.name') !!}" name="name" readonly>
                                 </div>
                             </div>
+                            <br>
+                            <div class="form-group row float-right">
+                                <div class="col-sm-12">
+                                    <button class="btn-info btn-primary"  type="submit">Print</button>
+                                    {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+
                         </div>
+                    </div>
                     </div>
                     <span class="v-loading">กำลังค้นหาข้อมูล...</span>
                 </div>
@@ -400,6 +423,7 @@
                     success : function(e){
                         $('.v-loading').hide();
                         console.log(e.address_);
+                        $('.id').val(e.order.id);
                         $('.id_order').val(e.address_.code_order);
                         $('.address').val(e.address_.address);
                         $('.dis').val(e.address_.name{!!'_'. Session::get('locale') !!});

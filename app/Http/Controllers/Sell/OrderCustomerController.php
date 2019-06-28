@@ -246,14 +246,6 @@ class OrderCustomerController extends Controller
     public function sent_to_car(){
         $order = order_customer::find(Request::input('id'));
 
-//        //dd($order->order_code);
-//        //$product_name = product::with('join_stock')->where('id',$product->id)->first();
-//        $address = address::where('code_order',$order->order_code)->first();
-////dd($address->province_id);
-////        $address_ = address::with('join_province')->where('id',$address->province_id)
-////            ->with('join_Districts')->where('id',$address->dis_id)
-////            ->with('join_Subdistricts')->where('id',$address->sub_id)->first();
-
         $address_ = DB::table('address')
             ->join('provinces', 'address.province_id', '=', 'provinces.id')
             ->join('districts', 'address.dis_id', '=', 'districts.id')
@@ -266,5 +258,22 @@ class OrderCustomerController extends Controller
 
         return response()->JSON($data);
 
+    }
+
+    public function post_parcle(){
+        //dd(Request::input('id'));
+        $order = order_customer::find(Request::input('id'));
+
+        $address_ = DB::table('address')
+            ->join('provinces', 'address.province_id', '=', 'provinces.id')
+            ->join('districts', 'address.dis_id', '=', 'districts.id')
+            ->join('subdistricts', 'address.sub_id', '=', 'subdistricts.id')
+            ->select('address.*', 'provinces.name_in_'.Session::get('locale'), 'districts.name_'.Session::get('locale'),'subdistricts.name_th as name_sub_th','subdistricts.name_en as name_sub_en')
+            ->where('code_order',$order->order_code)->first();
+
+        $data["order"] = $order;
+        $data["address_"] = $address_;
+        //dd($data);
+        return view('order_customer.post_parcle')->with(compact('order','address_'));
     }
 }

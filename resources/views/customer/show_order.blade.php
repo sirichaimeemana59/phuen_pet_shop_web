@@ -186,6 +186,7 @@
                     dataType : 'json',
                     data : {'id':id},
                     success : function(e){
+                        $('.img').html('');
                        // console.log(e);
                         $('#edit-store').modal('show');
                         imgAppend = $('<img>').attr({'src':"{{ asset('/') }}"+e.photo,'width':'120px'});
