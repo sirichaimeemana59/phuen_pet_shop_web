@@ -191,6 +191,7 @@
                             var name_th = e.join_stock.name_en;
                             var price = e.price_piece;
                             var photo = e.join_stock.photo;
+                            var id_stock = e.join_stock.id;
                             var id = e.id;
                             var time = $.now();
 
@@ -205,7 +206,7 @@
                             var data = ['<tr class="itemRow">',
                                 '<td></td>',
                                 '<td><img src="' + photo + '" alt="" width="25%"></td>',
-                                '<td><span>' + name + '</span></td>',
+                                '<td><input type="hidden" name="data['+time+'][id_stock]" value="'+id_stock+'"><span>' + name + '</span></td>',
                                 '<td><input type="hidden" value="'+e.unit_sale+'" name="data['+time+'][unit_sale]"><input type="hidden" class="id_product_" value="'+e.product_id+'"><input type="number" class="price_total" name="data[' + time + '][amount]" min="1" max="'+e.amount+'" value="1"></td>',
                                 '<td><input type="hidden" name="data['+time+'][product_id]" value="'+id+'"><input type="hidden" name="data[' + time + '][price_unit]" class="price" value="' + price + '"><span>' + price + '</span></td>',
                                 '<td><input type="hidden" class="hide_id" value="'+id+'"><input type="text" class="result form-control" value="' + total + '" readonly name="data[' + time + '][total_price]"></td>',

@@ -111,14 +111,18 @@
             function renderGraph_sale_good(h){
                 var populationData = [];
 
+
+
                 var name = [];
                 $.each(h.stock, function (i,v) {
-                    if(h.stock) {
-                        name.push(v.name_{!!Session::get('locale')!!});
-                    }
+                    //console.log(v[0].name_th);
+                    //if(h.stock[i][i]) {
+                        name.push(v[0].name_{!!Session::get('locale')!!});
+                    //}
                 });
 
-                //console.log(h.stock.name_th);
+                //console.log(h.stock[0][0].name_th);
+                //console.log(h.stock[0]);
                 $.each(h.sum, function (i,v) {
                     if(h) {
                         populationData.push({type:name[i],value:v.product_id,number:v.sum});

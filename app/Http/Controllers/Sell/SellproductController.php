@@ -78,6 +78,7 @@ class SellproductController extends Controller
                 $sale_good_->amount = $sale_good->amount + $t['amount'];
                 $sale_good_->date = date('Y-m-d');
                 $sale_good_->status = 1;
+                $sale_good_->stock_id = $t['id_stock'];
                 $sale_good_->save();
                 //dd($sale_good_);
             }else{
@@ -86,6 +87,7 @@ class SellproductController extends Controller
                 $sale_good_->product_id = $t['product_id'];
                 $sale_good_->date = date('Y-m-d');
                 $sale_good_->status = 1;
+                $sale_good_->stock_id = $t['id_stock'];
                 $sale_good_->save();
                 //dd($sale_good_);
             }

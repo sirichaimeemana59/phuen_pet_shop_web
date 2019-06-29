@@ -19,6 +19,16 @@
     <link rel="shortcut icon" href="{!! url('/') !!}/home/images/favicon.png" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @media screen and (min-device-width: 100px) and (max-device-width: 1024px){
+            .hide{
+                display:none;
+            }
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="container-scroller">
