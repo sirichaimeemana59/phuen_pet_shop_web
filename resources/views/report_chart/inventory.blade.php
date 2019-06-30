@@ -5,26 +5,48 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.sale_good.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.sale_good.inventory') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
+                            {{--<div class="row">--}}
+                                {{--<lable class="col-sm-2 control-label"></lable>--}}
+                                {{--<div class="col-sm-3 block-input">--}}
+                                    {{--<input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<br>--}}
+                            {{--<div class="row">--}}
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.to') !!}</lable>--}}
+                                {{--<div class="col-sm-3 block-input">--}}
+                                    {{--<input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_to">--}}
+                                {{--</div>--}}
+
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.go') !!}</lable>--}}
+                                {{--<div class="col-sm-3 block-input">--}}
+                                    {{--<input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_go">--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
                             <div class="row">
-                                <lable class="col-sm-2 control-label"></lable>
+                                <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
                                 <div class="col-sm-3 block-input">
-                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date">
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.to') !!}</lable>
-                                <div class="col-sm-3 block-input">
-                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_to">
+                                    <select name="group_id" id="" class="form-control">
+                                        <option value="">{!! trans('messages.selete_group') !!}</option>
+                                        @foreach($cat as $key => $val)
+                                            <option value="{!! $val->id !!}">{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
-                                <lable class="col-sm-2 control-label">{!! trans('messages.go') !!}</lable>
+                                <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
                                 <div class="col-sm-3 block-input">
-                                    <input class="form-control" type="date" size="25" placeholder="{!! trans('messages.date') !!}" name="date_go">
+                                    <select name="cat_id" id="" class="form-control">
+                                        <option value="">{!! trans('messages.selete_cat') !!}</option>
+                                        @foreach($cat_tran as $key => $val)
+                                            <option value="{!! $val->id !!}">{!! $val{'name_'.Session::get('locale')} !!}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -47,7 +69,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.sale_good.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.sale_good.inventory') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
@@ -95,9 +117,9 @@
 
             $('body').on('click','.search-store', function () {
                 var data  = $('#search-form').serialize();
-                //console.log(data);
+                console.log(data);
                 $.ajax({
-                    url: $('#root-url').val() + "/report/chart/sale_good",
+                    url: $('#root-url').val() + "/report/chart/inventory",
                     data: data,
                     dataType: "json",
                     method: 'post',
@@ -108,29 +130,31 @@
                 });
             });
 
+            function numberWithCommas(number) {
+                if(number == null){
+                    number = 0;
+                }else{
+                    number = number;
+                }
+                var parts = number.toString().split(".");
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                return parts.join(".");
+            }
+
             function renderGraph_sale_good(h){
                 var populationData = [];
 
 
 
                 var name = [];
-                $.each(h.stock, function (i,v) {
-                    //console.log(v[0].name_th);
-                    //if(h.stock[i][i]) {
-                        name.push(v[0].name_{!!Session::get('locale')!!});
-                    //}
-                });
-
-                //console.log(h.stock[0][0].name_th);
-                //console.log(h.stock[0]);
-                $.each(h.sum, function (i,v) {
+                $.each(h, function (i,v) {
                     if(h) {
-                        populationData.push({type:name[i],value:v.product_id,number:v.sum});
+                        populationData.push({type:v.name_{!! Session::get('locale') !!},value:numberWithCommas(v.amount)});
                     }
                 });
 
                 //console.log(name);
-                 //console.log(populationData);
+                console.log(populationData);
                 $('#chart').dxChart('instance').option('dataSource', populationData);
                 $('#chart').dxChart('instance').render();
             }
@@ -195,7 +219,7 @@
                     },
                     series: [
                         {
-                            valueField: "number",
+                            valueField: "value",
                             name : "product",
                         }
 

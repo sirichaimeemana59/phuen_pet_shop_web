@@ -293,5 +293,6 @@ return [
     ],
     'sale_good' => [
         'title' => 'Sale Good',
+        'inventory' => 'Inventory'
     ]
 ];

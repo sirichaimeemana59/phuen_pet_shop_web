@@ -8,6 +8,8 @@ use App\sale_good;
 use DB;
 use Session;
 use App\stock;
+use App\cat;
+use App\cat_transection;
 
 class ReportController extends Controller
 {
@@ -54,10 +56,7 @@ class ReportController extends Controller
                 ->whereDate('created_at',$date)->groupBy('stock_id')->get();
 
             $t_ = $sale_good->toArray();
-//dd(count($t_));
             foreach ($t_ as $t){
-//                dd($t['product_id']); die();
-                //dd($t['stock_id']); die();
                 $stock = DB::table('sale_good')
                     ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
                     ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
@@ -67,24 +66,21 @@ class ReportController extends Controller
                 $stock_[] = $stock->toArray();
             }
 
-            //dd($stock_);
-
         }else{
 
-            $sale_good =  sale_good::select(DB::raw('product_id,SUM(amount) as sum'))
+            $sale_good =  sale_good::select(DB::raw('product_id,stock_id,SUM(amount) as sum'))
                 ->groupBy('product_id')->get();
 
             $t_ = $sale_good->toArray();
-
-            $stock = DB::table('sale_good')
-                ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
-                ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
-                //->select('stock.*')
-                ->groupBy('stock_id','id')
-                ->get();
-
-            $stock_[] = $stock->toArray();
-
+            foreach ($t_ as $t){
+                $stock = DB::table('sale_good')
+                    ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
+                    ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
+                    ->where('stock.id',$t['stock_id'])
+                    ->groupBy('stock_id','id')
+                    ->get();
+                $stock_[] = $stock->toArray();
+            }
         }
 
         $data["stock"] = $stock_;
@@ -124,4 +120,32 @@ class ReportController extends Controller
     {
         //
     }
+
+    public function inventory(){
+        $cat = new cat;
+        $cat = $cat->get();
+
+        $cat_tran = new cat_transection;
+        $cat_tran = $cat_tran->get();
+
+        return view('report_chart.inventory')->with(compact('cat','cat_tran'));
+    }
+
+    public function inventory_chart(){
+        if(!empty(Request::get('group_id'))){
+            $stock = new stock;
+            $stock = $stock->where('group_id',Request::get('group_id'))->orderBy('amount','ASC')->get();
+        }elseif(!empty(Request::get('cat_id'))){
+            $stock = new stock;
+            $stock = $stock->where('cat_id',Request::get('cat_id'))->orderBy('amount','ASC')->get();
+        }else{
+            $stock = new stock;
+            $stock = $stock->orderBy('amount','ASC')->get();
+        }
+
+
+        //dd($stock);
+        return response()->JSON($stock);
+    }
 }
+

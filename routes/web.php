@@ -239,3 +239,5 @@ Route::post('/employee/print/post_parcle','Sell\OrderCustomerController@post_par
 //report sale good
 Route::get('/report/sale_good','Report\ReportController@index');
 Route::post('/report/chart/sale_good','Report\ReportController@sale_good');
+Route::get('report/inventory','Report\ReportController@inventory');
+Route::post('/report/chart/inventory','Report\ReportController@inventory_chart');
