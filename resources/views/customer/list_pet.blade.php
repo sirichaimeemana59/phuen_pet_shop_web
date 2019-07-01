@@ -1,7 +1,6 @@
 @extends('home.home_user')
 @section('content')
-    <div class="show">55</div>
-    <div class="row hide">
+    <div class="row w3-hide-small">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">

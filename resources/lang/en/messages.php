@@ -49,6 +49,9 @@ return [
     'to' => 'To',
     'go' => 'Go',
     'showing' => 'Showing <strong>:from</strong> to <strong>:to</strong> from <strong>:total</strong>',
+    'view' => 'View',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 
     'product' => [
         'head_product' => 'Product',

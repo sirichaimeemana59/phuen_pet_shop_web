@@ -19,12 +19,74 @@
     <link rel="shortcut icon" href="{!! url('/') !!}/home/images/favicon.png" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-        @media screen and (min-device-width: 100px) and (max-device-width: 1024px){
+        @media screen and (min-device-width: 600px){
             .hide{
                 display:none;
             }
+        }
+
+        .qty_ .count_ {
+            color: #000;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 30px;
+            padding: 0 2px
+        ;min-width: 35px;
+            text-align: center;
+        }
+        .qty_ .plus_ {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            color: white;
+            width: 30px;
+            height: 30px;
+            font: 30px/1 Arial,sans-serif;
+            text-align: center;
+            border-radius: 50%;
+        }
+        .qty_ .minus_ {
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: top;
+            color: white;
+            width: 30px;
+            height: 30px;
+            font: 30px/1 Arial,sans-serif;
+            text-align: center;
+            border-radius: 50%;
+            background-clip: padding-box;
+        }
+        .div_ {
+            text-align: center;
+        }
+        .minus_:hover{
+            background-color: #717fe0 !important;
+        }
+        .plus_:hover{
+            background-color: #717fe0 !important;
+        }
+        /*Prevent text selection*/
+        .span_{
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        .input_{
+            border: 0;
+            width: 2%;
+        }
+        .input_::-webkit-outer-spin-button,
+        .input_::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .input_:disabled{
+            background-color:white;
         }
 
     </style>

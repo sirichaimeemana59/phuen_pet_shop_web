@@ -12,7 +12,7 @@
                             <div class="row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.group.title') !!}</lable>
                                 <div class="col-sm-4">
-                                    <select name="group_id" id="" style="width: 100%;" class="group_id">
+                                    <select name="group_id" id="" style="width: 100%;" class="group_id form-control">
                                         <option value="">{!! trans('messages.selete_group') !!}</option>
                                         @foreach($cat as $key => $row)
                                             <option value="{!! $row->id !!}">{!! $row{'name_'.Session::get('locale')} !!}</option>
@@ -23,7 +23,7 @@
                                 <lable class="col-sm-2 control-label">{!! trans('messages.category.title') !!}</lable>
                                 <div class="col-sm-4">
                                     <input type="hidden" class="text" value="{!! trans('messages.selete_cat') !!}">
-                                    <select name="cat_id" id="" style="width: 100%;" class="cat_id">
+                                    <select name="cat_id" id="" style="width: 100%;" class="cat_id form-control">
                                         <option value="">{!! trans('messages.selete_cat') !!}</option>
                                     </select>
                                 </div>
@@ -62,6 +62,7 @@
     </div>
 
     <br>
+    <div class="w3-hide-small">
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
@@ -72,6 +73,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
                             {!! Form::model(null,array('url' => array('/customer/add/order'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <div class="table-responsive table-striped">
                             <table class="table itemTables" style="width: 100%">
                                 <tr>
                                     <th ></th>
@@ -84,7 +86,7 @@
                                     <th>{!! trans('messages.action') !!}</th>
                                 </tr>
                             </table>
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +111,58 @@
             </div>
         </div>
     </div>
+    </div>
 
+    <div class="hide">
+        <div class="row">
+            <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{!! trans('messages.order.title') !!}</h3>
+                        </div>
+                        <div class="panel panel-default" id="panel-lead-list">
+                            <div class="panel-body" id="landing-subject-list">
+                                {!! Form::model(null,array('url' => array('/customer/add/order'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                <div class="table-responsive table-striped">
+                                    <table class="table itemTables" style="width: 100%">
+                                        <tr>
+                                            <th ></th>
+                                            <th>{!! trans('messages.product.head_product') !!}</th>
+                                            {{--<th>{!! trans('messages.product.price') !!}</th>--}}
+                                            <th>{!! trans('messages.unit.title') !!}</th>
+                                            {{--<th>{!! trans('messages.product.amount') !!}</th>--}}
+                                            <th>{!! trans('messages.product.amount') !!}</th>
+                                            <th>{!! trans('messages.product.total') !!}</th>
+                                            <th>{!! trans('messages.action') !!}</th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="panel panel-default" id="panel-lead-list">
+                            <div class="panel-body float-right" id="landing-subject-list">
+                                <lable class="col-sm-10 control-label">{!! trans('messages.sell.total') !!}</lable>
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control sum_total" readonly name="sum_total" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <br>
  {{--Address--}}
     <br>
@@ -275,9 +328,9 @@
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
                     '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'" required><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
-                    '<td><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
+                    '<td class="w3-hide-small"><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
                     '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
-                    '<td><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
+                    '<td><input type="hidden" class="amount_" value="'+amount+'"><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
                     '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
@@ -559,6 +612,26 @@
                     }
                 })
             })
+
+
+        });
+
+        $(document).ready(function(){
+            $('.count_').prop('disabled', true);
+            $(document).on('click','.plus_',function(){
+                var this_ =$(this);
+                var amount_ = this_.parents('tr').find('.amount_').val();
+                console.log(amount_);
+                this_.parents('tr').find('.count_').val(1);
+                this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) + 1 );
+            });
+            $(document).on('click','.minus_',function(){
+                var this_ =$(this);
+                this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) - 1 );
+                if ($('.count_').val() == 0) {
+                    $('.count_').val(1);
+                }
+            });
         });
     </script>
 @endsection
