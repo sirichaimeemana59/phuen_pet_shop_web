@@ -19,7 +19,12 @@ class WidenController extends Controller
     protected $app;
 
     public function __construct () {
-        $this->middleware('admin');
+        $this->middleware('auth');
+        if( Auth::check() && Auth::user()->role !== 0 ) {
+            if(Auth::user()->role !== 2) {
+                Redirect::to('/logout')->send();
+            }
+        }
     }
 
     public function index()

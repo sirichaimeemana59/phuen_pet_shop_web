@@ -251,3 +251,8 @@ Route::post('/active/add','User\ActiveUserController@store');
 Route::post('/active/update','User\ActiveUserController@update');
 Route::post('/active/delete','User\ActiveUserController@destroy');
 Route::post('/active/view','User\ActiveUserController@show');
+
+//Owner
+Route::get('/owner/home','Owner\OwnerController@index');
+Route::any('/report/order_owner','Owner\OwnerController@order_owner');
+Route::any('/report/order_owner_company','Owner\OwnerController@order_owner_company');

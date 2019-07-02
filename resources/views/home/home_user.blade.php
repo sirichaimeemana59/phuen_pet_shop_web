@@ -246,6 +246,8 @@
             @include('home.menu_employee')
         @elseif(Auth::user()->role == 1)
             @include('home.home_customer')
+        @elseif(Auth::user()->role == 2)
+            @include('home.home_owner')
         @endif
         <!-- partial -->
         <div class="main-panel">
