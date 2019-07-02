@@ -308,5 +308,6 @@ return [
         'customer' => 'Customer',
         'employee' => 'Employee',
         'owner' => 'Owner',
+        'active' => 'Active',
     ]
 ];

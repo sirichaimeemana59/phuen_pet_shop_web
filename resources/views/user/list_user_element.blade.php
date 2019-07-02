@@ -28,7 +28,8 @@
         @endif
     </div>
 
-    {{--<div class="table-responsive table-striped">--}}
+    <div class="w3-hide-small">
+    <div class="table-responsive table-striped">
     <table cellspacing="0" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -66,7 +67,60 @@
         @endif
         </tbody>
     </table>
-    {{--</div>--}}
+    </div>
+    </div>
+
+    <br>
+    <div class="hide">
+        <div class="table-responsive table-striped">
+            <table cellspacing="0" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>{!! trans('messages.user.name') !!}</th>
+                    {{--<th>{!! trans('messages.user.mail') !!}</th>--}}
+                    <th>{!! trans('messages.action') !!}</th>
+                </tr>
+                </thead>
+                <tbody>
+                @if(!empty($p_row))
+                    @foreach($p_row as $key => $row)
+                        <tr>
+                            <td>{!! $row->name !!}</td>
+                            {{--<td>{!! $row->email!!}</td>--}}
+                            <td>
+                                @if($row->status == 1)
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li class="#"><a href="#" class="view-store" data-id="{!! $row->id !!}">{!! trans('messages.view') !!}</a></li>
+                                            <li><a href="#" class="edit-store" data-id="{!! $row->id !!}">{!! trans('messages.edit') !!}</a></li>
+                                            <li><a href="#" class="delete-store" data-id="{!! $row->id !!}">{!! trans('messages.delete') !!}</a></li>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li class="#"><a href="#" class="active-store" data-id="{!! $row->id !!}">{!! trans('messages.user.active') !!}</a></li>
+                                            <li><a href="#" class="delete-store" data-id="{!! $row->id !!}">{!! trans('messages.delete') !!}</a></li>
+                                        </ul>
+                                    </div>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td>{!! trans('messages.no-data') !!}</td>
+                    </tr>
+
+                @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br>
     <div class="row">
         <div class="col-md-6">
