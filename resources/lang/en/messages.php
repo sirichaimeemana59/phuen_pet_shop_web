@@ -297,5 +297,16 @@ return [
     'sale_good' => [
         'title' => 'Sale Good',
         'inventory' => 'Inventory'
+    ],
+    'user' => [
+        'title' => 'User',
+        'name' => 'Name',
+        'mail' => 'Email',
+        'role' => 'Role',
+        'select' => '---Select Role---',
+        'admin' => 'Admin',
+        'customer' => 'Customer',
+        'employee' => 'Employee',
+        'owner' => 'Owner',
     ]
 ];

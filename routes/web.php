@@ -241,3 +241,13 @@ Route::get('/report/sale_good','Report\ReportController@index');
 Route::post('/report/chart/sale_good','Report\ReportController@sale_good');
 Route::get('report/inventory','Report\ReportController@inventory');
 Route::post('/report/chart/inventory','Report\ReportController@inventory_chart');
+
+//Active User
+Route::any('/approved/user','User\ActiveUserController@index');
+Route::post('/employee/active/user','User\ActiveUserController@create');
+Route::post('/user/register','User\ActiveUserController@register');
+Route::post('/employee/active/edit','User\ActiveUserController@edit');
+Route::post('/active/add','User\ActiveUserController@store');
+Route::post('/active/update','User\ActiveUserController@update');
+Route::post('/active/delete','User\ActiveUserController@destroy');
+Route::post('/active/view','User\ActiveUserController@show');

@@ -541,7 +541,7 @@
             <div class="modal-body">
                 <div class="container">
                     <h2>Vertical (basic) form</h2>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{!! url('user/register') !!}">
                         @csrf
 
                         <div class="form-group row">

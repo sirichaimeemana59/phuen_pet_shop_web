@@ -6,6 +6,12 @@
                 <span class="menu-title">{!! trans('messages.product.head_product') !!}</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{!! url('/approved/user') !!}">
+                <i class="mdi mdi-account menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.user.title') !!}</span>
+            </a>
+        </li>
         {{--<li class="nav-item">--}}
             {{--<a class="nav-link" href="{!! url('/employee/company_store') !!}">--}}
                 {{--<i class="fa fa-archive menu-icon"></i>--}}
