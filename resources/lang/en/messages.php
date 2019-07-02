@@ -52,6 +52,8 @@ return [
     'view' => 'View',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'paid' => 'Paid',
+    'n_paid' => 'Not paid',
 
     'product' => [
         'head_product' => 'Product',

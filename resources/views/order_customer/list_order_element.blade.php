@@ -47,7 +47,7 @@
                     <td>{!! $key+1 !!}</td>
                     <td>{!! $row->order_code !!}</td>
                     <td>{!! localDate($row->created_at) !!}</td>
-                    <td>-</td>
+                    <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         @if(!empty($row->join_bill_payment))
@@ -96,7 +96,7 @@
                             {{--<td>{!! $key+1 !!}</td>--}}
                             <td>{!! $row->order_code !!}</td>
                             {{--<td>{!! localDate($row->created_at) !!}</td>--}}
-                            <td>-</td>
+                            <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
                             <td>
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                                 {{--@if(!empty($row->join_bill_payment))--}}
