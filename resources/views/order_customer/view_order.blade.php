@@ -3,6 +3,7 @@
 <div class="form-group row">
     <lable class="col-sm-12 control-label"><h3>{!! trans('messages.order.order') !!} : {!! $order_customer->order_code !!}</h3></lable>
 </div>
+<div class="table-responsive table-striped">
 <table class="table itemTables" style="width: 100%">
     <tr>
         <th></th>
@@ -40,4 +41,5 @@
             <p style="text-align: center;"><img src="{!! asset($order_customer->join_bill_payment->photo) !!}" alt="" width="50%"></p>
         @endif
     </div>
+</div>
 </div>

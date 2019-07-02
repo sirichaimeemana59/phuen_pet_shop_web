@@ -39,7 +39,7 @@
                         <h3 class="panel-title">{!! trans('messages.order.order') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
-                        <div class="row">
+                        <div class="row w3-hide-small">
                             <div class="col-sm-12 text-right">
                                 <a href="{!! url('employee/create/order_bill') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.order.order') !!}</button></a>
                             </div>
@@ -199,7 +199,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/list_order',
+                    url : '/employee/list_order_customer',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -215,7 +215,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/list_order';
+                window.location.href ='/employee/list_order_customer';
             });
 
             $('body').on('click', '.add-product',function(){

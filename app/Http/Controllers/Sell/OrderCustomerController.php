@@ -34,7 +34,7 @@ class OrderCustomerController extends Controller
 
         if(Request::method('post')) {
             if (Request::input('name')) {
-                $order = $order->where('code_order',Request::input('name'));
+                $order = $order->where('order_code',Request::input('name'));
             }
         }
 
