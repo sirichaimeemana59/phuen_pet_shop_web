@@ -70,7 +70,7 @@ class WidenController extends Controller
 
             $widden_product = new widden_product;
             $widden_product->code = $randomString_;
-            $widden_product->user_id = null;
+            $widden_product->user_id = Auth::user()->id;
             $widden_product->date = date('Y-m-d');
             $widden_product->save();
 

@@ -22,4 +22,9 @@ class widden_product extends GeneralModel
         return $this->hasMany('App\widden__transection','code','code');
     }
 
+    public function join_profile()
+    {
+        return $this->hasOne('App\profile','user_id','user_id');
+    }
+
 }

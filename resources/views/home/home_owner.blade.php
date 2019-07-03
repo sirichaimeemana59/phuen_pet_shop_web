@@ -142,7 +142,7 @@
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{!! url('widen/list_element') !!}"> {!! trans('messages.report.report_widen') !!} </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{!! url('report/widen') !!}"> {!! trans('messages.report.report_widen') !!} </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{!! url('report/sale_good') !!}"> {!! trans('messages.sale_good.title') !!} </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{!! url('report/inventory') !!}">{!! trans('messages.sale_good.inventory') !!}</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{!! url('report/order_owner') !!}">{!! trans('messages.order.order') !!}</a></li>

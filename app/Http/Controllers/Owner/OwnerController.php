@@ -20,6 +20,12 @@ use DB;
 use Session;
 use App\order_company;
 use App\order_company_transection;
+use App\stock;
+use App\widen;
+use App\widen_report;
+use App\stock_log;
+use App\widden_product;
+use App\widden__transection;
 
 class OwnerController extends Controller
 {
@@ -98,5 +104,32 @@ class OwnerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function list_widen(){
+        $widden_product = new widden_product;
+
+        if(Request::method('post')) {
+            if (Request::input('name')) {
+                $widden_product = widden_product::where('code',Request::input('name'));
+            }
+        }
+
+        $widden_product = $widden_product->paginate(50);
+
+        if(!Request::ajax()){
+            return view('owner.list_widden')->with(compact('widden_product'));
+        }else{
+            return view('owner.list_widden_element')->with(compact('widden_product'));
+        }
+
+    }
+
+    public function widen_print(){
+        $widden_product = new widden_product;
+        $widden_product = $widden_product->get();
+
+        return view('report.widen_print')->with(compact('widden_product'));
+
     }
 }
