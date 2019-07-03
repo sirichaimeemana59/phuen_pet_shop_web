@@ -36,7 +36,7 @@
             <th>{!! trans('messages.order.id') !!}</th>
             <th>{!! trans('messages.order.date') !!}</th>
             <th>{!! trans('messages.order.status') !!}</th>
-            <th>{!! trans('messages.action') !!}</th>
+            {{--<th>{!! trans('messages.action') !!}</th>--}}
         </tr>
         </thead>
         <tbody>
@@ -47,14 +47,14 @@
                     <td>{!! $row->code !!}</td>
                     <td>{!! localDate($row->created_at) !!}</td>
                     <td>-</td>
-                    <td>
-                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
-                        <a href="{!! url('employee/edit/order_company/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>
-                        <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
+                    {{--<td>--}}
+                        {{--<button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>--}}
+                        {{--<a href="{!! url('employee/edit/order_company/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>--}}
+                        {{--<button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>--}}
                         {{--@if($row->status == 0 )--}}
                             {{--<button class="btn btn-success mt-2 mt-xl-0 text-right app-store" data-id="{!! $row->id !!}"><i class="fa fa-check-square"></i></button>--}}
                         {{--@endif--}}
-                    </td>
+                    {{--</td>--}}
                 </tr>
             @endforeach
         @else

@@ -230,7 +230,7 @@
                         itemTextPosition: "bottom"
                     },
                     title: {
-                        text: "Product Sale Good",
+                        text: "Inventory",
                         subtitle: {
                             text: "(Product)"
                         }

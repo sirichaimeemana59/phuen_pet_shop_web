@@ -41,7 +41,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <a href="{!! url('employee/create/order_company') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.order.order') !!}</button></a>
+                                <a href="{!! url('report/order_owner_company_print') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-print"></i>  {!! trans('messages.report_show') !!}</button></a>
                             </div>
                         </div>
                         <br>
@@ -105,7 +105,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/company_store/order',
+                    url : '/report/order_owner_company',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -121,7 +121,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/company_store/order';
+                window.location.href ='/report/order_owner_company';
             });
 
             $('body').on('click', '.add-product',function(){

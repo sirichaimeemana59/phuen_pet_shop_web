@@ -256,3 +256,5 @@ Route::post('/active/view','User\ActiveUserController@show');
 Route::get('/owner/home','Owner\OwnerController@index');
 Route::any('/report/order_owner','Owner\OwnerController@order_owner');
 Route::any('/report/order_owner_company','Owner\OwnerController@order_owner_company');
+Route::get('/report/order_owner_company_print','Owner\OwnerController@order_owner_company_print');
+Route::get('/report/order_owner_print','Owner\OwnerController@order_owner_print');

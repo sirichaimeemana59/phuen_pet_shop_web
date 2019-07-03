@@ -72,15 +72,21 @@ class OwnerController extends Controller
     }
 
 
-    public function show($id)
+    public function order_owner_company_print()
     {
-        //
+        $order = new order_company;
+        $p_row = $order->get();
+
+        return view('report.order_owner_company_print')->with(compact('p_row'));
     }
 
 
-    public function edit($id)
+    public function order_owner_print()
     {
-        //
+        $order = new order_customer;
+        $p_row = $order->get();
+        return view('report.order_owner_print')->with(compact('p_row'));
+
     }
 
     public function update(Request $request, $id)

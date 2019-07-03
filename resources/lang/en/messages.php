@@ -241,6 +241,7 @@ return [
         'status' => 'Status',
         'list' => 'List Product',
         'parcel_code' => 'Parcel code',
+        'order_com' => 'Purchase Order Company',
     ],
     'profile' => [
         'title' => 'Profile',
