@@ -36,7 +36,7 @@ class HomeController extends Controller
         }elseif(Auth::user()->role == 2 AND Auth::user()->status == 1){
             Redirect::to('/owner/home')->send();
         }else{
-            Redirect::to('/')->send();
+            Redirect::to('/logout')->send();
         }
     }
 }

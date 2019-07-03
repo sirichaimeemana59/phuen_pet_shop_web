@@ -10,7 +10,7 @@ use auth;
 class CustomerController extends Controller
 {
     public function __construct () {
-        $this->middleware('admin');
+        $this->middleware('Customer');
     }
 
     public function index(Request $request)
