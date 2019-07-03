@@ -335,14 +335,13 @@
                 var time = $.now();
                 $('.show_submit').show();
 
-                //console.log(amount);
 
                 var data = ['<tr class="itemRow">',
                     '<td></td>',
                     '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'" required><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
                     '<td class="w3-hide-small"><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
                     '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
-                    '<td><input type="hidden" class="amount_" value="'+amount+'"><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required style="width: 150px;"></td>',
+                    '<td><input type="hidden" class="amount_" value="'+amount+'"><input type="number" name="data['+time+'][amount]"  class="form-control amount" min="1" max="'+amount+'"></td>',
                     '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required style="width: 150px;"></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
