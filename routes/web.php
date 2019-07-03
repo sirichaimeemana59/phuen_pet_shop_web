@@ -272,3 +272,11 @@ Route::post('/employee/update/quotation','Quotation\QuotationController@update')
 Route::post('/employee/delete_order_quotation','Quotation\QuotationController@delete_order_quotation');
 Route::post('/employee/quotation/delete','Quotation\QuotationController@destroy');
 Route::get('/report/quotation_order_print/{id?}','Quotation\QuotationController@quotation_order_print');
+
+//Driver
+Route::any('/employee/driver/list','Driver\DriveController@index');
+Route::post('/employee/driver/add','Driver\DriveController@create');
+Route::post('/employee/driver/view','Driver\DriveController@show');
+Route::post('/employee/driver/edit','Driver\DriveController@edit');
+Route::post('/employee/driver/update','Driver\DriveController@update');
+Route::post('/employee/driver/delete','Driver\DriveController@destroy');

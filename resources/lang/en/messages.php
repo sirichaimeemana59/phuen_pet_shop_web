@@ -315,5 +315,8 @@ return [
     ],
     'quotation' => [
         'title' => 'Quotation',
+    ],
+    'driver' => [
+        'driver' => 'Driver',
     ]
 ];
