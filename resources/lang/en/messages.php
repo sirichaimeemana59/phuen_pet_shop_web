@@ -312,5 +312,8 @@ return [
         'employee' => 'Employee',
         'owner' => 'Owner',
         'active' => 'Active',
+    ],
+    'quotation' => [
+        'title' => 'Quotation',
     ]
 ];

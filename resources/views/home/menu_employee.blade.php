@@ -53,6 +53,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/quotation/order') !!}">
+                <i class="fa fa-file menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.quotation.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{!! url('/employee/pet/list') !!}">
                 <i class="fa fa-paw menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.pet.title') !!}</span>

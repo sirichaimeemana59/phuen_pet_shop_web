@@ -166,6 +166,7 @@ Route::post('/employee/order/delete','Sell\OrderCustomerController@destroy');
 Route::any('/employee/create/order_bill','Sell\OrderCustomerController@create');
 Route::post('/employee/add/order','Sell\OrderCustomerController@store');
 Route::post('/employee/approved_order','Sell\OrderCustomerController@approved_order');
+Route::post('employee/delete_order','Sell\OrderCustomerController@delete_order');
 
 //user create profile
 Route::get('/user/create_profile','User\ProfileController@index');
@@ -260,3 +261,14 @@ Route::get('/report/order_owner_company_print','Owner\OwnerController@order_owne
 Route::get('/report/order_owner_print','Owner\OwnerController@order_owner_print');
 Route::any('/report/widen','Owner\OwnerController@list_widen');
 Route::get('/report/widen/print','Owner\OwnerController@widen_print');
+
+//Quotation
+Route::any('/employee/quotation/order','Quotation\QuotationController@index');
+Route::any('/employee/create/quotation','Quotation\QuotationController@create');
+Route::post('/employee/add/quotation','Quotation\QuotationController@store');
+Route::post('/employee/quotation/view','Quotation\QuotationController@view');
+Route::get('/employee/edit/quotation/{id?}','Quotation\QuotationController@edit');
+Route::post('/employee/update/quotation','Quotation\QuotationController@update');
+Route::post('/employee/delete_order_quotation','Quotation\QuotationController@delete_order_quotation');
+Route::post('/employee/quotation/delete','Quotation\QuotationController@destroy');
+Route::get('/report/quotation_order_print/{id?}','Quotation\QuotationController@quotation_order_print');

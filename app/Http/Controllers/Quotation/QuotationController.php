@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Sell;
+namespace App\Http\Controllers\Quotation;
 
 use App\company;
 use Request;
@@ -18,8 +18,10 @@ use App\address;
 use App\profile;
 use DB;
 use Session;
+use App\quotation;
+use App\quotation_transection;
 
-class OrderCustomerController extends Controller
+class QuotationController extends Controller
 {
 
     protected $app;
@@ -30,7 +32,7 @@ class OrderCustomerController extends Controller
 
     public function index()
     {
-        $order = new order_customer;
+        $order = new quotation;
 
         if(Request::method('post')) {
             if (Request::input('name')) {
@@ -41,11 +43,12 @@ class OrderCustomerController extends Controller
         $p_row = $order->paginate(50);
 
         if(!Request::ajax()){
-            return view('order_customer.list_order')->with(compact('p_row'));
+            return view('quotation.list_order')->with(compact('p_row'));
         }else{
-            return view('order_customer.list_order_element')->with(compact('p_row'));
+            return view('quotation.list_order_element')->with(compact('p_row'));
         }
     }
+
 
     public function create()
     {
@@ -74,16 +77,15 @@ class OrderCustomerController extends Controller
         $p_row = $product->paginate(50);
 
         if(!Request::ajax()){
-            return view ('order_customer.create_order')->with(compact('p_row','cat'));
+            return view ('quotation.create_order')->with(compact('p_row','cat'));
         }else{
-            return view('order_customer.create_order_element')->with(compact('p_row','cat'));
+            return view('quotation.create_order_element')->with(compact('p_row','cat'));
         }
     }
 
 
     public function store()
     {
-        //dd(Request::input('data'));
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -91,7 +93,7 @@ class OrderCustomerController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
 
-        $order_customer = new order_customer;
+        $order_customer = new quotation;
         $order_customer->user_id = Auth::user()->id;
         $order_customer->order_code = $randomString;
         $order_customer->total = Request::input('sum_total');
@@ -102,7 +104,7 @@ class OrderCustomerController extends Controller
 
         if(!empty(Request::input('data'))){
             foreach (Request::input('data') as $t){
-                $order_customer_tran = new order_customer_transection;
+                $order_customer_tran = new quotation_transection;
                 $order_customer_tran->order_code = $randomString;
                 $order_customer_tran->product_id = $t['product_id'];
                 $order_customer_tran->price_product = $t['price'];
@@ -114,7 +116,7 @@ class OrderCustomerController extends Controller
         }
         //dd($order_customer_tran) ; die();
 
-        return redirect('/employee/list_order_customer');
+        return redirect('/employee/quotation/order');
     }
 
 
@@ -123,11 +125,12 @@ class OrderCustomerController extends Controller
         //
     }
 
-    public function edit($id)
-    {
-        $order_customer = order_customer::find($id);
 
-        $order_tran = order_customer_transection::where('order_code', $order_customer->order_code)->get();
+    public function edit($id = null)
+    {
+        $order_customer = quotation::find($id);
+
+        $order_tran = quotation_transection::where('order_code', $order_customer->order_code)->get();
 
         $cat = new cat;
 
@@ -167,15 +170,16 @@ class OrderCustomerController extends Controller
         //return view('customer.edit_order')->with(compact('order_customer','order_tran'));
 
         if (!Request::ajax()) {
-            return view('customer.edit_order')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
+            return view('quotation.edit_order')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
         } else {
-            return view('customer.edit_order_element')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
+            return view('quotation.edit_order_element')->with(compact('p_row', 'cat', 'order_customer', 'order_tran','provinces','districts','subdistricts','profile'));
         }
     }
 
+
     public function update()
     {
-        $order_customer = order_customer::find(Request::input('id_order'));
+        $order_customer = quotation::find(Request::input('id_order'));
 
         $order_customer->user_id = Auth::user()->id;
         $order_customer->order_code = $order_customer->order_code;
@@ -186,7 +190,7 @@ class OrderCustomerController extends Controller
         $order_customer->save();
 
         foreach (Request::input('data_') as $t){
-            $order_customer_tran = order_customer_transection::find($t['id_order']);
+            $order_customer_tran = quotation_transection::find($t['id_order']);
             $order_customer_tran->order_code = $order_customer->order_code;
             $order_customer_tran->product_id = $t['product_id'];
             $order_customer_tran->price_product = $t['price'];
@@ -198,7 +202,7 @@ class OrderCustomerController extends Controller
 
         if(!empty(Request::input('data'))){
             foreach (Request::input('data') as $t){
-                $order_customer_tran = new order_customer_transection;
+                $order_customer_tran = new quotation_transection;
                 $order_customer_tran->order_code = $order_customer->order_code;
                 $order_customer_tran->product_id = $t['product_id'];
                 $order_customer_tran->price_product = $t['price'];
@@ -211,74 +215,40 @@ class OrderCustomerController extends Controller
 
         //dd($order_customer_tran);
 
-        return redirect('employee/edit/order/'.Request::input('id_order'));
+        return redirect('employee/edit/quotation/'.Request::input('id_order'));
     }
 
 
     public function destroy()
     {
-        $order_customer = order_customer::find(Request::input('id'));
-        $order_customer_tran = order_customer_transection::where('order_code',$order_customer->order_code);
+        $order_customer = quotation::find(Request::input('id'));
+        $order_customer_tran = quotation_transection::where('order_code',$order_customer->order_code);
         $order_customer_tran->delete();
         $order_customer->delete();
 
-        return redirect('/employee/list_order_customer');
+        return redirect('/employee/quotation/order');
     }
 
     public function view(){
 
-        $order_customer = order_customer::find(Request::input('id'));
+        $order_customer = quotation::find(Request::input('id'));
 
-        $order_tran = order_customer_transection::where('order_code',$order_customer->order_code)->get();
+        $order_tran = quotation_transection::where('order_code',$order_customer->order_code)->get();
 
-        return view('order_customer.view_order')->with(compact('order_customer','order_tran'));
+        return view('quotation.view_order')->with(compact('order_customer','order_tran'));
     }
 
-    public function approved_order()
-    {
-        $order_customer = order_customer::find(Request::input('id'));
-        $order_customer->status = 2 ;
-        $order_customer->save();
-
-        return redirect('/employee/list_order_customer');
-    }
-
-    public function sent_to_car(){
-        $order = order_customer::find(Request::input('id'));
-
-        $address_ = DB::table('address')
-            ->join('provinces', 'address.province_id', '=', 'provinces.id')
-            ->join('districts', 'address.dis_id', '=', 'districts.id')
-            ->join('subdistricts', 'address.sub_id', '=', 'subdistricts.id')
-            ->select('address.*', 'provinces.name_in_'.Session::get('locale'), 'districts.name_'.Session::get('locale'),'subdistricts.name_th as name_sub_th','subdistricts.name_en as name_sub_en')
-            ->where('code_order',$order->order_code)->first();
-
-        $data["order"] = $order;
-        $data["address_"] = $address_;
-
-        return response()->JSON($data);
+    public function delete_order_quotation(){
+        $order_tran = quotation_transection::find(Request::input('id'));
+        $order_tran->delete();
 
     }
 
-    public function post_parcle(){
-        //dd(Request::input('id'));
-        $order = order_customer::find(Request::input('id'));
+    public function quotation_order_print($id = null){
+        $order_customer = quotation::find($id);
 
-        $address_ = DB::table('address')
-            ->join('provinces', 'address.province_id', '=', 'provinces.id')
-            ->join('districts', 'address.dis_id', '=', 'districts.id')
-            ->join('subdistricts', 'address.sub_id', '=', 'subdistricts.id')
-            ->select('address.*', 'provinces.name_in_'.Session::get('locale'), 'districts.name_'.Session::get('locale'),'subdistricts.name_th as name_sub_th','subdistricts.name_en as name_sub_en')
-            ->where('code_order',$order->order_code)->first();
+        $order_tran = quotation_transection::where('order_code',$order_customer->order_code)->get();
 
-        $data["order"] = $order;
-        $data["address_"] = $address_;
-        //dd($data);
-        return view('order_customer.post_parcle')->with(compact('order','address_'));
-    }
-
-    public function delete_order(){
-        $order_customer_tran = order_customer_transection::find(Request::input('id'));
-        $order_customer_tran->delete();
+        return view('report.quotation_order_print')->with(compact('order_customer','order_tran'));
     }
 }
