@@ -156,6 +156,7 @@ Route::post('/address/select/district/edit/address','Customer\OrderController@se
 Route::post('/customer/select/editSubDis/address','Customer\OrderController@editSubDis_address');
 Route::post('/customer/select/subdistrict/address','Customer\OrderController@Subdistrict_address');
 Route::post('/customer/select/zip_code/address','Customer\OrderController@zip_code_address');
+Route::post('/customer/select/drive_price','Customer\OrderController@drive_price');
 
 //List Order Customer
 Route::any('/employee/list_order_customer','Sell\OrderCustomerController@index');

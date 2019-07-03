@@ -19,6 +19,7 @@ use App\Districts;
 use App\Subdistricts;
 use App\Province;
 use App\sale_good;
+use App\drivers;
 
 class OrderController extends Controller
 {
@@ -62,10 +63,13 @@ class OrderController extends Controller
         $s = new Subdistricts;
         $subdistricts = $s->getSubdistricts();
 
+        $d = new drivers;
+        $drivers = $d->getDriver();
+
         if(!Request::ajax()){
-            return view ('customer.list_order')->with(compact('p_row','cat','profile','provinces','districts','subdistricts'));
+            return view ('customer.list_order')->with(compact('p_row','cat','profile','provinces','districts','subdistricts','drivers'));
         }else{
-            return view('customer.list_order_element')->with(compact('p_row','cat','profile','provinces','districts','subdistricts'));
+            return view('customer.list_order_element')->with(compact('p_row','cat','profile','provinces','districts','subdistricts','drivers'));
         }
     }
 
@@ -98,6 +102,7 @@ class OrderController extends Controller
         $order_customer->discount = 0;
         $order_customer->vat = 0;
         $order_customer->grand_total = Request::input('sum_tatal');
+        $order_customer->driver = Request::input('driver');
         $order_customer->save();
 
         if(!empty(Request::input('data'))){
@@ -227,12 +232,15 @@ class OrderController extends Controller
         $s = new Subdistricts;
         $subdistricts = $s->getSubdistricts();
 
+        $d = new drivers;
+        $drivers = $d->getDriver();
+
         //return view('customer.edit_order')->with(compact('order_customer','order_tran'));
 
         if(!Request::ajax()){
-            return view ('customer.edit_order')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts'));
+            return view ('customer.edit_order')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts','drivers'));
         }else{
-            return view('customer.edit_order_element')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts'));
+            return view('customer.edit_order_element')->with(compact('p_row','cat','order_customer','order_tran','profile','provinces','districts','subdistricts','drivers'));
         }
     }
 
@@ -247,6 +255,7 @@ class OrderController extends Controller
         $order_customer->discount = 0;
         $order_customer->vat = 0;
         $order_customer->grand_total = Request::input('sum_tatal');
+        $order_customer->driver = Request::input('driver');
         $order_customer->save();
 
         foreach (Request::input('data_') as $t){
@@ -331,6 +340,17 @@ class OrderController extends Controller
             }
         }
 
+        $address = address::find(Request::input('id'));
+        $address-> province_id = Request::input('province');
+        $address-> dis_id = Request::input('district');
+        $address-> sub_id = Request::input('sub_district');
+        $address-> post_code = Request::input('post_code');
+        $address-> name = Request::input('name');
+        $address-> tell = Request::input('tell');
+        $address-> address = Request::input('address');
+        $address-> id_order = 0;
+        $address-> code_order = $order_customer->order_code;
+        $address->save();
         //dd($order_customer_tran);
 
         return redirect('customer/edit/order/'.Request::input('id_order'));
@@ -462,5 +482,11 @@ class OrderController extends Controller
 
             return response()->json($z);
         }
+    }
+
+    public function drive_price(){
+        $driver = drivers::find(Request::input('id'));
+
+        return response()->json($driver);
     }
 }

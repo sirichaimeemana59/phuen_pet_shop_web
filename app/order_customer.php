@@ -13,7 +13,7 @@ class order_customer extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'order_customer';
-    protected $fillable = ['order_code,user_id,total,discount,vat,grand_total,deleted_at'];
+    protected $fillable = ['order_code,user_id,total,discount,vat,grand_total,deleted_at,driver'];
     public $timestamps = true;
     protected $softDelete = true;
 

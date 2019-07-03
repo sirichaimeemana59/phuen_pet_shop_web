@@ -95,7 +95,7 @@
                                         <td>{!! $t->join_stock{'name_'.Session::get('locale')} !!}</td>
                                         <td style="text-align: right;"><input type="text" class="form-control price" name="data_[{!! $key !!}][price]"  readonly value="{!! $t->price_product !!}" required></td>
                                         <td>@if(!empty($t->join_stock_log)){!! $t->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $t->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
-                                        <td style="text-align: right;"><input type="number" name="data_[{!! $key !!}][amount]" class="form-control amount" value="{!! $t->amount !!}" min="1" max="{!! $t->join_widen_trans['amount_widden'] !!}" required></td>
+                                        <td style="text-align: right;"><input type="number" name="data_[{!! $key !!}][amount]" class="form-control amount" value="{!! $t->amount !!}" min="1" max="{!! $t->join_widen_trans['amount_widden'] !!}"></td>
                                         <td style="text-align: right;"><input class="tLineTotal" name="" type="hidden" value="{!! $t->total_price !!}"><input type="text" name="data_[{!! $key !!}][total]" class="form-control total" value="{!! $t->total_price !!}" readonly></td>
                                         <td><a class="btn btn-danger delete-order" data-id="{!! $t->id !!}" data-order="{!! $order_customer->id !!}"><i class="mdi mdi-delete-sweep"></i></a></td>
                                     </tr>
@@ -210,6 +210,22 @@
                             <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
                             <div class="col-sm-4">
                                 {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">{{ trans('messages.driver.driver') }}</label>
+                            <div class="col-sm-4">
+                                @if(!empty($order_customer->driver))
+                                    {!! Form::select('driver',$drivers,$order_customer->driver,array('class'=>'form-control driver','required')) !!}
+                                @else
+                                    {!! Form::select('driver',$drivers,null,array('class'=>'form-control driver','required')) !!}
+                                @endif
+                            </div>
+                            <input type="hidden" class="id_drive" value="{!! $order_customer->driver !!}">
+
+                            <label class="col-sm-2 control-label">{{ trans('messages.product.price') }}</label>
+                            <div class="col-sm-4">
+                                {!! Form::text('price',null,array('class'=>'form-control num price_driver','maxlength' => 10, 'placeholder'=> trans('messages.product.price'),'readonly')) !!}
                             </div>
                         </div>
                     </div>
@@ -465,6 +481,7 @@
                 var id = $('.property_id').val();
                 var dis = $('.dis').val();
                 var subdis = $('.subdis').val();
+                var id_drive = $('.id_drive').val();
                 var select;
                 //console.log(dis);
                 $.ajax({
@@ -515,7 +532,20 @@
                         console.log('aa');
                     }
                 })
-            })
+                /////////////////////////////////////
+                $.ajax({
+                    url : "/customer/select/drive_price",
+                    method : 'post',
+                    dataType : 'json',
+                    data : ({'id':id_drive}),
+                    success : function(e){
+                        //console.log(e);
+                        $('.price_driver').val(e.price);
+                    },error : function(){
+                        console.log('aa');
+                    }
+                })
+            });
 
             $('.district').on('change',function(){
                 $('.subdistricts').attr("disabled", false);
@@ -538,7 +568,7 @@
                         console.log('aa');
                     }
                 })
-            })
+            });
 
             $('.subdistricts').on('change',function(){
                 var id = $(this).val();
@@ -558,7 +588,7 @@
                         //console.log('aa');
                     }
                 })
-            })
+            });
 
             $('body').on('click','.delete-order',function(){
                 var id = $(this).data('id');
@@ -586,6 +616,24 @@
                         swal("Your imaginary file is safe!");
             }
             });
+            });
+
+            $('.driver').on('change',function(){
+                var id = $(this).val();
+                //console.log(id);
+                $.ajax({
+                    url : "/customer/select/drive_price",
+                    method : 'post',
+                    dataType : 'json',
+                    data : ({'id':id}),
+                    success : function(e){
+                        $('.price_driver').val(e.price);
+                        //console.log(e);
+
+                    },error : function(){
+                        //console.log('aa');
+                    }
+                })
             });
         });
     </script>

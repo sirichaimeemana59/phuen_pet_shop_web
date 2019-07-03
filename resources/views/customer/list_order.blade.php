@@ -245,7 +245,19 @@
                             <div class="col-sm-4">
                                 {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'),'required')) !!}
                             </div>
-                        </div>
+                            </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label">{{ trans('messages.driver.driver') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::select('driver',$drivers,null,array('class'=>'form-control driver','required')) !!}
+                                    </div>
+
+                                    <label class="col-sm-2 control-label">{{ trans('messages.product.price') }}</label>
+                                    <div class="col-sm-4">
+                                        {!! Form::text('price',null,array('class'=>'form-control num price_driver','maxlength' => 10, 'placeholder'=> trans('messages.product.price'),'readonly')) !!}
+                                    </div>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -611,8 +623,38 @@
                         //console.log('aa');
                     }
                 })
-            })
+            });
 
+            $('.driver').on('change',function(){
+                var id = $(this).val();
+                //console.log(id);
+                $.ajax({
+                    url : "/customer/select/drive_price",
+                    method : 'post',
+                    dataType : 'json',
+                    data : ({'id':id}),
+                    success : function(e){
+                            $('.price_driver').val(e.price);
+                        //console.log(e);
+
+                    },error : function(){
+                        //console.log('aa');
+                    }
+                })
+            });
+
+
+        });
+
+        $("body").on("keypress",'.num' , function (e) {
+
+            var code = e.keyCode ? e.keyCode : e.which;
+
+            if(code > 57){
+                return false;
+            }else if(code < 48 && code != 8){
+                return false;
+            }
 
         });
 
