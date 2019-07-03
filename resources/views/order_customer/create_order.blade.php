@@ -72,6 +72,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body" id="landing-subject-list">
                             {!! Form::model(null,array('url' => array('/employee/add/order'),'class'=>'form-horizontal form_add create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <div class="table-responsive table-striped">
                             <table class="table itemTables" style="width: 100%">
                                 <tr>
                                     <th ></th>
@@ -84,7 +85,7 @@
                                     <th>{!! trans('messages.action') !!}</th>
                                 </tr>
                             </table>
-
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -342,8 +342,8 @@
                     '<td><input type="hidden" name="data['+time+'][id]" value="'+id+'" required><input type="hidden" name="data['+time+'][product_id]" value="'+product+'" required><span>'+name+'</span></td>',
                     '<td class="w3-hide-small"><input type="text" class="form-control price" name="data['+time+'][price]" readonly value="'+price+'" required></td>',
                     '<td><input type="hidden" name="data['+time+'][unit_id]" value="'+unit_id+'" required><span>'+unit+'</span></td>',
-                    '<td><input type="hidden" class="amount_" value="'+amount+'"><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required></td>',
-                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required></td>',
+                    '<td><input type="hidden" class="amount_" value="'+amount+'"><input type="number" class="form-control amount" name="data['+time+'][amount]" min="1" max="'+amount+'" required style="width: 150px;"></td>',
+                    '<td><input type="text" class="form-control total" name="data['+time+'][total]" readonly required style="width: 150px;"></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                 ];
 
@@ -401,7 +401,7 @@
                $(this).parents('tr').find('.tLineTotal').val(sum_price.toFixed(2));
                 $(this).parents('tr').find('.total').val(sum_price.toFixed(2));
 
-               //console.log(price*amount);
+               console.log(price*amount);
                 calTotal()
             });
 
@@ -442,6 +442,13 @@
                     }
                 });
             }
+
+            $('#add-store-btn').on('click',function () {
+                if($('.create-store-form').valid()) {
+                    $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
+                    $('.create-store-form').submit();
+                }
+            });
 
             // ('#add-store-btn').validate({
             //     rules: {
@@ -658,22 +665,22 @@
 
         });
 
-        $(document).ready(function(){
-            $('.count_').prop('disabled', true);
-            $(document).on('click','.plus_',function(){
-                var this_ =$(this);
-                var amount_ = this_.parents('tr').find('.amount_').val();
-                console.log(amount_);
-                this_.parents('tr').find('.count_').val(1);
-                this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) + 1 );
-            });
-            $(document).on('click','.minus_',function(){
-                var this_ =$(this);
-                this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) - 1 );
-                if ($('.count_').val() == 0) {
-                    $('.count_').val(1);
-                }
-            });
-        });
+        // $(document).ready(function(){
+        //     $('.count_').prop('disabled', true);
+        //     $(document).on('click','.plus_',function(){
+        //         var this_ =$(this);
+        //         var amount_ = this_.parents('tr').find('.amount_').val();
+        //         console.log(amount_);
+        //         this_.parents('tr').find('.count_').val(1);
+        //         this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) + 1 );
+        //     });
+        //     $(document).on('click','.minus_',function(){
+        //         var this_ =$(this);
+        //         this_.parents('tr').find('.count_').val(parseInt($('.count_').val()) - 1 );
+        //         if ($('.count_').val() == 0) {
+        //             $('.count_').val(1);
+        //         }
+        //     });
+        // });
     </script>
 @endsection
