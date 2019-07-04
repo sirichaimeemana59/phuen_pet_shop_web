@@ -5,13 +5,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.know.title') !!}</h3>
                     </div>
                     <div class="panel-body search-form">
                         <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
                             <div class="row">
                                 <div class="col-sm-3 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.pet.name') !!}" name="name">
+                                    <input class="form-control" size="25" placeholder="{!! trans('messages.know.name') !!}" name="name">
                                 </div>
 
                                 {{--<div class="col-sm-3 block-input">--}}
@@ -38,13 +38,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.know.title') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.pet.title') !!}</button>
-                                <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
+                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.know.title') !!}</button>
+                                {{--<a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>--}}
                             </div>
                         </div>
                         <br>
@@ -62,63 +62,47 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.know.title') !!}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form">
-                                {!! Form::model(null,array('url' => array('employee/pet/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                {!! Form::model(null,array('url' => array('employee/know/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_th') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.know.name_th') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.name_th'),'required')) !!}
+                                        {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.know.name_th'),'required')) !!}
                                     </div>
 
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_en') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.know.name_en') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.name_en'),'required')) !!}
+                                        {!! Form::text('name_en',null,array('class'=>'form-control','placeholder'=>trans('messages.know.name_en'),'required')) !!}
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.weight') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('weight',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.weight'))) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.height') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('height',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.height'))) !!}
-                                    </div>
-                                </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.birthday') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::date('birthday',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.birthday'))) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.age') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('age',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.age'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.photo') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.detail') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.know.detail_th') !!}</lable>
                                     <div class="col-sm-10">
-                                        {!! Form::textarea('detail',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40]) !!}                                    </div>
+                                        {!! Form::textarea('detail_th',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40,'required']) !!}
+                                    </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.know.detail_en') !!}</lable>
+                                    <div class="col-sm-10">
+                                        {!! Form::textarea('detail_en',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40,'required']) !!}
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.know.photo') !!}</lable>
+                                    <div class="col-sm-4">
+                                        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.know.photo'))) !!}
+                                    </div>
+                                </div>
 
 
                                 <div class="form-group row float-center" style="text-align: center; ">
@@ -146,7 +130,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.know.title') !!}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -173,7 +157,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
+                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.know.title') !!}</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -219,7 +203,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/pet/list',
+                    url : '/employee/list/know',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -235,7 +219,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/product';
+                window.location.href ='/employee/list/know';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -253,7 +237,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/pet/view',
+                    url : '/employee/know/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -273,7 +257,7 @@
                 $('#lead-content1').empty();
                 $('.v-loading1').show();
                 $.ajax({
-                    url : '/employee/pet/edit',
+                    url : '/employee/know/edit',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -297,13 +281,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/pet/delete", {
+                            $.post("/employee/know/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/pet/list'
+                                    window.location.href ='/employee/list/know'
                                 });
                             });
                         }, 50);

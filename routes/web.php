@@ -281,3 +281,14 @@ Route::post('/employee/driver/view','Driver\DriveController@show');
 Route::post('/employee/driver/edit','Driver\DriveController@edit');
 Route::post('/employee/driver/update','Driver\DriveController@update');
 Route::post('/employee/driver/delete','Driver\DriveController@destroy');
+
+//store profile
+Route::get('/employee/store_profile','StoreProfile\StoreProfileController@index');
+Route::post('/employee/store_profile/add','StoreProfile\StoreProfileController@create');
+Route::post('/employee/store_profile/update','StoreProfile\StoreProfileController@update');
+Route::any('/employee/list/know','StoreProfile\StoreProfileController@list_know');
+Route::post('/employee/know/add','StoreProfile\StoreProfileController@add');
+Route::post('/employee/know/view','StoreProfile\StoreProfileController@view');
+Route::post('/employee/know/edit','StoreProfile\StoreProfileController@edit_know');
+Route::post('/employee/know/update','StoreProfile\StoreProfileController@update_know');
+Route::post('/employee/know/delete','StoreProfile\StoreProfileController@delete');

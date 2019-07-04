@@ -8,6 +8,8 @@ use App\sick_transection;
 use App\news;
 use App\promotion;
 use Session;
+use App\store_profile;
+use App\know;
 
 class IndexController extends Controller
 {
@@ -27,7 +29,13 @@ class IndexController extends Controller
         $promotion = new promotion();
         $promotion = $promotion->get();
 
-        return view('index')->with(compact('sick','new','promotion'));
+        $store_profile = new store_profile;
+        $store_profile = $store_profile->first();
+
+        $know = new know;
+        $know = $know->get();
+
+        return view('index')->with(compact('sick','new','promotion','store_profile','know'));
     }
 
 

@@ -14,9 +14,53 @@
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="vendors/animate-css/animate.css">
     <!-- main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+<style>
+    .banner-area {
+        min-height: 800px;
+        <?php
+            if(!empty($store_profile->photo_top)){
+                $img_top = $store_profile->photo_top;
+            }else{
+                $img_top = "../img/banner/home-banner.jpg";
+            }
+        ?>
+        background-image: url(<?php echo $img_top?>);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: relative; }
+
+    .feature-section {
+        <?php
+           if(!empty($store_profile->photo_center)){
+               $img_center = $store_profile->photo_center;
+           }else{
+               $img_center = "../img/banner/pattern_bg.jpg";
+           }
+       ?>
+        background: url({!! $img_center !!}) no-repeat center;
+        background-size: cover;
+        padding: 60px 0; }
+
+    .hotline-area {
+        <?php
+           if(!empty($store_profile->photo_foot)){
+               $img_foot = $store_profile->photo_foot;
+           }else{
+               $img_foot = "../img/background/bg1.jpg";
+           }
+       ?>
+        color: #fff;
+        background-image: url({!! $img_foot !!});
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        z-index: 1; }
+</style>
 <body>
 
 <!--================Header Menu Area =================-->
@@ -78,10 +122,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-6 col-xl-5">
-                <h1>Making Health<br>
-                    Care Better Together</h1>
-                <p>Also you dry creeping beast multiply fourth abundantly our itsel signs bring our. Won form living. Whose dry you seasons divide given gathering great in whose you'll greater let livein form beast  sinthete
-                    better together these place absolute right.</p>
+                <h1>{!! $store_profile->{'name_'.Session::get('locale')} !!}</h1>
                 {{--<a href="" class="main_btn">Make an Appointment</a>--}}
                 <button type="button" class="main_btn" data-toggle="modal" data-target="#modal-login">Login</button>
                 <button type="button" class="main_btn_light" data-toggle="modal" data-target="#modal-register">Register</button>
@@ -146,7 +187,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-service text-center text-lg-left mb-4 mb-lg-0">
-                        <p style="text-align: center;"><img src="{!! asset('/images/images.png') !!}" alt="" width="15%"></p>
+                        <p style="text-align: center;"><img src="{!! asset('/images/image') !!}" alt="" width="15%"></p>
 
                     <div class="form-group">
                         <lable class="col-sm-2 control-label">{!! trans('messages.search') !!}</lable>
@@ -312,45 +353,19 @@
 <section class="testimonial">
     <div class="container">
         <div class="testi_slider owl-carousel owl-theme">
-            <div class="item">
-                <div class="testi_item">
-                    <div class="testimonial_image">
-                        <img src="img/elements/tes1.jpg" alt="">
-                    </div>
-                    <div class="testi_item_content">
-                        <p>
-                            “ Saw kind fruitful itself in man. All in life good wherein beginning their he air That, the saw very years created for seed have without. Can't him fowl his can not ready for game”
-                        </p>
-                        <h4>- Dr. Suzanne Holroyd -</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="testi_item">
-                    <div class="testimonial_image">
-                        <img src="img/elements/tes1.jpg" alt="">
-                    </div>
-                    <div class="testi_item_content">
-                        <p>
-                            “ Saw kind fruitful itself in man. All in life good wherein beginning their he air That, the saw very years created for seed have without. Can't him fowl his can not ready for game”
-                        </p>
-                        <h4>- Dr. Suzanne Holroyd -</h4>
+            @foreach($know as $val)
+                <div class="item">
+                    <div class="testi_item">
+                        <div class="testimonial_image">
+                            <img src="{!! asset($val->photo) !!}" alt="">
+                        </div>
+                        <div class="testi_item_content">
+                            <h4>{!! $val{'name_'.Session::get('locale')} !!}</h4>
+                            <p>{!! $val{'detail_'.Session::get('locale')} !!}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="testi_item">
-                    <div class="testimonial_image">
-                        <img src="img/elements/tes1.jpg" alt="">
-                    </div>
-                    <div class="testi_item_content">
-                        <p>
-                            “ Saw kind fruitful itself in man. All in life good wherein beginning their he air That, the saw very years created for seed have without. Can't him fowl his can not ready for game”
-                        </p>
-                        <h4>- Dr. Suzanne Holroyd -</h4>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -361,9 +376,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Emergency hotline</h2>
-                <span>(+01) – 256 567 550</span>
-                <p class="pt-3">We provide 24/7 customer support. Please feel free to contact us <br>for emergency case.</p>
+                <h2>{!! trans('messages.store_profile.contact') !!}</h2>
+                <span>{!! $store_profile->tell !!}</span>
+                <p class="pt-3">{!! $store_profile->address !!}</p>
             </div>
         </div>
     </div>

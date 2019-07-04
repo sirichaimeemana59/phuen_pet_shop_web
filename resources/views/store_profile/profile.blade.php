@@ -5,71 +5,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
-                    </div>
-                    <div class="panel-body search-form">
-                        <form method="POST" id="search-form" action="#" accept-charset="UTF-8" class="form-horizontal">
-                            <div class="row">
-                                <div class="col-sm-3 block-input">
-                                    <input class="form-control" size="25" placeholder="{!! trans('messages.pet.name') !!}" name="name">
-                                </div>
-
-                                {{--<div class="col-sm-3 block-input">--}}
-                                {{--<input class="form-control" size="25" placeholder="{!! trans('messages.id') !!}" name="id">--}}
-                                {{--</div>--}}
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 text-right">
-                                    <button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>
-                                    <button type="button" class="btn btn-secondary search-store">{!! trans('messages.search') !!}</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- //search --}}
-    <br>
-    <div class="row">
-        <div class="col-md-12 stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{!! trans('messages.pet.title') !!}</h3>
+                        <h3 class="panel-title">{!! trans('messages.store_profile.title') !!}</h3>
                     </div>
                     <div class="panel panel-default" id="panel-lead-list">
-                        <div class="row">
-                            <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.pet.title') !!}</button>
-                                <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
-                            </div>
-                        </div>
-                        <br>
                         <div class="panel-body" id="landing-subject-list">
-                            @include('know.list_know_element')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal add store-->
-    <div class="modal fade" id="add-store" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
                             <div class="form">
-                                {!! Form::model(null,array('url' => array('employee/pet/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                @if(!empty($profile))
+                                    {!! Form::model($profile,array('url' => array('employee/store_profile/update'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                    <input type="hidden" name="id" value="{!! $profile->id !!}">
+                                    <input type="hidden" name="photo_top_" value="{!! $profile->photo_top !!}">
+                                    <input type="hidden" name="photo_center_" value="{!! $profile->photo_center !!}">
+                                    <input type="hidden" name="photo_foot_" value="{!! $profile->photo_foot !!}">
+                                @else
+                                    {!! Form::model(null,array('url' => array('employee/store_profile/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                @endif
                                 <div class="form-group row">
                                     <lable class="col-sm-2 control-label">{!! trans('messages.pet.name_th') !!}</lable>
                                     <div class="col-sm-4">
@@ -83,40 +32,43 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.weight') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.tell') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('weight',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.weight'))) !!}
+                                        {!! Form::text('tell',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.tell'),'required')) !!}
                                     </div>
 
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.height') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.email') !!}</lable>
                                     <div class="col-sm-4">
-                                        {!! Form::text('height',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.height'))) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.birthday') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::date('birthday',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.birthday'))) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.age') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('age',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.age'))) !!}
+                                        {!! Form::text('email',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.email'),'required')) !!}
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.photo') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.photo_top') !!}
+                                        <br>    <p style="color: red;font-weight: bold;">{!! trans('messages.store_profile.size') !!} : 1920 X 800</p></lable>
                                     <div class="col-sm-4">
-                                        {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
+                                        {!! Form::file('photo_top',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.photo_top'))) !!}
+                                    </div>
+
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.photo_center') !!}
+                                        <br>    <p style="color: red;font-weight: bold;">{!! trans('messages.store_profile.size') !!} : 1920 X 290</p></lable>
+                                    <div class="col-sm-4">
+                                        {!! Form::file('photo_center',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.photo_center'))) !!}
                                     </div>
                                 </div>
+                                    <div class="form-group row">
+                                        <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.photo_foot') !!}
+                                            <br>    <p style="color: red;font-weight: bold;">{!! trans('messages.store_profile.size') !!} : 1920 X 450</p></lable>
+                                        <div class="col-sm-4">
+                                            {!! Form::file('photo_foot',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.photo_foot'))) !!}
+                                        </div>
+                                    </div>
 
                                 <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.pet.detail') !!}</lable>
+                                    <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.address') !!}</lable>
                                     <div class="col-sm-10">
-                                        {!! Form::textarea('detail',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40]) !!}                                    </div>
+                                        {!! Form::textarea('address',null,['class'=>'form-control', 'rows' => 2, 'cols' => 40,'required']) !!}
+                                    </div>
                                 </div>
 
 
@@ -132,68 +84,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
             </div>
-
-        </div>
-    </div>
-    <!-- End Modal add store-->
-
-    <!-- Modal view store-->
-    <div class="modal fade" id="view-store" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="lead-content" class="form">
-
-                            </div>
                         </div>
                     </div>
-                    <span class="v-loading">กำลังค้นหาข้อมูล...</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- End Modal view store-->
-
-    <!-- Modal edit Store-->
-    <div class="modal fade" id="edit-store" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.pet.title') !!}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="lead-content1" class="form">
-
-                            </div>
-                        </div>
-                    </div>
-                    <span class="v-loading1">กำลังค้นหาข้อมูล...</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- End Modal edit Store-->
 @endsection
 
 @section('script')
@@ -309,14 +206,14 @@
                         }, 50);
                     } else {
                         swal("Your imaginary file is safe!");
-                    }
-                });
+            }
+            });
             });
 
             $('body').on('change','.select_product',function(){
-               var id = $(this).val();
+                var id = $(this).val();
 
-               //console.log(id);
+                //console.log(id);
                 $.ajax({
                     url : '/employee/add/product/for_sale',
                     method : 'post',
@@ -358,16 +255,16 @@
             });
 
             $('body').on('change','.type_sale',function(){
-               var id = $(this).val();
+                var id = $(this).val();
 
-               if(id == 1){
-                   $('.price_pack').show();
-                   $('.price_piece').hide();
-               }else{
-                   $('.price_piece').show();
-                   $('.price_pack').hide();
-               }
-               //console.log(id);
+                if(id == 1){
+                    $('.price_pack').show();
+                    $('.price_piece').hide();
+                }else{
+                    $('.price_piece').show();
+                    $('.price_pack').hide();
+                }
+                //console.log(id);
             });
 
         });

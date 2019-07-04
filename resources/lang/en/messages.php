@@ -318,5 +318,29 @@ return [
     ],
     'driver' => [
         'driver' => 'Driver',
+    ],
+    'store_profile' => [
+        'title' => 'Store Profile',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'email' => 'E-mail',
+        'tell' => 'Tell',
+        'photo_top' => 'Photo Top',
+        'photo_center' => 'Photo Center',
+        'photo_foot' => 'Photo Footer',
+        'address' => 'Address',
+        'size' => 'Image Size',
+        'contact' => 'Contact',
+    ],
+    'know' => [
+        'title' => 'Knowledge',
+        'name' => 'Name',
+        'name_th' => 'Name [TH]',
+        'name_en' => 'Name [EN]',
+        'detail' => 'Detail',
+        'detail_th' => 'Detail [TH]',
+        'detail_en' => 'Detail [EN]',
+        'photo' => 'Photo',
     ]
 ];

@@ -1,6 +1,12 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/store_profile') !!}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.store_profile.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{!! url('/employee/product') !!}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.product.head_product') !!}</span>
@@ -110,6 +116,12 @@
             <a class="nav-link" href="{!! url('/employee/list/promotion') !!}">
                 <i class="fa fa-money menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.promotion.title') !!}</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{!! url('/employee/list/know') !!}">
+                <i class="fa fa-lightbulb-o menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.know.title') !!}</span>
             </a>
         </li>
         <li class="nav-item">
