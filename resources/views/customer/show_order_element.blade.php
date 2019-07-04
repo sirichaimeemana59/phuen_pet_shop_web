@@ -28,7 +28,8 @@
         @endif
     </div>
 
-    {{--<div class="table-responsive table-striped">--}}
+    <div class="w3-hide-small">
+    <div class="table-responsive table-striped">
     <table cellspacing="0" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -46,7 +47,7 @@
                     <td>{!! $key+1 !!}</td>
                     <td>{!! $row->order_code !!}</td>
                     <td>{!! localDate($row->created_at) !!}</td>
-                    <td>-</td>
+                    <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-eye"></i></button>
                         @if($row->status != 0)
@@ -71,7 +72,75 @@
         @endif
         </tbody>
     </table>
-    {{--</div>--}}
+    </div>
+    </div>
+    <br>
+<div class="hide">
+    <div class="table-responsive table-striped">
+        <table cellspacing="0" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                {{--<th>{!! trans('messages.number') !!}</th>--}}
+                <th>{!! trans('messages.order.id') !!}</th>
+                <th>{!! trans('messages.order.date') !!}</th>
+                <th>{!! trans('messages.order.status') !!}</th>
+                <th>{!! trans('messages.action') !!}</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if(!empty($p_row))
+                @foreach($p_row as $key => $row)
+                    <tr>
+                        {{--<td>{!! $key+1 !!}</td>--}}
+                        <td>{!! $row->order_code !!}</td>
+                        <td>{!! localDate($row->created_at) !!}</td>
+                        <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
+                        <td>
+                            {{--<button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-eye"></i></button>--}}
+                            {{--@if($row->status != 0)--}}
+                                {{--<button class="btn btn-warning mt-2 mt-xl-0 text-right" disabled ><i class="mdi mdi-tooltip-edit"></i></button>--}}
+                            {{--@else--}}
+                                {{--<a href="{!! url('customer/edit/order/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>--}}
+                            {{--@endif--}}
+                            {{--<button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-delete-sweep"></i></button>--}}
+                            {{--@if(!empty($row->join_bill_payment))--}}
+                                {{--<button class="btn btn-success mt-2 mt-xl-0 text-right edit-bill" data-id="{!! $row->id !!}"><i class="fa fa-file-text"></i></button>--}}
+                            {{--@else--}}
+                                {{--<button class="btn btn-success mt-2 mt-xl-0 text-right add-bill" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="fa fa-file-text"></i></button>--}}
+                            {{--@endif--}}
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li class="#"><a href="#" class="view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif>{!! trans('messages.view') !!}</a></li>
+                                    {{--<li class="#"><a href="#" class="edit-store" data-id="{!! $row->id !!}">{!! trans('messages.edit') !!}</a></li>--}}
+                                    @if($row->status != 0)
+                                        <li class="#"><a href="#" disabled>{!! trans('messages.edit') !!}</a></li>
+                                    @else
+                                        <li class="#"><a href="{!! url('customer/edit/order/'.$row->id) !!}">{!! trans('messages.edit') !!}</a></li>
+                                    @endif
+                                    <li><a href="#" class="delete-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif>{!! trans('messages.delete') !!}</a></li>
+                                    @if(!empty($row->join_bill_payment))
+                                        <li class="#"><a href="#"  class="edit-bill" data-id="{!! $row->id !!}">{!! trans('messages.bill.bill') !!}</a></li>
+                                    @else
+                                        <li class="#"><a href="#"  class="add-bill" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif>{!! trans('messages.bill.bill') !!}</a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td>{!! trans('messages.no-data') !!}</td>
+                </tr>
+
+            @endif
+            </tbody>
+        </table>
+    </div>
+</div>
     <br>
     <div class="row">
         <div class="col-md-6">

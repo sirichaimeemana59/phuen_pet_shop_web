@@ -99,6 +99,12 @@
                             <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
                             <td>
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
+                                @if($row->status == 0 )
+                                    <button class="btn btn-success mt-2 mt-xl-0 text-right app-store" data-id="{!! $row->id !!}"><i class="fa fa-check-square"></i></button>
+                                @endif
+                                @if($row->status == 2 )
+                                    <button class="btn btn-primary mt-2 mt-xl-0 text-right to_car" data-id="{!! $row->id !!}"><i class="fa fa-car"></i></button>
+                                @endif
                                 {{--@if(!empty($row->join_bill_payment))--}}
                                     {{--<button class="btn btn-warning mt-2 mt-xl-0 text-right" disabled><i class="mdi mdi-tooltip-edit"></i></button>--}}
                                 {{--@else--}}

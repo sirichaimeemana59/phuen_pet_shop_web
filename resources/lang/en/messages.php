@@ -270,6 +270,7 @@ return [
     ],
     'bill' => [
         'title' => 'Proof of payment',
+        'bill' => 'Slip'
     ],
     'news' => [
         'title' => 'News',

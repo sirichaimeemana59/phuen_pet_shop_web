@@ -28,7 +28,7 @@
         @endif
     </div>
 
-    {{--<div class="table-responsive table-striped">--}}
+    <div class="table-responsive table-striped">
     <table cellspacing="0" class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -71,7 +71,7 @@
         @endif
         </tbody>
     </table>
-    {{--</div>--}}
+    </div>
     <br>
     <div class="row">
         <div class="col-md-6">

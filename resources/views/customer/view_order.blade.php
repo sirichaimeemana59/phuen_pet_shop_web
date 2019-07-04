@@ -3,7 +3,7 @@
 <div class="form-group row">
     <lable class="col-sm-12 control-label"><h3>{!! trans('messages.order.order') !!} : {!! $order_customer->order_code !!}</h3></lable>
 </div>
-
+<div class="table-responsive table-striped">
 <table class="table itemTables" style="width: 100%">
     <tr>
         <th></th>
@@ -33,3 +33,4 @@
     <td style="text-align: right;">{!! number_format($sum,2) !!}</td>
 </tr>
 </table>
+</div>

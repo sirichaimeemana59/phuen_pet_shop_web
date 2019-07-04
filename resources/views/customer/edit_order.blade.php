@@ -74,6 +74,7 @@
                         <div class="panel-body" id="landing-subject-list">
                             {!! Form::model(null,array('url' => array('/customer/update/order'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <input type="hidden" name="id_order" value="{!! $order_customer->id !!}">
+                            <div class="table-responsive table-striped">
                             <table class="table itemTables" style="width: 100%">
                                 <tr>
                                     <th ></th>
@@ -103,6 +104,7 @@
                                 @endforeach
 
                             </table>
+                            </div>
                             <input type="hidden" class="hide_total" value="{!! $sum !!}">
 
                         </div>

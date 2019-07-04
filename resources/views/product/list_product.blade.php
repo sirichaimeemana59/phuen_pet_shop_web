@@ -50,10 +50,10 @@
                         <div class="row">
                             <div class="col-sm-12 text-right">
                                 @if($widen != null)
-                                    <a href="{!! url('/employee/add/product/sale/list') !!}"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button></a>
+                                    <a href="{!! url('/employee/add/product/sale/list') !!}"><button class="btn btn-success mt-2 mt-xl-0 text-right w3-hide-small"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button></a>
                                     {{--<button class="btn btn-success mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.product.head_product') !!}</button>--}}
                                 @endif
-                                    <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
+                                    <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right w3-hide-small"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
                             </div>
                         </div>
                         <br>

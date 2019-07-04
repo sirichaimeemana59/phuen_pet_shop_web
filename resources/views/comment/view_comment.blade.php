@@ -17,7 +17,12 @@
     <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
     {{--@foreach($comment->join_reply as $t)--}}
         <div class="col-sm-10">
-            {!! $comment->join_reply['reply'] !!}
+            {{--{!! dd($comment->join_reply) !!}--}}
+            @if(!empty($comment->join_reply))
+                {!! $comment->join_reply['reply'] !!}
+                @else
+                -
+            @endif
         </div>
     {{--@endforeach--}}
 </div>
