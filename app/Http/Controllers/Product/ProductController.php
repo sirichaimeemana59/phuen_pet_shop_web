@@ -23,12 +23,7 @@ class ProductController extends Controller
     protected $app;
 
     public function __construct () {
-        $this->middleware('auth');
-        if( Auth::check() && Auth::user()->role !== 0 ) {
-            if(Auth::user()->role !== 2) {
-                Redirect::to('/logout')->send();
-            }
-        }
+        $this->middleware('tree_role');
     }
 
     public function index(Request $request)
