@@ -44,21 +44,21 @@ class StoreProfileController extends Controller
 //            $thumbnailImage_foot->save($originalPath_foot.time().$originalImage_foot->getClientOriginalName());
 //        }
 
-        $fileNameToDatabase_top = '//via.placeholder.com/1920x800';
+        //$fileNameToDatabase_top = '//via.placeholder.com/1920x800';
         if($request->hasFile('photo_top')){
             $uploader_top = new ImageUploadAndResizer($request->file('photo_top', '/images/photo'));
             $uploader_top->width = 1920;
             $uploader_top->height = 800;
             $fileNameToDatabase_top = $uploader_top->execute();
         }
-        $fileNameToDatabase_center = '//via.placeholder.com/1920x290';
+        //$fileNameToDatabase_center = '//via.placeholder.com/1920x290';
         if($request->hasFile('photo_center')){
             $uploader_center = new ImageUploadAndResizer($request->file('photo_center', '/images/photo'));
             $uploader_center->width = 1920;
             $uploader_center->height = 290;
             $fileNameToDatabase_center = $uploader_center->execute();
         }
-        $fileNameToDatabase_foot = '//via.placeholder.com/1920x450';
+        //$fileNameToDatabase_foot = '//via.placeholder.com/1920x450';
         if($request->hasFile('photo_foot')){
             $uploader_foot = new ImageUploadAndResizer($request->file('photo_foot', '/images/photo'));
             $uploader_foot->width = 1920;
@@ -66,11 +66,11 @@ class StoreProfileController extends Controller
             $fileNameToDatabase_foot = $uploader_foot->execute();
         }
 
-        $fileNameToDatabase_logo = '//via.placeholder.com/250x250';
+        //$fileNameToDatabase_logo = '//via.placeholder.com/250x250';
         if($request->hasFile('photo_logo')){
             $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', '/images/photo'));
-            $uploader_logo->width = 1920;
-            $uploader_logo->height = 450;
+            $uploader_logo->width = 350;
+            $uploader_logo->height = 350;
             $fileNameToDatabase_logo = $uploader_logo->execute();
         }
 
@@ -146,8 +146,8 @@ class StoreProfileController extends Controller
             $fileNameToDatabase_logo = '//via.placeholder.com/250x250';
             if($request->hasFile('photo_logo')){
                 $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', '/images/photo'));
-                $uploader_logo->width = 1920;
-                $uploader_logo->height = 450;
+                $uploader_logo->width = 350;
+                $uploader_logo->height = 350;
                 $fileNameToDatabase_logo = $uploader_logo->execute();
             }
         }

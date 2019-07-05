@@ -26,6 +26,7 @@ use App\widen_report;
 use App\stock_log;
 use App\widden_product;
 use App\widden__transection;
+use App\store_profile;
 
 class OwnerController extends Controller
 {
@@ -83,7 +84,9 @@ class OwnerController extends Controller
         $order = new order_company;
         $p_row = $order->get();
 
-        return view('report.order_owner_company_print')->with(compact('p_row'));
+        $store_profile = new store_profile;
+        $store_profile = $store_profile->first();
+        return view('report.order_owner_company_print')->with(compact('p_row','store_profile'));
     }
 
 
@@ -91,7 +94,11 @@ class OwnerController extends Controller
     {
         $order = new order_customer;
         $p_row = $order->get();
-        return view('report.order_owner_print')->with(compact('p_row'));
+
+        $store_profile = new store_profile;
+        $store_profile = $store_profile->first();
+
+        return view('report.order_owner_print')->with(compact('p_row','store_profile'));
 
     }
 
