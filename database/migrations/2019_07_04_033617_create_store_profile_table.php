@@ -24,6 +24,7 @@ class CreateStoreProfileTable extends Migration
             $table->text('photo_center')->nullable();
             $table->text('photo_foot')->nullable();
             $table->text('address')->nullable();
+            $table->text('photo_logo')->nullable();
             $table->timestamps();
         });
     }

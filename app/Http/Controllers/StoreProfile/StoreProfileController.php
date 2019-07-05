@@ -66,6 +66,14 @@ class StoreProfileController extends Controller
             $fileNameToDatabase_foot = $uploader_foot->execute();
         }
 
+        $fileNameToDatabase_logo = '//via.placeholder.com/250x250';
+        if($request->hasFile('photo_logo')){
+            $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', '/images/photo'));
+            $uploader_logo->width = 1920;
+            $uploader_logo->height = 450;
+            $fileNameToDatabase_logo = $uploader_logo->execute();
+        }
+
 
         $profile = new store_profile;
         $profile->name_th = $request->input('name_th');
@@ -76,6 +84,7 @@ class StoreProfileController extends Controller
         $profile->photo_top = $fileNameToDatabase_top;
         $profile->photo_center = $fileNameToDatabase_center;
         $profile->photo_foot = $fileNameToDatabase_foot;
+        $profile->photo_logo = $fileNameToDatabase_logo;
         $profile->save();
 
         //dd($profile);
@@ -133,6 +142,16 @@ class StoreProfileController extends Controller
             }
         }
 
+        if(!empty($request->hasFile('photo_logo'))){
+            $fileNameToDatabase_logo = '//via.placeholder.com/250x250';
+            if($request->hasFile('photo_logo')){
+                $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', '/images/photo'));
+                $uploader_logo->width = 1920;
+                $uploader_logo->height = 450;
+                $fileNameToDatabase_logo = $uploader_logo->execute();
+            }
+        }
+
 
         $profile = store_profile::find($request->input('id'));
         $profile->name_th = $request->input('name_th');
@@ -143,6 +162,7 @@ class StoreProfileController extends Controller
         $profile->photo_top = empty($fileNameToDatabase_top)?$request->input('photo_top_'):$fileNameToDatabase_top;
         $profile->photo_center = empty($fileNameToDatabase_center)?$request->input('photo_center_'):$fileNameToDatabase_center;
         $profile->photo_foot = empty($fileNameToDatabase_foot)?$request->input('photo_foot_'):$fileNameToDatabase_foot;
+        $profile->photo_logo = empty($fileNameToDatabase_logo)?$request->input('photo_logo_'):$fileNameToDatabase_logo;
         $profile->save();
 
         //dd($profile);

@@ -122,7 +122,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-6 col-xl-5">
-                <h1>{!! $store_profile->{'name_'.Session::get('locale')} !!}</h1>
+                <h1>@if(!empty($store_profile)){!! $store_profile->{'name_'.Session::get('locale')} !!}@else welcome @endif</h1>
                 {{--<a href="" class="main_btn">Make an Appointment</a>--}}
                 <button type="button" class="main_btn" data-toggle="modal" data-target="#modal-login">Login</button>
                 <button type="button" class="main_btn_light" data-toggle="modal" data-target="#modal-register">Register</button>
@@ -377,8 +377,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2>{!! trans('messages.store_profile.contact') !!}</h2>
-                <span>{!! $store_profile->tell !!}</span>
-                <p class="pt-3">{!! $store_profile->address !!}</p>
+                <span>@if(!empty($store_profile)){!! $store_profile->tell !!} @else welcome @endif</span>
+                <p class="pt-3">@if(!empty($store_profile)){!! $store_profile->address !!} @else welcome @endif</p>
             </div>
         </div>
     </div>

@@ -333,6 +333,7 @@ return [
         'address' => 'Address',
         'size' => 'Image Size',
         'contact' => 'Contact',
+        'logo' => 'Logo'
     ],
     'know' => [
         'title' => 'Knowledge',

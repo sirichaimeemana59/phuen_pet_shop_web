@@ -16,6 +16,7 @@
                                     <input type="hidden" name="photo_top_" value="{!! $profile->photo_top !!}">
                                     <input type="hidden" name="photo_center_" value="{!! $profile->photo_center !!}">
                                     <input type="hidden" name="photo_foot_" value="{!! $profile->photo_foot !!}">
+                                    <input type="hidden" name="photo_logo_" value="{!! $profile->photo_logo !!}">
                                 @else
                                     {!! Form::model(null,array('url' => array('employee/store_profile/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 @endif
@@ -61,6 +62,11 @@
                                             <br>    <p style="color: red;font-weight: bold;">{!! trans('messages.store_profile.size') !!} : 1920 X 450</p></lable>
                                         <div class="col-sm-4">
                                             {!! Form::file('photo_foot',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.photo_foot'))) !!}
+                                        </div>
+
+                                        <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.logo') !!}
+                                        <div class="col-sm-4">
+                                            {!! Form::file('photo_logo',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.logo'))) !!}
                                         </div>
                                     </div>
 
