@@ -89,24 +89,16 @@
                             {{--<td>{!! $row->email!!}</td>--}}
                             <td>
                                 @if($row->status == 1)
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li class="#"><a href="#" class="view-store" data-id="{!! $row->id !!}">{!! trans('messages.view') !!}</a></li>
-                                            <li><a href="#" class="edit-store" data-id="{!! $row->id !!}">{!! trans('messages.edit') !!}</a></li>
-                                            <li><a href="#" class="delete-store" data-id="{!! $row->id !!}">{!! trans('messages.delete') !!}</a></li>
-                                        </ul>
-                                    </div>
-                                @else
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
-                                            <span class="caret"></span></button>
-                                        <ul class="dropdown-menu">
-                                            <li class="#"><a href="#" class="active-store" data-id="{!! $row->id !!}">{!! trans('messages.user.active') !!}</a></li>
-                                            <li><a href="#" class="delete-store" data-id="{!! $row->id !!}">{!! trans('messages.delete') !!}</a></li>
-                                        </ul>
-                                    </div>
+                                    <button class="btn btn-success mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="fa fa-eye"></i></button>
+                                    {{--@else--}}
+                                    {{--<div class="dropdown">--}}
+                                        {{--<button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}--}}
+                                            {{--<span class="caret"></span></button>--}}
+                                        {{--<ul class="dropdown-menu">--}}
+                                            {{--<li class="#"><a href="#" class="active-store" data-id="{!! $row->id !!}">{!! trans('messages.user.active') !!}</a></li>--}}
+                                            {{--<li><a href="#" class="delete-store" data-id="{!! $row->id !!}">{!! trans('messages.delete') !!}</a></li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
                                 @endif
                             </td>
                         </tr>

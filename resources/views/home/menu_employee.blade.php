@@ -12,6 +12,14 @@
                 <span class="menu-title">{!! trans('messages.product.head_product') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+            <li class="nav-item hide">
+                <a class="nav-link" href="{!! url('/approved/user') !!}">
+                    <i class="mdi mdi-account menu-icon"></i>
+                    <span class="menu-title">{!! trans('messages.user.title') !!}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/approved/user') !!}">
                 <i class="mdi mdi-account menu-icon"></i>
@@ -70,6 +78,14 @@
                 <span class="menu-title">{!! trans('messages.pet.title') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+        <li class="nav-item hide">
+            <a class="nav-link" href="{!! url('/employee/sick/list') !!}">
+                <i class="fa fa-paw menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.analyze.analyze') !!}</span>
+            </a>
+        </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/employee/sick/list') !!}">
                 <i class="fa fa-paw menu-icon"></i>
@@ -100,24 +116,56 @@
                 <span class="menu-title">{!! trans('messages.order.order') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+            <li class="nav-item hide">
+                <a class="nav-link" href="{!! url('/customer/news/list') !!}">
+                    <i class="fa fa-newspaper-o menu-icon"></i>
+                    <span class="menu-title">{!! trans('messages.news.title') !!}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/customer/news/list') !!}">
                 <i class="fa fa-newspaper-o menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.news.title') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+            <li class="nav-item hide">
+                <a class="nav-link" href="{!! url('/employee/list/comment') !!}">
+                    <i class="fa fa-commenting menu-icon"></i>
+                    <span class="menu-title">{!! trans('messages.comment.title') !!}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/employee/list/comment') !!}">
                 <i class="fa fa-commenting menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.comment.title') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+            <li class="nav-item hide">
+                <a class="nav-link" href="{!! url('/employee/list/promotion') !!}">
+                    <i class="fa fa-money menu-icon"></i>
+                    <span class="menu-title">{!! trans('messages.promotion.title') !!}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/employee/list/promotion') !!}">
                 <i class="fa fa-money menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.promotion.title') !!}</span>
             </a>
         </li>
+        @if(Auth::user()->role = 2)
+            <li class="nav-item hide">
+                <a class="nav-link" href="{!! url('/employee/list/know') !!}">
+                    <i class="fa fa-lightbulb-o menu-icon"></i>
+                    <span class="menu-title">{!! trans('messages.know.title') !!}</span>
+                </a>
+            </li>
+        @endif
         <li class="nav-item w3-hide-small">
             <a class="nav-link" href="{!! url('/employee/list/know') !!}">
                 <i class="fa fa-lightbulb-o menu-icon"></i>

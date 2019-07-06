@@ -48,9 +48,9 @@
         </select>
     </div>
 </div>
-<div class="form-group row float-center" style="text-align: center; ">
-    <div class="col-sm-12">
-        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-        <button class="btn-info btn-warning" type="reset">Reset</button>
-    </div>
-</div>
+{{--<div class="form-group row float-center" style="text-align: center; ">--}}
+    {{--<div class="col-sm-12">--}}
+        {{--<button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>--}}
+        {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
+    {{--</div>--}}
+{{--</div>--}}

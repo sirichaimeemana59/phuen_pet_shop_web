@@ -28,6 +28,7 @@
         @endif
     </div>
 
+    <div class="w3-hide-small">
     <div class="table-responsive table-striped">
     <table cellspacing="0" class="table table-bordered table-striped">
         <thead>
@@ -61,6 +62,45 @@
         @endif
         </tbody>
     </table>
+    </div>
+    </div>
+    <br>
+
+    <div class="hide">
+        <div class="table-responsive table-striped">
+            <table cellspacing="0" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    {{--<th>{!! trans('messages.number') !!}</th>--}}
+                    <th>{!! trans('messages.promotion.name') !!}</th>
+                    <th>{!! trans('messages.promotion.discount') !!}</th>
+                    {{--<th>{!! trans('messages.action') !!}</th>--}}
+                </tr>
+                </thead>
+                <tbody>
+                @if(!empty($p_row))
+                    @foreach($p_row as $key => $row)
+                        <tr>
+                            {{--<td>{!! $key+1 !!}</td>--}}
+                            <td>{!! $row{'name_'.Session::get('locale')} !!}</td>
+                            <td>{!! $row->discount !!}</td>
+                            {{--<td>--}}
+                                {{--<button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>--}}
+                                {{--<button class="btn btn-warning mt-2 mt-xl-0 text-right edit-store" data-id="{!! $row->id !!}"><i class="mdi mdi-tooltip-edit"></i></button>--}}
+                                {{--<a href="{!! url('/employee/pet/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>--}}
+                                {{--<button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>--}}
+                            {{--</td>--}}
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td>{!! trans('messages.no-data') !!}</td>
+                    </tr>
+
+                @endif
+                </tbody>
+            </table>
+        </div>
     </div>
     <br>
     <div class="row">
