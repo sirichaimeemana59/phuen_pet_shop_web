@@ -19,6 +19,7 @@ use App\profile;
 use DB;
 use Session;
 use App\drivers;
+use App\store_profile;
 
 class OrderCustomerController extends Controller
 {
@@ -278,7 +279,32 @@ class OrderCustomerController extends Controller
         return view('order_customer.view_order')->with(compact('order_customer','order_tran'));
     }
 
-    public function approved_order()
+    public function print_slip($id = null)
+    {
+
+        $order_customer = order_customer::find($id);
+
+        $order_tran = order_customer_transection::where('order_code', $order_customer->order_code)->get();
+
+        $store_profile = new store_profile;
+        $store_profile = $store_profile->first();
+
+        //$profile = address::where('code_order',$order_customer->order_code)->first();
+
+        $profile = DB::table('address')
+            ->join('provinces', 'address.province_id', '=', 'provinces.id')
+            ->join('districts', 'address.dis_id', '=', 'districts.id')
+            ->join('subdistricts', 'address.sub_id', '=', 'subdistricts.id')
+            ->select('address.*', 'provinces.name_in_'.Session::get('locale'), 'districts.name_'.Session::get('locale'),'subdistricts.name_th as name_sub_th','subdistricts.name_en as name_sub_en')
+            ->where('code_order',$order_customer->order_code)->first();
+
+        //dd($profile);
+
+        return view('report.print_slip_order_customer')->with(compact('order_customer', 'order_tran','store_profile','profile'));
+
+    }
+
+        public function approved_order()
     {
         $order_customer = order_customer::find(Request::input('id'));
         $order_customer->status = 2 ;

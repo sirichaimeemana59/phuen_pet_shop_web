@@ -81,6 +81,7 @@ Route::post('/select_unit_tran','Stock\StockController@select_unit_tran');
 
 //Report
 Route::get('/report/widden/{id}','Widen\WidenController@print_widden');
+Route::get('/print/slip/order_employee/{id?}','Sell\OrderCustomerController@print_slip');
 
 //pet
 Route::any('/employee/pet/list','Pet\PetController@index');

@@ -54,6 +54,9 @@ return [
     'delete' => 'Delete',
     'paid' => 'Paid',
     'n_paid' => 'Not paid',
+    'payee' => 'Payee',
+    'customer' => 'Customer',
+    'sign' => 'Sign',
 
     'product' => [
         'head_product' => 'Product',

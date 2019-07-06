@@ -56,6 +56,9 @@ return [
     'view' => 'ดู',
     'edit' => 'แก้ไข',
     'delete' => 'ลบ',
+    'payee' => 'ผู้รับเงิน',
+    'customer' => 'ลูกค้า',
+    'sign' => 'ลงชื่อ',
 
     'product'=>[
         'head_product' => 'สินค้า',

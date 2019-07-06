@@ -21,7 +21,7 @@
             {!! $store_profile->tell !!}
         </p>
     </div>
-    
+
     <h3 style="text-align: center;font-weight: bold;">{!! trans('messages.order.order_com') !!}</h3>
     <br>
     <table style="width:100%;">
