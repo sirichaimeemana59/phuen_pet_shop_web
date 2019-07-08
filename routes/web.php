@@ -8,7 +8,7 @@ Route::post('/pet', 'IndexController@create');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/user', 'HomeController@index')->name('home');
 
 //Language
 Route::get('locale/{locale?}',function($locale){
