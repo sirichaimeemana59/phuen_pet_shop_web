@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="vname_enendors/animate-css/animate.css">
     <!-- main css -->
     <link rel="stylesheet" href="css/style1.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -202,25 +202,27 @@
                             <tr>
                                 <th colspan="2"></th>
                             </tr>
-                            @foreach($sick as $val)
-                                <tr>
-                                    <td style="text-align: left;font-weight: bold;" colspan="2">{!! $val{'name_'.Session::get('locale')} !!}</td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: left;" colspan="2">{!! $val{'detail_'.Session::get('locale')} !!}</td>
-                                </tr>
-                                @foreach($val->join_sick_transection as $t)
+                            @if(!empty($sick))
+                                @foreach($sick as $val)
                                     <tr>
-                                        <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.syndrome') !!}</td>
-                                        <td style="text-align: left;">{!! $t['sick_'.Session::get('locale')] !!}</td>
+                                        <td style="text-align: left;font-weight: bold;" colspan="2">{!! $val{'name_'.Session::get('locale')} !!}</td>
                                     </tr>
                                     <tr>
-                                        <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.detail') !!}</td>
-                                        <td style="text-align: left;">{!! $t['detail_'.Session::get('locale')] !!}</td>
+                                        <td style="text-align: left;" colspan="2">{!! $val{'detail_'.Session::get('locale')} !!}</td>
                                     </tr>
-                                        {{--@break--}}
+                                    @foreach($val->join_sick_transection as $t)
+                                        <tr>
+                                            <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.syndrome') !!}</td>
+                                            <td style="text-align: left;">{!! $t['sick_'.Session::get('locale')] !!}</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.detail') !!}</td>
+                                            <td style="text-align: left;">{!! $t['detail_'.Session::get('locale')] !!}</td>
+                                        </tr>
+                                            {{--@break--}}
+                                    @endforeach
                                 @endforeach
-                            @endforeach
+                            @endif
                         </table>
                         <table class="table itemTables show1" style="width: 100%">
                             <tr>
@@ -269,6 +271,7 @@
         </div>
 
         <div class="row">
+            @if(!empty($new))
             @foreach($new as $key => $row)
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card card-team">
@@ -296,6 +299,7 @@
                 </div>
             </div>
             @endforeach
+                @endif
         </div>
     </div>
 </section>
@@ -310,6 +314,7 @@
         </div>
 
         <div class="row">
+            @if(!empty($promotion))
             @foreach($promotion as $key => $row)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card card-team">
@@ -341,6 +346,7 @@
                     </div>
                 </div>
             @endforeach
+                @endif
         </div>
     </div>
 </section>
@@ -353,19 +359,21 @@
 <section class="testimonial">
     <div class="container">
         <div class="testi_slider owl-carousel owl-theme">
-            @foreach($know as $val)
-                <div class="item">
-                    <div class="testi_item">
-                        <div class="testimonial_image">
-                            <img src="{!! asset($val->photo) !!}" alt="">
-                        </div>
-                        <div class="testi_item_content">
-                            <h4>{!! $val{'name_'.Session::get('locale')} !!}</h4>
-                            <p>{!! $val{'detail_'.Session::get('locale')} !!}</p>
+            @if(!empty($know))
+                @foreach($know as $val)
+                    <div class="item">
+                        <div class="testi_item">
+                            <div class="testimonial_image">
+                                <img src="{!! asset($val->photo) !!}" alt="">
+                            </div>
+                            <div class="testi_item_content">
+                                <h4>{!! $val{'name_'.Session::get('locale')} !!}</h4>
+                                <p>{!! $val{'detail_'.Session::get('locale')} !!}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+                @endif
         </div>
     </div>
 </section>
