@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Request;
 use App\Http\Controllers\Controller;
-use App\users;
+use App\users_list;
 use Illuminate\Support\Facades\Hash;
 
 class ActiveUserController extends Controller
@@ -12,7 +12,7 @@ class ActiveUserController extends Controller
 
     public function index()
     {
-        $user = new users;
+        $user = new users_list;
         if(Request::method('post')) {
             if (Request::input('name')) {
                 $user = $user->where('name', 'like', "%" . Request::input('name') . "%")
@@ -31,7 +31,7 @@ class ActiveUserController extends Controller
 
     public function create()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
 
         return view('user.view_user')->with(compact('user'));
     }
@@ -39,7 +39,7 @@ class ActiveUserController extends Controller
 
     public function store()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
         $user->role = Request::input('role');
         $user->status = 1;
         $user->save();
@@ -49,7 +49,7 @@ class ActiveUserController extends Controller
 
     public function show()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
 
         return view('user.show_user')->with(compact('user'));
     }
@@ -57,7 +57,7 @@ class ActiveUserController extends Controller
 
     public function edit()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
 
         return view('user.edit_user')->with(compact('user'));
     }
@@ -65,7 +65,7 @@ class ActiveUserController extends Controller
 
     public function update()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
         $user->role = Request::input('role');
         $user->status = 1;
         $user->save();
@@ -75,13 +75,13 @@ class ActiveUserController extends Controller
 
     public function destroy()
     {
-        $user = users::find(Request::input('id'));
+        $user = users_list::find(Request::input('id'));
         $user->delete();
     }
 
     public function register(){
         //dd(Request::all());
-        $user = new users;
+        $user = new users_list;
         $user->name = Request::input('name');
         $user->email = Request::input('email');
         $user->password = Hash::make(Request::input('password'));

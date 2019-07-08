@@ -7,7 +7,7 @@ use Request;
 use Auth;
 use Str;
 
-class Users extends GeneralModel
+class users_list extends GeneralModel
 {
     protected $primaryKey = 'id';
     protected $table = 'users';
