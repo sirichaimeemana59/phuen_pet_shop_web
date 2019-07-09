@@ -99,6 +99,7 @@
                                                 <td><input type="text" name="name_unit_th" class="form-control name_th" required></td>
                                                 <td><input type="text" name="name_unit_en" class="form-control name_en" required></td>
                                                 <td><input type="text" name="amount1" class="form-control num" readonly value="1"></td>
+                                                <td><input type="text" name="amount2" class="form-control num" required></td>
                                             </tr>
                                     @for($i=1;$i<=4;$i++)
                                         @if($i == 1)

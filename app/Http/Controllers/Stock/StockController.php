@@ -100,6 +100,7 @@ class StockController extends Controller
         $unit->name_en = $request->input('name_unit_en');
         $unit->product_id = $randomString;
         $unit->amount = $request->input('amount1');
+        $unit->amount_unit = $request->input('amount2');
         $unit->save();
 
         $stock = new stock;
@@ -107,7 +108,7 @@ class StockController extends Controller
         $stock->name_en = $request->input('name_en');
         $stock->photo = $fileNameToDatabase;
         $stock->code = $randomString;
-        $stock->amount = $total;
+        $stock->amount = $request->input('amount2');
         $stock->cat_id = $request->input('cat_id');
         $stock->group_id = $request->input('group_id');
         $stock->bar_code = $request->input('bar_code');
@@ -230,7 +231,7 @@ class StockController extends Controller
             $stock->name_en = $request->input('name_en');
             $stock->photo = $fileNameToDatabase;
             $stock->code = $request->input('code_');
-            $stock->amount = $total_all;
+            $stock->amount = $request->input('amount2');
             $stock->cat_id = $request->input('cat_id');
             $stock->group_id = $request->input('group_id');
             $stock->bar_code = $request->input('bar_code');
@@ -286,6 +287,7 @@ class StockController extends Controller
         $unit->name_en = $request->input('name_unit_en');
         $unit->product_id = $request->input('code_');
         $unit->amount = $request->input('amount1');
+        $unit->amount_unit = $request->input('amount2');
         $unit->save();
 
         return redirect('/employee/stock/product');

@@ -206,7 +206,13 @@ class WidenController extends Controller
             $unit_ = $unit_tran;
         }
 
-        return response()->json( $unit_ );
+        $stock = stock::where('code',$unit_->product_id)->first();
+
+        //dd($unit_->product_id);
+        $data["unit_"] = $unit_;
+        $data["stock"] = $stock;
+
+        return response()->json( $data );
 
     }
 

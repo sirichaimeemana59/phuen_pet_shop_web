@@ -279,12 +279,12 @@
                 success : function(e){
 
                     //var amount_ = $.number(e.stock.amount,0);
-                    var x = e.stock.amount.split('.');
-                    var x1 = x[0];
+                    //var x = e.stock.amount.split('.');
+                    //var x1 = x[0];
 
-                    //console.log(x1);
+                    //console.log(e.stock.amount);
                     //this_.parents('tr').find('.amount1').val(x1);
-                    this_.parents('tr').find('.amount').val(x1);
+                    this_.parents('tr').find('.amount').val(e.stock.amount);
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
                     this_.parents('tr').find('.id_product_stock').val(e.stock.id);
@@ -412,22 +412,49 @@
                     var x = amount.split('.');
                     var x1 = x[0];
 
-                     // console.log(e.amount);
+                    var _amount = Math.floor(e.stock.amount /e.unit_.amount_unit );
+                    var _amount_ = Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)));
 
-
-                    if(e.amount != 1) {
-                        for (var i = 1; i <= e.amount; i++) {
-                            this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((x1 / e.amount) * i) + "'>" + i + " " + Math.floor((x1 / e.amount) * i) + " " + name + "</option>");
-                        }
-                    }else{
-                        for(var i=1;i<=amount;i++){
-                            this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
-                        }
+                    if(_amount > e.unit_.amount){
+                        _amount = e.unit_.amount;
                     }
 
+                    //console.log(Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit))));
+                    var c_amount = Math.floor((e.stock.amount )/e.unit_.amount);
 
-                    this_.parents('tr').find('.amount_').val(e.amount);
-                    this_.parents('tr').find('.unit_id').val(e.id);
+                    //if( _amount < e.unit_.amount_unit){
+                   // console.log(c_amount);
+                    //console.log(e.unit_.amount_unit);
+
+                        if(e.unit_.amount != 1) {
+                            if(c_amount > e.unit_.amount_unit){
+                                for (var i = 1; i <= _amount; i++) {
+                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount )/e.unit_.amount * i) + "'>" + i + " " + Math.floor((e.stock.amount )/e.unit_.amount * i) + " " + name + "</option>");
+                                    //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                                }
+                                console.log('aa');
+                            }else{
+                                for (var i = 1; i <= _amount; i++) {
+                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                                    //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                                }
+                                console.log('bb');
+                            }
+
+
+                        }else{
+                            for(var i=1;i<=amount;i++){
+                                this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
+                            }
+                        }
+                    //}else{
+                    //    this_.parents('tr').find('.amount_widden').append('');
+                    //}
+
+
+
+                    this_.parents('tr').find('.amount_').val(e.unit_.amount);
+                    this_.parents('tr').find('.unit_id').val(e.unit_.id);
                     // this_.parents('tr').find('.product_code').val(e.product_id);
                 } ,error : function(){
                     console.log('Error View Data Store');

@@ -100,6 +100,7 @@
                                                 <td><input type="text" name="name_unit_th" class="form-control name_th" required value="{!! $stock_log->name_th !!}"></td>
                                                 <td><input type="text" name="name_unit_en" class="form-control name_en" required value="{!! $stock_log->name_en !!}"></td>
                                                 <td><input type="text" name="amount1" class="form-control num" readonly value="1"></td>
+                                                <td><input type="text" name="amount2" class="form-control num" required value="{!! $stock_log->amount_unit !!}"></td>
                                             </tr>
 
                                             @foreach($unit_ as $key => $val)
