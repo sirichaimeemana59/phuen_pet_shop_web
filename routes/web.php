@@ -294,3 +294,9 @@ Route::post('/employee/know/view','StoreProfile\StoreProfileController@view');
 Route::post('/employee/know/edit','StoreProfile\StoreProfileController@edit_know');
 Route::post('/employee/know/update','StoreProfile\StoreProfileController@update_know');
 Route::post('/employee/know/delete','StoreProfile\StoreProfileController@delete');
+
+//Document
+Route::get('/add/document','Document\DocumentController@index');
+Route::post('/add/doc','Document\DocumentController@create');
+Route::post('/update/doc','Document\DocumentController@update');
+Route::get('/doc/print','Document\DocumentController@print');

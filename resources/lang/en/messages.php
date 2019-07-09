@@ -57,6 +57,7 @@ return [
     'payee' => 'Payee',
     'customer' => 'Customer',
     'sign' => 'Sign',
+    'doc' => 'Documentation',
 
     'product' => [
         'head_product' => 'Product',

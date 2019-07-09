@@ -59,6 +59,7 @@ return [
     'payee' => 'ผู้รับเงิน',
     'customer' => 'ลูกค้า',
     'sign' => 'ลงชื่อ',
+    'doc' => 'คู่มือการใช้งาน',
 
     'product'=>[
         'head_product' => 'สินค้า',
