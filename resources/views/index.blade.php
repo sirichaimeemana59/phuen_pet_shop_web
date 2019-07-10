@@ -24,10 +24,10 @@
             if(!empty($store_profile->photo_top)){
                 $img_top = $store_profile->photo_top;
             }else{
-                $img_top = "../img/banner/home-banner.jpg";
+                $img_top = 'img/banner/home-banner.jpg';
             }
         ?>
-        background-image: url(<?php echo $img_top?>);
+        background-image: url({!! $img_top !!});
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -38,7 +38,7 @@
            if(!empty($store_profile->photo_center)){
                $img_center = $store_profile->photo_center;
            }else{
-               $img_center = "../img/banner/pattern_bg.jpg";
+               $img_center = "img/banner/pattern_bg.jpg";
            }
        ?>
         background: url({!! $img_center !!}) no-repeat center;
@@ -50,7 +50,7 @@
            if(!empty($store_profile->photo_foot)){
                $img_foot = $store_profile->photo_foot;
            }else{
-               $img_foot = "../img/background/bg1.jpg";
+               $img_foot = "img/background/bg1.jpg";
            }
        ?>
         color: #fff;
