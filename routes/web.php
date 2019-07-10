@@ -300,3 +300,10 @@ Route::get('/add/document','Document\DocumentController@index');
 Route::post('/add/doc','Document\DocumentController@create');
 Route::post('/update/doc','Document\DocumentController@update');
 Route::get('/doc/print','Document\DocumentController@print');
+
+//expenditure
+Route::any('employee/list_expenditure','Expenditure\ExpenditureController@index');
+//Route::post('/employee/list_expenditure_list','Expenditure\ExpenditureController@create');
+Route::get('/employee/edit/expenditure/{id?}','Expenditure\ExpenditureController@edit');
+Route::post('/employee/update/expenditure/order_company','Expenditure\ExpenditureController@update');
+Route::any('/employee/list_expenditure/report','Expenditure\ExpenditureController@report');

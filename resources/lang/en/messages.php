@@ -271,6 +271,7 @@ return [
         'date' => 'Date',
         'front' => 'Storefront',
         'back' => 'Store Online',
+        'incomes' => 'Income',
     ],
     'bill' => [
         'title' => 'Proof of payment',
@@ -348,5 +349,9 @@ return [
         'detail_th' => 'Detail [TH]',
         'detail_en' => 'Detail [EN]',
         'photo' => 'Photo',
+    ],
+    'expenditure' => [
+        'title' => 'Expenditure',
+        'title_' => 'Report Expenditure',
     ]
 ];

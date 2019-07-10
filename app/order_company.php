@@ -12,7 +12,7 @@ class order_company extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'order_company';
-    protected $fillable = ['code,user_id,date,company_id,deleted_at'];
+    protected $fillable = ['code,user_id,date,company_id,deleted_at,total_all'];
     public $timestamps = true;
     protected $softDelete = true;
 

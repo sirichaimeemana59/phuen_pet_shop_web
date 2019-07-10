@@ -118,22 +118,20 @@
                 {{--<span class="menu-title">Icons</span>--}}
             {{--</a>--}}
         {{--</li>--}}
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth_" aria-expanded="false" aria-controls="auth_">
-                <i class="mdi mdi-account menu-icon"></i>
-                <span class="menu-title">{!! trans('messages.finance.title') !!}</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth_">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{!! url('employee/list_income') !!}"> {!! trans('messages.finance.income') !!} </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-                </ul>
-            </div>
-        </li>
+            {{--<li class="nav-item w3-hide-small">--}}
+                {{--<a class="nav-link" data-toggle="collapse" href="#auth_" aria-expanded="false" aria-controls="auth_">--}}
+                {{--<i class="mdi mdi-account menu-icon"></i>--}}
+                {{--<span class="menu-title">{!! trans('messages.finance.title') !!}</span>--}}
+            {{--<i class="menu-arrow"></i>--}}
+        {{--</a>--}}
+            {{--<div class="collapse" id="auth_">--}}
+                {{--<ul class="nav flex-column sub-menu">--}}
+                    {{--<li class="nav-item"> <a class="nav-link" href="{!! url('employee/list_income') !!}"> {!! trans('messages.finance.incomes') !!} </a></li>--}}
+                    {{--<li class="nav-item"> <a class="nav-link" href="{!! url('employee/list_expenditure') !!}"> {!! trans('messages.expenditure.title') !!} </a></li>--}}
+                    {{--<li class="nav-item"> <a class="nav-link" href="{!! url('employee/list_expenditure/report') !!}"> {!! trans('messages.expenditure.title_') !!} </a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+        {{--</li>--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-account menu-icon"></i>

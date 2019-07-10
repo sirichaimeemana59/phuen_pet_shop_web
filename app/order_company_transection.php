@@ -11,7 +11,7 @@ class order_company_transection extends GeneralModel
 {
     protected $primaryKey = 'id';
     protected $table = 'order_company_transection';
-    protected $fillable = ['code,product_id,name,amount,unit,unit_name'];
+    protected $fillable = ['code,product_id,name,amount,unit,unit_name,price'];
     public $timestamps = true;
 
     public function join_order_transection()

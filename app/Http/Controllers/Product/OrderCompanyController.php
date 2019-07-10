@@ -36,7 +36,7 @@ class OrderCompanyController extends Controller
             }
         }
 
-        $p_row = $order->paginate(50);
+        $p_row = $order->where('status',0)->paginate(50);
 
 
 
@@ -89,6 +89,7 @@ class OrderCompanyController extends Controller
         $com->user_id = Auth::user()->id;
         $com->company_id = Request::input('company_id');
         $com->date = Date('Y-m-d');
+        $com->status = 0;
         $com->save();
         //dd(Request::input('data'));
         foreach (Request::input('data') as $t){
