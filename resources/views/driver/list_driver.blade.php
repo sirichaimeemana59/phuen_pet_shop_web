@@ -187,7 +187,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/driver/list',
+                    url : $('#root-url').val()+'/employee/driver/list',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -203,7 +203,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/driver/list';
+                window.location.href =$('#root-url').val()+'/employee/driver/list';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -221,7 +221,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/driver/view',
+                    url : $('#root-url').val()+'/employee/driver/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -241,7 +241,7 @@
                 $('#lead-content1').empty();
                 $('.v-loading1').show();
                 $.ajax({
-                    url : '/employee/driver/edit',
+                    url : $('#root-url').val()+'/employee/driver/edit',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -265,7 +265,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/driver/delete", {
+                            $.post($('#root-url').val()+"/employee/driver/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -286,7 +286,7 @@
 
                //console.log(id);
                 $.ajax({
-                    url : '/employee/add/product/for_sale',
+                    url : $('#root-url').val()+'/employee/add/product/for_sale',
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id}),

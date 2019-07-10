@@ -253,7 +253,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/create/order_bill',
+                    url : $('#root-url').val()+'/employee/create/order_bill',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -269,7 +269,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/create/order_bill';
+                window.location.href =$('#root-url').val()+'/employee/create/order_bill';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -322,7 +322,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),
@@ -412,7 +412,7 @@
                 var id;
                 id = $(this).val();
                 $.ajax({
-                    url : "/address/select/district",
+                    url : $('#root-url').val()+"/address/select/district",
                     method : 'post',
                     dataType: 'html',
                     data : ({'id':id}),
@@ -435,7 +435,7 @@
                 var id = id;
                 //console.log(id);
                 $.ajax({
-                    url : "/root/admin/select/subdistrict",
+                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -459,7 +459,7 @@
                 var select;
                 //console.log(dis);
                 $.ajax({
-                    url : "/address/select/district/edit",
+                    url : $('#root-url').val()+"/address/select/district/edit",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -485,7 +485,7 @@
                 })
                 ////////////////////////////////
                 $.ajax({
-                    url : "/customer/select/editSubDis",
+                    url : $('#root-url').val()+"/customer/select/editSubDis",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -513,7 +513,7 @@
                 var id = $(this).val();
                 console.log(id);
                 $.ajax({
-                    url : "/customer/select/subdistrict",
+                    url : $('#root-url').val()+"/customer/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -535,7 +535,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/customer/select/zip_code",
+                    url : $('#root-url').val()+"/customer/select/zip_code",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -555,7 +555,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/customer/select/drive_price",
+                    url : $('#root-url').val()+"/customer/select/drive_price",
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id}),

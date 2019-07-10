@@ -246,7 +246,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/approved/user',
+                    url : $('#root-url').val()+'/approved/user',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -262,7 +262,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/approved/user';
+                window.location.href =$('#root-url').val()+'/approved/user';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -280,7 +280,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/active/view',
+                    url : $('#root-url').val()+'/active/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -300,7 +300,7 @@
                 $('#lead-content1').empty();
                 $('.v-loading1').show();
                 $.ajax({
-                    url : '/employee/active/edit',
+                    url : $('#root-url').val()+'/employee/active/edit',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -324,7 +324,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/active/delete", {
+                            $.post($('#root-url').val()+"/active/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -345,7 +345,7 @@
 
                //console.log(id);
                 $.ajax({
-                    url : '/employee/add/product/for_sale',
+                    url : $('#root-url').val()+'/employee/add/product/for_sale',
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id}),
@@ -404,7 +404,7 @@
                 $('#lead-content2').empty();
                 $('.v-loading2').show();
                 $.ajax({
-                    url : '/employee/active/user',
+                    url : $('#root-url').val()+'/employee/active/user',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),

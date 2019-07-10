@@ -180,7 +180,7 @@
                     this_.parents('tr').find('.id_product_').val("");
 
                     $.ajax({
-                        url: '/employee/sell/search_product',
+                        url: $('#root-url').val()+'/employee/sell/search_product',
                         method: 'post',
                         dataType: 'JSON',
                         data: data,
@@ -242,7 +242,7 @@
                     //console.log(data);
                     $('#landing-subject-list').css('opacity', '0.6');
                     $.ajax({
-                        url: '/employee/sell/search_product',
+                        url: $('#root-url').val()+'/employee/sell/search_product',
                         method: 'post',
                         dataType: 'JSON',
                         data: data,

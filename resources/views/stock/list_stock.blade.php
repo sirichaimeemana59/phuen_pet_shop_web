@@ -228,7 +228,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/stock/product',
+                    url : $('#root-url').val()+'/employee/stock/product',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -244,7 +244,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/stock/product';
+                window.location.href =$('#root-url').val()+'/employee/stock/product';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -261,7 +261,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/stock/view',
+                    url : $('#root-url').val()+'/employee/stock/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -281,7 +281,7 @@
                 $('#lead-content1').empty();
                 $('.v-loading1').show();
                 $.ajax({
-                    url : '/employee/stock/edit',
+                    url : $('#root-url').val()+'/employee/stock/edit',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -305,7 +305,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/stock/delete", {
+                            $.post($('#root-url').val()+"/employee/stock/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {

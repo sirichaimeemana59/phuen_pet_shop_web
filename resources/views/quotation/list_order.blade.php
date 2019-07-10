@@ -199,7 +199,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/quotation/order',
+                    url : $('#root-url').val()+'/employee/quotation/order',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -215,7 +215,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/quotation/order';
+                window.location.href =$('#root-url').val()+'/employee/quotation/order';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -268,7 +268,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),
@@ -343,7 +343,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/quotation/view',
+                    url : $('#root-url').val()+'/employee/quotation/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -367,7 +367,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/quotation/delete", {
+                            $.post($('#root-url').val()+"/employee/quotation/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -394,7 +394,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/approved_order", {
+                            $.post($('#root-url').val()+"/employee/approved_order", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -416,7 +416,7 @@
                 $('.v-loading').show();
                //console.log(id);
                 $.ajax({
-                    url : '/employee/order/sent_to_car',
+                    url : $('#root-url').val()+'/employee/order/sent_to_car',
                     method : 'post',
                     dataType : 'JSON',
                     data : ({'id':id}),

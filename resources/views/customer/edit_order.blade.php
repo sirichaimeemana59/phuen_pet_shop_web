@@ -275,7 +275,7 @@
                 console.log(id_order);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/edit/order/'+id_order,
+                    url : $('#root-url').val()+'/customer/edit/order/'+id_order,
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -291,7 +291,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/order';
+                window.location.href =$('#root-url').val()+'/customer/order';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -344,7 +344,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),
@@ -439,7 +439,7 @@
                 var id;
                 id = $(this).val();
                 $.ajax({
-                    url : "/address/select/district/address",
+                    url : $('#root-url').val()+"/address/select/district/address",
                     method : 'post',
                     dataType: 'html',
                     data : ({'id':id}),
@@ -462,7 +462,7 @@
                 var id = id;
                 //console.log(id);
                 $.ajax({
-                    url : "/root/admin/select/subdistrict/address",
+                    url : $('#root-url').val()+"/root/admin/select/subdistrict/address",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -487,7 +487,7 @@
                 var select;
                 //console.log(dis);
                 $.ajax({
-                    url : "/address/select/district/edit/address",
+                    url : $('#root-url').val()+"/address/select/district/edit/address",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -513,7 +513,7 @@
                 })
                 ////////////////////////////////
                 $.ajax({
-                    url : "/customer/select/editSubDis/address",
+                    url : $('#root-url').val()+"/customer/select/editSubDis/address",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -536,7 +536,7 @@
                 })
                 /////////////////////////////////////
                 $.ajax({
-                    url : "/customer/select/drive_price",
+                    url :$('#root-url').val()+"/customer/select/drive_price",
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id_drive}),
@@ -554,7 +554,7 @@
                 var id = $(this).val();
                 console.log(id);
                 $.ajax({
-                    url : "/customer/select/subdistrict/address",
+                    url : $('#root-url').val()+"/customer/select/subdistrict/address",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -576,7 +576,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/customer/select/zip_code/address",
+                    url : $('#root-url').val()+"/customer/select/zip_code/address",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -604,7 +604,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/delete_order", {
+                            $.post($('#root-url').val()+"/employee/delete_order", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -624,7 +624,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/customer/select/drive_price",
+                    url : $('#root-url').val()+"/customer/select/drive_price",
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id}),

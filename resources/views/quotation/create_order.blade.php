@@ -152,7 +152,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/create/quotation',
+                    url : $('#root-url').val()+'/employee/create/quotation',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -168,7 +168,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/create/quotation';
+                window.location.href =$('#root-url').val()+'/employee/create/quotation';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -221,7 +221,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),

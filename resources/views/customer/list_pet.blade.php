@@ -219,7 +219,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/home',
+                    url : $('#root-url').val()+'/customer/home',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -235,7 +235,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/home';
+                window.location.href =$('#root-url').val()+'/customer/home';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -253,7 +253,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/customer/pet/view',
+                    url : $('#root-url').val()+'/customer/pet/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -273,7 +273,7 @@
                 $('#lead-content1').empty();
                 $('.v-loading1').show();
                 $.ajax({
-                    url : '/customer/pet/edit',
+                    url : $('#root-url').val()+'/customer/pet/edit',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -297,7 +297,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/customer/pet/delete", {
+                            $.post($('#root-url').val()+"/customer/pet/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -318,7 +318,7 @@
 
                //console.log(id);
                 $.ajax({
-                    url : '/employee/add/product/for_sale',
+                    url : $('#root-url').val()+'/employee/add/product/for_sale',
                     method : 'post',
                     dataType : 'json',
                     data : ({'id':id}),

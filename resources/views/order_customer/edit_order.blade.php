@@ -172,7 +172,7 @@
                 console.log(id_order);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/customer/edit/order/'+id_order,
+                    url : $('#root-url').val()+'/customer/edit/order/'+id_order,
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -188,7 +188,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/customer/order';
+                window.location.href =$('#root-url').val()+'/customer/order';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -241,7 +241,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),

@@ -78,7 +78,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/add/product/sale/list',
+                    url : $('#root-url').val()+'/employee/add/product/sale/list',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -95,7 +95,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/add/product/sale/list';
+                window.location.href =$('#root-url').val()+'/employee/add/product/sale/list';
             });
 
         });

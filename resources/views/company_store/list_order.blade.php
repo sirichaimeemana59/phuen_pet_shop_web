@@ -105,7 +105,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/company_store/order',
+                    url : $('#root-url').val()+'/employee/company_store/order',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -121,7 +121,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href ='/employee/company_store/order';
+                window.location.href =$('#root-url').val()+'/employee/company_store/order';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -174,7 +174,7 @@
                 var text = $('.text').val();
                 //console.log(data);
                 $.ajax({
-                    url: '/customer/search/group',
+                    url: $('#root-url').val()+'/customer/search/group',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),
@@ -249,7 +249,7 @@
                 $('#lead-content').empty();
                 $('.v-loading').show();
                 $.ajax({
-                    url : '/employee/order_company/view',
+                    url : $('#root-url').val()+'/employee/order_company/view',
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -274,7 +274,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/order_company/delete_order", {
+                            $.post($('#root-url').val()+"/employee/order_company/delete_order", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
@@ -301,7 +301,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/approved_order", {
+                            $.post($('#root-url').val()+"/employee/approved_order", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {

@@ -248,7 +248,7 @@
 
 
                 $.ajax({
-                    url : '/employee/list_income_list',
+                    url : $('#root-url').val()+'/employee/list_income_list',
                     method : 'post',
                     dataType : 'JSON',
                     data : data,
@@ -293,7 +293,7 @@
 
                 //console.log(data);
                 $.ajax({
-                    url : '/employee/list_income_online',
+                    url : $('#root-url').val()+'/employee/list_income_online',
                     method : 'post',
                     dataType : 'JSON',
                     data : data,

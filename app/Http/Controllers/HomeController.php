@@ -30,6 +30,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        //dd(Auth::user()->role);
         Session::put('locale','en');
         if( Auth::user()->role == 0 AND Auth::user()->status == 1){
             Redirect::to('/employee/home')->send();
