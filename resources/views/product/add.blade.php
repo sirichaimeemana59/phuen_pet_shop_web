@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm-12 text-right">
                             {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
-                            <button type="button" class="btn btn-secondary widen-store">{!! trans('messages.widen.title') !!}</button>
+                            <button type="button" class="btn btn-secondary widen-store"><i class="fa fa-plus-circle" aria-hidden="true"></i>  {!! trans('messages.widen.title') !!}</button>
                         </div>
                     </div>
                     <br>
@@ -59,17 +59,35 @@
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
                         </table>
-                        <tr>
-                            <td colspan="5"></td>
-                            <td style="text-align: right;"><button class="btn-info btn-primary btn-lg payment_" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button></td>
-                        </tr>
+                        {{--<table class="table" style="width: 100%">--}}
+                            {{--<tr>--}}
+                                {{--<td colspan="6"></td>--}}
+                                {{--<td style="text-align: right;"><button class="btn-info btn-primary btn-lg payment_ float-right" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button></td>--}}
+                            {{--</tr>--}}
+                        {{--</table>--}}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
+                            <button class="btn-info btn-primary btn-lg payment_ float-right" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button>                        </div>
                         {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <br>
     <div id="property_select" style="display:none;">
         <select name="product_id" id="property_id" class="form-control" style="width:500px;">
             <option value="">{!! trans('messages.selete_procudt') !!}</option>
@@ -438,7 +456,7 @@
                                     this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                                console.log('bb');
+                                console.log(_amount);
                             }
 
 

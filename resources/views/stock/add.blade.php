@@ -150,7 +150,8 @@
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
 
-                            <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                            <button class="btn-info btn-primary save_hide add-store-btn" id="add-store-btn" type="submit">Save</button>
+                            <button class="btn-info btn-primary save_show add-store-btn" type="submit" style="display: none;">Save</button>
                             <button class="btn-info btn-warning" type="reset">Reset</button>
                         </div>
                     </div>
@@ -168,8 +169,9 @@
     <script type="text/javascript" src="{{url('/')}}/js/jquery-validate/jquery.validate.min.js"></script>
 
     <script type="text/javascript">
-        
+//        $('.save_show').hide();
         $(document).ready(function() {
+
 
             $.ajaxSetup({
                 headers: {
@@ -179,6 +181,7 @@
 
             $(document).ready(function(){
                 $('form').acceptBarcode('barcode');
+//                $('.save_show').show();
             });
 
             (function($){
@@ -187,7 +190,10 @@
 
                     this.submit(function(e){
                         //e.preventDefault();
+                        $('.save_show').show();
+                        $('.save_hide').hide();
                         return canSubmit;
+//                        $('#add-store-btn').prop('disabled',true);
                     });
 
                     this.find('input.' + barcodeClass).each(function(){
@@ -210,6 +216,9 @@
                             canSubmit = true;
                             console.log('serial input blur - enable form.submit()');
                         });
+//                        $('#add-store-btn').true = true;
+//                        $('#add-store-btn').prop('disabled',true);
+
                     });
                 };
             })(jQuery);
@@ -217,7 +226,7 @@
 
 
 
-            $('#add-store-btn').on('click',function () {
+            $('.add-store-btn').on('click',function () {
                 if($('.create-store-form').valid()) {
                     $(this).attr('disabled','disabled').prepend('<i class="fa-spin fa-spinner" style="color: red;"></i> ');
                     $('.create-store-form').submit();
