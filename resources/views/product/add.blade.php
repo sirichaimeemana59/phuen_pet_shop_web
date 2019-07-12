@@ -101,7 +101,7 @@
                 this_unit.parents('tr').find('.unit_trance ').val('55555');
                //console.log(this_unit);
                 $.ajax({
-                    url: '/employee/widen/search_product',
+                    url: $('#root-url').val()+'/employee/widen/search_product',
                     method: 'post',
                     dataType: 'JSON',
                     data: data,
@@ -175,7 +175,7 @@
                     //console.log(data);
                     $('#landing-subject-list').css('opacity', '0.6');
                     $.ajax({
-                        url: '/employee/widen/search_product',
+                        url: $('#root-url').val()+'/employee/widen/search_product',
                         method: 'post',
                         dataType: 'JSON',
                         data: data,
@@ -272,7 +272,7 @@
 
 
             $.ajax({
-                url : '/select/product/unit_',
+                url : $('#root-url').val()+'/select/product/unit_',
                 method : 'post',
                 dataType : 'json',
                 data : ({'id':id}),
@@ -332,7 +332,7 @@
             // this_.parents('tr').find('.unit_trance').html('');
 
             $.ajax({
-                url : '/select/product/unit_amount',
+                url : $('#root-url').val()+'/select/product/unit_amount',
                 method : 'post',
                 dataType : 'json',
                 data : ({'id':id}),
@@ -400,7 +400,7 @@
             var name = this_.parents('tr').find('.name').val();
 
             $.ajax({
-                url : '/select/product/unit_amount_trance',
+                url : $('#root-url').val()+'/select/product/unit_amount_trance',
                 method : 'post',
                 dataType : 'json',
                 data : ({'id':id}),
