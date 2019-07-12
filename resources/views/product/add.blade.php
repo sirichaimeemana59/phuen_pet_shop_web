@@ -260,11 +260,11 @@
                     '<td></td>',
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
                     '<td><input type="hidden" class="barcode form-control" name=data['+time+'][bar_code]><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
-                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" style="width:300px;" required></select></td>',
+                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" id="unit_widen" style="width:300px;" required></select></td>',
                     // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
                     '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
                     '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly>' +
-                    '<input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
+                    '<input type="hidden" class="form-control id_product_stock_code" name=data['+time+'][id_product_stock_code] readonly><input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);
@@ -306,14 +306,15 @@
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
                     this_.parents('tr').find('.id_product_stock').val(e.stock.id);
+                    this_.parents('tr').find('.id_product_stock_code').val(e.stock.code);
                     this_.parents('tr').find('.barcode').val(e.stock.bar_code);
                     this_.parents('tr').find('.product_code').val(e.unit_2.product_id);
-                    this_.parents('tr').find('.unit_trance').append("<option value='"+e.unit_2.id+"'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
+                    this_.parents('tr').find('.unit_trance').append("<option value='"+e.unit_2.id+"' data-log='1'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
                     this_.parents('tr').find('.name').val(e.unit_2.name_th);
 
                     // console.log(e.unit_2.id);
                     this_.parents('tr').find('.unit_widen').append("<option value=''>Unit</option>");
-                    this_.parents('tr').find('.unit_widen').append("<option value='"+e.unit_2.id+"'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
+                    this_.parents('tr').find('.unit_widen').append("<option value='"+e.unit_2.id+"' data-log='1'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
 
                     $.each(e.unit_1,function(i,val) {
                         this_.parents('tr').find('.unit_widen').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
@@ -416,12 +417,22 @@
             //console.log(id);
             var amount = this_.parents('tr').find('.amount').val();
             var name = this_.parents('tr').find('.name').val();
+            var id_log = this_.parents('tr').find('.id_product_stock_code').val();
+
+            // var log = this_.parents('tr').find('.unit_widen').attr('data-log');
+
+            var e = document.getElementById("unit_widen");
+            var log = this_.parents('tr').find('.unit_widen option:selected').attr('data-log');
+            // var strUser = e.options[e.selectedIndex].getAttribute('data-log');
+            // console.log(log);
 
             $.ajax({
                 url : $('#root-url').val()+'/select/product/unit_amount_trance',
                 method : 'post',
                 dataType : 'json',
-                data : ({'id':id}),
+                data : ({'id':id,
+                    'log':id_log,
+                's_log':log}),
                 success : function(e){
 
                     this_.parents('tr').find('.amount_widden').html('');
@@ -450,13 +461,13 @@
                                     this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount )/e.unit_.amount * i) + "'>" + i + " " + Math.floor((e.stock.amount )/e.unit_.amount * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                                console.log('aa');
+                                //console.log('aa');
                             }else{
                                 for (var i = 1; i <= _amount; i++) {
                                     this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                                console.log(_amount);
+                                //console.log(_amount);
                             }
 
 
