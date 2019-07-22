@@ -1,5 +1,11 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{!! url('/user/create_profile') !!}">
+                <i class="fa fa-user menu-icon"></i>
+                <span class="menu-title">{!! trans('messages.profile.title') !!}</span>
+            </a>
+        </li>
         {{--<li class="nav-item w3-hide-small">--}}
             {{--<a class="nav-link" href="{!! url('/employee/store_profile') !!}">--}}
                 {{--<i class="mdi mdi-home menu-icon"></i>--}}

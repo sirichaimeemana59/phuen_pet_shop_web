@@ -67,31 +67,39 @@
 <header class="header_area">
     <div class="top_menu row m0">
         <div class="container">
-            <div class="float-left">
-                <a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>medical@example.com</a>
-                <span class="dn_btn"> <i class="ti-location-pin"></i>Find our Location</span>
-            </div>
-            <div class="float-right">
-                <ul class="list header_social">
-                    <li><a href="#"><i class="ti-facebook"></i></a></li>
-                    <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                    <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                    <li><a href="#"><i class="ti-skype"></i></a></li>
-                    <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
-                </ul>
-            </div>
+            {{--<div class="float-left">--}}
+                {{--<a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>medical@example.com</a>--}}
+                {{--<span class="dn_btn"> <i class="ti-location-pin"></i>Find our Location</span>--}}
+            {{--</div>--}}
+            {{--<div class="float-right">--}}
+                {{--<ul class="list header_social">--}}
+                    {{--<li><a href="#"><i class="ti-facebook"></i></a></li>--}}
+                    {{--<li><a href="#"><i class="ti-twitter-alt"></i></a></li>--}}
+                    {{--<li><a href="#"><i class="ti-linkedin"></i></a></li>--}}
+                    {{--<li><a href="#"><i class="ti-skype"></i></a></li>--}}
+                    {{--<li><a href="#"><i class="ti-vimeo-alt"></i></a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
         </div>
     </div>
     <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <?php
+                    if(!empty($store_profile->photo_logo)){
+                        $logo = $store_profile->photo_logo;
+                    }else{
+                        $logo = 'img/logo.png';
+                    }
+                    Session::put('logo',$logo);
+                ?>
+                <a class="navbar-brand logo_h" href="index.html"><img src="{!! asset($logo) !!}" alt=""></a>
+                {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
+                    {{--<span class="icon-bar"></span>--}}
+                    {{--<span class="icon-bar"></span>--}}
+                    {{--<span class="icon-bar"></span>--}}
+                {{--</button>--}}
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
@@ -140,33 +148,33 @@
 <section class="feature-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card card-feature text-center text-lg-left">
+            {{--<div class="col-md-4">--}}
+                {{--<div class="card card-feature text-center text-lg-left">--}}
 
-                    <h3 class="card-feature__title"><span class="card-feature__icon">
-                                <i class="ti-layers"></i>
-                            </span>Primary Care</h3>
-                    <p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-feature text-center text-lg-left">
+                    {{--<h3 class="card-feature__title"><span class="card-feature__icon">--}}
+                                {{--<i class="ti-layers"></i>--}}
+                            {{--</span>Primary Care</h3>--}}
+                    {{--<p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-md-4">--}}
+                {{--<div class="card card-feature text-center text-lg-left">--}}
 
-                    <h3 class="card-feature__title"><span class="card-feature__icon">
-                                <i class="ti-heart-broken"></i>
-                            </span>Emergency Cases</h3>
-                    <p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card card-feature text-center text-lg-left">
+                    {{--<h3 class="card-feature__title"><span class="card-feature__icon">--}}
+                                {{--<i class="ti-heart-broken"></i>--}}
+                            {{--</span>Emergency Cases</h3>--}}
+                    {{--<p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+            {{--<div class="col-md-4">--}}
+                {{--<div class="card card-feature text-center text-lg-left">--}}
 
-                    <h3 class="card-feature__title"><span class="card-feature__icon">
-                                <i class="ti-headphone-alt"></i>
-                            </span>Online Appointment</h3>
-                    <p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>
-                </div>
-            </div>
+                    {{--<h3 class="card-feature__title"><span class="card-feature__icon">--}}
+                                {{--<i class="ti-headphone-alt"></i>--}}
+                            {{--</span>Online Appointment</h3>--}}
+                    {{--<p class="card-feature__subtitle">An so vulgar to on points wanted rapture ous resolving continued household </p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 </section>

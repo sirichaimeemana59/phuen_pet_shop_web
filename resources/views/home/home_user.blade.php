@@ -96,11 +96,14 @@
 <div class="container-scroller">
     <input type="hidden" id="root-url" value="{!! url('/') !!}">
     <!-- partial:partials/_navbar.html -->
+<!--    --><?php
+//        echo Session::get('logo');
+//    ?>
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex justify-content-center">
             <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-                <a class="navbar-brand brand-logo" href="index.html"><img src="home/images/logo.svg" alt="logo"/></a>
-                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="home/images/logo-mini.svg" alt="logo"/></a>
+                <a class="navbar-brand brand-logo" href=""><img src="{!! asset(Session::get('logo')) !!}" alt="logo"/></a>
+                <a class="navbar-brand brand-logo-mini" href=""><img src="{!! asset(Session::get('logo')) !!}" alt="logo"/></a>
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-sort-variant"></span>
                 </button>
@@ -124,56 +127,56 @@
                         </a>
                     </div>
                 </li>
-                <li class="nav-item dropdown mr-1">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
-                        <i class="mdi mdi-message-text mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-                        <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-                        <a class="dropdown-item">
-                            <div class="item-thumbnail">
-                                <img src="home/images/faces/face4.jpg" alt="image" class="profile-pic">
-                            </div>
-                            <div class="item-content flex-grow">
-                                <h6 class="ellipsis font-weight-normal">David Grey
-                                </h6>
-                                <p class="font-weight-light small-text text-muted mb-0">
-                                    The meeting is cancelled
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item">
-                            <div class="item-thumbnail">
-                                <img src="home/images/faces/face2.jpg" alt="image" class="profile-pic">
-                            </div>
-                            <div class="item-content flex-grow">
-                                <h6 class="ellipsis font-weight-normal">Tim Cook
-                                </h6>
-                                <p class="font-weight-light small-text text-muted mb-0">
-                                    New product launch
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item">
-                            <div class="item-thumbnail">
-                                <img src="home/images/faces/face3.jpg" alt="image" class="profile-pic">
-                            </div>
-                            <div class="item-content flex-grow">
-                                <h6 class="ellipsis font-weight-normal"> Johnson
-                                </h6>
-                                <p class="font-weight-light small-text text-muted mb-0">
-                                    Upcoming board meeting
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+                {{--<li class="nav-item dropdown mr-1">--}}
+                    {{--<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">--}}
+                        {{--<i class="mdi mdi-message-text mx-0"></i>--}}
+                        {{--<span class="count"></span>--}}
+                    {{--</a>--}}
+                    {{--<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">--}}
+                        {{--<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>--}}
+                        {{--<a class="dropdown-item">--}}
+                            {{--<div class="item-thumbnail">--}}
+                                {{--<img src="home/images/faces/face4.jpg" alt="image" class="profile-pic">--}}
+                            {{--</div>--}}
+                            {{--<div class="item-content flex-grow">--}}
+                                {{--<h6 class="ellipsis font-weight-normal">David Grey--}}
+                                {{--</h6>--}}
+                                {{--<p class="font-weight-light small-text text-muted mb-0">--}}
+                                    {{--The meeting is cancelled--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                        {{--<a class="dropdown-item">--}}
+                            {{--<div class="item-thumbnail">--}}
+                                {{--<img src="home/images/faces/face2.jpg" alt="image" class="profile-pic">--}}
+                            {{--</div>--}}
+                            {{--<div class="item-content flex-grow">--}}
+                                {{--<h6 class="ellipsis font-weight-normal">Tim Cook--}}
+                                {{--</h6>--}}
+                                {{--<p class="font-weight-light small-text text-muted mb-0">--}}
+                                    {{--New product launch--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                        {{--<a class="dropdown-item">--}}
+                            {{--<div class="item-thumbnail">--}}
+                                {{--<img src="home/images/faces/face3.jpg" alt="image" class="profile-pic">--}}
+                            {{--</div>--}}
+                            {{--<div class="item-content flex-grow">--}}
+                                {{--<h6 class="ellipsis font-weight-normal"> Johnson--}}
+                                {{--</h6>--}}
+                                {{--<p class="font-weight-light small-text text-muted mb-0">--}}
+                                    {{--Upcoming board meeting--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                    {{--</div>--}}
+                {{--</li>--}}
                 <li class="nav-item dropdown mr-4">
-                    <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    {{--<a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">--}}
                         <i class="mdi mdi-bell mx-0"></i>
                         <span class="count"></span>
-                    </a>
+                    {{--</a>--}}
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
                         <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
                         <a class="dropdown-item">
@@ -219,14 +222,14 @@
                 </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="home/images/faces/face5.jpg" alt="profile"/>
-                        <span class="nav-profile-name">Louis Barnett</span>
+                        {{--<img src="home/images/faces/face5.jpg" alt="profile"/>--}}
+                        <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
-                        </a>
+                        {{--<a class="dropdown-item">--}}
+                            {{--<i class="mdi mdi-settings text-primary"></i>--}}
+                            {{--Settings--}}
+                        {{--</a>--}}
                         <a class="dropdown-item" href="{!! url('/logout') !!}">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
@@ -426,12 +429,12 @@
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:partials/_footer.html -->
-            <footer class="footer">
-                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-                </div>
-            </footer>
+            {{--<footer class="footer">--}}
+                {{--<div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+                    {{--<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.urbanui.com/" target="_blank">Urbanui</a>. All rights reserved.</span>--}}
+                    {{--<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>--}}
+                {{--</div>--}}
+            {{--</footer>--}}
             <!-- partial -->
         </div>
         <!-- main-panel ends -->

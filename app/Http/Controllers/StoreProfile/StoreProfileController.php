@@ -69,8 +69,8 @@ class StoreProfileController extends Controller
         //$fileNameToDatabase_logo = '//via.placeholder.com/250x250';
         if($request->hasFile('photo_logo')){
             $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', 'images/photo'));
-            $uploader_logo->width = 350;
-            $uploader_logo->height = 350;
+            $uploader_logo->width = 178;
+            $uploader_logo->height = 43;
             $fileNameToDatabase_logo = $uploader_logo->execute();
         }
 
@@ -146,8 +146,8 @@ class StoreProfileController extends Controller
             $fileNameToDatabase_logo = '//via.placeholder.com/250x250';
             if($request->hasFile('photo_logo')){
                 $uploader_logo = new ImageUploadAndResizer($request->file('photo_logo', 'images/photo'));
-                $uploader_logo->width = 350;
-                $uploader_logo->height = 350;
+                $uploader_logo->width = 178;
+                $uploader_logo->height = 43;
                 $fileNameToDatabase_logo = $uploader_logo->execute();
             }
         }

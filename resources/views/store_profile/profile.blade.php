@@ -65,6 +65,7 @@
                                         </div>
 
                                         <lable class="col-sm-2 control-label">{!! trans('messages.store_profile.logo') !!}
+                                            <br>    <p style="color: red;font-weight: bold;">{!! trans('messages.store_profile.size') !!} : 178 X 43</p></lable>
                                         <div class="col-sm-4">
                                             {!! Form::file('photo_logo',null,array('class'=>'form-control','placeholder'=>trans('messages.store_profile.logo'))) !!}
                                         </div>
