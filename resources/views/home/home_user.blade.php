@@ -173,48 +173,54 @@
                     {{--</div>--}}
                 {{--</li>--}}
                 <li class="nav-item dropdown mr-4">
-                    {{--<a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">--}}
+                    @if(Auth::user()->role != 1)
+                    <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
                         <i class="mdi mdi-bell mx-0"></i>
                         <span class="count"></span>
-                    {{--</a>--}}
+                    </a>
+                    @endif
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
                         <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                        <a class="dropdown-item">
-                            <div class="item-thumbnail">
-                                <div class="item-icon bg-success">
-                                    <i class="mdi mdi-information mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="item-content">
-                                <h6 class="font-weight-normal">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    Just now
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item">
+                        {{--<a class="dropdown-item">--}}
+                            {{--<div class="item-thumbnail">--}}
+                                {{--<div class="item-icon bg-success">--}}
+                                    {{--<i class="mdi mdi-information mx-0"></i>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="item-content">--}}
+                                {{--<h6 class="font-weight-normal">Application Error</h6>--}}
+                                {{--<p class="font-weight-light small-text mb-0 text-muted">--}}
+                                    {{--Just now--}}
+                                {{--</p>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+                        <a class="dropdown-item" href="{!! url('/employee/stock/product') !!}">
                             <div class="item-thumbnail">
                                 <div class="item-icon bg-warning">
                                     <i class="mdi mdi-settings mx-0"></i>
                                 </div>
                             </div>
                             <div class="item-content">
-                                <h6 class="font-weight-normal">Settings</h6>
+                                <h6 class="font-weight-normal">{!! trans('messages.product_limit') !!}</h6>
                                 <p class="font-weight-light small-text mb-0 text-muted">
-                                    Private message
+                                    @foreach(Session::get('stock') as $key)
+                                        {!! $key->count !!}
+                                    @endforeach
                                 </p>
                             </div>
                         </a>
-                        <a class="dropdown-item">
+                        <a class="dropdown-item" href="{!! url('/approved/user') !!}">
                             <div class="item-thumbnail">
                                 <div class="item-icon bg-info">
                                     <i class="mdi mdi-account-box mx-0"></i>
                                 </div>
                             </div>
                             <div class="item-content">
-                                <h6 class="font-weight-normal">New user registration</h6>
+                                <h6 class="font-weight-normal">{!! trans('messages.new_user') !!}</h6>
                                 <p class="font-weight-light small-text mb-0 text-muted">
-                                    2 days ago
+                                    @foreach(Session::get('user') as $key)
+                                        {!! $key->count !!}
+                                    @endforeach
                                 </p>
                             </div>
                         </a>

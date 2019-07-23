@@ -58,6 +58,8 @@ return [
     'customer' => 'Customer',
     'sign' => 'Sign',
     'doc' => 'Documentation',
+    'new_user' => 'New user registration',
+    'product_limit' => 'Product is almost out of stock',
 
     'product' => [
         'head_product' => 'Product',

@@ -16,6 +16,8 @@ use App\unit;
 use App\widen;
 use App\widden_product;
 use Redirect;
+use DB;
+use App\users_list;
 
 
 class ProductController extends Controller
@@ -45,6 +47,23 @@ class ProductController extends Controller
 
         $widen = new widden_product;
         $widen = $widen->get();
+
+//        $stock = new stock;
+//        $stock = $stock->where('amount ','<',50)->get();
+
+//        $stock = DB::table('stock')
+//            ->select(DB::raw('count(*) as count'))
+//            ->where('amount', '<', 50)
+//            ->get();
+//
+//
+//        $user = DB::table('users')
+//            ->select(DB::raw('count(*) as count'))
+//            ->where('status',0)
+//            ->get();
+
+        //dd($stock);
+
 
         if(!$request->ajax()){
             return view('product.list_product')->with(compact('product','unit','widen'));

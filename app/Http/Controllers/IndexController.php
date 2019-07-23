@@ -10,6 +10,9 @@ use App\promotion;
 use Session;
 use App\store_profile;
 use App\know;
+use DB;
+use App\users_list;
+use App\stock;
 
 class IndexController extends Controller
 {
@@ -34,6 +37,19 @@ class IndexController extends Controller
 
         $know = new know;
         $know = $know->get();
+
+        $stock = DB::table('stock')
+            ->select(DB::raw('count(*) as count'))
+            ->where('amount', '<', 50)
+            ->get();
+        Session::put('stock',$stock);
+
+        $user = DB::table('users')
+            ->select(DB::raw('count(*) as count'))
+            ->where('status',0)
+            ->get();
+        Session::put('user',$user);
+
 
         return view('index')->with(compact('sick','new','promotion','store_profile','know'));
     }
