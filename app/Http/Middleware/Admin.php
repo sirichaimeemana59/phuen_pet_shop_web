@@ -18,7 +18,7 @@ class Admin
     {
 //        dd(Auth::user()->role);
         if(  Auth::guest() || (Auth::check() && Auth::user()->role !== 0 && Auth::user()->role !== 0)) {
-            return redirect('/');
+            return redirect('/logout');
         } else return $next($request);
     }
 }

@@ -17,7 +17,7 @@ class Owner
     public function handle($request, Closure $next)
     {
         if(Auth::guest() || (Auth::check() && Auth::user()->role !== 2 && Auth::user()->role !== 2)) {
-            return redirect('/');
+            return redirect('/logout');
         } else return $next($request);
     }
 }
