@@ -17,7 +17,7 @@ class tree_role
     public function handle($request, Closure $next)
     {
         if(  Auth::guest() || (Auth::check() && Auth::user()->role == 1)) {
-            return redirect('/');
+            return redirect('/logout');
         } else return $next($request);
     }
 }
