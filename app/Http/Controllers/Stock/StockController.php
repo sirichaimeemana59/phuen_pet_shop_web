@@ -53,7 +53,7 @@ class StockController extends Controller
                 return view('stock.list_stock_element')->with(compact('company','unit','company_'));
                 }
         }else{
-            return redirect('/employee/product');
+            return redirect('/employee/product/list_product');
         }
     }
 

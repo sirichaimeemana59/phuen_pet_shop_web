@@ -273,7 +273,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/pet/list'
+                                    window.location.href ='/employee/pet/show_pet'
                                 });
                             });
                         }, 50);

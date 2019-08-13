@@ -19,7 +19,7 @@ class SellproductController extends Controller
     protected $app;
 
     public function __construct () {
-        $this->middleware('admin');
+        $this->middleware('tree_role');
     }
 
 

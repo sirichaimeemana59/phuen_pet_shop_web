@@ -194,7 +194,7 @@
                                 {{--</p>--}}
                             {{--</div>--}}
                         {{--</a>--}}
-                        <a class="dropdown-item" href="{!! url('/employee/stock/product') !!}">
+                        <a class="dropdown-item" href="{!! url('/employee/stock/product_stock') !!}">
                             <div class="item-thumbnail">
                                 <div class="item-icon bg-warning">
                                     <i class="mdi mdi-settings mx-0"></i>
@@ -209,7 +209,7 @@
                                 </p>
                             </div>
                         </a>
-                        <a class="dropdown-item" href="{!! url('/approved/user') !!}">
+                        <a class="dropdown-item" href="{!! url('/approved/user_check') !!}">
                             <div class="item-thumbnail">
                                 <div class="item-icon bg-info">
                                     <i class="mdi mdi-account-box mx-0"></i>

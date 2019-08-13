@@ -13,13 +13,13 @@
             {{--</a>--}}
         {{--</li>--}}
         <li class="nav-item">
-            <a class="nav-link" href="{!! url('/employee/product') !!}">
+            <a class="nav-link" href="{!! url('/employee/product/list_product') !!}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.product.head_product') !!}</span>
             </a>
         </li>
         <li class="nav-item w3-hide-small">
-            <a class="nav-link" href="{!! url('/approved/user') !!}">
+            <a class="nav-link" href="{!! url('/approved/user_check') !!}">
                 <i class="mdi mdi-account menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.user.title') !!}</span>
             </a>
@@ -53,25 +53,25 @@
         {{--</a>--}}
         {{--</li>--}}
         <li class="nav-item w3-hide-small">
-            <a class="nav-link" href="{!! url('/employee/sell/product') !!}">
+            <a class="nav-link" href="{!! url('/employee/sell/order_product_sell') !!}">
                 <i class="fa fa-sellsy menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.sell.title') !!}</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{!! url('/employee/stock/product') !!}">
+            <a class="nav-link" href="{!! url('/employee/stock/product_stock') !!}">
                 <i class="fa fa-archive menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.stock.title') !!}</span>
             </a>
         </li>
         <li class="nav-item w3-hide-small">
-            <a class="nav-link" href="{!! url('/employee/quotation/order') !!}">
+            <a class="nav-link" href="{!! url('/employee/quotation/order_quotation_list') !!}">
                 <i class="fa fa-file menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.quotation.title') !!}</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{!! url('/employee/pet/list') !!}">
+            <a class="nav-link" href="{!! url('/employee/pet/show_pet') !!}">
                 <i class="fa fa-paw menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.pet.title') !!}</span>
             </a>

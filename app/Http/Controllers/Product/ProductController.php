@@ -89,7 +89,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect('/employee/product');
+        return redirect('/employee/product/list_product');
     }
 
 
@@ -155,7 +155,7 @@ class ProductController extends Controller
         }
         //dd($product);
 
-        return redirect('/employee/product');
+        return redirect('/employee/product/list_product');
     }
 
 
@@ -164,7 +164,7 @@ class ProductController extends Controller
         $product = product::find($request->input('id'));
         $product->delete();
 
-        return redirect('/employee/product');
+        return redirect('/employee/product/list_product');
     }
 
     public function product(Request $request){

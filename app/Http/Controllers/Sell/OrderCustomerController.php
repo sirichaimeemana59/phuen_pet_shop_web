@@ -27,7 +27,7 @@ class OrderCustomerController extends Controller
     protected $app;
 
     public function __construct () {
-        $this->middleware('admin');
+        $this->middleware('tree_role');
     }
 
     public function index()

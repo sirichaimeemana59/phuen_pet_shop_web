@@ -228,7 +228,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : $('#root-url').val()+'/employee/stock/product',
+                    url : $('#root-url').val()+'/employee/stock/product_stock',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -244,7 +244,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href =$('#root-url').val()+'/employee/stock/product';
+                window.location.href =$('#root-url').val()+'/employee/stock/product_stock';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -311,7 +311,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/stock/product'
+                                    window.location.href ='/employee/stock/product_stock'
                                 });
                             });
                         }, 50);

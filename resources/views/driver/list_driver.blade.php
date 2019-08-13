@@ -187,7 +187,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : $('#root-url').val()+'/employee/driver/list',
+                    url : $('#root-url').val()+'/employee/driver',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -203,7 +203,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href =$('#root-url').val()+'/employee/driver/list';
+                window.location.href =$('#root-url').val()+'/employee/driver';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -271,7 +271,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/driver/list'
+                                    window.location.href ='/employee/driver'
                                 });
                             });
                         }, 50);

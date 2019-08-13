@@ -7,13 +7,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{!! url('/employee/product') !!}">
+            <a class="nav-link" href="{!! url('/employee/product/list_product') !!}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.product.head_product') !!}</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{!! url('/approved/user') !!}">
+            <a class="nav-link" href="{!! url('/approved/user_check') !!}">
                 <i class="mdi mdi-account menu-icon"></i>
                 <span class="menu-title">{!! trans('messages.user.title') !!}</span>
             </a>

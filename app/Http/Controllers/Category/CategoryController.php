@@ -68,7 +68,7 @@ class CategoryController extends Controller
             }
         }
 
-        return redirect('/employee/category/list');
+        return redirect('/employee/category');
     }
 
     public function create_group()
@@ -81,7 +81,7 @@ class CategoryController extends Controller
         if(Request::input('go') == 2){
             return redirect('/employee/group/list');
         }else{
-            return redirect('/employee/category/list');
+            return redirect('/employee/category');
         }
 
 
@@ -150,7 +150,7 @@ class CategoryController extends Controller
         }
 
 
-        return redirect('/employee/category/list');
+        return redirect('/employee/category');
     }
 
     public function update_group()
@@ -169,7 +169,7 @@ class CategoryController extends Controller
         $cat = cat::find(Request::input('id'));
         $cat->delete();
 
-        return redirect('/employee/category/list');
+        return redirect('/employee/category');
     }
 
     public function destroy_group()

@@ -199,7 +199,7 @@
                 //console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : $('#root-url').val()+'/employee/quotation/order',
+                    url : $('#root-url').val()+'/employee/quotation/order_quotation_list',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -215,7 +215,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href =$('#root-url').val()+'/employee/quotation/order';
+                window.location.href =$('#root-url').val()+'/employee/quotation/order_quotation_list';
             });
 
             $('body').on('click', '.add-product',function(){
@@ -373,7 +373,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/quotation/order'
+                                    window.location.href ='/employee/quotation/order_quotation_list'
                                 });
                             });
                         }, 50);

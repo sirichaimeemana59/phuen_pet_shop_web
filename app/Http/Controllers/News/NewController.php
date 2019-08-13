@@ -50,7 +50,7 @@ class NewController extends Controller
         $new->user_id = auth::user()->id;
         $new->save();
 
-        return redirect('/customer/news/list');
+        return redirect('/customer/news');
     }
 
 
@@ -111,7 +111,7 @@ class NewController extends Controller
             $new->user_id = auth::user()->id;
             $new->save();
         }
-        return redirect('/customer/news/list');
+        return redirect('/customer/news');
     }
 
 

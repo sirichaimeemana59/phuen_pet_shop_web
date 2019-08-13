@@ -96,7 +96,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href =$('#root-url').val()+'/employee/product';
+                window.location.href =$('#root-url').val()+'/employee/product/list_product';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -164,7 +164,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/product'
+                                    window.location.href ='/employee/product/list_product'
                                 });
                             });
                         }, 50);

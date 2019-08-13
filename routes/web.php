@@ -21,7 +21,7 @@ Route::get('/logout', 'Auth\LoginController@getLogout');
 
 //employee_product
 Route::any('employee/home','Product\ProductController@index');
-Route::any('/employee/product','Product\ProductController@index');
+Route::any('/employee/product/list_product','Product\ProductController@index');
 Route::post('/employee/product/add','Product\ProductController@create');
 Route::post('/employee/product/view','Product\ProductController@show');
 Route::post('/employee/product/edit','Product\ProductController@edit');
@@ -49,12 +49,12 @@ Route::any('/employee/unit_store','Product\UnitController@index');
 Route::post('/employee/unit/add','Product\UnitController@create');
 
 //employee_sell_product
-Route::any('/employee/sell/product','Sell\SellproductController@index');
+Route::any('/employee/sell/order_product_sell','Sell\SellproductController@index');
 Route::post('/employee/sell/search_product','Sell\SellproductController@create');
 Route::post('/employee/sell/product/add_order_product','Sell\SellproductController@store');
 
 //employee stock
-Route::any('/employee/stock/product','Stock\StockController@index');
+Route::any('/employee/stock/product_stock','Stock\StockController@index');
 Route::post('/employee/product/add_to_stock','Stock\StockController@create');
 Route::post('/employee/stock/view','Stock\StockController@view');
 Route::get('/employee/stock/edit/{id?}','Stock\StockController@edit');
@@ -84,7 +84,7 @@ Route::get('/report/widden/{id}','Widen\WidenController@print_widden');
 Route::get('/print/slip/order_employee/{id?}','Sell\OrderCustomerController@print_slip');
 
 //pet
-Route::any('/employee/pet/list','Pet\PetController@index');
+Route::any('/employee/pet/show_pet','Pet\PetController@index');
 Route::post('/employee/pet/add','Pet\PetController@create');
 Route::post('/employee/pet/view','Pet\PetController@show');
 Route::post('/employee/pet/edit','Pet\PetController@edit');
@@ -93,7 +93,7 @@ Route::post('/employee/pet/delete','Pet\PetController@destroy');
 Route::get('/employee/report/pet','Pet\PetController@report_excel');
 
 //sick
-Route::any('/employee/sick/list','Sick\SickController@index');
+Route::any('/employee/sick/list_show_sick','Sick\SickController@index');
 Route::get('/employee/sick/form','Sick\SickController@create');
 Route::post('/employee/analyze/add','Sick\SickController@store');
 Route::post('/employee/sick/view','Sick\SickController@show');
@@ -107,7 +107,7 @@ Route::post('/employee/add/product/sale/sale_search','Product\ProductController@
 Route::get('/employee/add_product_form_widen/{id?}','Product\ProductController@add_product_form_widen');
 
 //category
-Route::any('/employee/category/list','Category\CategoryController@index');
+Route::any('/employee/category','Category\CategoryController@index');
 Route::post('/employee/cat/add','Category\CategoryController@create');
 Route::post('employee/group/add','Category\CategoryController@create_group');
 Route::post('/employee/cat/view','Category\CategoryController@show');
@@ -191,7 +191,7 @@ Route::post('/customer/edit_bill_payment','Income\IncomeController@bill_edit');
 Route::post('/customer/bill/edit','Income\IncomeController@bill_edit_file');
 
 //employee post news
-Route::any('/customer/news/list','News\NewController@index');
+Route::any('/customer/news','News\NewController@index');
 Route::post('/employee/news/add','News\NewController@create');
 Route::post('/employee/news/view','News\NewController@show');
 Route::post('/employee/news/edit','News\NewController@edit');
@@ -219,7 +219,7 @@ Route::post('/employee/promotion/update','Promotion\PromotionController@update')
 Route::post('/employee/promotion/delete','Promotion\PromotionController@destroy');
 
 //order company
-Route::any('/employee/company_store/order','Product\OrderCompanyController@index');
+Route::any('/employee/company_store/order_company','Product\OrderCompanyController@index');
 Route::get('/employee/create/order_company','Product\OrderCompanyController@create');
 Route::post('/customer/search/company','Product\OrderCompanyController@company');
 Route::post('/company/select_province','Product\OrderCompanyController@selectProvince');
@@ -246,7 +246,7 @@ Route::get('report/inventory','Report\ReportController@inventory');
 Route::post('/report/chart/inventory','Report\ReportController@inventory_chart');
 
 //Active User
-Route::any('/approved/user','User\ActiveUserController@index');
+Route::any('/approved/user_check','User\ActiveUserController@index');
 Route::post('/employee/active/user','User\ActiveUserController@create');
 Route::post('/user/register','User\ActiveUserController@register');
 Route::post('/employee/active/edit','User\ActiveUserController@edit');
@@ -266,7 +266,7 @@ Route::any('/report/widen','Owner\OwnerController@list_widen');
 Route::get('/report/widen/print','Owner\OwnerController@widen_print');
 
 //Quotation
-Route::any('/employee/quotation/order','Quotation\QuotationController@index');
+Route::any('/employee/quotation/order_quotation_list','Quotation\QuotationController@index');
 Route::any('/employee/create/quotation','Quotation\QuotationController@create');
 Route::post('/employee/add/quotation','Quotation\QuotationController@store');
 Route::post('/employee/quotation/view','Quotation\QuotationController@view');
@@ -277,7 +277,7 @@ Route::post('/employee/quotation/delete','Quotation\QuotationController@destroy'
 Route::get('/report/quotation_order_print/{id?}','Quotation\QuotationController@quotation_order_print');
 
 //Driver
-Route::any('/employee/driver/list','Driver\DriveController@index');
+Route::any('/employee/driver','Driver\DriveController@index');
 Route::post('/employee/driver/add','Driver\DriveController@create');
 Route::post('/employee/driver/view','Driver\DriveController@show');
 Route::post('/employee/driver/edit','Driver\DriveController@edit');

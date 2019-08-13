@@ -212,7 +212,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : $('#root-url').val()+'/employee/pet/list',
+                    url : $('#root-url').val()+'/employee/pet/show_pet',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -228,7 +228,7 @@
                 $(this).closest('form').find("input").val("");
                 $(this).closest('form').find("select option:selected").removeAttr('selected');
                 //propertyPageSale (1);
-                window.location.href =$('#root-url').val()+'/employee/sick/list';
+                window.location.href =$('#root-url').val()+'/employee/sick/list_show_sick';
             });
 
             $('#add-store-btn').on('click',function () {
@@ -296,7 +296,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/pet/list'
+                                    window.location.href ='/employee/pet/show_pet'
                                 });
                             });
                         }, 50);

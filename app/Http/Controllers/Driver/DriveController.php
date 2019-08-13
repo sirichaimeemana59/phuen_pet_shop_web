@@ -37,7 +37,7 @@ class DriveController extends Controller
         $driver->price = Request::input('price');
         $driver->save();
 
-        return redirect('/employee/driver/list');
+        return redirect('/employee/driver');
     }
 
 
@@ -71,7 +71,7 @@ class DriveController extends Controller
         $driver->price = Request::input('price');
         $driver->save();
 
-        return redirect('/employee/driver/list');
+        return redirect('/employee/driver');
     }
 
 

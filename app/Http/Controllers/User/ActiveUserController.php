@@ -43,7 +43,7 @@ class ActiveUserController extends Controller
         $user->role = Request::input('role');
         $user->status = 1;
         $user->save();
-        return redirect('/approved/user');
+        return redirect('/approved/user_check');
     }
 
 
@@ -69,7 +69,7 @@ class ActiveUserController extends Controller
         $user->role = Request::input('role');
         $user->status = 1;
         $user->save();
-        return redirect('/approved/user');
+        return redirect('/approved/user_check');
     }
 
 

@@ -33,7 +33,7 @@ class OwnerController extends Controller
 
     public function index()
     {
-        return redirect('/approved/user');
+        return redirect('/approved/user_check');
     }
 
 

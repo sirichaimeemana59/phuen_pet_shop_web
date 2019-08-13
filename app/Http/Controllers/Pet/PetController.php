@@ -56,7 +56,7 @@ class PetController extends Controller
         $pet->photo = $fileNameToDatabase;
         $pet->save();
 
-        return redirect('/employee/pet/list');
+        return redirect('/employee/pet/show_pet');
     }
 
 
@@ -117,7 +117,7 @@ class PetController extends Controller
             $pet->photo = $request->input('photo_');
             $pet->save();
         }
-        return redirect('/employee/pet/list');
+        return redirect('/employee/pet/show_pet');
     }
 
 

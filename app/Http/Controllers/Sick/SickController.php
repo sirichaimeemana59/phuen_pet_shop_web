@@ -70,7 +70,7 @@ class SickController extends Controller
             }
         }
 
-        return redirect('/employee/sick/list');
+        return redirect('/employee/sick/list_show_sick');
 
     }
 
