@@ -138,7 +138,7 @@
                 var id;
                 id = $(this).val();
                 $.ajax({
-                    url : "/customer/select/district",
+                    url : $('#root-url').val()+"/customer/select/district",
                     method : 'post',
                     dataType: 'html',
                     data : ({'id':id}),
@@ -161,7 +161,7 @@
                 var id = id;
                 //console.log(id);
                 $.ajax({
-                    url : "/root/admin/select/subdistrict",
+                    url : $('#root-url').val()+"/root/admin/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -185,7 +185,7 @@
                 var select;
                 //console.log(dis);
                 $.ajax({
-                    url : "/customer/select/district/edit",
+                    url : $('#root-url').val()+"/customer/select/district/edit",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -211,7 +211,7 @@
                 })
                 ////////////////////////////////
                 $.ajax({
-                    url : "/customer/select/editSubDis",
+                    url : $('#root-url').val()+"/customer/select/editSubDis",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -239,7 +239,7 @@
                 var id = $(this).val();
                 console.log(id);
                 $.ajax({
-                    url : "/customer/select/subdistrict",
+                    url : $('#root-url').val()+"/customer/select/subdistrict",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
@@ -261,7 +261,7 @@
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({
-                    url : "/address/select/zip_code",
+                    url : $('#root-url').val()+"/address/select/zip_code",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
