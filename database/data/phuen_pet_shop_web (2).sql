@@ -1,5 +1,113 @@
 -- Adminer 4.6.0 PostgreSQL dump
 
+DROP TABLE IF EXISTS "address";
+DROP SEQUENCE address_id_seq;
+CREATE SEQUENCE address_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."address" (
+    "id" integer DEFAULT nextval('address_id_seq') NOT NULL,
+    "province_id" integer NOT NULL,
+    "dis_id" integer NOT NULL,
+    "sub_id" integer NOT NULL,
+    "post_code" text NOT NULL,
+    "name" text NOT NULL,
+    "tell" text NOT NULL,
+    "address" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id_order" integer,
+    "code_order" text,
+    CONSTRAINT "address_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "bill_payment";
+DROP SEQUENCE bill_payment_id_seq;
+CREATE SEQUENCE bill_payment_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."bill_payment" (
+    "id" integer DEFAULT nextval('bill_payment_id_seq') NOT NULL,
+    "order_id" integer NOT NULL,
+    "order_code" text NOT NULL,
+    "user_id" integer NOT NULL,
+    "photo" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "bill_payment_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "cat_transection";
+DROP SEQUENCE cat_transection_id_seq;
+CREATE SEQUENCE cat_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."cat_transection" (
+    "id" integer DEFAULT nextval('cat_transection_id_seq') NOT NULL,
+    "cat_id" text NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "cat_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "category";
+DROP SEQUENCE category_id_seq;
+CREATE SEQUENCE category_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."category" (
+    "id" integer DEFAULT nextval('category_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "group_id" integer,
+    "code" text,
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "comment";
+DROP SEQUENCE comment_id_seq;
+CREATE SEQUENCE comment_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."comment" (
+    "id" integer DEFAULT nextval('comment_id_seq') NOT NULL,
+    "comment" text NOT NULL,
+    "user_id" integer NOT NULL,
+    "photo" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "comment_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "company";
+DROP SEQUENCE company_id_seq;
+CREATE SEQUENCE company_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."company" (
+    "id" integer DEFAULT nextval('company_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "tax_id" text NOT NULL,
+    "tell" text NOT NULL,
+    "province" integer NOT NULL,
+    "districts" integer NOT NULL,
+    "subdistricts" integer NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "email" text,
+    "post_code" text,
+    CONSTRAINT "company_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
 DROP TABLE IF EXISTS "districts";
 CREATE TABLE "public"."districts" (
     "id" integer NOT NULL,
@@ -940,6 +1048,343 @@ INSERT INTO "districts" ("id", "code", "name_th", "name_en", "province_id") VALU
 (927,	9612,	'จะแนะ',	'Chanae',	'77'),
 (928,	9613,	'เจาะไอร้อง',	'Cho-airong',	'77');
 
+DROP TABLE IF EXISTS "document";
+DROP SEQUENCE document_id_seq;
+CREATE SEQUENCE document_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."document" (
+    "id" integer DEFAULT nextval('document_id_seq') NOT NULL,
+    "detail" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "document_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "drivers";
+DROP SEQUENCE drivers_id_seq;
+CREATE SEQUENCE drivers_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."drivers" (
+    "id" integer DEFAULT nextval('drivers_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "price" numeric(10,2) NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "drivers_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "expenditure";
+DROP SEQUENCE expenditure_id_seq;
+CREATE SEQUENCE expenditure_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."expenditure" (
+    "id" integer DEFAULT nextval('expenditure_id_seq') NOT NULL,
+    "id_order" integer NOT NULL,
+    "order_code" text NOT NULL,
+    "total" numeric(10,2) NOT NULL,
+    "user_id" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "expenditure_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "group";
+DROP SEQUENCE group_id_seq;
+CREATE SEQUENCE group_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."group" (
+    "id" integer DEFAULT nextval('group_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "group_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "income";
+DROP SEQUENCE income_id_seq;
+CREATE SEQUENCE income_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."income" (
+    "id" integer DEFAULT nextval('income_id_seq') NOT NULL,
+    "user_id" integer NOT NULL,
+    "income" numeric(10,2) NOT NULL,
+    "date" date NOT NULL,
+    "status" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "income_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "know";
+DROP SEQUENCE know_id_seq;
+CREATE SEQUENCE know_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."know" (
+    "id" integer DEFAULT nextval('know_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text,
+    "detail_th" text NOT NULL,
+    "detail_en" text,
+    "photo" text,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "deleted_at" timestamp,
+    CONSTRAINT "know_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "migrations";
+DROP SEQUENCE migrations_id_seq;
+CREATE SEQUENCE migrations_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."migrations" (
+    "id" integer DEFAULT nextval('migrations_id_seq') NOT NULL,
+    "migration" character varying(255) NOT NULL,
+    "batch" integer NOT NULL,
+    CONSTRAINT "migrations_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "new";
+DROP SEQUENCE new_id_seq;
+CREATE SEQUENCE new_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."new" (
+    "id" integer DEFAULT nextval('new_id_seq') NOT NULL,
+    "photo" text NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "detail_th" text NOT NULL,
+    "detail_en" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "status" integer NOT NULL,
+    "user_id" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "new_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_company";
+DROP SEQUENCE order_company_id_seq;
+CREATE SEQUENCE order_company_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_company" (
+    "id" integer DEFAULT nextval('order_company_id_seq') NOT NULL,
+    "code" text NOT NULL,
+    "user_id" integer NOT NULL,
+    "date" date NOT NULL,
+    "company_id" integer NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "status" integer,
+    "total" numeric(10,2),
+    CONSTRAINT "order_company_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_company_transection";
+DROP SEQUENCE order_company_transection_id_seq;
+CREATE SEQUENCE order_company_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_company_transection" (
+    "id" integer DEFAULT nextval('order_company_transection_id_seq') NOT NULL,
+    "code" text,
+    "product_id" integer,
+    "name" text,
+    "amount" numeric(10,0),
+    "unit" integer,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "unit_name" text,
+    "price" numeric(10,2),
+    CONSTRAINT "order_company_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_customer";
+DROP SEQUENCE order_customer_id_seq;
+CREATE SEQUENCE order_customer_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_customer" (
+    "id" integer DEFAULT nextval('order_customer_id_seq') NOT NULL,
+    "order_code" text NOT NULL,
+    "user_id" integer,
+    "total" numeric(10,2),
+    "discount" numeric(10,2),
+    "vat" numeric(10,2),
+    "grand_total" numeric(10,2),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "deleted_at" date,
+    "status" integer DEFAULT 0,
+    "driver" integer,
+    CONSTRAINT "order_customer_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_customer_transection";
+DROP SEQUENCE order_customer_transection_id_seq;
+CREATE SEQUENCE order_customer_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_customer_transection" (
+    "id" integer DEFAULT nextval('order_customer_transection_id_seq') NOT NULL,
+    "order_code" text NOT NULL,
+    "product_id" integer NOT NULL,
+    "price_product" numeric(10,2) NOT NULL,
+    "unit_sale" integer NOT NULL,
+    "amount" integer NOT NULL,
+    "total_price" numeric(8,2) NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "order_customer_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_walk";
+DROP SEQUENCE order_walk_id_seq;
+CREATE SEQUENCE order_walk_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_walk" (
+    "id" integer DEFAULT nextval('order_walk_id_seq') NOT NULL,
+    "code_order" text NOT NULL,
+    "user_id" integer,
+    "total" numeric(10,2) NOT NULL,
+    "discount" numeric(10,2) NOT NULL,
+    "vat" numeric(10,2) NOT NULL,
+    "grand_total" numeric(10,2) NOT NULL,
+    "money" numeric(10,2) NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "status" integer DEFAULT 0,
+    CONSTRAINT "order_walk_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "order_walk_transection";
+DROP SEQUENCE order_walk_transection_id_seq;
+CREATE SEQUENCE order_walk_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."order_walk_transection" (
+    "id" integer DEFAULT nextval('order_walk_transection_id_seq') NOT NULL,
+    "code_order" text NOT NULL,
+    "product_id" integer NOT NULL,
+    "unit_sale" integer NOT NULL,
+    "amount" integer NOT NULL,
+    "price_unit" numeric(10,2) NOT NULL,
+    "total_price" numeric(10,2) NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "order_walk_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "password_resets";
+CREATE TABLE "public"."password_resets" (
+    "email" character varying(255) NOT NULL,
+    "token" character varying(255) NOT NULL,
+    "created_at" timestamp(0)
+) WITH (oids = false);
+
+CREATE INDEX "password_resets_email_index" ON "public"."password_resets" USING btree ("email");
+
+
+DROP TABLE IF EXISTS "pet";
+DROP SEQUENCE pet_id_seq;
+CREATE SEQUENCE pet_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."pet" (
+    "id" integer DEFAULT nextval('pet_id_seq') NOT NULL,
+    "user_id" integer NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "photo" text NOT NULL,
+    "birthday" date NOT NULL,
+    "age" integer NOT NULL,
+    "weight" numeric(10,2) NOT NULL,
+    "height" numeric(10,2) NOT NULL,
+    "detail" text,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "pet_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "products";
+DROP SEQUENCE products_id__seq;
+CREATE SEQUENCE products_id__seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."products" (
+    "price" numeric(10,2),
+    "unit_id" integer,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id" integer DEFAULT nextval('products_id__seq') NOT NULL,
+    "unit_sale" integer,
+    "price_pack" numeric(10,2),
+    "price_piece" numeric(10,2),
+    "product_id" integer,
+    "bar_code" text,
+    "amount" numeric(10,2)
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "profile";
+DROP SEQUENCE profile_id_seq;
+CREATE SEQUENCE profile_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."profile" (
+    "id" integer DEFAULT nextval('profile_id_seq') NOT NULL,
+    "user_id" integer NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "birthday" date NOT NULL,
+    "tell" text NOT NULL,
+    "address" text NOT NULL,
+    "photo" text NOT NULL,
+    "email" text NOT NULL,
+    "povince_id" integer NOT NULL,
+    "distric_id" integer NOT NULL,
+    "sub_id" integer NOT NULL,
+    "post_code" text NOT NULL,
+    "code" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "profile_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "promotion";
+DROP SEQUENCE promotion_id_seq;
+CREATE SEQUENCE promotion_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."promotion" (
+    "id" integer DEFAULT nextval('promotion_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "discount" numeric(10,0) NOT NULL,
+    "detail_th" text NOT NULL,
+    "detail_en" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "photo" text,
+    CONSTRAINT "promotion_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
 DROP TABLE IF EXISTS "provinces";
 CREATE TABLE "public"."provinces" (
     "id" integer NOT NULL,
@@ -1027,6 +1472,219 @@ INSERT INTO "provinces" ("id", "code", "name_in_th", "name_in_en") VALUES
 (75,	94,	'ปัตตานี',	'Pattani'),
 (76,	95,	'ยะลา',	'Yala'),
 (77,	96,	'นราธิวาส',	'Narathiwat');
+
+DROP TABLE IF EXISTS "quotation";
+DROP SEQUENCE quotation_id_seq;
+CREATE SEQUENCE quotation_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."quotation" (
+    "id" integer DEFAULT nextval('quotation_id_seq') NOT NULL,
+    "order_code" text NOT NULL,
+    "user_id" integer,
+    "total" numeric(10,2),
+    "discount" numeric(10,2),
+    "vat" numeric(10,2),
+    "grand_total" numeric(10,2),
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "quotation_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "quotation_transection";
+DROP SEQUENCE quotation_transection_id_seq;
+CREATE SEQUENCE quotation_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."quotation_transection" (
+    "id" integer DEFAULT nextval('quotation_transection_id_seq') NOT NULL,
+    "order_code" text NOT NULL,
+    "product_id" integer NOT NULL,
+    "price_product" numeric(10,2) NOT NULL,
+    "unit_sale" integer NOT NULL,
+    "amount" integer NOT NULL,
+    "total_price" numeric(8,2) NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "quotation_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "reply_comment";
+DROP SEQUENCE reply_comment_id_seq;
+CREATE SEQUENCE reply_comment_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."reply_comment" (
+    "id" integer DEFAULT nextval('reply_comment_id_seq') NOT NULL,
+    "comment_id" integer NOT NULL,
+    "reply" text NOT NULL,
+    "user_id" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "reply_comment_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "sale_good";
+DROP SEQUENCE sale_good_id_seq;
+CREATE SEQUENCE sale_good_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."sale_good" (
+    "id" integer DEFAULT nextval('sale_good_id_seq') NOT NULL,
+    "amount" numeric(10,0) NOT NULL,
+    "product_id" integer NOT NULL,
+    "date" date NOT NULL,
+    "stock_id" integer,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "status" integer DEFAULT 0,
+    CONSTRAINT "sale_good_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "sell_product";
+DROP SEQUENCE sell_product_id_seq;
+CREATE SEQUENCE sell_product_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."sell_product" (
+    "order_id" text NOT NULL,
+    "discount" numeric(10,2) NOT NULL,
+    "net" numeric(10,2) NOT NULL,
+    "total" numeric(10,2) NOT NULL,
+    "money" numeric(10,2) NOT NULL,
+    "user_id" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id" integer DEFAULT nextval('sell_product_id_seq') NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "sell_product_tranction";
+DROP SEQUENCE sell_product_tranction_id_seq;
+CREATE SEQUENCE sell_product_tranction_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."sell_product_tranction" (
+    "product_id" integer NOT NULL,
+    "amount" text NOT NULL,
+    "order_id" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id" integer DEFAULT nextval('sell_product_tranction_id_seq') NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "sick";
+DROP SEQUENCE sick_id_seq;
+CREATE SEQUENCE sick_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."sick" (
+    "id" integer DEFAULT nextval('sick_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text,
+    "detail_th" text NOT NULL,
+    "detail_en" text,
+    "code" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "sick_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "sick_transection";
+DROP SEQUENCE sick_transection_id_seq;
+CREATE SEQUENCE sick_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."sick_transection" (
+    "id" integer DEFAULT nextval('sick_transection_id_seq') NOT NULL,
+    "sick_id" text NOT NULL,
+    "sick_th" text NOT NULL,
+    "sick_en" text NOT NULL,
+    "detail_th" text NOT NULL,
+    "detail_en" text,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "sick_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "stock";
+DROP SEQUENCE stock_id_seq;
+CREATE SEQUENCE stock_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."stock" (
+    "id" integer DEFAULT nextval('stock_id_seq') NOT NULL,
+    "name_th" text,
+    "name_en" text,
+    "deleted_at" timestamp(0),
+    "photo" text,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "code" text,
+    "cat_id" integer,
+    "group_id" integer,
+    "bar_code" text,
+    "company_id" integer,
+    "amount" integer,
+    CONSTRAINT "stock_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "stock_log";
+DROP SEQUENCE stock_log_id_seq;
+CREATE SEQUENCE stock_log_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."stock_log" (
+    "id" integer DEFAULT nextval('stock_log_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "product_id" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "amount" integer,
+    "amount_unit" integer,
+    CONSTRAINT "stock_log_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "store";
+DROP SEQUENCE store_id_seq;
+CREATE SEQUENCE store_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."store" (
+    "tell" text NOT NULL,
+    "address" text NOT NULL,
+    "name" text NOT NULL,
+    "tax_id" text NOT NULL,
+    "email" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id" integer DEFAULT nextval('store_id_seq') NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "store_profile";
+DROP SEQUENCE store_profile_id_seq;
+CREATE SEQUENCE store_profile_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."store_profile" (
+    "id" integer DEFAULT nextval('store_profile_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text,
+    "tell" text,
+    "email" text,
+    "fax" text,
+    "photo_top" text,
+    "photo_center" text,
+    "photo_foot" text,
+    "address" text,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "photo_logo" text,
+    CONSTRAINT "store_profile_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
 
 DROP TABLE IF EXISTS "subdistricts";
 CREATE TABLE "public"."subdistricts" (
@@ -8407,4 +9065,121 @@ INSERT INTO "subdistricts" ("id", "code", "name_th", "name_en", "latitude", "lon
 (7110,	931004,	'บ้านพร้าว',	'',	'7.818',	'99.948',	894,	93110),
 (7232,	950103,	'ยุโป',	'',	'6.597',	'101.283',	908,	95000);
 
--- 2019-06-10 12:50:29.50815+07
+DROP TABLE IF EXISTS "unit";
+DROP SEQUENCE unit_id__seq;
+CREATE SEQUENCE unit_id__seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."unit" (
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "deleted_at" timestamp(0),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "id" integer DEFAULT nextval('unit_id__seq') NOT NULL
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "unit_transection";
+DROP SEQUENCE unit_transection_id_seq;
+CREATE SEQUENCE unit_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."unit_transection" (
+    "id" integer DEFAULT nextval('unit_transection_id_seq') NOT NULL,
+    "name_th" text NOT NULL,
+    "name_en" text NOT NULL,
+    "product_id" text NOT NULL,
+    "amount" text,
+    "price" numeric(10,2),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "amount_unit" integer,
+    CONSTRAINT "unit_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "users";
+DROP SEQUENCE users_id_seq;
+CREATE SEQUENCE users_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."users" (
+    "id" bigint DEFAULT nextval('users_id_seq') NOT NULL,
+    "name" character varying(255) NOT NULL,
+    "email" character varying(255) NOT NULL,
+    "email_verified_at" timestamp(0),
+    "password" character varying(255) NOT NULL,
+    "remember_token" character varying(100),
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "role" integer,
+    "status" integer DEFAULT 0,
+    CONSTRAINT "users_email_unique" UNIQUE ("email"),
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "widden_product";
+DROP SEQUENCE widden_product_id_seq;
+CREATE SEQUENCE widden_product_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."widden_product" (
+    "id" integer DEFAULT nextval('widden_product_id_seq') NOT NULL,
+    "code" text NOT NULL,
+    "user_id" integer,
+    "date" date NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "deleted_at" date,
+    CONSTRAINT "widden_product_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "widden_transection";
+DROP SEQUENCE widden_transection_id_seq;
+CREATE SEQUENCE widden_transection_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."widden_transection" (
+    "id" integer DEFAULT nextval('widden_transection_id_seq') NOT NULL,
+    "code" text NOT NULL,
+    "unit_widden" integer NOT NULL,
+    "amount_widden" numeric(10,2) NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "product_id" text,
+    "id_product_stock" integer,
+    "bar_code" text,
+    CONSTRAINT "widden_transection_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "widen";
+DROP SEQUENCE widen_id_seq;
+CREATE SEQUENCE widen_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."widen" (
+    "id" integer DEFAULT nextval('widen_id_seq') NOT NULL,
+    "stock_id" integer NOT NULL,
+    "amount" integer NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    "widen_code" text,
+    CONSTRAINT "widen_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+DROP TABLE IF EXISTS "widen_report";
+DROP SEQUENCE widen_report_id_seq;
+CREATE SEQUENCE widen_report_id_seq INCREMENT  MINVALUE  MAXVALUE  START 1 CACHE ;
+
+CREATE TABLE "public"."widen_report" (
+    "id" integer DEFAULT nextval('widen_report_id_seq') NOT NULL,
+    "stock_id" integer NOT NULL,
+    "amount" integer NOT NULL,
+    "widen_code" text NOT NULL,
+    "widen_date" date NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "widen_report_pkey" PRIMARY KEY ("id")
+) WITH (oids = false);
+
+
+-- 2019-08-22 14:44:58.747327+07
