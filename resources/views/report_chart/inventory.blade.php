@@ -64,7 +64,7 @@
     </div>
     {{-- //search --}}
     <br>
-    <div class="row">
+    <div class="row chart-show">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -76,6 +76,50 @@
 
                             <div class="demo-container">
                                 <div id="chart"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row chart-none" style="display: none; text-align: center;">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.sale_good.title') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    {!! trans('messages.not_found_report') !!}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row chart-show">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.sale_good.inventory') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+
+                            <div class="demo-container">
+                                <div id="chartPie"></div>
                             </div>
 
                         </div>
@@ -126,6 +170,11 @@
                     success: function (h) {
                         //console.log(h);
                         renderGraph_sale_good(h);
+                        renderGraph_sale_good_pie(h);
+                    },
+                    error:function () {
+                        $('.chart-none').show();
+                        $('.chart-show').hide();
                     }
                 });
             });
@@ -143,61 +192,18 @@
 
             function renderGraph_sale_good(h){
                 var populationData = [];
-
-
-
                 var name = [];
                 $.each(h, function (i,v) {
                     if(h) {
                         populationData.push({type:v.name_{!! Session::get('locale') !!},value:numberWithCommas(v.amount)});
                     }
                 });
-
                 //console.log(name);
-                console.log(populationData);
+                //console.log(populationData);
                 $('#chart').dxChart('instance').option('dataSource', populationData);
                 $('#chart').dxChart('instance').render();
             }
 
-            // $(function(){
-            //     $("#chart").dxChart({
-            //         dataSource: populationData,
-            //         commonSeriesSettings: {
-            //             argumentField: "type",
-            //             type: "bar"
-            //         },
-            //         legend: {
-            //             visible: false
-            //         },
-            //         series: {
-            //             valueField: "1", number: "1",
-            //         },
-            //         argumentAxis: {
-            //             tickInterval: 10,
-            //             label: {
-            //                 format: {
-            //                     type: "decimal"
-            //                 }
-            //             }
-            //         },title: {
-            //         text: "Chart",
-            //             subtitle: {
-            //             text: "(Millions of Tons, Oil Equivalent)"
-            //         }
-            //     },
-            //     "export": {
-            //         enabled: true
-            //     },
-            //     tooltip: {
-            //         enabled: true,
-            //             customizeTooltip: function (arg) {
-            //             return {
-            //                 text: arg.valueText
-            //             };
-            //         }
-            //     }
-            //     }).dxChart("instance");
-            // });
             var populationData = [];
             $(function(){
                 $("#chart").dxChart({
@@ -248,7 +254,62 @@
                     }
                 }).dxChart("instance");
             });
+//// Pie
 
+            function renderGraph_sale_good_pie(h){
+                var PieData = [];
+                var name = [];
+                $.each(h, function (i,v) {
+                    if(h) {
+                        PieData.push({type:v.name_{!! Session::get('locale') !!},value:numberWithCommas(v.amount)});
+                    }
+                });
+                //console.log(name);
+                //console.log(PieData);
+                $('#chartPie').dxPieChart('instance').option('dataSource', PieData);
+                $('#chartPie').dxPieChart('instance').render();
+            }
+
+            var PieData = [];
+            $(function(){
+                $("#chartPie").dxPieChart({
+                    palette: "bright",
+                    dataSource: PieData,
+                    series: [
+                        {
+                            argumentField: "type",
+                            valueField: "value",
+                            label: {
+                                visible: true,
+                                connector: {
+                                    visible: true,
+                                    width: 1
+                                }
+                            }
+                        }
+                    ],
+                    title: {
+                        text: "Inventory",
+                        subtitle: {
+                            text: "(Product)"
+                        }
+                    },
+                    "export": {
+                        enabled: true
+                    },
+                    onPointClick: function (e) {
+                        var point = e.target;
+
+                        toggleVisibility(point);
+                    },
+                    onLegendClick: function (e) {
+                        var arg = e.target;
+
+                        toggleVisibility(this.getAllSeries()[0].getPointsByArg(arg)[0]);
+                    }
+                });
+
+            });
 
         });
     </script>
