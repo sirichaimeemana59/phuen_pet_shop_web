@@ -1337,7 +1337,8 @@ CREATE TABLE "public"."products" (
     "price_piece" numeric(10,2),
     "product_id" integer,
     "bar_code" text,
-    "amount" numeric(10,2)
+    "amount" integer,
+    "name" text
 ) WITH (oids = false);
 
 
@@ -9182,4 +9183,4 @@ CREATE TABLE "public"."widen_report" (
 ) WITH (oids = false);
 
 
--- 2019-08-22 14:44:58.747327+07
+-- 2019-08-23 14:50:27.358811+07
