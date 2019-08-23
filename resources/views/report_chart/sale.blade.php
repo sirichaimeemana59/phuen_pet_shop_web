@@ -42,7 +42,7 @@
     </div>
     {{-- //search --}}
     <br>
-    <div class="row">
+    <div class="row chart-show">
         <div class="col-md-12 stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -62,6 +62,51 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="row chart-none" style="display: none; text-align: center;">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.sale_good.title') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    {!! trans('messages.not_found_report') !!}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row chart-show">
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.sale_good.title') !!}</h3>
+                    </div>
+                    <div class="panel panel-default" id="panel-lead-list">
+                        <div class="panel-body" id="landing-subject-list">
+
+                            <div class="demo-container">
+                                <div id="chartLine"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 @endsection
 
 @section('script')
@@ -103,77 +148,34 @@
                     method: 'post',
                     success: function (h) {
                         //console.log(h);
+                        $('.chart-none').hide();
                         renderGraph_sale_good(h);
+                        renderGraphLine_sale_good(h);
+                    },
+                    error:function () {
+                        $('.chart-none').show();
+                        $('.chart-show').hide();
                     }
                 });
             });
 
             function renderGraph_sale_good(h){
                 var populationData = [];
-
-
-
                 var name = [];
                 $.each(h.stock, function (i,v) {
-                    //console.log(v[0].name_th);
-                    //if(h.stock[i][i]) {
-                        name.push(v[0].name_{!!Session::get('locale')!!});
-                    //}
+                        name.push(v[0].name);
                 });
 
-                //console.log(h.stock[0][0].name_th);
-                //console.log(h.stock[0]);
                 $.each(h.sum, function (i,v) {
                     if(h) {
-                        populationData.push({type:name[i],value:v.product_id,number:v.sum});
+                        populationData.push({type:name[i],value:v.sum*1});
                     }
                 });
 
-                //console.log(name);
-                 //console.log(populationData);
                 $('#chart').dxChart('instance').option('dataSource', populationData);
                 $('#chart').dxChart('instance').render();
             }
 
-            // $(function(){
-            //     $("#chart").dxChart({
-            //         dataSource: populationData,
-            //         commonSeriesSettings: {
-            //             argumentField: "type",
-            //             type: "bar"
-            //         },
-            //         legend: {
-            //             visible: false
-            //         },
-            //         series: {
-            //             valueField: "1", number: "1",
-            //         },
-            //         argumentAxis: {
-            //             tickInterval: 10,
-            //             label: {
-            //                 format: {
-            //                     type: "decimal"
-            //                 }
-            //             }
-            //         },title: {
-            //         text: "Chart",
-            //             subtitle: {
-            //             text: "(Millions of Tons, Oil Equivalent)"
-            //         }
-            //     },
-            //     "export": {
-            //         enabled: true
-            //     },
-            //     tooltip: {
-            //         enabled: true,
-            //             customizeTooltip: function (arg) {
-            //             return {
-            //                 text: arg.valueText
-            //             };
-            //         }
-            //     }
-            //     }).dxChart("instance");
-            // });
             var populationData = [];
             $(function(){
                 $("#chart").dxChart({
@@ -195,7 +197,7 @@
                     },
                     series: [
                         {
-                            valueField: "number",
+                            valueField: "value",
                             name : "product",
                         }
 
@@ -225,7 +227,84 @@
                 }).dxChart("instance");
             });
 
+            //Line Chart
+            function renderGraphLine_sale_good(h){
+                var LineData = [];
+                var name = [];
+                $.each(h.stock, function (i,v) {
+                    name.push(v[0].name);
+                });
 
+                var stock=0,sum = 0;
+
+                for (var i = 0; i < h.stock.length; i++) {
+                    stock += h.stock[i] << 0;
+                }
+
+                for (var x = 0; x < h.sum.length; x++) {
+                    sum += h.sum[x] << 0;
+                }
+
+                $.each(h.sum, function (i,v) {
+                    if(h.sum) {
+                        LineData.push({type:name[i],value:v.sum*1});
+                    }
+                });
+                //console.log(LineData);
+                $('#chartLine').dxChart('instance').option('dataSource', LineData);
+                $('#chartLine').dxChart('instance').render();
+            }
+
+            var LineData = [];
+            $(function() {
+                $("#chartLine").dxChart({
+                    palette: "Violet",
+                    dataSource: LineData,
+                    commonSeriesSettings: {
+                        argumentField: "type",
+                        type: "line"
+                    },
+                    margin: {
+                        bottom: 20
+                    },
+                    argumentAxis: {
+                        valueMarginsEnabled: false,
+                        discreteAxisDivisionMode: "crossLabels",
+                        grid: {
+                            visible: true
+                        }
+                    },
+                    series: [
+                        {
+                            valueField: "value",
+                            name : "product"
+                        }
+
+                    ],
+                    legend: {
+                        verticalAlignment: "bottom",
+                        horizontalAlignment: "center",
+                        itemTextPosition: "bottom"
+                    },
+                    title: {
+                        text: "Product Sale Good",
+                        subtitle: {
+                            text: "(Product)"
+                        }
+                    },
+                    "export": {
+                        enabled: true
+                    },
+                    tooltip: {
+                        enabled: true,
+                        customizeTooltip: function (arg) {
+                            return {
+                                text: arg.valueText
+                            };
+                        }
+                    }
+                }).dxChart("instance");
+            });
         });
     </script>
 @endsection

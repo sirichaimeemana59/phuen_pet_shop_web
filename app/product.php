@@ -12,7 +12,7 @@ class product extends GeneralModel
     use SoftDeletes;
     protected $primaryKey = 'id';
     protected $table = 'products';
-    protected $fillable = ['price,unit_id,unit_sale,price_pack,price_piece,deleted_at,product_id'];
+    protected $fillable = ['price,unit_id,unit_sale,price_pack,price_piece,deleted_at,product_id,name'];
     public $timestamps = true;
     protected $softDelete = true;
 

@@ -28,7 +28,7 @@
                                         <tr>
                                             <td><input type="hidden" name="data[{!! $key !!}][product_id]" value="{!! $w->id_product_stock !!}" class="form-control">{!! $key+1 !!}</td>
                                             <td><input type="hidden" name="data[{!! $key !!}][amount_widden]" value="{!! $w->amount_widden !!}" class="form-control"><input type="hidden" name="data[{!! $key !!}][unit_id]" value="{!! $w->unit_widden !!}" class="form-control">{!! $w->product_id !!}</td>
-                                            <td>{!! $w->join_product{'name_'.Session::get('locale')} !!}</td>
+                                            <td><input type="text" name="data[{!! $key !!}][name]" class="form-control" required value="{!! $w->join_product{'name_'.Session::get('locale')} !!}"></td>
                                             <td>{!! number_format($w->amount_widden,0) !!}  {!! $w->join_stock->join_stock_log{'name_'.Session::get('locale')} !!}</td>
                                             <td>{!! floor($w->amount_widden / ($w->join_unit_transection['amount_unit']/$w->join_unit_transection['amount'])) !!} : {!! $w->join_unit_transection['name_th'] !!}</td>
                                             <td><input type="text" name="data[{!! $key !!}][bar_code]" class="form-control" required value="{!! $w->bar_code !!}"></td>

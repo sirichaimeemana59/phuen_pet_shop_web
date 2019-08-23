@@ -62,6 +62,7 @@ return [
     'doc' => 'คู่มือการใช้งาน',
     'new_user' => 'ผู้สมัครสมาชิก',
     'product_limit' => 'สินค้าใกล้จะหมด',
+    'not_found_report'=>'ไม่พบรายงาน',
 
     'product'=>[
         'head_product' => 'สินค้า',

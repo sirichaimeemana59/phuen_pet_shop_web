@@ -85,6 +85,7 @@ class ProductController extends Controller
             $product->product_id = $t['product_id'];
             $product->amount = $t['amount_widden'];
             $product->bar_code = $t['bar_code'];
+            $product->name = $t['name'];
             $product->save();
         }
 

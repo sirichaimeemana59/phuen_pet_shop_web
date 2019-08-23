@@ -29,18 +29,17 @@ class ReportController extends Controller
 
             $date = array($from . " 00:00:00", $to . " 00:00:00");
 
-            $sale_good =  sale_good::select(DB::raw('product_id,stock_id,SUM(amount) as sum'))
-                ->whereBetween('created_at',$date)->groupBy('stock_id')->get();
+            $sale_good =  sale_good::select(DB::raw('product_id,SUM(amount) as sum'))
+                ->whereBetween('created_at',$date)->groupBy('product_id')->get();
 
             $t_ = $sale_good->toArray();
 
             foreach ($t_ as $t){
-//                dd($t['product_id']); die();
                 $stock = DB::table('sale_good')
-                    ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
-                    ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
-                    ->where('stock.id',$t['stock_id'])
-                    ->groupBy('stock_id','id')
+                    ->join('products', 'products.id', '=', 'sale_good.product_id')
+                    ->select('sale_good.product_id','products.name', DB::raw('products.name'))
+                    ->where('products.id',$t['product_id'])
+                    ->groupBy('sale_good.product_id','products.name')
                     ->get();
                 $stock_[] = $stock->toArray();
             }
@@ -52,41 +51,44 @@ class ReportController extends Controller
 
             $date = array($from . " 00:00:00");
 
-            $sale_good =  sale_good::select(DB::raw('product_id,stock_id,SUM(amount) as sum'))
-                ->whereDate('created_at',$date)->groupBy('stock_id')->get();
+            $sale_good =  sale_good::select(DB::raw('product_id,SUM(amount) as sum'))
+                ->whereDate('created_at',$date)->groupBy('product_id')->get();
 
             $t_ = $sale_good->toArray();
             foreach ($t_ as $t){
                 $stock = DB::table('sale_good')
-                    ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
-                    ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
-                    ->where('stock.id',$t['stock_id'])
-                    ->groupBy('stock_id','id')
+                    ->join('products', 'products.id', '=', 'sale_good.product_id')
+                    ->select('sale_good.product_id','products.name', DB::raw('products.name'))
+                    ->where('products.id',$t['product_id'])
+                    ->groupBy('sale_good.product_id','products.name')
                     ->get();
                 $stock_[] = $stock->toArray();
             }
 
         }else{
 
-            $sale_good =  sale_good::select(DB::raw('product_id,stock_id,SUM(amount) as sum'))
+            $sale_good =  sale_good::select(DB::raw('product_id,SUM(amount) as sum'))
                 ->groupBy('product_id')->get();
 
             $t_ = $sale_good->toArray();
             foreach ($t_ as $t){
                 $stock = DB::table('sale_good')
-                    ->join('stock', 'stock.id', '=', 'sale_good.stock_id')
-                    ->select('sale_good.stock_id','stock.id', DB::raw('stock.*'))
-                    ->where('stock.id',$t['stock_id'])
-                    ->groupBy('stock_id','id')
+                    ->join('products', 'products.id', '=', 'sale_good.product_id')
+                    ->select('sale_good.product_id','products.name', DB::raw('products.name'))
+                    ->where('products.id',$t['product_id'])
+                    ->groupBy('sale_good.product_id','products.name')
                     ->get();
                 $stock_[] = $stock->toArray();
             }
+
+            //dd($t_);
+
         }
 
         $data["stock"] = $stock_;
         $data["sum"] = $t_;
 
-        //dd($data["stock"]);
+        //dd($data["sum"]);
 
         return response()->JSON($data);
     }

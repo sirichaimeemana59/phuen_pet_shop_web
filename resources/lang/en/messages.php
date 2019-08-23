@@ -60,6 +60,7 @@ return [
     'doc' => 'Documentation',
     'new_user' => 'New user registration',
     'product_limit' => 'Product is almost out of stock',
+    'not_found_report'=>'not_found_report',
 
     'product' => [
         'head_product' => 'Product',

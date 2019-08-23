@@ -15,6 +15,10 @@ class sale_good extends GeneralModel
     public $timestamps = true;
 
     public function join_stock(){
-        return $this->hasOne('App\stock','product_id','id');
+        return $this->hasOne('App\stock','stock_id','id');
+    }
+
+    public function join_product(){
+        return $this->hasOne('App\product','product_id','id');
     }
 }

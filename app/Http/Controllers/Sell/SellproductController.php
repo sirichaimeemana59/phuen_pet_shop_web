@@ -32,7 +32,7 @@ class SellproductController extends Controller
     public function create()
     {
         if(!empty(Request::input('name'))){
-            $product = product::where('bar_code',Request::input('name'))->first();
+            $product = product::where('bar_code',Request::input('name'))->where('amount','>','0')->first();
         }
             if ($product) {
                 $product_name = product::with('join_stock')->where('id',$product->id)->first();
