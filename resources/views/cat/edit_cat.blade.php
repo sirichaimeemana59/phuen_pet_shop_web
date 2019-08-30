@@ -124,7 +124,7 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/cat/delete_cat_tran", {
+                            $.post($('#root-url').val()+"/employee/cat/delete_cat_tran", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
