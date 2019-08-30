@@ -148,13 +148,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/sick_tran/delete", {
+                            $.post($('#root-url').val()+"/employee/sick_tran/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/sick/edit/'+id_
+                                    window.location.href =$('#root-url').val()+'/employee/sick/edit/'+id_
                                 });
                             });
                         }, 50);

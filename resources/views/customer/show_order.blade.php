@@ -379,7 +379,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/customer/list_order'
+                                    window.location.href =$('#root-url').val()+'/customer/list_order'
                                 });
                             });
                         }, 50);

@@ -610,7 +610,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/edit/order/'+order
+                                    window.location.href =$('#root-url').val()+'/employee/edit/order/'+order
                                 });
                             });
                         }, 50);

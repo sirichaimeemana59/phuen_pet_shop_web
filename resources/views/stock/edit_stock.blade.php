@@ -203,13 +203,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/stock/delete/unit", {
+                            $.post($('#root-url').val()+"/employee/stock/delete/unit", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/stock/edit/5'
+                                    window.location.href =$('#root-url').val()+'/employee/stock/edit/5'
                                 });
                             });
                         }, 50);

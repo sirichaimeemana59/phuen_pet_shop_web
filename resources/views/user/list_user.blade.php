@@ -330,7 +330,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/approved/user_check'
+                                    window.location.href =$('#root-url').val()+'/approved/user_check'
                                 });
                             });
                         }, 50);

@@ -280,7 +280,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/company_store/order_company'
+                                    window.location.href =$('#root-url').val()+'/employee/company_store/order_company'
                                 });
                             });
                         }, 50);
@@ -307,7 +307,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/list_order_customer'
+                                    window.location.href =$('#root-url').val()+'/employee/list_order_customer'
                                 });
                             });
                         }, 50);

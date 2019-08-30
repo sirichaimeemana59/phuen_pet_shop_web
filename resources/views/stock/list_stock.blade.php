@@ -311,7 +311,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/stock/product_stock'
+                                    window.location.href =$('#root-url').val()+'/employee/stock/product_stock'
                                 });
                             });
                         }, 50);

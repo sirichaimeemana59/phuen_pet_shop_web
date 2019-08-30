@@ -445,13 +445,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/order_company/delete", {
+                            $.post($('#root-url').val()+"/employee/order_company/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/edit/order_company/'+id_order
+                                    window.location.href =$('#root-url').val()+'/employee/edit/order_company/'+id_order
                                 });
                             });
                         }, 50);

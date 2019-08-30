@@ -373,7 +373,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/quotation/order_quotation_list'
+                                    window.location.href =$('#root-url').val()+'/employee/quotation/order_quotation_list'
                                 });
                             });
                         }, 50);
@@ -400,7 +400,7 @@
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/list_order_customer'
+                                    window.location.href =$('#root-url').val()+'/employee/list_order_customer'
                                 });
                             });
                         }, 50);

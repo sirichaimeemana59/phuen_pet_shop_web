@@ -201,13 +201,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post("/employee/pet/delete", {
+                            $.post($('#root-url').val()+"/employee/pet/delete", {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href ='/employee/pet/show_pet'
+                                    window.location.href =$('#root-url').val()+'/employee/pet/show_pet'
                                 });
                             });
                         }, 50);
