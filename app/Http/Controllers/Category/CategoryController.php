@@ -125,18 +125,21 @@ class CategoryController extends Controller
 
     public function update()
     {
+        //dd(Request::input('data_'));
         $cat = cat::find(Request::input('id_cat'));
         $cat->name_th = Request::input('name_th');
         $cat->name_en = Request::input('name_en');
         $cat->code = $cat->code;
         $cat->save();
 
-        foreach (Request::input('data_') as $t){
-            $cat_tran =  cat_transection::find($t['id']);
-            $cat_tran->cat_id = $cat->code;
-            $cat_tran->name_th = $t['name_th'];
-            $cat_tran->name_en = $t['name_en'];
-            $cat_tran->save();
+        if(!empty(Request::input('data_'))) {
+            foreach (Request::input('data_') as $t) {
+                $cat_tran = cat_transection::find($t['id']);
+                $cat_tran->cat_id = $cat->code;
+                $cat_tran->name_th = $t['name_th'];
+                $cat_tran->name_en = $t['name_en'];
+                $cat_tran->save();
+            }
         }
 
         if(!empty(Request::input('data'))){
