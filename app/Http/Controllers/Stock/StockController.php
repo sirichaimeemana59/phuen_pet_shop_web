@@ -129,7 +129,7 @@ class StockController extends Controller
         }
 
 
-        return redirect('/employee/stock/product');
+        return redirect('/employee/stock/product_stock');
     }
 
 
@@ -290,7 +290,7 @@ class StockController extends Controller
         $unit->amount_unit = $request->input('amount2');
         $unit->save();
 
-        return redirect('/employee/stock/product');
+        return redirect('/employee/stock/product_stock');
     }
 
 
@@ -299,7 +299,7 @@ class StockController extends Controller
         $stock = stock::find($request->input('id'));
         $stock->delete();
 
-        return redirect('/employee/stock/product');
+        return redirect('/employee/stock/product_stock');
     }
 
     public function delete_unit(Request $request){
