@@ -66,9 +66,12 @@ class ProfileController extends Controller
         $profile->user_id = Auth::user()->id;
         $profile->code = $randomString;
         $profile->address = $request->input('address');
+        $profile->color_left = empty($request->input('color_left'))?"":$request->input('color_left');
+        $profile->color_content = empty($request->input('color_content'))?"":$request->input('color_content');
+        $profile->color_top = empty($request->input('color_top'))?"":$request->input('color_top');
         $profile->save();
 
-        return redirect ('/customer/home');
+        return redirect ('/user/create_profile');
      }
 
 
@@ -104,6 +107,9 @@ class ProfileController extends Controller
             $profile->user_id = Auth::user()->id;
             $profile->code = $profile->code;
             $profile->address = $request->input('address');
+            $profile->color_left = empty($request->input('color_left'))?$request->input('color_left_'):$request->input('color_left');
+            $profile->color_content = empty($request->input('color_content'))?$request->input('color_content_'):$request->input('color_content');
+            $profile->color_top = empty($request->input('color_top'))?$request->input('color_top_'):$request->input('color_top');
             $profile->save();
         }else{
 
@@ -121,10 +127,13 @@ class ProfileController extends Controller
             $profile->user_id = Auth::user()->id;
             $profile->code = $profile->code;
             $profile->address = $request->input('address');
+            $profile->color_left = empty($request->input('color_left'))?$request->input('color_left_'):$request->input('color_left');
+            $profile->color_content = empty($request->input('color_content'))?$request->input('color_content_'):$request->input('color_content');
+            $profile->color_top = empty($request->input('color_top'))?$request->input('color_top_'):$request->input('color_top');
             $profile->save();
 
         }
-        return redirect ('/customer/home');
+        return redirect ('/user/create_profile');
     }
 
 

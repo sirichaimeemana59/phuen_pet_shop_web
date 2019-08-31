@@ -81,10 +81,14 @@ class StoreProfileController extends Controller
         $profile->tell = $request->input('tell');
         $profile->email = $request->input('email');
         $profile->address = $request->input('address');
-        $profile->photo_top = $fileNameToDatabase_top;
-        $profile->photo_center = $fileNameToDatabase_center;
-        $profile->photo_foot = $fileNameToDatabase_foot;
-        $profile->photo_logo = $fileNameToDatabase_logo;
+        $profile->photo_top = empty($fileNameToDatabase_top)?"":$fileNameToDatabase_top;
+        $profile->photo_center = empty($fileNameToDatabase_center)?"":$fileNameToDatabase_center;
+        $profile->photo_foot = empty($fileNameToDatabase_foot)?"":$fileNameToDatabase_foot;
+        $profile->photo_logo = empty($fileNameToDatabase_logo)?"":$fileNameToDatabase_logo;
+//        $profile->photo_top = $fileNameToDatabase_top;
+//        $profile->photo_center = $fileNameToDatabase_center;
+//        $profile->photo_foot = $fileNameToDatabase_foot;
+//        $profile->photo_logo = $fileNameToDatabase_logo;
         $profile->save();
 
         //dd($profile);

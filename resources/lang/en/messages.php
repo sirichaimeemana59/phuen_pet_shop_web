@@ -251,6 +251,10 @@ return [
         'order_com' => 'Purchase Order Company',
     ],
     'profile' => [
+        'color'=>'Design Profile',
+        'color_left'=>'Color Menu',
+        'color_content'=>'Color Content',
+        'color_top'=>'Color Top Bar',
         'title' => 'Profile',
         'name' => 'Name',
         'name_th' => 'Name [TH]',

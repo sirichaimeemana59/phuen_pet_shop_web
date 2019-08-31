@@ -17,10 +17,13 @@
                                 <input type="hidden" class="dis" name="dis" value="{!! $profile->distric_id !!}">
                                 <input type="hidden" class="subdis" name="subdis" value="{!! $profile->sub_id !!}">
                                 <input type="hidden" class="pro" name="pro" value="{!! $profile->povince_id !!}">
+                                <input type="hidden"  name="color_left" value="{!! $profile->color_left !!}">
+                                <input type="hidden"  name="color_top" value="{!! $profile->color_top !!}">
+                                <input type="hidden"  name="color_menu" value="{!! $profile->color_menu !!}">
                             @else
                                 {!! Form::model(null,array('url' => array('user/add_profile'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             @endif
-                        <div class="form-group row">
+                            <div class="form-group row">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.profile.name_th') !!}</lable>
                                 <div class="col-sm-4">
                                     {!! Form::text('name_th',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.name_th'),'required')) !!}
@@ -61,7 +64,7 @@
                                 <div class="col-sm-4">
                                     @if(!empty($profile->povince_id))
                                         {!! Form::select('province',$provinces,$profile->povince_id,array('class'=>'form-control province')) !!}
-                                        @else
+                                    @else
                                         {!! Form::select('province',$provinces,null,array('class'=>'form-control province')) !!}
                                     @endif
                                 </div>
@@ -70,7 +73,7 @@
                                 <div class="col-sm-4">
                                     @if(!empty($profile->povince_id))
                                         {!! Form::select('district',$districts,$profile->distric_id,array('class'=>'form-control district')) !!}
-                                        @else
+                                    @else
                                         {!! Form::select('district',$districts,null,array('class'=>'form-control district')) !!}
                                     @endif
                                 </div>
@@ -79,7 +82,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.subdistricts') }}</label>
                                 <div class="col-sm-4">
-                                        {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
+                                    {!! Form::select('sub_district',$subdistricts,null,array('class'=>'form-control subdistricts')) !!}
                                 </div>
 
                                 <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
@@ -93,20 +96,59 @@
                                     {!! Form::file('photo',null,array('class'=>'form-control','placeholder'=>trans('messages.pet.photo'))) !!}
                                 </div>
                             </div>
-
-
-                            <div class="form-group row float-center" style="text-align: center; ">
-                                <div class="col-sm-12">
-                                    <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                                    <button class="btn-info btn-warning" type="reset">Reset</button>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br><br><br><br>
+        {{--///////--}}
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.profile.color') !!}</h3>
+                    </div>
+                    <div class="form-group row">
+                        <lable class="col-sm-2 control-label">{!! trans('messages.profile.color_left') !!}</lable>
+                        <div class="col-sm-4">
+                            {!! Form::color('color_left',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.color_left'))) !!}
+                        </div>
+
+                        <lable class="col-sm-2 control-label">{!! trans('messages.profile.color_content') !!}</lable>
+                        <div class="col-sm-4">
+                            {!! Form::color('color_content',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.color_content'))) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <lable class="col-sm-2 control-label">{!! trans('messages.profile.color_top') !!}</lable>
+                        <div class="col-sm-4">
+                            {!! Form::color('color_top',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.color_top'))) !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--///////////--}}
+                {{--////////////////////////////////////////////////////////////////////////////////////--}}
+        <br><br><br><br>
+        <div class="col-md-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group row float-center" style="text-align: center; ">
+                            <div class="col-sm-12">
+                                <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                <button class="btn-info btn-warning" type="reset">Reset</button>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        {{--//////////////////////////////--}}
+
+    </div>
+    </div>
     </div>
 
 @endsection
