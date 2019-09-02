@@ -232,10 +232,10 @@
                         <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        {{--<a class="dropdown-item">--}}
-                            {{--<i class="mdi mdi-settings text-primary"></i>--}}
-                            {{--Settings--}}
-                        {{--</a>--}}
+                        <a class="dropdown-item setting">
+                            <i class="mdi mdi-settings text-primary"></i>
+                            Settings
+                        </a>
                         <a class="dropdown-item" href="{!! url('/logout') !!}">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
@@ -449,7 +449,63 @@
     </div>
     <!-- page-body-wrapper ends -->
 </div>
+<!-- Modal setting profile-->
+<div class="modal fade" id="setting_model" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #9BA2AB;">
+                <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.profile.setting') !!}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form">
+                            {!! Form::model(null,array('url' => array('user/setting/pass'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.user_name') !!}</lable>
+                                <div class="col-sm-10">
+                                    {!! Form::text('user_name',null,array('class'=>'form-control user_name','placeholder'=>trans('messages.profile.user_name'),'required','readonly')) !!}
+                                </div>
+                                <input type="hidden" class="user_id" name="user_id">
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.profile.pass') !!}</lable>--}}
+                                {{--<div class="col-sm-4">--}}
+                                    {{--{!! Form::text('password',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.pass'),'required')) !!}--}}
+                                {{--</div>--}}
+                            </div>
 
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new') !!}</lable>
+                                <div class="col-sm-10">
+                                    {!! Form::text('pass_new',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new'),'required')) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new_con') !!}</lable>
+                                <div class="col-sm-10">
+                                    {!! Form::text('pass_new_con',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new_con'),'required')) !!}
+                                </div>
+                            </div>
+                            <div class="form-group row float-center" style="text-align: center; ">
+                                <div class="col-sm-12">
+                                    <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                    <button class="btn-info btn-warning" type="reset">Reset</button>
+                                </div>
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <input type="hidden" id="user_id" value="{!! auth::user()->id !!}">
+    </div>
+</div>
+<!-- End Modal add store-->
 <!-- plugins:js -->
 <script src="{!! url('') !!}/home/vendors/base/vendor.bundle.base.js"></script>
 <script src="{!! url('') !!}/home/vendors/chart.js/Chart.min.js"></script>
@@ -465,7 +521,34 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @yield('script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $('body').on('click', '.setting', function () {
+            var id = $('#user_id').val();
+            //console.log(id);
+            $.ajax({
+                url: $('#root-url').val() +'/user/setting/pass_now',
+                method: 'post',
+                dataType: 'json',
+                data: ({'id': id}),
+                success: function (e) {
+                    //console.log(e);
+                    $('#setting_model').modal('show');
+                    $('.user_name').val(e.email);
+                    $('.user_id').val(e.id);
+                }, error: function () {
+                    console.log('Error View Data Pet');
+                }
+            });
+        });
+    })
+</script>
 </body>
 </html>
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use ImageUploadAndResizer;
 
@@ -14,6 +16,7 @@ use App\Province;
 use App\company;
 use App\profile;
 use Session;
+use App\users_list;
 
 class ProfileController extends Controller
 {
@@ -225,6 +228,43 @@ class ProfileController extends Controller
             $z = $z->get();
 
             return response()->json($z);
+        }
+    }
+
+    public function pass_now(Request $request){
+        if($request->isMethod('post')) {
+            $user = users_list::find($request->get('id'));
+            return response()->json($user);
+        }
+    }
+
+    public function pass(Request $request){
+        if($request->isMethod('post')) {
+            if($request->input('pass_new') == $request->input('pass_new_con')){
+                $user = users_list::find($request->get('user_id'));
+                $user->password =  Hash::make($request->input('pass_new'));
+                $user->save();
+
+                if( Auth::user()->role == 0 AND Auth::user()->status == 1){
+                    return redirect('/employee/home');
+                }elseif(Auth::user()->role == 1 AND Auth::user()->status == 1){
+                    return redirect('/customer/home');
+                }elseif(Auth::user()->role == 2 AND Auth::user()->status == 1){
+                    return redirect('/owner/home');
+                }elseif(Auth::user()->role == 3 AND Auth::user()->status == 1){
+                    return redirect('/employee/home');
+                }
+            }else{
+                if( Auth::user()->role == 0 AND Auth::user()->status == 1){
+                    return redirect('/employee/home');
+                }elseif(Auth::user()->role == 1 AND Auth::user()->status == 1){
+                    return redirect('/customer/home');
+                }elseif(Auth::user()->role == 2 AND Auth::user()->status == 1){
+                    return redirect('/owner/home');
+                }elseif(Auth::user()->role == 3 AND Auth::user()->status == 1){
+                    return redirect('/employee/home');
+                }
+            }
         }
     }
 }

@@ -267,7 +267,12 @@ return [
         'district' => 'District',
         'sub' => 'Subdistrict',
         'post' => 'Post',
-        'address' => 'Address'
+        'address' => 'Address',
+        'setting' => 'Setting',
+        'user_name' => 'User Name',
+        'pass' => 'Password',
+        'pass_new' => 'New Password',
+        'pass_new_con' => 'Confirm New Password',
     ],
     'finance' => [
         'title' => 'Finance',

@@ -179,6 +179,8 @@ Route::post('/customer/select/subdistrict','User\ProfileController@Subdistrict')
 Route::post('/customer/select/zip_code','User\ProfileController@zip_code');
 Route::post('/customer/select/district/edit','User\ProfileController@selectDistrictEdit');
 Route::post('/customer/select/editSubDis','User\ProfileController@editSubDis');
+Route::post('/user/setting/pass_now','User\ProfileController@pass_now');
+Route::post('/user/setting/pass','User\ProfileController@pass');
 
 //employee income
 Route::get('/employee/list_income','Income\IncomeController@index');
