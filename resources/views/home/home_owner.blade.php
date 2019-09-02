@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+{{--<nav class="sidebar sidebar-offcanvas" id="sidebar">--}}
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{!! url('/user/create_profile') !!}">
@@ -162,4 +162,4 @@
             </a>
         </li>
     </ul>
-</nav>
+{{--</nav>--}}

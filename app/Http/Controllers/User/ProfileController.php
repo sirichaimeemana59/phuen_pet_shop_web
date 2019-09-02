@@ -13,6 +13,7 @@ use App\Subdistricts;
 use App\Province;
 use App\company;
 use App\profile;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -71,6 +72,10 @@ class ProfileController extends Controller
         $profile->color_top = empty($request->input('color_top'))?"":$request->input('color_top');
         $profile->save();
 
+        Session::put('color_left',empty($request->input('color_left'))?'#fafafa':$request->input('color_left'));
+        Session::put('color_top',empty($request->input('color_top'))?'#fafafa':$request->input('color_top'));
+        Session::put('color_content',empty($request->input('color_content'))?'#fafafa':$request->input('color_content'));
+
         return redirect ('/user/create_profile');
      }
 
@@ -100,7 +105,7 @@ class ProfileController extends Controller
             $profile->povince_id =$request->input('province');
             $profile->distric_id =$request->input('district');
             $profile->sub_id = $request->input('sub_district');
-            $profile->post_code = $request->input('post_code');
+            $profile->post_code = empty($request->input('post_code'))?$profile->post_code:$request->input('post_code');
             $profile->birthday = $request->input('birthday');
             $profile->photo = $fileNameToDatabase;
             $profile->email = $request->input('email');
@@ -120,7 +125,7 @@ class ProfileController extends Controller
             $profile->povince_id =$request->input('province');
             $profile->distric_id =$request->input('district');
             $profile->sub_id = $request->input('sub_district');
-            $profile->post_code = $request->input('post_code');
+            $profile->post_code = empty($request->input('post_code'))?$profile->post_code:$request->input('post_code');
             $profile->birthday = $request->input('birthday');
             $profile->photo = $request->input('photo_');
             $profile->email = $request->input('email');
@@ -133,6 +138,11 @@ class ProfileController extends Controller
             $profile->save();
 
         }
+
+        Session::put('color_left',empty($request->input('color_left'))?$request->input('color_left_'):$request->input('color_left'));
+        Session::put('color_top',empty($request->input('color_top'))?$request->input('color_top_'):$request->input('color_top'));
+        Session::put('color_content',empty($request->input('color_content'))?$request->input('color_content_'):$request->input('color_content'));
+
         return redirect ('/user/create_profile');
     }
 

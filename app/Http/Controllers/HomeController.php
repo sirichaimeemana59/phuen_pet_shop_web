@@ -8,6 +8,7 @@ use Redirect;
 use DB;
 use App\User;
 use Session;
+use App\profile;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,21 @@ class HomeController extends Controller
     public function index()
     {
         //dd(Auth::user()->role);
+        $profile = profile::where('user_id',Auth::user()->id)->first();
+
+        //dd($profile);
+        if(!empty($profile)){
+            Session::put('color_left',$profile->color_left);
+            Session::put('color_top',$profile->color_top);
+            Session::put('color_content',$profile->color_content);
+        }else{
+            Session::put('color_left','#fafafa');
+            Session::put('color_top','#fafafa');
+            Session::put('color_content','#fafafa');
+        }
+
+        //dd(Session::get('color_left'));
+
         Session::put('locale','en');
         if( Auth::user()->role == 0 AND Auth::user()->status == 1){
             Redirect::to('/employee/home')->send();

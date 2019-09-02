@@ -109,7 +109,7 @@
                 </button>
             </div>
         </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color: {!! Session::get('color_top') !!}">
 
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
@@ -249,8 +249,9 @@
         </div>
     </nav>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
+    <div class="container-fluid page-body-wrapper" >
         <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color: {!! Session::get('color_left') !!}">
         @if(Auth::user()->role == 0)
             @include('home.menu_employee')
         @elseif(Auth::user()->role == 1)
@@ -260,9 +261,10 @@
         @elseif(Auth::user()->role == 3)
             @include('home.home_customer_role')
         @endif
+        </nav>
         <!-- partial -->
         <div class="main-panel">
-            <div class="content-wrapper">
+            <div class="content-wrapper" style="background-color: {!! Session::get('color_content') !!}">
                 {{--<div class="row">--}}
                     {{--<div class="col-md-12 grid-margin stretch-card">--}}
                         {{--<div class="card">--}}

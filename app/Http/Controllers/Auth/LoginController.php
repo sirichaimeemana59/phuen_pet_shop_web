@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use App\User;
 use Auth;
+use Session;
 
 class LoginController extends Controller
 {
@@ -42,6 +43,8 @@ class LoginController extends Controller
 
     public function getLogout(){
         Auth::logout();
+//        session_start();
+//        session_destroy();
         return redirect('/');
     }
 }
