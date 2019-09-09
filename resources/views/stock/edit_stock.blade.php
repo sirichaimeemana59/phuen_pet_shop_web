@@ -223,7 +223,7 @@
                 var id = $(this).val();
                 var text = $('.text').val()
                 $.ajax({
-                    url : "/select_unit_tran",
+                    url : $('#root-url').val()+"/select_unit_tran",
                     method : 'post',
                     dataType : 'html',
                     data : ({'id':id}),
