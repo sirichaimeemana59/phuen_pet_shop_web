@@ -15,13 +15,13 @@
             <div class="col-md-6 text-right">
                 <div class="dataTables_paginate paging_simple_numbers" >
                     @if($store->currentPage() > 1)
-                        <a class="btn btn-white p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()-1 }}">{{ trans('messages.prev') }}</a>
+                        <a class="btn btn-outline-secondary p-paginate-link paginate-link" role="button" href="#" data-page="{{ $store->currentPage()-1 }}">{{ trans('messages.prev') }}</a>
                     @endif
                     @if($store->lastPage() > 1)
-                        <?php echo Form::selectRange('page', 1, $store->lastPage(),$store->currentPage(),['class'=>'form-control p-paginate-select paginate-select']); ?>
+                        <?php echo Form::selectRange('page', 1, $store->lastPage(),$store->currentPage(),['class'=>'p-paginate-select paginate-select']); ?>
                     @endif
                     @if($store->hasMorePages())
-                        <a class="btn btn-white p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()+1 }}">{{ trans('messages.next') }}</a>
+                        <a class="btn btn-outline-secondary p-paginate-link paginate-link" role="button" href="#" data-page="{{ $store->currentPage()+1 }}">{{ trans('messages.next') }}</a>
                     @endif
                 </div>
             </div>
@@ -117,13 +117,13 @@
             <div class="col-md-6 text-right">
                 <div class="dataTables_paginate paging_simple_numbers" >
                     @if($store->currentPage() > 1)
-                        <a class="btn btn-white p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()-1 }}">{{ trans('messages.prev') }}</a>
+                        <a class="btn btn-outline-secondary p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()-1 }}">{{ trans('messages.prev') }}</a>
                     @endif
                     @if($store->lastPage() > 1)
-                        <?php echo Form::selectRange('page', 1, $store->lastPage(),$store->currentPage(),['class'=>'form-control p-paginate-select paginate-select']); ?>
+                        <?php echo Form::selectRange('page', 1, $store->lastPage(),$store->currentPage(),['class'=>'p-paginate-select paginate-select']); ?>
                     @endif
                     @if($store->hasMorePages())
-                        <a class="btn btn-white p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()+1 }}">{{ trans('messages.next') }}</a>
+                        <a class="btn btn-outline-secondary p-paginate-link paginate-link" href="#" data-page="{{ $store->currentPage()+1 }}">{{ trans('messages.next') }}</a>
                     @endif
                 </div>
             </div>

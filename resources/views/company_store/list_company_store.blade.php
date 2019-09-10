@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form">
-                                {!! Form::model(null,array('url' => array('employee/company_store/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
+                                {!! Form::model(null,array('url' => array('/employee/company_store/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                                 <div class="form-group row">
                                     <lable class="col-sm-2 control-label">{!! trans('messages.store.name_th') !!}</lable>
                                     <div class="col-sm-4">
@@ -225,23 +225,41 @@
                 $('#add-store').modal('show');
             });
 
-            $('.search-store').on('click',function(){
-                var data  = $('#search-form').serialize();
+            $('.search-store').on('click',function () {
                 //alert('aa');
-                //console.log(data);
-                $('#landing-subject-list').css('opacity','0.6');
-                $.ajax({
-                    url : $('#root-url').val()+'/employee/company_store',
-                    method : 'post',
-                    dataType : 'html',
-                    data : data,
-                    success : function(e){
-                        $('#landing-subject-list').css('opacity','1').html(e);
-                    } ,error : function(){
-                        console.log('Error Search Data Store');
-                    }
-                });
+                propertyPage (1);
             });
+
+            $('body').on('click','.p-paginate-link', function (e){
+                e.preventDefault();
+                propertyPage($(this).attr('data-page'));
+                //alert('aa');
+            });
+
+            $('body').on('change','.p-paginate-select', function (e){
+                e.preventDefault();
+                propertyPage($(this).val());
+            });
+
+            function propertyPage (page) {
+                // $('.search-store').on('click', function () {
+                    var data = $('#search-form').serialize()+'&page='+page;
+                    //alert('aa');
+                    //console.log(data);
+                    $('#landing-subject-list').css('opacity', '0.6');
+                    $.ajax({
+                        url: $('#root-url').val() + '/employee/company_store',
+                        method: 'post',
+                        dataType: 'html',
+                        data: data,
+                        success: function (e) {
+                            $('#landing-subject-list').css('opacity', '1').html(e);
+                        }, error: function () {
+                            console.log('Error Search Data Store');
+                        }
+                    });
+                // });
+            }
 
             $('.reset-s-btn').on('click',function () {
                 $(this).closest('form').find("input").val("");

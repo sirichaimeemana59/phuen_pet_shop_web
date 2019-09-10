@@ -65,7 +65,7 @@ class CompanystoreController extends Controller
         $store->post_code = Request::input('post_code');
         $store->save();
 
-        return redirect('employee/company_store');
+        return redirect('/employee/company_store');
     }
 
 

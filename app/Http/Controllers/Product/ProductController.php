@@ -64,11 +64,14 @@ class ProductController extends Controller
 
         //dd($stock);
 
+        $product1 = new product;
+        $product1 = $product1->get();
+
 
         if(!$request->ajax()){
-            return view('product.list_product')->with(compact('product','unit','widen'));
+            return view('product.list_product')->with(compact('product','unit','widen','product1'));
         }else{
-            return view('product.list_product_element')->with(compact('product','unit','widen'));
+            return view('product.list_product_element')->with(compact('product','unit','widen','product1'));
         }
     }
 

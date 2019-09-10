@@ -202,27 +202,45 @@
                 }
             });
 
-            $('.add-store').on('click',function(){
+            $('.add-store').on('click', function () {
                 $('#add-store').modal('show');
             });
 
-            $('.search-store').on('click',function(){
-                var data  = $('#search-form').serialize();
+            $('.search-store').on('click', function () {
+                //alert('aa');
+                propertyPage(1);
+            });
+
+            $('body').on('click', '.p-paginate-link', function (e) {
+                e.preventDefault();
+                propertyPage($(this).attr('data-page'));
+                //alert('aa');
+            });
+
+            $('body').on('change', '.p-paginate-select', function (e) {
+                e.preventDefault();
+                propertyPage($(this).val());
+            });
+
+            function propertyPage(page) {
+                        // $('.search-store').on('click', function () {
+                var data = $('#search-form').serialize()+'&page='+page;
                 //alert('aa');
                 console.log(data);
-                $('#landing-subject-list').css('opacity','0.6');
+                $('#landing-subject-list').css('opacity', '0.6');
                 $.ajax({
-                    url : $('#root-url').val()+'/employee/pet/show_pet',
-                    method : 'post',
-                    dataType : 'html',
-                    data : data,
-                    success : function(e){
-                        $('#landing-subject-list').css('opacity','1').html(e);
-                    } ,error : function(){
+                    url: $('#root-url').val() + '/employee/sick/list_show_sick',
+                    method: 'post',
+                    dataType: 'html',
+                    data: data,
+                    success: function (e) {
+                        $('#landing-subject-list').css('opacity', '1').html(e);
+                    }, error: function () {
                         console.log('Error Search Data Store');
                     }
                 });
-            });
+            // });
+        }
 
             $('.reset-s-btn').on('click',function () {
                 $(this).closest('form').find("input").val("");

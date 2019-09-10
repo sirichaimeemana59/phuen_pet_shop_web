@@ -14,7 +14,7 @@
                                     {{--<input class="form-control" size="25" placeholder="{!! trans('messages.product.head_product') !!}" name="name">--}}
                                     <select name="name" id="" class="form-control">
                                         <option value="">{!! trans('messages.product.head_product') !!}</option>
-                                        @foreach($product as $t)
+                                        @foreach($product1 as $t)
                                             <option value="{!! $t->product_id !!}">{!! $t->join_stock{'name_'.Session::get('locale')} !!}</option>
                                         @endforeach
                                     </select>
@@ -239,23 +239,42 @@
                 $('#add-store').modal('show');
             });
 
-            $('.search-store').on('click',function(){
-                var data  = $('#search-form').serialize();
-                //alert('aa');
-                console.log(data);
-                $('#landing-subject-list').css('opacity','0.6');
-                $.ajax({
-                    url : $('#root-url').val()+'/employee/product/list_product',
-                    method : 'post',
-                    dataType : 'html',
-                    data : data,
-                    success : function(e){
-                        $('#landing-subject-list').css('opacity','1').html(e);
-                    } ,error : function(){
-                        console.log('Error Search Data Store');
-                    }
-                });
+            $('.search-store').on('click',function () {
+               //alert('aa');
+                propertyPage (1);
             });
+
+
+            $('body').on('click','.p-paginate-link', function (e){
+                e.preventDefault();
+                propertyPage($(this).attr('data-page'));
+                //alert('aa');
+            });
+
+            $('body').on('change','.p-paginate-select', function (e){
+                e.preventDefault();
+                propertyPage($(this).val());
+            });
+
+            function propertyPage (page) {
+                //$('.search-store').on('click', function () {
+                    var data = $('#search-form').serialize()+'&page='+page;
+                    //alert('aa');
+                    console.log(data);
+                    $('#landing-subject-list').css('opacity', '0.6');
+                    $.ajax({
+                        url: $('#root-url').val() + '/employee/product/list_product',
+                        method: 'post',
+                        dataType: 'html',
+                        data: data,
+                        success: function (e) {
+                            $('#landing-subject-list').css('opacity', '1').html(e);
+                        }, error: function () {
+                            console.log('Error Search Data Store');
+                        }
+                    });
+                //});
+            }
 
             $('.reset-s-btn').on('click',function () {
                 $(this).closest('form').find("input").val("");

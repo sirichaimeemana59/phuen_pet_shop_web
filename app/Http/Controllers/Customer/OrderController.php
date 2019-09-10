@@ -50,7 +50,7 @@ class OrderController extends Controller
         }
 
 
-        $p_row = $product->paginate(50);
+        $p_row = $product->paginate(10);
 
         $profile = profile::where('user_id',Auth::user()->id)->first();
 

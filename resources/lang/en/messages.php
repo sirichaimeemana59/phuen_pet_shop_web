@@ -31,6 +31,8 @@ return [
     'time_study' => 'Time of Study',
     'Add_class' => 'Add class',
     'person' => 'Person',
+    'next'		=> 'Next',
+    'prev'		=> 'Previous',
     'time_class' => 'Time',
     'select_unit' => '---Please Select unit---',
     'sorry_amount_product' => 'Sorry, the number of products is not enough.',
