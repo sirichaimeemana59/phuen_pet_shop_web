@@ -232,10 +232,10 @@
                         <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item setting">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
-                        </a>
+                        {{--<a class="dropdown-item setting">--}}
+                            {{--<i class="mdi mdi-settings text-primary"></i>--}}
+                            {{--Settings--}}
+                        {{--</a>--}}
                         <a class="dropdown-item" href="{!! url('/logout') !!}">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout
@@ -461,39 +461,39 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form">
-                            {!! Form::model(null,array('url' => array('user/setting/pass'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-                            <div class="form-group row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.user_name') !!}</lable>
-                                <div class="col-sm-10">
-                                    {!! Form::text('user_name',null,array('class'=>'form-control user_name','placeholder'=>trans('messages.profile.user_name'),'required','readonly')) !!}
-                                </div>
-                                <input type="hidden" class="user_id" name="user_id">
+                            {{--{!! Form::model(null,array('url' => array('user/setting/pass'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}--}}
+                            {{--<div class="form-group row">--}}
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.profile.user_name') !!}</lable>--}}
+                                {{--<div class="col-sm-10">--}}
+                                    {{--{!! Form::text('user_name',null,array('class'=>'form-control user_name','placeholder'=>trans('messages.profile.user_name'),'required','readonly')) !!}--}}
+                                {{--</div>--}}
+                                {{--<input type="hidden" class="user_id" name="user_id">--}}
                                 {{--<lable class="col-sm-2 control-label">{!! trans('messages.profile.pass') !!}</lable>--}}
                                 {{--<div class="col-sm-4">--}}
                                     {{--{!! Form::text('password',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.pass'),'required')) !!}--}}
                                 {{--</div>--}}
-                            </div>
+                            {{--</div>--}}
 
-                            <div class="form-group row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new') !!}</lable>
-                                <div class="col-sm-10">
-                                    {!! Form::text('pass_new',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new'),'required')) !!}
-                                </div>
-                            </div>
+                            {{--<div class="form-group row">--}}
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new') !!}</lable>--}}
+                                {{--<div class="col-sm-10">--}}
+                                    {{--{!! Form::text('pass_new',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new'),'required')) !!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
-                            <div class="form-group row">
-                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new_con') !!}</lable>
-                                <div class="col-sm-10">
-                                    {!! Form::text('pass_new_con',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new_con'),'required')) !!}
-                                </div>
-                            </div>
-                            <div class="form-group row float-center" style="text-align: center; ">
-                                <div class="col-sm-12">
-                                    <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                                    <button class="btn-info btn-warning" type="reset">Reset</button>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
+                            {{--<div class="form-group row">--}}
+                                {{--<lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new_con') !!}</lable>--}}
+                                {{--<div class="col-sm-10">--}}
+                                    {{--{!! Form::text('pass_new_con',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new_con'),'required')) !!}--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group row float-center" style="text-align: center; ">--}}
+                                {{--<div class="col-sm-12">--}}
+                                    {{--<button class="btn-info btn-primary" id="" type="submit">Save</button>--}}
+                                    {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--{!! Form::close() !!}--}}
                         </div>
                     </div>
                 </div>

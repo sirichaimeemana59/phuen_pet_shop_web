@@ -130,6 +130,53 @@
             </div>
         </div>
         {{--///////////--}}
+        {{--///////--}}
+        <div class="col-md-12 stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{!! trans('messages.profile.setting') !!}</h3>
+                    </div>
+                    <div class="form">
+                        <div class="form-group row">
+                                <lable class="col-sm-2 control-label">{!! trans('messages.profile.user_name') !!}</lable>
+                            <div class="col-sm-10">
+                                {!! Form::text('user_name',Auth::user()->email,array('class'=>'form-control user_name','placeholder'=>trans('messages.profile.user_name'),'required','readonly')) !!}
+                            </div>
+                                <input type="hidden" class="user_id" name="user_id" value="{!! Auth::user()->id !!}">
+                        </div>
+
+                        <div class="form-group row">
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass') !!}</lable>
+                            <div class="col-sm-10">
+                                {!! Form::text('password',null,array('class'=>'form-control','placeholder'=>trans('messages.profile.pass'))) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new') !!}</lable>
+                            <div class="col-sm-10">
+                                 {!! Form::text('pass_new',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new'))) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <lable class="col-sm-2 control-label">{!! trans('messages.profile.pass_new_con') !!}</lable>
+                            <div class="col-sm-10">
+                            {!! Form::text('pass_new_con',null,array('class'=>'form-control num','placeholder'=>trans('messages.profile.pass_new_con'))) !!}
+                            </div>
+                        </div>
+                        {{--<div class="form-group row float-center" style="text-align: center; ">--}}
+                            {{--<div class="col-sm-12">--}}
+                            {{--<button class="btn-info btn-primary" id="" type="submit">Save</button>--}}
+                            {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--///////////--}}
                 {{--////////////////////////////////////////////////////////////////////////////////////--}}
         <br><br><br><br>
         <div class="col-md-12 stretch-card">

@@ -9,6 +9,7 @@ use App\pet;
 use App\user;
 use ImageUploadAndResizer;
 use Excel;
+use auth;
 
 class PetController extends Controller
 {
@@ -52,7 +53,7 @@ class PetController extends Controller
         $pet->birthday = $request->input('birthday');
         $pet->age = $request->input('age');
         $pet->detail = $request->input('detail');
-        $pet->user_id = null;
+        $pet->user_id = Auth::user()->id;
         $pet->photo = $fileNameToDatabase;
         $pet->save();
 
@@ -102,7 +103,7 @@ class PetController extends Controller
             $pet->birthday = $request->input('birthday');
             $pet->age = $request->input('age');
             $pet->detail = $request->input('detail');
-            $pet->user_id = null;
+            $pet->user_id = Auth::user()->id;
             $pet->photo = $fileNameToDatabase;
             $pet->save();
         }else{

@@ -79,6 +79,16 @@ class ProfileController extends Controller
         Session::put('color_top',empty($request->input('color_top'))?'#fafafa':$request->input('color_top'));
         Session::put('color_content',empty($request->input('color_content'))?'#fafafa':$request->input('color_content'));
 
+
+        if(!empty($request->input('pass_new'))){
+            if($request->input('pass_new') == $request->input('pass_new_con')) {
+                $user = users_list::find($request->get('user_id'));
+                $user->password = Hash::make($request->input('pass_new'));
+                $user->save();
+                //dd($user);
+            }
+        }
+
         return redirect ('/user/create_profile');
      }
 
@@ -119,6 +129,15 @@ class ProfileController extends Controller
             $profile->color_content = empty($request->input('color_content'))?$request->input('color_content_'):$request->input('color_content');
             $profile->color_top = empty($request->input('color_top'))?$request->input('color_top_'):$request->input('color_top');
             $profile->save();
+
+            if(!empty($request->input('pass_new'))){
+                if($request->input('pass_new') == $request->input('pass_new_con')) {
+                    $user = users_list::find($request->get('user_id'));
+                    $user->password = Hash::make($request->input('pass_new'));
+                    $user->save();
+                    //dd($user);
+                }
+            }
         }else{
 
             $profile = profile::find($request->input('id'));
@@ -139,6 +158,16 @@ class ProfileController extends Controller
             $profile->color_content = empty($request->input('color_content'))?$request->input('color_content_'):$request->input('color_content');
             $profile->color_top = empty($request->input('color_top'))?$request->input('color_top_'):$request->input('color_top');
             $profile->save();
+
+            //dd($request->input('user_id'));
+            if(!empty($request->input('pass_new'))){
+                if($request->input('pass_new') == $request->input('pass_new_con')) {
+                    $user = users_list::find($request->get('user_id'));
+                    $user->password = Hash::make($request->input('pass_new'));
+                    $user->save();
+                    //dd($user);
+                }
+            }
 
         }
 
