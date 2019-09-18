@@ -27,7 +27,7 @@
                 $img_top = 'img/banner/home-banner.jpg';
             }
         ?>
-        background-image: url({!! $img_top !!});
+        background-image: url({!! asset($img_top) !!});
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -41,7 +41,7 @@
                $img_center = "img/banner/pattern_bg.jpg";
            }
        ?>
-        background: url({!! $img_center !!}) no-repeat center;
+        background: url({!! asset($img_center) !!}) no-repeat center;
         background-size: cover;
         padding: 60px 0; }
 
@@ -54,7 +54,7 @@
            }
        ?>
         color: #fff;
-        background-image: url({!! $img_foot !!});
+        background-image: url({!! asset($img_foot) !!});
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
