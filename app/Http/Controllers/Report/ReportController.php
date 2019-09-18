@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
+use App\pet;
 use Request;
 use App\Http\Controllers\Controller;
 use App\sale_good;
@@ -10,6 +11,8 @@ use Session;
 use App\stock;
 use App\cat;
 use App\cat_transection;
+use App\sell_product;
+use App\sell_product_tranction;
 
 class ReportController extends Controller
 {
@@ -148,6 +151,39 @@ class ReportController extends Controller
 
         //dd($stock);
         return response()->JSON($stock);
+    }
+
+    public function sale_report (){
+        $sell = new sell_product;
+
+        if(Request::method('post')) {
+            if (Request::input('date')) {
+                $from = str_replace('/', '-', Request::get('date'));
+
+                $date = array($from . " 00:00:00");
+                $sell =  sell_product::whereDate('created_at',$date);
+            }
+        }
+
+        $p_row = $sell->paginate(50);
+
+        if(!Request::ajax()){
+            return view ('report.report_sell')->with(compact('p_row'));
+        }else{
+            return view ('report.report_sell_element')->with(compact('p_row'));
+        }
+
+
+    }
+
+    public function sale_report_view(){
+        $sell = sell_product::find(Request::input('id'));
+
+        return view('report.view_report_sell')->with(compact('sell'));
+    }
+
+    public function sale_report_print(){
+
     }
 }
 

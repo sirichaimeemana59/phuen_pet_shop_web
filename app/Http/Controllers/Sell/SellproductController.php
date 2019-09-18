@@ -110,12 +110,12 @@ class SellproductController extends Controller
 
         $sell_product = new sell_product;
         $sell_product->order_id = $randomString;
-        $sell_product->discount = Request::input('discount');
-        $sell_product->net = Request::input('net');
-        $sell_product->total = Request::input('total');
-        $sell_product->money = Request::input('money');
-        $sell_product->user_id = null;
-        //$sell_product->save();
+        $sell_product->discount = empty(Request::input('discount'))?0:Request::input('discount');
+        $sell_product->net = empty(Request::input('net'))?0:Request::input('net');
+        $sell_product->total = empty(Request::input('total'))?0:Request::input('total');
+        $sell_product->money = empty(Request::input('money'))?0:Request::input('money');
+        $sell_product->user_id = Auth::user()->id;
+        $sell_product->save();
 
         //dd($sell_product);
 

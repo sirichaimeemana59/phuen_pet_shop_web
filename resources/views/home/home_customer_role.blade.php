@@ -157,6 +157,7 @@
                     <li class="nav-item"> <a class="nav-link" href="{!! url('widen/list_element') !!}"> {!! trans('messages.report.report_widen') !!} </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{!! url('report/sale_good') !!}"> {!! trans('messages.sale_good.title') !!} </a></li>
                     <li class="nav-item"> <a class="nav-link" href="{!! url('report/inventory') !!}">{!! trans('messages.sale_good.inventory') !!}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{!! url('report/sale_report') !!}">{!! trans('messages.sale') !!}</a></li>
                 </ul>
             </div>
         </li>

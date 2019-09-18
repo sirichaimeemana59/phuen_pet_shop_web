@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'sale'=>'Sale Report',
+    'id_sale'=>'ID',
+    'sale_total'=>'Total',
     'lang' => 'Language',
     'search' => 'Search',
     'name' => 'Name',

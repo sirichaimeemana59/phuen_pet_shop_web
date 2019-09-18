@@ -246,6 +246,10 @@ Route::get('/report/sale_good','Report\ReportController@index');
 Route::post('/report/chart/sale_good','Report\ReportController@sale_good');
 Route::get('report/inventory','Report\ReportController@inventory');
 Route::post('/report/chart/inventory','Report\ReportController@inventory_chart');
+Route::any('/report/sale_report','Report\ReportController@sale_report');
+Route::post('/report/sale_report/view','Report\ReportController@sale_report_view');
+Route::get('/report/sale_report/print','Report\ReportController@sale_report_print');
+
 
 //Active User
 Route::any('/approved/user_check','User\ActiveUserController@index');
