@@ -119,6 +119,7 @@ class StoreProfileController extends Controller
         if(!empty($request->hasFile('photo_top'))){
             $fileNameToDatabase_top = '//via.placeholder.com/1920x800';
             if($request->hasFile('photo_top')){
+                //$img = Image::make($request->file('photo_top'))->resize(1920, 800)->save();
                 $uploader_top = new ImageUploadAndResizer($request->file('photo_top', 'images/photo'));
                 $uploader_top->width = 1920;
                 $uploader_top->height = 800;
