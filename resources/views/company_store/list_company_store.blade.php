@@ -351,7 +351,7 @@
             @endif
 
 
-            $('.province').on('change',function(){
+            $('body').on('change','.province',function(){
                 $('.district').attr("disabled", false);
                 var id;
                 id = $(this).val();
@@ -451,7 +451,7 @@
                 })
             })
 
-            $('.district').on('change',function(){
+            $('body').on('change','.district',function(){
                 $('.subdistricts').attr("disabled", false);
                 var id = $(this).val();
                 console.log(id);
@@ -474,7 +474,7 @@
                 })
             })
 
-            $('.subdistricts').on('change',function(){
+            $('body').on('change','.subdistricts',function(){
                 var id = $(this).val();
                 //console.log(id);
                 $.ajax({

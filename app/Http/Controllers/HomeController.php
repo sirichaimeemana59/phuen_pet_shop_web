@@ -31,7 +31,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        //dd(Auth::user()->role);
+        //dd('ddd');
         $profile = profile::where('user_id',Auth::user()->id)->first();
 
         //dd($profile);

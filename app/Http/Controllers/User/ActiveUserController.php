@@ -81,11 +81,25 @@ class ActiveUserController extends Controller
 
     public function register(){
         //dd(Request::all());
+
+        $id=Request::input('email');
+        $check_user = users_list::where('email','=',$id)->first();
+
+if($check_user == null){
+    if(Request::input('password') == Request::input('password_confirmation')){
         $user = new users_list;
         $user->name = Request::input('name');
         $user->email = Request::input('email');
         $user->password = Hash::make(Request::input('password'));
         $user->save();
+    }
+    $p=1;
+    return redirect('/'.$p);
+    //$user->save();
+}else{
+    $p=2;
+    return redirect('/'.$p);
+}
 
         return redirect('/');
     }

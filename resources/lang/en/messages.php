@@ -335,6 +335,7 @@ return [
         'employee' => 'Employee',
         'owner' => 'Owner',
         'active' => 'Active',
+        'id' => 'User ID',
     ],
     'quotation' => [
         'title' => 'Quotation',

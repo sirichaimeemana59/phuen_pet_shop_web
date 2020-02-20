@@ -3,7 +3,7 @@
 //Route::any('/', function () {
 //    return view('index');
 //});
-Route::get('/', 'IndexController@index');
+Route::get('/{p?}', 'IndexController@index');
 Route::post('/pet', 'IndexController@create');
 
 Auth::routes();
@@ -18,7 +18,7 @@ Route::get('locale/{locale?}',function($locale){
 
 Route::get('/logout', 'Auth\LoginController@getLogout');
 
-
+Route::any('/test_api','Test\TestController@index');
 //employee_product
 Route::any('employee/home','Product\ProductController@index');
 Route::any('/employee/product/list_product','Product\ProductController@index');

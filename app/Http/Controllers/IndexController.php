@@ -17,7 +17,7 @@ use App\stock;
 class IndexController extends Controller
 {
 
-    public function index()
+    public function index($p = null, $u= null)
     {
         Session::put('locale','en');
 
@@ -51,7 +51,7 @@ class IndexController extends Controller
         Session::put('user',$user);
 
 
-        return view('index')->with(compact('sick','new','promotion','store_profile','know'));
+        return view('index')->with(compact('sick','new','promotion','store_profile','know','u','p'));
     }
 
 
