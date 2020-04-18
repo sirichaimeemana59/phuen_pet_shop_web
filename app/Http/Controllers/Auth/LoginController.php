@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
 use Auth;
 use Session;
+use Request;
+use App\users_list;
 
 class LoginController extends Controller
 {
@@ -33,12 +35,26 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
+     ** @return void
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        //dd(Request::input('email'));
+        $user= users_list::where('email',Request::input('email'))->first();
+//dd(count($user));
+        if(!empty($user->email) && $user->email != null){
+           if($user->password == Request::input('password')){
+               $this->middleware('guest', ['except' => 'getLogout']);
+           }else{
+               Auth::logout();
+           }
+        }else{
+            Auth::logout();
+        }
+
+
+//dd($user);
+        //$this->middleware('guest', ['except' => 'getLogout']);
     }
 
     public function getLogout(){
