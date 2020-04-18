@@ -198,6 +198,7 @@ Route::post('/employee/news/add','News\NewController@create');
 Route::post('/employee/news/view','News\NewController@show');
 Route::post('/employee/news/edit','News\NewController@edit');
 Route::post('/employee/news/update','News\NewController@update');
+Route::post('/employee/delete/news','News\NewController@delete');
 
 //customer add comment
 Route::any('/customer/add/comment','Customer\CommentController@index');

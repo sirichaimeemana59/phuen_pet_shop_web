@@ -292,7 +292,8 @@
                 });
             });
 
-            $('body').on('click','.delete-store',function(){
+
+            $('body').on('click','.delete-new',function(){
                 var id = $(this).data('id');
                 swal({
                     title: "Are you sure?",
@@ -303,13 +304,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post($('#root-url').val()+"/employee/pet/delete", {
+                            $.post($('#root-url').val()+'/employee/delete/news', {
                                 id: id
                             }, function(e) {
                                 swal("Poof! Your imaginary file has been deleted!", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href =$('#root-url').val()+'/employee/pet/show_pet'
+                                    window.location.href =$('#root-url').val()+'/customer/news'
                                 });
                             });
                         }, 50);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\News;
 
+use App\pet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use auth;
@@ -115,8 +116,9 @@ class NewController extends Controller
     }
 
 
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $pet = news::find($request->input('id'));
+        $pet->delete();
     }
 }
