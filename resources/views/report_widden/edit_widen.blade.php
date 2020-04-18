@@ -61,7 +61,7 @@
                                             <option value="">{!! trans('messages.select_unit') !!}</option>
                                             <option value="{!! $w->join_stock_log->id !!}" @if($w->unit_widden == $w->join_stcok_log['id']) selected @endif>{!! $w->join_stock_log{'name_'.Session::get('locale')} !!}</option>
                                             @foreach($w->join_unit_transection_all as $k => $row)
-                                                <option value="{!! $row['id'] !!}" @if($w->unit_widden == $row['id']) selected @endif>{!! $row{'name_'.Session::get('locale')} !!}</option>
+                                                <option value="{!! $row['id'] !!}" product_id="{!! $row['id_product_stock'] !!}" @if($w->unit_widden == $row['id']) selected @endif>{!! $row{'name_'.Session::get('locale')} !!}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -228,21 +228,25 @@
             this_.parents('tr').find('.unit_widen').html('');
 
             var product_code = this_.parents('tr').find('.product_code').val();
+            var id_log = this_.parents('tr').find('.product_code').val();
+            var log = this_.parents('tr').find('.unit_widen option:selected').attr('data-log');
 
 
             $.ajax({
                 url : '/select/product/unit_',
                 method : 'post',
                 dataType : 'json',
-                data : ({'id':id}),
+                data :  ({'id':id,
+                    'log':id_log,
+                    's_log':log}),
                 success : function(e){
 
                     //var amount_ = $.number(e.stock.amount,0);
-                    var x = e.stock.amount.split('.');
-                    var x1 = x[0];
+                    //var x = e.stock.amount.split('.');
+                    //var x1 = x[0];
 
 //                    console.log(e.stock.id);
-                    this_.parents('tr').find('.amount').val(x1);
+                    //this_.parents('tr').find('.amount').val(x1);
                     this_.parents('tr').find('.amount_').attr("disabled", false);
 
                     this_.parents('tr').find('.id_product_stock').val(e.stock.id);
@@ -252,7 +256,7 @@
 
                     // console.log(e.unit_2.id);
                     this_.parents('tr').find('.unit_widen').append("<option value=''>Unit</option>");
-                    this_.parents('tr').find('.unit_widen').append("<option value='"+e.unit_2.id+"'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
+                    this_.parents('tr').find('.unit_widen').append("<option value='"+e.unit_2.id+"' data-log='1'>"+e.unit_2.name_th+" " + e.unit_2.name_en +"</option>");
 
                     $.each(e.unit_1,function(i,val) {
                         this_.parents('tr').find('.unit_widen').append("<option value='"+val.id+"'>"+val.name_th+" " + val.name_en +"</option>");
@@ -355,35 +359,73 @@
             //console.log(id);
             var amount = this_.parents('tr').find('.amount').val();
             var name = this_.parents('tr').find('.name').val();
+            var id_log = this_.parents('tr').find('.id_product_stock_code').val();
+
+            // var log = this_.parents('tr').find('.unit_widen').attr('data-log');
+
+            var e = document.getElementById("unit_widen");
+            var log = this_.parents('tr').find('.unit_widen option:selected').attr('data-log');
+            // var strUser = e.options[e.selectedIndex].getAttribute('data-log');
+            var product_code = this_.parents('tr').find('.product_code').val();
+            var id_log = this_.parents('tr').find('.product_code').val();
+
+            console.log(product_code);
+            console.log(id_log);
+            console.log(id_log);
 
             $.ajax({
-                url : '/select/product/unit_amount_trance',
+                url : $('#root-url').val()+'/select/product/unit_amount_trance',
                 method : 'post',
                 dataType : 'json',
-                data : ({'id':id}),
+                data : ({'id':id,
+                    'log':id_log,
+                    's_log':log}),
                 success : function(e){
-                    //console.log(e.amount);
+
                     this_.parents('tr').find('.amount_widden').html('');
 
                     // var amount =  e.amount_unit / e.amount;
                     var x = amount.split('.');
                     var x1 = x[0];
 
+                    var _amount = Math.floor(e.stock.amount /e.unit_.amount_unit );
+                    var _amount_ = Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)));
+
+                    if(_amount > e.unit_.amount){
+                        _amount = e.unit_.amount;
+                    }
+
+                    //console.log(Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit))));
+                    var c_amount = Math.floor((e.stock.amount )/e.unit_.amount);
 
 
-                    if(e.amount != 1) {
-                        for (var i = 1; i <= e.amount; i++) {
-                            this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((x1 / e.amount) * i) + "'>" + i + " " + Math.floor((x1 / e.amount) * i) + " " + name + "</option>");
+                    if(e.unit_.amount != 1) {
+                        if(c_amount > e.unit_.amount_unit){
+                            for (var i = 1; i <= _amount; i++) {
+                                this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount )/e.unit_.amount * i) + "'>" + i + " " + Math.floor((e.stock.amount )/e.unit_.amount * i) + " " + name + "</option>");
+                                //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                            }
+                            console.log('aa');
+                        }else{
+                            for (var i = 1; i <= e.unit_.amount; i++) {
+                                this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + "'>" + i + " " + Math.floor(((e.unit_.amount_unit / e.unit_.amount)) * i) + " " + name + "</option>");
+                                //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                            }
+                            console.log('bb');
                         }
+
+
                     }else{
-                        for(var i=1;i<=amount;i++){
+                        for(var i=1;i<=e.unit_.amount_unit;i++){
                             this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
+                            console.log('cc');
                         }
                     }
 
 
-                    this_.parents('tr').find('.amount_').val(e.amount);
-                    this_.parents('tr').find('.unit_id').val(e.id);
+
+                    this_.parents('tr').find('.amount_').val(e.unit_.amount);
+                    this_.parents('tr').find('.unit_id').val(e.unit_.id);
                     // this_.parents('tr').find('.product_code').val(e.product_id);
                 } ,error : function(){
                     console.log('Error View Data Store');

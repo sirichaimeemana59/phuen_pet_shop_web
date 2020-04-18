@@ -197,13 +197,13 @@ class WidenController extends Controller
 
     public function select_unit_amount()
     {
-//        dd(Request::input('s_log'));
+        //dd(Request::input('log'));
         if(Request::input('s_log') == 1){
             $unit_log = stock_log::where('id',Request::input('id'))
                 ->where('product_id','=',Request::input('log'))->first();
         }else{
-            $unit_log = unit_transection::where('id',Request::input('id'))
-                ->where('product_id','=',Request::input('log'))->first();
+            $unit_log = unit_transection::where('id',Request::input('id'))->first();
+            //dd($unit_log);
         }
 
             $unit_ = $unit_log;
