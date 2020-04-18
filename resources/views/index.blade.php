@@ -606,7 +606,6 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <h2>Vertical (basic) form</h2>
                     <form method="POST" action="{!! url('user/register') !!}">
                         @csrf
 
