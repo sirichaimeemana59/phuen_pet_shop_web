@@ -1,36 +1,6 @@
 @extends('home.home_user')
 @section('content')
-    {{--<div class="row">--}}
-        {{--<div class="col-md-12 stretch-card">--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-body">--}}
-                    {{--<div class="panel-heading">--}}
-                        {{--<h3 class="panel-title">{!! trans('messages.product.head_product') !!}</h3>--}}
-                    {{--</div>--}}
-                    {{--<div class="panel panel-default" id="panel-lead-list">--}}
-                        {{--<div class="panel-body" id="landing-subject-list">--}}
-                            {{--<form method="POST" id="search-form" action="{!! url('/employee/widen/search_product') !!}" accept-charset="UTF-8" class="form-horizontal">--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-sm-12 block-input">--}}
-                                        {{--<input class="form-control bar_code" size="25" placeholder="{!! trans('messages.sell.code') !!}" name="name" required>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                                {{--<br>--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-sm-12 text-right">--}}
-                                        {{--<button type="reset" class="btn btn-white reset-s-btn">{!! trans('messages.reset') !!}</button>--}}
-                                        {{--<button type="button" class="btn btn-secondary search-store">{!! trans('messages.search') !!}</button>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</form>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
 
-    {{--<br>--}}
     <div class="row">
         <div class="col-md-12 stretch-card">
             <div class="card">
@@ -59,12 +29,6 @@
                                 <th>{!! trans('messages.action') !!}</th>
                             </tr>
                         </table>
-                        {{--<table class="table" style="width: 100%">--}}
-                            {{--<tr>--}}
-                                {{--<td colspan="6"></td>--}}
-                                {{--<td style="text-align: right;"><button class="btn-info btn-primary btn-lg payment_ float-right" type="submit"><li class="fa fa-archive"></li> {!! trans('messages.widen.title') !!}</button></td>--}}
-                            {{--</tr>--}}
-                        {{--</table>--}}
 
 
                     </div>
@@ -388,21 +352,6 @@
 
         });
 
-        // function gettext(){
-        //     var amount = document.getElementById('amount_widden').value;
-        //     console.log(amount);
-        // }
-        //
-        // $('.itemTables').on('keyup','.amount_widden',function(e){
-        //
-        //     var amount_unit = $('.amount_unit').val();
-        //     var amount = $(this).val();
-        //
-        //     //console.log(amount);
-        //     // if(amount > amount_unit){
-        //     //     alert('aa');
-        //     // }
-        // });
 
         $('.payment_').on('click', function () {
             if($("#form_add").valid()) {
@@ -451,9 +400,6 @@
                     //console.log(Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit))));
                     var c_amount = Math.floor((e.stock.amount )/e.unit_.amount);
 
-                    //if( _amount < e.unit_.amount_unit){
-                   // console.log(c_amount);
-                    //console.log(e.unit_.amount_unit);
 
                         if(e.unit_.amount != 1) {
                             if(c_amount > e.unit_.amount_unit){
@@ -463,22 +409,20 @@
                                 }
                                 //console.log('aa');
                             }else{
-                                for (var i = 1; i <= _amount; i++) {
-                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
+                                for (var i = 1; i <= e.unit_.amount; i++) {
+                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                                //console.log(_amount);
+                               // console.log(_amount);
                             }
 
 
                         }else{
-                            for(var i=1;i<=amount;i++){
+                            for(var i=1;i<=e.unit_.amount_unit;i++){
                                 this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
+                                console.log(e.unit_.amount_unit );
                             }
                         }
-                    //}else{
-                    //    this_.parents('tr').find('.amount_widden').append('');
-                    //}
 
 
 
