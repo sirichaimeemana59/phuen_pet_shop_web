@@ -407,20 +407,20 @@
                                     this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount )/e.unit_.amount * i) + "'>" + i + " " + Math.floor((e.stock.amount )/e.unit_.amount * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                                //console.log('aa');
+                                console.log('aa');
                             }else{
                                 for (var i = 1; i <= e.unit_.amount; i++) {
-                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + "'>" + i + " " + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + " " + name + "</option>");
+                                    this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.stock.amount / (e.stock.amount / e.unit_.amount)) * i) + "'>" + i + " " + Math.floor(((e.unit_.amount_unit / e.unit_.amount)) * i) + " " + name + "</option>");
                                     //this_.parents('tr').find('.amount_widden').append("<option value='" + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + "'>" + i + " " + Math.floor((e.unit_.amount_unit * (e.stock.amount / e.unit_.amount_unit)) * i) + " " + name + "</option>");
                                 }
-                               // console.log(_amount);
+                               console.log('bb');
                             }
 
 
                         }else{
                             for(var i=1;i<=e.unit_.amount_unit;i++){
                                 this_.parents('tr').find('.amount_widden').append("<option value='"+i+"'>"+i+" "+name+"</option>");
-                                console.log(e.unit_.amount_unit );
+                                console.log('cc');
                             }
                         }
 
