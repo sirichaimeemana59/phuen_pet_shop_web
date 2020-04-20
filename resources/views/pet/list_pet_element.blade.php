@@ -49,7 +49,7 @@
                     <td><img src="{!! asset($row->photo) !!}" alt="" width="25%"></td>
                     <td>{!! $row{'name_'.Session::get('locale')} !!}</td>
                     <td>@if(!empty($row->age)) {!! $row->age !!} @else - @endif </td>
-                    <td>@if(!empty($row->user_id)) {!! $row->user_id !!} @else - @endif</td>
+                    <td>@if(!empty($row->user_id)) {!! $row->join_user->name !!} @else - @endif</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         <button class="btn btn-warning mt-2 mt-xl-0 text-right edit-store" data-id="{!! $row->id !!}"><i class="mdi mdi-tooltip-edit"></i></button>

@@ -15,4 +15,11 @@ class pet extends GeneralModel
     protected $fillable = ['user_id,name_th,name_en,photo,birthday,deleted_at,age,weight,height,detail'];
     public $timestamps = true;
     protected $softDelete = true;
+
+    public function join_user()
+    {
+        return $this->hasOne('App\users_list','id','user_id');
+    }
+
 }
+
