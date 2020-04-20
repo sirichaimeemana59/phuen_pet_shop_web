@@ -174,7 +174,7 @@
                 console.log(data);
                 $('#landing-subject-list').css('opacity','0.6');
                 $.ajax({
-                    url : '/employee/create/order_bill',
+                    url : $('#root-url').val() +'/employee/create/order_bill',
                     method : 'post',
                     dataType : 'html',
                     data : data,
@@ -223,7 +223,7 @@
                var this_ = $(this);
 
                 $.ajax({
-                    url: '/customer/search/product',
+                    url: $('#root-url').val() +'/customer/search/product',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':id}),
@@ -246,7 +246,7 @@
             $('body').on('change','.company',function(){
                 var data  = $(this).val();
                 $.ajax({
-                    url: '/customer/search/company',
+                    url: $('#root-url').val() +'/customer/search/company',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':data}),
@@ -277,7 +277,7 @@
                 var this_ = $(this);
                 console.log(id);
                 $.ajax({
-                    url: '/customer/search/unit',
+                    url: $('#root-url').val() +'/customer/search/unit',
                     method:'POST',
                     dataType:'JSON',
                     data : ({'id':id}),
@@ -366,7 +366,7 @@
 
             function selectProvince(id){
                 $.ajax({
-                    url : "/company/select_province",
+                    url : $('#root-url').val() +"/company/select_province",
                     method : 'post',
                     dataType : 'JSON',
                     data : ({'id':id}),
@@ -381,7 +381,7 @@
 
             function selectDis(id){
                 $.ajax({
-                    url : "/company/select_dis",
+                    url : $('#root-url').val() +"/company/select_dis",
                     method : 'post',
                     dataType : 'JSON',
                     data : ({'id':id}),
@@ -396,7 +396,7 @@
 
             function selectSubdis(id){
                 $.ajax({
-                    url : "/company/select_Subdis",
+                    url : $('#root-url').val() +"/company/select_Subdis",
                     method : 'post',
                     dataType : 'JSON',
                     data : ({'id':id}),

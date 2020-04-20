@@ -103,7 +103,7 @@ class OrderCompanyController extends Controller
             $order->save();
         }
 
-        return redirect('/employee/company_store/order');
+        return redirect('/employee/company_store/order_company');
     }
 
 
