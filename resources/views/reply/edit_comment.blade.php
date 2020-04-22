@@ -30,13 +30,13 @@
             </div>
         </div>
     @else
-    @foreach($comment->join_reply as $t)
+    @foreach($reply as $key => $t)
         <div class="form-group row">
             <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
             <div class="col-sm-10">
                 {{--@foreach($comment->join_reply as $key => $t)--}}
-                <input type="hidden" name="id_reply" value="{!! $t['id'] !!}">
-                {!! Form::textarea('reply_',$t['reply'],['class'=>'form-control', 'rows' => 2, 'cols' => 40]) !!}
+                <input type="hidden" name="data1[{!! $key !!}][id_re]" value="{!! $t['id'] !!}">
+                <input type="text" name="data1[{!! $key !!}][reply]" value="{!! $t['reply'] !!}" class="form-control">
                 {{--@endforeach--}}
             </div>
         </div>

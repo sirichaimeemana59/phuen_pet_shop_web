@@ -46,7 +46,7 @@
                 <tr>
                     <td>{!! $key+1 !!}</td>
                     <td>{!! $row->comment !!}</td>
-                    <td>{!! $row->user_id !!}</td>
+                    <td>{!! $row->join_user->name !!}</td>
                     <td>{!! localDate($row->created_at) !!}</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
@@ -85,7 +85,7 @@
                         <tr>
                             {{--<td>{!! $key+1 !!}</td>--}}
                             <td>{!! $row->comment !!}</td>
-                            <td>{!! $row->user_id !!}</td>
+                            <td>{!! $row->join_user->name !!}</td>
                             {{--<td>{!! localDate($row->created_at) !!}</td>--}}
                             <td>
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>

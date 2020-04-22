@@ -26,7 +26,7 @@
                     <td style="text-align: center;">{!! $key+1 !!}</td>
                     <td style="text-align: left; padding-left: 5px;">{!! $row{'name_'.Session::get('locale')} !!}</td>
                     <td style="text-align: center;">@if(!empty($row->age)) {!! $row->age !!} @else - @endif </td>
-                    <td style="text-align: center;">@if(!empty($row->user_id)) {!! $row->user_id !!} @else - @endif</td>
+                    <td style="text-align: center;">@if(!empty($row->user_id)) {!! $row->join_user->name !!} @else - @endif</td>
                 </tr>
             @endforeach
         @else

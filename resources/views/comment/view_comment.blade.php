@@ -14,15 +14,12 @@
 </div>
 
 <div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
-    {{--@foreach($comment->join_reply as $t)--}}
-        <div class="col-sm-10">
-            {{--{!! dd($comment->join_reply) !!}--}}
-            @if(!empty($comment->join_reply))
-                {!! $comment->join_reply['reply'] !!}
-                @else
-                -
-            @endif
-        </div>
-    {{--@endforeach--}}
+    @if(!empty($reply))
+        @foreach($reply as $t)
+            <div class="col-sm-10">
+                <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
+                {!! $t->reply !!}
+            </div></br>
+        @endforeach
+    @endif
 </div>

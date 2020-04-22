@@ -62,16 +62,18 @@ class CommentController extends Controller
     public function show(Request $request)
     {
         $comment = comment::find($request->input('id'));
+        $reply = reply_comment::where('comment_id',$comment->id)->get();
 
-        return view('comment.view_comment')->with(compact('comment'));
+        return view('comment.view_comment')->with(compact('comment','reply'));
     }
 
 
     public function edit(Request $request)
     {
         $comment = comment::find($request->input('id'));
+        $reply = reply_comment::where('comment_id',$comment->id)->get();
 
-        return view('comment.edit_comment')->with(compact('comment'));
+        return view('comment.edit_comment')->with(compact('comment','reply'));
     }
 
 

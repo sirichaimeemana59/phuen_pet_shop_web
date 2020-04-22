@@ -13,4 +13,10 @@ class reply_comment extends GeneralModel
     protected $table = 'reply_comment';
     protected $fillable = ['comment_id,user_id,reply'];
     public $timestamps = true;
+
+    public function join_user()
+    {
+        return $this->hasOne('App\users_list','id','user_id');
+    }
+
 }

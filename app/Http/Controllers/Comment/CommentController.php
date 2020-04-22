@@ -49,7 +49,9 @@ class CommentController extends Controller
     {
         $comment = comment::find($request->input('id'));
 
-        return view('reply.view_comment')->with(compact('comment'));
+        $reply = reply_comment::where('comment_id',$comment->id)->get();
+
+        return view('reply.view_comment')->with(compact('comment','reply'));
     }
 
 
@@ -57,18 +59,24 @@ class CommentController extends Controller
     {
         $comment = comment::find($request->input('id'));
 
-        return view('reply.edit_comment')->with(compact('comment'));
+        $reply = reply_comment::where('comment_id',$comment->id)->get();
+        //dd($reply);
+        return view('reply.edit_comment')->with(compact('comment','reply'));
     }
 
 
     public function reply(Request $request)
     {
-        if(!empty($request->input('reply_'))){
-            $reply_comment = reply_comment::find($request->input('id_reply'));
-            $reply_comment->reply = $request->input('reply_');
-            $reply_comment->comment_id = $request->input('id_com');
-            $reply_comment->user_id = auth::user()->id;
-            $reply_comment->save();
+        //dd($request->input('data1'));
+        if(!empty($request->input('data1'))){
+            foreach ($request->input('data1') as $t) {
+                $reply_comment = reply_comment::find($t['id_re']);
+                $reply_comment->reply = $t['reply'];
+                $reply_comment->comment_id = $request->input('id_com');
+                $reply_comment->user_id = auth::user()->id;
+                $reply_comment->save();
+            }
+            //dd($reply_comment);
         }else{
             $reply_comment = new reply_comment;
             $reply_comment->reply = $request->input('reply');

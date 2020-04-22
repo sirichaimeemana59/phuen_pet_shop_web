@@ -267,6 +267,7 @@
                     dataType : 'html',
                     data : ({'id':id}),
                     success : function(e){
+                        //console.log(e);
                         $('#lead-content1').html(e);
                         $('.v-loading1').hide();
                     } ,error : function(){
