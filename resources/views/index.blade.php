@@ -194,10 +194,16 @@
                 <button type="button" class="main_btn" data-toggle="modal" data-target="#modal-login">Login</button>
                 <button type="button" class="main_btn_light" data-toggle="modal" data-target="#modal-register">Register</button>
 
+                <br><br>
+
+                <a href="{!! url('/locale/th') !!}"class="w3-button w3-black main_btn">Thai</a>
+                <a href="{!! url('/locale/en') !!}"class="w3-button w3-black main_btn">English</a>
+
                 {{--<a href="" class="main_btn_light">View Department</a>--}}
             </div>
         </div>
     </div>
+
 </section>
 
 <!--================End Home Banner Area =================-->
@@ -681,7 +687,7 @@
 
 
 
-
+<input type="hidden" id="root-url" value="{!! url('/') !!}">
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="js/jquery-2.2.4.min.js"></script>
@@ -731,7 +737,7 @@
                 window.clearTimeout(timer);
                 timer = window.setTimeout(function(){
                     $.ajax({
-                        url: '/pet',
+                        url: $('#root-url').val()+'/pet',
                         method: 'post',
                         dataType: 'JSON',
                         data: {'data':data},

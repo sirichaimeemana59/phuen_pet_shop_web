@@ -57,28 +57,31 @@ class IndexController extends Controller
 
     public function create(Request $request)
     {
-        //dd($request->input('data'));
         $sick_tran = new sick_transection;
-//        if($request->get('data')){
-//            $sick = $sick->whereHas('join_sick_transection', function ($q,$request) {
-//                $q ->where('detail_th', 'like', "%" . $request->input('data') . "%")
-//                    ->orWhere('detail_en', 'like', "%" . $request->input('data') . "%");
-//            });
-//        }
+        $sick_tran1 = new sick_transection;
 
         if($request->method('post')) {
             if ($request->input('data')) {
                 $sick_tran = $sick_tran->where('detail_th', 'like', "%" . $request->input('data') . "%")
                     ->orWhere('detail_en', 'like', "%" . $request->input('data') . "%")
-                ->with('join_sick')->where('sick_id',$sick_tran->sick_id);
+                ->with('join_sick')->where('sick_id',$sick_tran->sick_id)->get();
             }
+
+            if(count($sick_tran)== 0){
+                if($request->method('post')) {
+                    if ($request->input('data')) {
+                        $sick_tran1 = $sick_tran1->where('detail_en', 'like', "%" . $request->input('data') . "%")
+                            ->orWhere('detail_en', 'like', "%" . $request->input('data') . "%")
+                            ->with('join_sick')->where('sick_id',$sick_tran1->sick_id);
+                    }
+                }
+                $sick_tran = $sick_tran1->get();
+            }
+
+
         }
 
-        $sick_tran = $sick_tran->get();
 
-
-        //$data["sick_tran"] = $sick_tran;
-        //$data["sick"] = $sick;
         return response()->json($sick_tran);
 
     }
