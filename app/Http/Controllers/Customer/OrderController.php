@@ -270,6 +270,7 @@ class OrderController extends Controller
 
             $order_customer_tran_ = order_customer_transection::find($t['id_order']);
             $product = product::find($t['id']);
+            //dd($order_customer_tran);
             if($order_customer_tran_['amount'] > $t['amount']){
                 $product->amount = $product->amount + abs($t['amount'] - $order_customer_tran_->amount);
                 //dd($product);
