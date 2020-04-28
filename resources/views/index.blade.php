@@ -278,19 +278,19 @@
                             @if(!empty($sick))
                                 @foreach($sick as $val)
                                     <tr>
-                                        <td style="text-align: left;font-weight: bold;" colspan="2">{!! $val{'name_'.Session::get('locale')} !!}</td>
+                                        <td style="text-align: left;font-weight: bold;" colspan="2">@if(empty(Session::get('locale'))){!! $val{'name_'.Session::get('locale','en')} !!}@else{!! $val{'name_'.Session::get('locale')} !!}@endif</td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: left;" colspan="2">{!! $val{'detail_'.Session::get('locale')} !!}</td>
+                                        <td style="text-align: left;" colspan="2">@if(empty(Session::get('locale'))){!! $val{'detail_'.Session::get('locale','en')} !!}@else{!! $val{'detail_'.Session::get('locale')} !!}@endif</td>
                                     </tr>
                                     @foreach($val->join_sick_transection as $t)
                                         <tr>
                                             <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.syndrome') !!}</td>
-                                            <td style="text-align: left;">{!! $t['sick_'.Session::get('locale')] !!}</td>
+                                            <td style="text-align: left;">@if(empty(Session::get('locale'))){!! $t['sick_'.Session::get('locale','en')] !!}@else{!! $t['sick_'.Session::get('locale')] !!}@endif</td>
                                         </tr>
                                         <tr>
                                             <td style="font-weight: bold; margin: 0 0 0 15px;">{!! trans('messages.analyze.detail') !!}</td>
-                                            <td style="text-align: left;">{!! $t['detail_'.Session::get('locale')] !!}</td>
+                                            <td style="text-align: left;">@if(empty(Session::get('locale'))){!! $t['detail_'.Session::get('locale','en')] !!}@else{!! $t['detail_'.Session::get('locale')] !!}@endif</td>
                                         </tr>
                                             {{--@break--}}
                                     @endforeach

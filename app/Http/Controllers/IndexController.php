@@ -19,7 +19,9 @@ class IndexController extends Controller
 
     public function index($p = null, $u= null)
     {
-        Session::put('locale','en');
+
+    //Session::put('locale');
+
 
         $sick = new sick;
         $sick = $sick->get();
