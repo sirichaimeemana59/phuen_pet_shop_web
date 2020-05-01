@@ -10,20 +10,32 @@
             border: 1px solid black;
              padding: 5px;
         }
+        .none {border-style: none;}
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <div class="head">
-        <p style="text-align: center;"><img src="{!! asset($store_profile->photo_logo) !!}" alt="" width="50%"></p>
-        <p style="text-align: center;">
-            {!! $store_profile{'name_'.Session::get('locale')} !!}<br>
-            {!! $store_profile->address !!}<br>
-            {!! $store_profile->tell !!}
-        </p>
+    <div class="table-responsive none">
+        <table class="table none" style="border-color: #d6e9f9;width: 100%">
+            <tr class="none">
+                <td width="*" class="none">
+                    <br><br>
+                    @if(!empty($store_profile->photo_logo))
+                        <p style="text-align:left;"><img src="{!! asset($store_profile->photo_logo) !!}" alt="" style="align:left">
+                            @endif</p>
+                </td>
+                <td style="text-align: center;padding-right: 115px;" width="80%" class="none">
+                    <p>{!! $store_profile->{'name_'.Session::get('locale')} !!}</p>
+                    <p>{!! trans('messages.store_profile.address') !!} : {!! $store_profile->address !!}</p>
+                    <p>{!! trans('messages.store_profile.tell') !!} : {!! $store_profile->tell !!}</p>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <h3 style="text-align: center;font-weight: bold;">{!! trans('messages.order.order_com') !!}</h3>
     <br>
+    <u><p style="text-align: center">{!! trans('messages.order.order') !!}</p></u>
+    <br>
+
     <table style="width:100%;">
         <tr>
             <th>{!! trans('messages.number') !!}</th>

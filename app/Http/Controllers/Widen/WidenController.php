@@ -13,6 +13,7 @@ use App\widden_product;
 use App\widden__transection;
 use Redirect;
 use Auth;
+use App\store_profile;
 
 class WidenController extends Controller
 {
@@ -242,7 +243,12 @@ class WidenController extends Controller
 
         $widen_transection = widden__transection::where('code',$widen->code)->get();
 
-        return view('report_widden.report_widden')->with(compact('widen','widen_transection'));
+        $profile = new store_profile();
+        $profile = $profile->first();
+
+       //dd($profile);
+
+        return view('report_widden.report_widden')->with(compact('widen','widen_transection','profile'));
     }
 
     public function list_widen(){

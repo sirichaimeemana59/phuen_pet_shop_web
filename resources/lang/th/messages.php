@@ -311,7 +311,7 @@ return [
         'reply' => 'ตอบกลับ'
     ],
     'promotion' => [
-        'title' => 'โปรโมรชั่น',
+        'title' => 'โปรโมชัน',
         'name' => 'ชื่อ',
         'name_th' => 'ชื่อ [TH]',
         'name_en' => 'ชื่อ [EN]',
