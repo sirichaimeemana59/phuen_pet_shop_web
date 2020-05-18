@@ -46,13 +46,13 @@
                 <tr>
                     <td>{!! $key+1 !!}</td>
                     <td>{!! $row->comment !!}</td>
-                    <td>{!! $row->join_user->name !!}</td>
+                    <td>@if(!empty($row->join_user->name)){!! $row->join_user->name !!}@else{!! "-" !!}@endif</td>
                     <td>{!! localDate($row->created_at) !!}</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         <button class="btn btn-warning mt-2 mt-xl-0 text-right edit-store" data-id="{!! $row->id !!}"><i class="mdi mdi-tooltip-edit"></i></button>
                         {{--<a href="{!! url('/employee/pet/edit/'.$row->id) !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="mdi mdi-tooltip-edit"></i></button></a>--}}
-                        {{--<button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>--}}
+                        <button class="btn btn-danger mt-2 mt-xl-0 text-right delete-store" data-id="{!! $row->id !!}"><i class="mdi mdi-delete-sweep"></i></button>
                     </td>
                 </tr>
             @endforeach
@@ -85,7 +85,7 @@
                         <tr>
                             {{--<td>{!! $key+1 !!}</td>--}}
                             <td>{!! $row->comment !!}</td>
-                            <td>{!! $row->join_user->name !!}</td>
+                            <td>@if(!empty($row->join_user->name)){!! $row->join_user->name !!}@else{!! "-" !!}@endif</td>
                             {{--<td>{!! localDate($row->created_at) !!}</td>--}}
                             <td>
                                 <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>

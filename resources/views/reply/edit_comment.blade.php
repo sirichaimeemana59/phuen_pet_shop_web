@@ -30,17 +30,25 @@
             </div>
         </div>
     @else
+    <div class="form-group row">
+        <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
     @foreach($reply as $key => $t)
-        <div class="form-group row">
-            <lable class="col-sm-2 control-label">{!! trans('messages.comment.reply') !!}</lable>
             <div class="col-sm-10">
                 {{--@foreach($comment->join_reply as $key => $t)--}}
                 <input type="hidden" name="data1[{!! $key !!}][id_re]" value="{!! $t['id'] !!}">
-                <input type="text" name="data1[{!! $key !!}][reply]" value="{!! $t['reply'] !!}" class="form-control">
-                {{--@endforeach--}}
+                <input type="text" name="data1[{!! $key !!}][reply]" value="{!! $t['reply'] !!}" class="form-control" readonly>
+                {{--@endforeach--}}<br>
             </div>
-        </div>
+
+
+
     @endforeach
+
+        <div class="col-sm-10">
+            <input type="text" name="reply_all" value="" class="form-control" required>
+        </div>
+    </div>
+    <br>
 @endif
 
 <div class="form-group row float-center" style="text-align: center; ">

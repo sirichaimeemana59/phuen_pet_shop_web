@@ -88,7 +88,7 @@ class CommentController extends Controller
                 $fileNameToDatabase = $uploader->execute();
             }
 
-                unlink(public_path($request->input('photo_')));
+//                unlink(public_path($request->input('photo_')));
 
             $comment = comment::find($request->input('id_com'));
             $comment->comment = $request->input('comment');
@@ -107,8 +107,9 @@ class CommentController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $comment = comment::find($request->input('id'));
+        $comment->delete();
     }
 }

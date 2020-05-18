@@ -208,6 +208,7 @@ Route::post('/employee/comment/add','Customer\CommentController@create');
 Route::post('/employee/comment/view','Customer\CommentController@show');
 Route::post('/employee/comment/edit','Customer\CommentController@edit');
 Route::post('/employee/comment/update','Customer\CommentController@update');
+Route::post('/employee/comment/delete','Customer\CommentController@destroy');
 
 //employee comment
 Route::any('/employee/list/comment','Comment\CommentController@index');

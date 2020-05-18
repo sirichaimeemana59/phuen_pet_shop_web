@@ -68,30 +68,30 @@ class CommentController extends Controller
     public function reply(Request $request)
     {
         //dd($request->input('data1'));
-        if(!empty($request->input('data1'))){
-            foreach ($request->input('data1') as $t) {
-                $reply_comment = reply_comment::find($t['id_re']);
-                $reply_comment->reply = $t['reply'];
-                $reply_comment->comment_id = $request->input('id_com');
-                $reply_comment->user_id = auth::user()->id;
-                $reply_comment->save();
-            }
-            //dd($reply_comment);
-        }else{
+//        if(!empty($request->input('data1'))){
+//            foreach ($request->input('data1') as $t) {
+//                $reply_comment = reply_comment::find($t['id_re']);
+//                $reply_comment->reply = $t['reply'];
+//                $reply_comment->comment_id = $request->input('id_com');
+//                $reply_comment->user_id = auth::user()->id;
+//                $reply_comment->save();
+//            }
+//            //dd($reply_comment);
+//        }else{
             $reply_comment = new reply_comment;
-            $reply_comment->reply = $request->input('reply');
+            $reply_comment->reply = $request->input('reply_all');
             $reply_comment->comment_id = $request->input('id_com');
             $reply_comment->user_id = auth::user()->id;
             $reply_comment->save();
-        }
+        //}
 
 
         return redirect('/employee/list/comment');
     }
 
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
     }
 }
