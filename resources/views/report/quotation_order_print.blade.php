@@ -11,9 +11,30 @@
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <h3 style="text-align: center;font-weight: bold;">{!! trans('messages.quotation.title') !!} : {!! $order_customer->order_code !!}</h3>
+    <div class="table-responsive none">
+        <table class="table none" style="border-color: #d6e9f9;width: 100%">
+            <tr class="none">
+                <td width="*" class="none">
+                    <br><br>
+                    @if(!empty($store_profile->photo_logo))
+                        <p style="text-align:left;"><img src="{!! asset($store_profile->photo_logo) !!}" alt="" style="align:left">
+                            @endif</p>
+                </td>
+                <td style="text-align: center;padding-right: 115px;" width="80%" class="none">
+                    <p>{!! $store_profile->{'name_'.Session::get('locale')} !!}</p>
+                    <p>{!! trans('messages.store_profile.address') !!} : {!! $store_profile->address !!}</p>
+                    <p>{!! trans('messages.store_profile.tell') !!} : {!! $store_profile->tell !!}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-<div class="table-responsive table-striped">
+    <br>
+    <u><p style="text-align: center">{!! trans('messages.quotation.title') !!} : {!! $order_customer->order_code !!}</p></u>
+    <br>
+
+
+    <div class="table-responsive table-striped">
     <table class="table itemTables" style="width: 100%">
         <tr>
             <th>{!! trans('messages.number') !!}</th>

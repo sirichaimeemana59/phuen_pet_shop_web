@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Quotation;
 
 use App\company;
+use App\store_profile;
 use Request;
 use App\Http\Controllers\Controller;
 use auth;
@@ -116,7 +117,7 @@ class QuotationController extends Controller
         }
         //dd($order_customer_tran) ; die();
 
-        return redirect('/employee/quotation/order');
+        return redirect('/employee/quotation/order_quotation_list');
     }
 
 
@@ -226,7 +227,7 @@ class QuotationController extends Controller
         $order_customer_tran->delete();
         $order_customer->delete();
 
-        return redirect('/employee/quotation/order');
+//        return redirect('/employee/quotation/order');
     }
 
     public function view(){
@@ -249,6 +250,9 @@ class QuotationController extends Controller
 
         $order_tran = quotation_transection::where('order_code',$order_customer->order_code)->get();
 
-        return view('report.quotation_order_print')->with(compact('order_customer','order_tran'));
+        $store_profile = new store_profile;
+        $store_profile = $store_profile->first();
+
+        return view('report.quotation_order_print')->with(compact('order_customer','order_tran','store_profile'));
     }
 }
