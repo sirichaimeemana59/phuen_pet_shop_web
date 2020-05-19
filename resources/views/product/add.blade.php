@@ -217,18 +217,18 @@
                 $('.payment_').show();
                 e.preventDefault();
                 var time = $.now();
-                var property = '<select name="data['+time+'][product_id]" class="product form-control" style="width:300px;" required>'+ $('#property_select select').html() + '</select>';
+                var property = '<select name="data['+time+'][product_id]" class="product form-control" style="width:300px;color: #0a0612;" required>'+ $('#property_select select').html() + '</select>';
 
                 var data = [
                     '<tr class="itemRow">',
                     '<td></td>',
                     '<td style="text-align: left; width:300px;">'+property+'</td>',
                     '<td><input type="hidden" class="barcode form-control" name=data['+time+'][bar_code]><input type="text" class="amount form-control" name=data['+time+'][amount] readonly></td>',
-                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" id="unit_widen" style="width:300px;" required></select></td>',
+                    '<td><select name="data['+time+'][unit_trance]" class="unit_trance form-control" id="unit_widen" style="width:300px;color: #0a0612;" required></select></td>',
                     // '<td><input type="text" class="amount_ amount_unit form-control" name=data['+time+'][amount_] readonly></td>',
-                    '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;" required></select></td>',
+                    '<td><select name="data['+time+'][unit_widen]" class="unit_widen form-control" style="width:300px;color: #0a0612;" required></select></td>',
                     '<td><input type="hidden" class="name"><input type="hidden" class="form-control product_code" name=data['+time+'][product_code] readonly>' +
-                    '<input type="hidden" class="form-control id_product_stock_code" name=data['+time+'][id_product_stock_code] readonly><input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;" required></select></td>',
+                    '<input type="hidden" class="form-control id_product_stock_code" name=data['+time+'][id_product_stock_code] readonly><input type="hidden" class="form-control id_product_stock" name=data['+time+'][id_product_stock] readonly><select name="data['+time+'][amount_widden]" class="amount_widden form-control" style="width:300px;color: #0a0612;" required></select></td>',
                     '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                     '</tr>'].join('');
                 $('.itemTables').append(data);

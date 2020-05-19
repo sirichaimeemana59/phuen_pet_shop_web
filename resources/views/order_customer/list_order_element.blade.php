@@ -61,12 +61,12 @@
                         @endif
 
                         @if($row->status == 2 )
-                            <button class="btn btn-primary mt-2 mt-xl-0 text-right to_car" data-id="{!! $row->id !!}"><i class="fa fa-car"></i></button>
+                            <button class="btn btn-info mt-2 mt-xl-0 text-right to_car" data-id="{!! $row->id !!}"><i class="fa fa-car"></i></button>
                         @endif
 
                         @if(!empty($row->join_bill_payment))
                             <a href="{!! url('print/slip/order_employee/'.$row->id) !!}" target="_blank">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-file"></i></button>
+                                <button class="btn btn mt-2 mt-xl-0 text-right"><i class="fa fa-file"></i></button>
                             </a>
                         @endif
                     </td>
