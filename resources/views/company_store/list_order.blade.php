@@ -41,7 +41,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <a href="{!! url('employee/create/order_company') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.order.order') !!}</button></a>
+                                <a href="{!! url('employee/create/order_company') !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.order.order') !!}</button></a>
                             </div>
                         </div>
                         <br>

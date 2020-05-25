@@ -43,7 +43,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                <button class="btn btn-primary mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.pet.title') !!}</button>
+                                <button class="btn btn-warning mt-2 mt-xl-0 text-right add-store"><i class="fa fa-archive"></i>  {!! trans('messages.pet.title') !!}</button>
                                 {{--<a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>--}}
                             </div>
                         </div>
@@ -123,8 +123,8 @@
 
                                 <div class="form-group row float-center" style="text-align: center; ">
                                     <div class="col-sm-12">
-                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                                        <button class="btn-info btn-warning" type="reset">Reset</button>
+                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">{!! trans('messages.save') !!}</button>
+                                        <button class="btn-info btn-warning" type="reset">{!! trans('messages.reset') !!}</button>
                                     </div>
                                 </div>
                                 {!! Form::close() !!}

@@ -43,7 +43,7 @@
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="row">
                             <div class="col-sm-12 text-right">
-                                    <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-primary mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
+                                    <a href="{!! url('employee/widen/stock') !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.widen.title') !!}</button></a>
                             </div>
                         </div>
                         <br>

@@ -212,6 +212,8 @@
                             <label class="col-sm-2 control-label">{{ trans('messages.AboutProp.postcode') }}</label>
                             <div class="col-sm-4">
                                 {!! Form::text('post_code',null,array('class'=>'form-control postcode','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
+                                {!! Form::hidden('post_code1',null,array('class'=>'form-control','maxlength' => 10, 'placeholder'=> trans('messages.AboutProp.postcode'))) !!}
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -241,8 +243,8 @@
             <div class="card">
                 <div class="card-body text-right">
                     <div class="panel panel-default" id="panel-lead-list">
-                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                        <button class="btn-info btn-warning" type="reset">Reset</button>                    </div>
+                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">{{ trans('messages.save') }}</button>
+                        <button class="btn-info btn-warning" type="reset">{{ trans('messages.reset') }}</button>                    </div>
                 </div>
             </div>
         </div>
@@ -504,7 +506,7 @@
                                 $('.district').append("<option value='"+val.id+"'>"+val.name_th+" "+val.name_en+"</option>");
                             }
                             //console.log(select);
-                            $('.postcode').val(val.zip_code);
+                            //$('.postcode').val(val.zip_code);
                             //console.log(val.id);
                         });
                     },error : function(){

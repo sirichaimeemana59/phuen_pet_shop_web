@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'save'=>'Save',
     'sale'=>'Sale Report',
     'id_sale'=>'ID',
     'sale_total'=>'Total',

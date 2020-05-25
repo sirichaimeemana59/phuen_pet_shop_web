@@ -14,7 +14,7 @@
                                 <div class="col-sm-10">
                                     <img src="{!! asset($stock->photo) !!}" alt="" width="50%">
                                 </div>
-                                
+
                             </div>
                             {!! Form::model($stock,array('url' => array('/employee/product/update_to_stock'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                             <div class="form-group row">
@@ -142,9 +142,9 @@
                 <div class="card-body">
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
-                            <button class="btn-info btn-primary" id="add-store-btn" type="submit" onclick="return doclick()">Save</button>
-                            <button class="btn-info btn-primary" id="submit" type="submit" style="display: none;">Save</button>
-                            <button class="btn-info btn-warning" type="reset">Reset</button>
+                            <button class="btn-info btn-primary" id="add-store-btn" type="submit" onclick="return doclick()">{!! trans('messages.save') !!}</button>
+                            <button class="btn-info btn-primary" id="submit" type="submit" style="display: none;">{!! trans('messages.save') !!}</button>
+                            <button class="btn-info btn-warning" type="reset">{!! trans('messages.reset') !!}</button>
                         </div>
                     </div>
                 </div>

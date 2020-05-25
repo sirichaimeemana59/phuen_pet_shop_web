@@ -345,7 +345,7 @@ class OrderController extends Controller
         $address-> province_id = Request::input('province');
         $address-> dis_id = Request::input('district');
         $address-> sub_id = Request::input('sub_district');
-        $address-> post_code = Request::input('post_code');
+        $address-> post_code = !empty(Request::input('post_code'))?Request::input('post_code'):Request::input('post_code1');
         $address-> name = Request::input('name');
         $address-> tell = Request::input('tell');
         $address-> address = Request::input('address');

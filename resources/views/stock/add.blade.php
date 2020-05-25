@@ -150,9 +150,9 @@
                     <div class="form-group row float-right" style="text-align: center; ">
                         <div class="col-sm-12">
 
-                            <button class="btn-info btn-primary save_hide add-store-btn" id="add-store-btn" type="submit">Save</button>
-                            <button class="btn-info btn-primary save_show add-store-btn" type="submit" style="display: none;">Save</button>
-                            <button class="btn-info btn-warning" type="reset">Reset</button>
+                            <button class="btn-info btn-primary save_hide add-store-btn" id="add-store-btn" type="submit">{!! trans('messages.save') !!}</button>
+                            <button class="btn-info btn-primary save_show add-store-btn" type="submit" style="display: none;">{!! trans('messages.save') !!}</button>
+                            <button class="btn-info btn-warning" type="reset">{!! trans('messages.reset') !!}</button>
                         </div>
                     </div>
                 </div>

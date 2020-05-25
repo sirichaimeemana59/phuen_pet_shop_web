@@ -74,7 +74,7 @@
                                     <div class="panel-body" id="landing-subject-list">
                                         <table class="table itemTables" style="width: 100%">
                                             <tr>
-                                                <th width="20%"><button class="btn btn-primary mt-2 mt-xl-0 text-right add-store" type="button"><i class="fa fa-plus-circle"></i>  {!! trans('messages.order.title') !!}</button></th>
+                                                <th width="20%"><button class="btn btn-warning mt-2 mt-xl-0 text-right add-store" type="button"><i class="fa fa-plus-circle"></i>  {!! trans('messages.order.title') !!}</button></th>
                                                 <th>{!! trans('messages.product.head_product') !!}</th>
                                                 <th>{!! trans('messages.product.amount') !!}</th>
                                                 <th>{!! trans('messages.unit.title') !!}</th>
@@ -124,8 +124,8 @@
                 <div class="card-body float-right">
                     <div class="panel panel-default" id="panel-lead-list">
                         <div class="panel-body float-right" id="landing-subject-list">
-                            <button class="btn-info btn-primary add-store-btn" id="add-store-btn" type="submit">Save</button>
-                            <button class="btn-info btn-warning" type="reset">Reset</button>
+                            <button class="btn-info btn-primary add-store-btn" id="add-store-btn" type="submit">{!! trans('messages.save') !!}</button>
+                            <button class="btn-info btn-warning" type="reset">{!! trans('messages.reset') !!}</button>
                             {!! Form::close() !!}
                         </div>
                     </div>

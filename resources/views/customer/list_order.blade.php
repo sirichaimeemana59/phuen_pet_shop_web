@@ -269,8 +269,8 @@
             <div class="card">
                 <div class="card-body text-right">
                     <div class="panel panel-default" id="panel-lead-list">
-                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                        <button class="btn-info btn-warning" type="reset">Reset</button>
+                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">{{ trans('messages.save') }}</button>
+                        <button class="btn-info btn-warning" type="reset">{{ trans('messages.reset') }}</button>
                     </div>
                 </div>
             </div>
