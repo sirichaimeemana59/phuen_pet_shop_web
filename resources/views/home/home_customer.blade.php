@@ -50,7 +50,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{!! url('/doc/print') !!}">
                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+                <span class="menu-title">{!! trans('messages.doc') !!}</span>
             </a>
         </li>
     </ul>

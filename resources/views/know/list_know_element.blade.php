@@ -33,7 +33,7 @@
     <table cellspacing="0" class="table table-bordered table-striped">
         <thead>
         <tr>
-            <th>{!! trans('messages.number') !!}ggg</th>
+            <th>{!! trans('messages.number') !!}</th>
             <th>{!! trans('messages.know.photo') !!}</th>
             <th>{!! trans('messages.know.name') !!}</th>
             <th>{!! trans('messages.action') !!}</th>

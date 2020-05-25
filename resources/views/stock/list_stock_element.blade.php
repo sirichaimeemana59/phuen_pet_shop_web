@@ -34,7 +34,7 @@
         <thead>
         <tr>
             <th>{!! trans('messages.number') !!}</th>
-            <th>{!! trans('messages.unit.name') !!}</th>
+            <th>{!! trans('messages.product.name') !!}</th>
             <th>{!! trans('messages.unit.amount') !!}</th>
             <th>{!! trans('messages.action') !!}</th>
         </tr>

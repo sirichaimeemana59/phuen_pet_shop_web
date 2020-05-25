@@ -38,7 +38,7 @@
 </div>
 
 <div class="form-group row">
-    <lable class="col-sm-2 control-label">{!! trans('messages.pet.birthday') !!}</lable>
+    <lable class="col-sm-2 control-label">{!! trans('messages.pet.detail') !!}</lable>
     <div class="col-sm-10">
         {!! $pet->detail !!}
     </div>
