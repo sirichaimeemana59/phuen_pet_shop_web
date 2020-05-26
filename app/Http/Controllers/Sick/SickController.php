@@ -8,6 +8,7 @@ use App\sick;
 use App\sick_transection;
 use Redirect;
 use Auth;
+use App\store_profile;
 
 class SickController extends Controller
 {
@@ -136,5 +137,18 @@ class SickController extends Controller
     public function delete_sick_tran(){
         $sick_tran = sick_transection::find(Request::input('id'));
         $sick_tran->delete();
+    }
+
+    public function print_sick($id = null){
+
+        $p_row = new sick();
+        $p_row = $p_row->get();
+
+        $profile = new store_profile();
+        $profile = $profile->first();
+
+        return view('report.sick_report')->with(compact('profile','p_row'));
+
+
     }
 }

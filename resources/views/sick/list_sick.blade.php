@@ -44,7 +44,7 @@
                         <div class="row w3-hide-small">
                             <div class="col-sm-12 text-right">
                                 <a href="{!! url('/employee/sick/form') !!}"><button class="btn btn-warning mt-2 mt-xl-0 text-right"><i class="fa fa-archive"></i>  {!! trans('messages.analyze.disease_name') !!}</button></a>
-                                <a href="{!! url('/employee/report/pet') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
+                                <a href="{!! url('/employee/report/sick_report') !!}" target="_blank"><button class="btn btn-success mt-2 mt-xl-0 text-right"><i class="fa fa-file-text"></i>  {!! trans('messages.report_show') !!}</button></a>
                             </div>
                         </div>
                         <br>
@@ -300,8 +300,8 @@
             $('.delete-store').on('click',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -311,7 +311,7 @@
                             $.post($('#root-url').val()+"/employee/pet/delete", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/pet/show_pet'
@@ -319,7 +319,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
                     }
                 });
             });

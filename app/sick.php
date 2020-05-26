@@ -22,4 +22,9 @@ class sick extends GeneralModel
         return $this->hasMany('App\sick_transection','sick_id','code');
     }
 
+    public function join_sick_transection_one()
+    {
+        return $this->hasOne('App\sick_transection','sick_id','code');
+    }
+
 }

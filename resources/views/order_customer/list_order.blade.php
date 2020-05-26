@@ -92,13 +92,13 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="form">
-                            {!! Form::model(null,array('url' => array('employee/print/post_parcle'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data','target'=>'_bank')) !!}
+                            {!! Form::model(null,array('url' => array('employee/order/save_poarcel'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
                         <div class="col-sm-12">
                             <div class="row">
                                 <input type="hidden" name="id" class="id">
                                 <lable class="col-sm-2 control-label">{!! trans('messages.order.parcel_code') !!}</lable>
                                 <div class="col-sm-10">
-                                    <input class="form-control id_order" size="25" placeholder="{!! trans('messages.order.parcel_code') !!}" name="id_order" readonly>
+                                    <input class="form-control id_post_parcel" size="25" placeholder="{!! trans('messages.order.parcel_code') !!}" name="post_parcel">
                                 </div>
                             </div>
                             <br>
@@ -155,7 +155,9 @@
                             <br>
                             <div class="form-group row float-right">
                                 <div class="col-sm-12">
-                                    <button class="btn-info btn-primary"  type="submit">Print</button>
+                                    <button class="btn-info btn-warning"  type="submit">{!! trans('messages.save') !!}</button>
+{{--                                    <a href="{!! url('employee/print/post_parcle/'.) !!}" class="btn-info btn-primary button">{!! trans('messages.print') !!}</a>--}}
+{{--                                    <button class="btn-info btn-primary"  type="submit">{!! trans('messages.print') !!}</button>--}}
                                     {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
                                 </div>
                             </div>
@@ -378,8 +380,8 @@
             $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -389,7 +391,7 @@
                             $.post($('#root-url').val()+"/employee/order/delete", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/list_order_customer'
@@ -397,7 +399,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });
@@ -405,8 +407,8 @@
             $('body').on('click','.app-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "You want to confirm this order.",
+                    title: "{{ trans('messages.sure') }}",
+                    text: "{{ trans('messages.sure_con') }}",
                     icon: "success",
                     buttons: true,
                     dangerMode: true,
@@ -416,7 +418,7 @@
                             $.post($('#root-url').val()+"/employee/approved_order", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/list_order_customer'
@@ -424,7 +426,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });
@@ -452,6 +454,7 @@
                         $('.tell').val(e.address_.tell);
                         $('.sub').val(e.address_.name_sub{!!'_'. Session::get('locale') !!});
                         $('.name').val(e.address_.name);
+                        $('.id_post_parcel').val(e.order.post_parcel);
                     } ,error : function(){
                         console.log('Error View Data Order');
                     }

@@ -102,6 +102,7 @@ Route::post('/employee/sick/view','Sick\SickController@show');
 Route::get('/employee/sick/edit/{id?}','Sick\SickController@edit');
 Route::post('/employee/sick_tran/delete','Sick\SickController@delete_sick_tran');
 Route::post('/employee/analyze/update','Sick\SickController@update');
+Route::get('/employee/report/sick_report/{id?}','Sick\SickController@print_sick');
 
 //employee add product for sale
 Route::any('/employee/add/product/sale/list','Product\ProductController@sale');
@@ -243,7 +244,8 @@ Route::post('/employee/order_company/delete_order','Product\OrderCompanyControll
 
 //Send Order To customer
 Route::post('/employee/order/sent_to_car','Sell\OrderCustomerController@sent_to_car');
-Route::post('/employee/print/post_parcle','Sell\OrderCustomerController@post_parcle');
+Route::get('/employee/print/post_parcle/{id?}','Sell\OrderCustomerController@post_parcle');
+Route::post('/employee/order/save_poarcel','Sell\OrderCustomerController@save_post_parcle');
 
 //report sale good
 Route::get('/report/sale_good','Report\ReportController@index');

@@ -378,8 +378,8 @@
             $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -389,7 +389,7 @@
                             $.post($('#root-url').val()+"/employee/quotation/delete", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/quotation/order_quotation_list'
@@ -397,7 +397,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });
@@ -405,8 +405,8 @@
             $('body').on('click','.app-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "You want to confirm this order.",
+                    title: "{{ trans('messages.sure') }}",
+                    text: "{{ trans('messages.sure_con') }}",
                     icon: "success",
                     buttons: true,
                     dangerMode: true,
@@ -416,7 +416,7 @@
                             $.post($('#root-url').val()+"/employee/approved_order", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/list_order_customer'
@@ -424,7 +424,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });

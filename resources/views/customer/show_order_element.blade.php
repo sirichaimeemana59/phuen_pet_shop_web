@@ -49,7 +49,7 @@
                     <td>{!! localDate($row->created_at) !!}</td>
                     <td>@if(!empty($row->join_bill_payment)) {!! trans('messages.paid') !!} @else {!! trans('messages.n_paid') !!} @endif</td>
                     <td>
-                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif><i class="mdi mdi-eye"></i></button>
+                        <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         @if($row->status != 0)
                             <button class="btn btn-warning mt-2 mt-xl-0 text-right" disabled ><i class="mdi mdi-tooltip-edit"></i></button>
                         @else
@@ -113,7 +113,7 @@
                                 <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown">{!! trans('messages.action') !!}
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li class="#"><a href="#" class="view-store" data-id="{!! $row->id !!}" @if($row->status != 0) disabled @endif>{!! trans('messages.view') !!}</a></li>
+                                    <li class="#"><a href="#" class="view-store" data-id="{!! $row->id !!}">{!! trans('messages.view') !!}</a></li>
                                     {{--<li class="#"><a href="#" class="edit-store" data-id="{!! $row->id !!}">{!! trans('messages.edit') !!}</a></li>--}}
                                     @if($row->status != 0)
                                         <li class="#"><a href="#" disabled>{!! trans('messages.edit') !!}</a></li>

@@ -3,6 +3,11 @@
 <div class="form-group row">
     <lable class="col-sm-12 control-label"><h3>{!! trans('messages.order.order') !!} : {!! $order_customer->order_code !!}</h3></lable>
 </div>
+
+<div class="form-group row">
+    <lable class="col-sm-12 control-label"><h3>{!! trans('messages.order.parcel_code') !!} : {!! $order_customer->post_parcel !!}</h3></lable>
+</div>
+
 <div class="table-responsive table-striped">
 <table class="table itemTables" style="width: 100%">
     <tr>

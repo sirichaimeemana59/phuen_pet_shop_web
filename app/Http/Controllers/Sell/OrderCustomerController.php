@@ -330,9 +330,9 @@ class OrderCustomerController extends Controller
 
     }
 
-    public function post_parcle(){
+    public function post_parcle($id = null){
         //dd(Request::input('id'));
-        $order = order_customer::find(Request::input('id'));
+        $order = order_customer::find($id);
 
         $address_ = DB::table('address')
             ->join('provinces', 'address.province_id', '=', 'provinces.id')
@@ -350,5 +350,15 @@ class OrderCustomerController extends Controller
     public function delete_order(){
         $order_customer_tran = order_customer_transection::find(Request::input('id'));
         $order_customer_tran->delete();
+    }
+
+    public function save_post_parcle(){
+        $order = order_customer::find(Request::input('id'));
+        $order->post_parcel = Request::input('post_parcel');
+        $order->save();
+
+        return redirect('/employee/list_order_customer');
+
+
     }
 }

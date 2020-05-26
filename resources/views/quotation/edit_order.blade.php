@@ -326,8 +326,8 @@
                 var id = $(this).data('id');
                 var order = $(this).data('order');
                 swal({
-                    title: "Are you sure?",
-                    text: "You want to confirm this order.",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",
                     icon: "success",
                     buttons: true,
                     dangerMode: true,
@@ -337,7 +337,7 @@
                             $.post($('#root-url').val()+"/employee/delete_order_quotation", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/edit/quotation/'+order
@@ -345,7 +345,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });

@@ -295,8 +295,8 @@
             $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -306,7 +306,7 @@
                             $.post($('#root-url').val()+"/employee/promotion/delete", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/employee/list/promotion'
@@ -314,7 +314,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
                     }
                 });
             });

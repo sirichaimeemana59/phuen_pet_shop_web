@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="form-group row float-center" style="text-align: center; ">
                                     <div class="col-sm-12">
-                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">{!! trans('messages.save') !!}</button>
                                         {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
                                 </div>
                                 <div class="form-group row float-center" style="text-align: center; ">
                                     <div class="col-sm-12">
-                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
+                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">{!! trans('messages.save') !!}</button>
                                         {{--<button class="btn-info btn-warning" type="reset">Reset</button>--}}
                                     </div>
                                 </div>
@@ -383,9 +383,8 @@
             $('body').on('click','.delete-store',function(){
                 var id = $(this).data('id');
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
-                    icon: "warning",
+                    title: "{{ trans('messages.delete') }}",
+                    text: "{{ trans('messages.delete_con') }}",                    icon: "warning",
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete)=> {
@@ -394,7 +393,7 @@
                             $.post($('#root-url').val()+"/customer/order/delete", {
                                 id: id
                             }, function(e) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
                                     window.location.href =$('#root-url').val()+'/customer/list_order'
@@ -402,7 +401,7 @@
                             });
                         }, 50);
                     } else {
-                        swal("Your imaginary file is safe!");
+                        swal("{{ trans('messages.delete_can') }}");
             }
             });
             });

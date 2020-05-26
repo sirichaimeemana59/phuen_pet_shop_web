@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'sure'=>'Are you sure?',
+    'sure_con'=>'You want to confirm this order.',
+    'delete' => 'Delete',
+    'delete_con' => 'Are you sure you want to delete this information?',
+    'delete_suc' => 'Successfully deleted',
+    'delete_can' => 'Undelete data',
+    'ok'=>'OK',
+    'print'=>'Print',
     'save'=>'Save',
     'sale'=>'Sale Report',
     'id_sale'=>'ID',
