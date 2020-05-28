@@ -67,6 +67,7 @@ class SickController extends Controller
                 $sick_tran->sick_en = $t['sick_en'];
                 $sick_tran->detail_th = $t['detail_th'];
                 $sick_tran->detail_en = $t['detail_en'];
+                $sick_tran->type = $t['check'];
                 $sick_tran->save();
             }
         }
@@ -110,6 +111,7 @@ class SickController extends Controller
             $sick_tran->sick_en = $t['sick_en'];
             $sick_tran->detail_th = $t['detail_th'];
             $sick_tran->detail_en = $t['detail_en'];
+            $sick_tran->type = $t['check'];
             $sick_tran->save();
         }
 
@@ -121,6 +123,7 @@ class SickController extends Controller
                 $sick_tran->sick_en = $t['sick_en'];
                 $sick_tran->detail_th = $t['detail_th'];
                 $sick_tran->detail_en = $t['detail_en'];
+                $sick_tran->type = $t['check'];
                 $sick_tran->save();
             }
         }

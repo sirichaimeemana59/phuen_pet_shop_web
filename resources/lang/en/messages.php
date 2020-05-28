@@ -1,6 +1,20 @@
 <?php
 
 return [
+    'prev'=>'Prev',
+    'next'=>'Next',
+    'closed'=>'Closed',
+    'user_id'=>'User ID',
+    'pass'=>'Password',
+    'pass_com'=>'Confirm Password',
+    'login'=>'Login',
+    'register'=>'Register',
+    'treatment'=>'Treatment',
+    'normal'=>'Normal',
+    'self'=>'Self-healing',
+    'doctor'=>'doctor',
+    'contract'=>'Contract',
+    'home'=>'Home',
     'sure'=>'Are you sure?',
     'sure_con'=>'You want to confirm this order.',
     'delete' => 'Delete',
@@ -78,7 +92,7 @@ return [
 
     'product' => [
         'head_product' => 'Product',
-        'name_' => 'Name',
+        'name' => 'Name',
         'name_th' => 'Name [TH]',
         'name_en' => 'Name [EN]',
         'price' => 'Price',

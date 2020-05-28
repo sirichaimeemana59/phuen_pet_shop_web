@@ -7,7 +7,6 @@ Route::get('/{p?}', 'IndexController@index');
 Route::any('/search/pet', 'IndexController@search_data');
 Route::post('/pet', 'IndexController@create');
 
-
 Auth::routes();
 
 Route::get('/home/user', 'HomeController@index')->name('home');

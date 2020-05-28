@@ -11,6 +11,27 @@
                 <td style="text-align: left;padding-left: 5px;"></td>
                 <td style="text-align: left;padding-left: 25px;"><li class="fa fa-hand-o-right" aria-hidden="true">  {!! $val->{'detail_'.Session::get('locale')} !!}</li></td>
             </tr>
+
+            @if($val->type == 1)
+            <tr>
+                <td style="text-align: left;padding-left: 5px;"></td>
+                <td style="text-align: left;padding-left: 25px;"><li class="fa fa-hand-o-right" aria-hidden="true">
+                        <button class="btn btn-success" type="button" data-toggle="dropdown">{!! trans('messages.normal') !!}</li></td>
+            </tr>
+            @elseif($val->type == 2)
+                <tr>
+                    <td style="text-align: left;padding-left: 5px;"></td>
+                    <td style="text-align: left;padding-left: 25px;"><li class="fa fa-hand-o-right" aria-hidden="true">
+                            <button class="btn btn-warning" type="button" data-toggle="dropdown">{!! trans('messages.self') !!}</li></td>
+                </tr>
+            @elseif($val->type == 3)
+                <tr>
+                    <td style="text-align: left;padding-left: 5px;"></td>
+                    <td style="text-align: left;padding-left: 25px;"><li class="fa fa-hand-o-right" aria-hidden="true">
+                            <button class="btn btn-danger" type="button" data-toggle="dropdown">{!! trans('messages.doctor') !!}</li></td>
+                </tr>
+            @endif
+
         @endforeach
     </table>
 </div>

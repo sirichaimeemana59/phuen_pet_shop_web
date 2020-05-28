@@ -57,6 +57,9 @@
                                             <th>{!! trans('messages.analyze.syndrome_en') !!}</th>
                                             <th>{!! trans('messages.analyze.detail_th') !!}</th>
                                             <th>{!! trans('messages.analyze.detail_en') !!}</th>
+                                            <th>{!! trans('messages.normal') !!}</th>
+                                            <th>{!! trans('messages.self') !!}</th>
+                                            <th>{!! trans('messages.doctor') !!}</th>
                                             <th>{!! trans('messages.action') !!}</th>
                                         </tr>
                                     </table>
@@ -113,10 +116,13 @@
                     var data = [
                         '<tr class="itemRow">',
                         '<td></td>',
-                        '<td><input type="text" class="amount form-control" name=data['+time+'][sick_th] required></td>',
-                        '<td><input type="text" class="amount form-control" name=data['+time+'][sick_en]></td>',
-                        '<td><input type="text" class="amount form-control" name=data['+time+'][detail_th] required></td>',
-                        '<td><input type="text" class="amount form-control" name=data['+time+'][detail_en]></td>',
+                        '<td><input type="text" class="amount form-control" name="data['+time+'][sick_th]" required></td>',
+                        '<td><input type="text" class="amount form-control" name="data['+time+'][sick_en]"></td>',
+                        '<td><input type="text" class="amount form-control" name="data['+time+'][detail_th]" required></td>',
+                        '<td><input type="text" class="amount form-control" name="data['+time+'][detail_en]"></td>',
+                        '<td><input type="radio" id="1" class="amount form-control" name="data['+time+'][check]" value="1"></td>',
+                        '<td><input type="radio" id="2" class="amount form-control" name="data['+time+'][check]" value="2"></td>',
+                        '<td><input type="radio" id="3" class="amount form-control" name="data['+time+'][check]" value="3"></td>',
                         '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                         '</tr>'].join('');
                     $('.itemTables').append(data);

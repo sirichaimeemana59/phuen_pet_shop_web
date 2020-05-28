@@ -16,4 +16,9 @@ class news extends GeneralModel
     protected $fillable = ['photo,name_th,name_en,detail_th,detail_en,status,user_id,deleted_at'];
     public $timestamps = true;
     protected $softDelete = true;
+
+    public function join_user()
+    {
+        return $this->hasOne('App\users_list','id','user_id');
+    }
 }

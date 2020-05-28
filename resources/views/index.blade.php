@@ -265,7 +265,13 @@
                     <div class="form-group">
                         <lable class="col-sm-2 control-label">{!! trans('messages.search') !!}</lable>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control data_text" name="data">
+{{--                            <input type="text" class="form-control data_text" name="data">--}}
+                            <select name="data_text1" id="" class="form-control data_text1">
+                                <option value="">{!! trans('messages.search') !!}</option>
+                                @foreach($sick as $t)
+                                    <option value="{!! $t['id'] !!}">@if(empty(Session::get('locale'))){!! $t{'name_'.Session::get('locale','en')} !!}@else{!! $t{'name_'.Session::get('locale')} !!}@endif</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -705,14 +711,7 @@
 <script src="js/theme.js"></script>
 </body>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-{{--@section('script')--}}
-    {{--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--}}
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>--}}
-    {{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>--}}
-    {{--<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>--}}
-    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--}}
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>--}}
-    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>--}}
+
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -775,6 +774,51 @@
                         }
                     });
                 },delay);
+            });
+
+            $('.show').hide();
+            $('.show1').hide();
+            $('body').on('change','.data_text1',function(){
+                var data = $('.data_text1').val();
+                console.log(data);
+                    $.ajax({
+                        url: $('#root-url').val()+'/search/pet',
+                        method: 'post',
+                        dataType: 'JSON',
+                        data: {'data':data},
+                        success: function (e) {
+                            if(e.length == 0){
+                                $('.show').show();
+                                $('.show1').hide();
+                            }else{
+                                $('.show').hide();
+                                $('.show1').show();
+                            }
+
+                            console.log(e);
+                            $('.itemTables').html('');
+                            var data_ =[];
+
+                            $.each(e, function(i, val){
+                                data_ = [
+                                    '<tr class="itemRow">',
+                                    '<td style="text-align:left;font-weight: bold; width:25%;">'+val.join_sick.name_{!! Session::get('locale') !!}+'</td>',
+                                    '<td>'+val.join_sick.detail_{!! Session::get('locale') !!}+'</td>',
+                                    '</tr>',
+                                    '<tr>',
+                                    '<td style="text-align:left;font-weight: bold; width:25%;">'+val.sick_{!! Session::get('locale') !!}+'</td>',
+                                    '<td>'+val.detail_{!! Session::get('locale') !!}+'</td>',
+                                    '</tr>'
+                                ].join('');
+
+                                $('.itemTables').append(data_);
+                            });
+
+                        }, error: function () {
+
+                            console.log('Error Search Data Product');
+                        }
+                    });
             });
 
         });

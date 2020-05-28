@@ -59,15 +59,30 @@
                                             <th>{!! trans('messages.analyze.syndrome_en') !!}</th>
                                             <th>{!! trans('messages.analyze.detail_th') !!}</th>
                                             <th>{!! trans('messages.analyze.detail_en') !!}</th>
+                                            <th>{!! trans('messages.normal') !!}</th>
+                                            <th>{!! trans('messages.self') !!}</th>
+                                            <th>{!! trans('messages.doctor') !!}</th>
                                             <th>{!! trans('messages.action') !!}</th>
                                         </tr>
                                         @foreach($sick->join_sick_transection as $key => $val)
+
+                                            @if(!empty($val->type))
+                                                @if($val->type == 1) <?php $check1 = "checked"; $check2 = ""; $check3 = ""?> @endif
+                                                    @if($val->type == 2) <?php $check2 = "checked" ; $check1 = ""; $check3 = ""?> @endif
+                                                    @if($val->type == 3) <?php $check3 = "checked" ; $check2 = ""; $check1 = ""?> @endif
+
+                                            @else
+                                                <?php $check3 = "" ; $check2 = ""; $check1 = ""?>
+                                            @endif
                                             <tr>
                                                 <td></td>
                                                 <td><input type="hidden" name="data_[{!! $key !!}][id_]" value="{!! $val['id'] !!}"><input type="text" class="form-control" name="data_[{!! $key !!}][sick_th]" value="{!! $val['sick_th'] !!}" required></td>
                                                 <td><input type="text" class="form-control" name="data_[{!! $key !!}][sick_en]" value="{!! $val['sick_en'] !!}" ></td>
                                                 <td><input type="text" class="form-control" name="data_[{!! $key !!}][detail_th]" value="{!! $val['detail_th'] !!}" required></td>
                                                 <td><input type="text" class="form-control" name="data_[{!! $key !!}][detail_en]" value="{!! $val['detail_en'] !!}" ></td>
+                                                <td><input type="radio" id="1" class="form-control" name="data_[{!! $key !!}][check]" value="1" {!! $check1 !!}></td>
+                                                <td><input type="radio" id="2" class="form-control" name="data_[{!! $key !!}][check]" value="2" {!! $check2 !!}></td>
+                                                <td><input type="radio" id="3" class="form-control" name="data_[{!! $key !!}][check]" value="3" {!! $check3 !!}></td>
                                                 <td><a class="btn btn-danger delete-sick" data-id="{!! $val['id'] !!}" data-sick="{!! $sick->id !!}"><i class="mdi mdi-delete-sweep"></i></a></td>
                                             </tr>
                                         @endforeach
@@ -129,6 +144,10 @@
                         '<td><input type="text" class="amount form-control" name=data['+time+'][sick_en]></td>',
                         '<td><input type="text" class="amount form-control" name=data['+time+'][detail_th] required></td>',
                         '<td><input type="text" class="amount form-control" name=data['+time+'][detail_en]></td>',
+                        '<td><input type="radio" id="1" class="amount form-control" name="data['+time+'][check]" value="1"></td>',
+                        '<td><input type="radio" id="2" class="amount form-control" name="data['+time+'][check]" value="2"></td>',
+                        '<td><input type="radio" id="3" class="amount form-control" name="data['+time+'][check]" value="3"></td>',
+
                         '<td><a class="btn btn-danger delete-subject"><i class="mdi mdi-delete-sweep"></i></a></td>',
                         '</tr>'].join('');
                     $('.itemTables').append(data);
