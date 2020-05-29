@@ -1,13 +1,20 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
 @if(!empty($p_row))
         <div class="row">
             @foreach($p_row as $key => $row)
                 <div class="col-md-12 mySlides_new">
-                    <div class="service-box" >
+                    <div class="service-box">
                         <div class="service-ico">
-                            <img class="card-img rounded-0" src="{!! asset($row->photo) !!}" alt="">
+                            <img class="card-img rounded-0 center" src="{!! asset($row->photo) !!}" alt="" style="width: 400px; height: 300px;">
                         </div>
                         <div class="service-content">
                             <h2 class="s-title"> {!! $row{'name_'.Session::get('locale')} !!}</h2>

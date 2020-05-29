@@ -1,13 +1,23 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
 @if(!empty($promotion))
     @foreach($promotion as $key => $row)
         <div class="col-md-12 mySlides5">
-            <div class="work-box">
-                <div class="work-img">
+            <div class="service-box">
+                <div class="service-img">
                     @if(empty($row->photo))
-                        <img class="card-img rounded-0" src="{!! asset('images/shutterstock_477383266.jpg') !!}" alt="">
+                        <img class="card-img rounded-0 center"  alt="" style="width: 400px; height: 300px;" src="{!! asset('images/shutterstock_477383266.jpg') !!}" alt="">
                     @else
-                        <img class="card-img rounded-0" src="{!! asset($row->photo) !!}" alt="">
+                        <img class="card-img rounded-0 center"  alt="" style="width: 400px; height: 300px;" src="{!! asset($row->photo) !!}" alt="">
                     @endif
                 </div>
                 <div class="work-content">

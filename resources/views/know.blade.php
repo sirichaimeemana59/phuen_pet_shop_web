@@ -1,12 +1,21 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+</style>
+
 @if(!empty($know))
     @foreach($know as $val)
 
         <div class="col-md-12 mySlides_know">
-            <div class="card card-blog">
-                <div class="card-img">
-                    <img class="card-img rounded-0" src="{!! asset($val->photo) !!}" alt="">
+            <div class="service-box">
+                <div class="service-img">
+                    <img class="card-img rounded-0 center"  alt="" style="width: 400px; height: 300px;" src="{!! asset($val->photo) !!}" alt="">
                 </div>
                 <div class="card-body">
 
