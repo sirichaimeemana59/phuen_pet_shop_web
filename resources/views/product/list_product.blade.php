@@ -14,9 +14,11 @@
                                     {{--<input class="form-control" size="25" placeholder="{!! trans('messages.product.head_product') !!}" name="name">--}}
                                     <select name="name" id="" class="form-control">
                                         <option value="">{!! trans('messages.product.head_product') !!}</option>
-                                        @foreach($product1 as $t)
-                                            <option value="{!! $t->product_id !!}">{!! $t->join_stock{'name_'.Session::get('locale')} !!}</option>
-                                        @endforeach
+                                        @if(!empty($product1))
+                                            @foreach($product1 as $t)
+                                                <option value="{!! $t->product_id !!}">{!! $t->join_stock->name_th !!}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
 
@@ -65,107 +67,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal add store-->
-    <div class="modal fade" id="add-store" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #9BA2AB;">
-                    <h4 class="modal-title" style="color: #bbbfc3;">{!! trans('messages.product.head_product') !!}</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form">
-                                {!! Form::model(null,array('url' => array('employee/product/add'),'class'=>'form-horizontal create-store-form','id'=>'form_add','method'=>'post','enctype'=>'multipart/form-data')) !!}
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.head_product') !!}</lable>
-                                    <div class="col-sm-10">
-                                        <select name="product_id" id="" class="form-control select_product">
-                                            <option value="">{!! trans('messages.select_unit') !!}</option>
-                                            @foreach($widen as $key_ => $val_)
-                                                <option value="{!! $val_->stock_id !!}">{!! $val_->join_stock{'name_'.Session::get('locale')} !!}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.amount') !!}</lable>
-                                    <div class="col-sm-4">
-                                        {!! Form::text('amount',null,array('class'=>'form-control amount','placeholder'=>trans('messages.product.amount'),'required')) !!}
-                                    </div>
-
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.product.unit_id') !!}</lable>
-                                    <div class="col-sm-4">
-                                        <select name="unit_id" id="" class="form-control unit_id">
-                                            <option value="">{!! trans('messages.select_unit') !!}</option>
-                                            <option value="1">Box</option>
-                                            <option value="2">Piece</option>
-                                            {{--@foreach($unit as $key => $val)--}}
-                                            {{--<option value="{!! $val->id !!}">{!! $val->{'name_'.Session::get('locale')} !!}</option>--}}
-                                            {{--@endforeach--}}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    {{--<lable class="col-sm-2 control-label">{!! trans('messages.product.price') !!}</lable>--}}
-                                    {{--<div class="col-sm-4">--}}
-                                        {{--{!! Form::text('price',null,array('class'=>'form-control price','placeholder'=>trans('messages.product.price'),'required')) !!}--}}
-                                    {{--</div>--}}
-
-                                    <lable class="col-sm-2 control-label psc" style="display: none;">{!! trans('messages.stock.Pcs') !!}</lable>
-                                    <div class="col-sm-4 psc" style="display: none;">
-                                        {!! Form::text('psc',null,array('class'=>'form-control psc_total','placeholder'=>trans('messages.stock.Pcs'),'required')) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.type') !!}</lable>
-                                    <div class="col-sm-10">
-                                        <select name="type_sale" id="" class="form-control type_sale">
-                                            <option value="">{!! trans('messages.sale_mode.type') !!}</option>
-                                            <option value="1">{!! trans('messages.sale_mode.pack') !!}</option>
-                                            <option value="2">{!! trans('messages.sale_mode.piece') !!}</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row price_pack" style="display: none;">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_pack') !!}</lable>
-                                    <div class="col-sm-10">
-                                        {!! Form::text('price_pack',null,array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_pack'),'required')) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row price_piece" style="display: none;">
-                                    <lable class="col-sm-2 control-label">{!! trans('messages.sale_mode.price_piece') !!}</lable>
-                                    <div class="col-sm-10">
-                                        {!! Form::text('price_piece',null,array('class'=>'form-control','placeholder'=>trans('messages.sale_mode.price_piece'),'required')) !!}
-                                    </div>
-                                </div>
-
-                                <div class="form-group row float-center" style="text-align: center; ">
-                                    <div class="col-sm-12">
-                                        <button class="btn-info btn-primary" id="add-store-btn" type="submit">Save</button>
-                                        <button class="btn-info btn-warning" type="reset">Reset</button>
-                                    </div>
-                                </div>
-                                {!! Form::close() !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- End Modal add store-->
 
     <!-- Modal view store-->
     <div class="modal fade" id="view-store" role="dialog">

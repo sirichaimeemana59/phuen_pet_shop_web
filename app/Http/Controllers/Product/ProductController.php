@@ -66,7 +66,7 @@ class ProductController extends Controller
 
         $product1 = new product;
         $product1 = $product1->get();
-
+        //dd($product1);
 
         if(!$request->ajax()){
             return view('product.list_product')->with(compact('product','unit','widen','product1'));

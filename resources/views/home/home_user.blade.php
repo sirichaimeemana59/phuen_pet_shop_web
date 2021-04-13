@@ -96,9 +96,9 @@
 <div class="container-scroller">
     <input type="hidden" id="root-url" value="{!! url('/') !!}">
     <!-- partial:partials/_navbar.html -->
-<!--    --><?php
-//        echo Session::get('logo');
-//    ?>
+
+
+
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="navbar-brand-wrapper d-flex justify-content-center">
             <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
@@ -248,8 +248,10 @@
             </button>
         </div>
     </nav>
+
     <!-- partial -->
     <div class="container-fluid page-body-wrapper" >
+{{--    {!! Session::get('locale') !!}--}}
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color: {!! Session::get('color_left') !!}">
         @if(Auth::user()->role == 0)

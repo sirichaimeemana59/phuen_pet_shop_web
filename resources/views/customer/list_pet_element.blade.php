@@ -43,6 +43,7 @@
         <tbody>
         @if(!empty($p_row))
             @foreach($p_row as $key => $row)
+
                 <tr>
                     <td>{!! $key+1 !!}</td>
                     <td><img src="{!! asset($row->photo) !!}" alt="" width="25%"></td>

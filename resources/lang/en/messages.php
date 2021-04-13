@@ -13,7 +13,7 @@ return [
     'normal'=>'Normal',
     'self'=>'Self-healing',
     'doctor'=>'doctor',
-    'contract'=>'Contract',
+    'contract'=>'Contact',
     'home'=>'Home',
     'sure'=>'Are you sure?',
     'sure_con'=>'You want to confirm this order.',
