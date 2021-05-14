@@ -46,12 +46,13 @@
             @foreach($product as $key => $row)
                 <tr>
                     <td>{!! $key+1 !!}</td>
-                    <td> {!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>
+{{--                    {'name_'.Session::get('locale')}--}}
+                    <td>{!! $row->join_stock['name_th'] !!}</td>
                     <td>{!! number_format($row->join_widen_trans['amount_widden']) !!}
-                        @if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif
+                        @if(!empty($row->join_stock_log)){!! $row->join_stock_log['name_th'] !!} @else {!! $row->join_unit_transection_all['name_th']!!} @endif
                     </td>
                     <td>@if(!empty($row->price_pack)){!! $row->price_pack !!} @else {!! $row->price_piece !!} @endif</td>
-                    <td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>
+                    <td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log['name_th'] !!} @else {!! $row->join_unit_transection_all['name_th'] !!} @endif</td>
                     <td>
                         <button class="btn btn-primary mt-2 mt-xl-0 text-right view-store" data-id="{!! $row->id !!}"><i class="mdi mdi-eye"></i></button>
                         <button class="btn btn-warning mt-2 mt-xl-0 text-right edit-store" data-id="{!! $row->id !!}"><i class="mdi mdi-tooltip-edit"></i></button>
@@ -87,11 +88,13 @@
                 @if(!empty($product))
                     @foreach($product as $key => $row)
                         <tr>
+                            <td></td>
+                            <td></td>
                             {{--<td>{!! $key+1 !!}</td>--}}
-                            <td> {!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>
-                            <td>{!! number_format($row->join_widen_trans['amount_widden']) !!}
-                                @if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif
-                            </td>
+{{--                            <td> {!! $row->join_stock{'name_'.Session::get('locale')} !!}</td>--}}
+{{--                            <td>{!! number_format($row->join_widen_trans['amount_widden']) !!}--}}
+{{--                                @if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif--}}
+{{--                            </td>--}}
                             {{--<td>@if(!empty($row->price_pack)){!! $row->price_pack !!} @else {!! $row->price_piece !!} @endif</td>--}}
                             {{--<td>@if(!empty($row->join_stock_log)){!! $row->join_stock_log{'name_'.Session::get('locale')} !!} @else {!! $row->join_unit_transection_all{'name_'.Session::get('locale')} !!} @endif</td>--}}
                             <td>

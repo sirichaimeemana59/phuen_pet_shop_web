@@ -299,6 +299,7 @@
 
             $('.delete-store').on('click',function(){
                 var id = $(this).data('id');
+                //alert(id);
                 swal({
                     title: "{{ trans('messages.delete') }}",
                     text: "{{ trans('messages.delete_con') }}",
@@ -308,13 +309,13 @@
                 }).then((willDelete)=> {
                     if (willDelete) {
                         setTimeout(function() {
-                            $.post($('#root-url').val()+"/employee/pet/delete", {
+                            $.post($('#root-url').val()+"/employee/sick_tran/delete", {
                                 id: id
                             }, function(e) {
                                 swal("{{ trans('messages.delete_suc') }}", {
                                     icon: "success",
                                 }).then(function(){
-                                    window.location.href =$('#root-url').val()+'/employee/pet/show_pet'
+                                    window.location.href =$('#root-url').val()+'/employee/sick/list_show_sick'
                                 });
                             });
                         }, 50);

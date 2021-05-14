@@ -104,17 +104,18 @@ class SickController extends Controller
         $sick->code = Request::input('code');
         $sick->save();
 
-        foreach (Request::input('data_') as $t){
-            $sick_tran =  sick_transection::find($t['id_']);
-            $sick_tran->sick_id = Request::input('code');
-            $sick_tran->sick_th = $t['sick_th'];
-            $sick_tran->sick_en = $t['sick_en'];
-            $sick_tran->detail_th = $t['detail_th'];
-            $sick_tran->detail_en = $t['detail_en'];
-            $sick_tran->type = $t['check'];
-            $sick_tran->save();
+        if(!empty(Request::input('data_'))) {
+            foreach (Request::input('data_') as $t) {
+                $sick_tran = sick_transection::find($t['id_']);
+                $sick_tran->sick_id = Request::input('code');
+                $sick_tran->sick_th = $t['sick_th'];
+                $sick_tran->sick_en = $t['sick_en'];
+                $sick_tran->detail_th = $t['detail_th'];
+                $sick_tran->detail_en = $t['detail_en'];
+                $sick_tran->type = $t['check'];
+                $sick_tran->save();
+            }
         }
-
         if(!empty(Request::input('data'))){
             foreach (Request::input('data') as $t){
                 $sick_tran = new sick_transection;
@@ -128,7 +129,7 @@ class SickController extends Controller
             }
         }
 
-        return redirect('/employee/sick/edit/'.Request::input('id'));
+        return redirect('employee/sick/list_show_sick');
     }
 
 
@@ -138,7 +139,7 @@ class SickController extends Controller
     }
 
     public function delete_sick_tran(){
-        $sick_tran = sick_transection::find(Request::input('id'));
+        $sick_tran = sick::find(Request::input('id'));
         $sick_tran->delete();
     }
 
